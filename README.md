@@ -24,7 +24,9 @@ We are looking for product managers, GIS and data visualization experts, visual 
 - Align data schema with City of Boston standards where possible (See https://data.boston.gov/)
 
 ### Tech Stack
-- TBD
+- React
+- Express
+- Vite
 
 ### Project Progress
 Meetings every Tuesday at [Code for Boston](https://www.codeforboston.org/)
