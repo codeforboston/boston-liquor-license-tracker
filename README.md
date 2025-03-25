@@ -16,6 +16,12 @@ We are looking for product managers, GIS and data visualization experts, visual 
 - @Nick Korn Project Sponsor
 - @Will CfB Core Team
 
+## Contents
+- [Project Goals](#project-goals)
+- [Tech Stack](#tech-stack)
+- [Project Progress](#project-progress)
+- [Running the Project locally (with Docker Compose)](#running-the-project-locally-with-docker-compose)
+- [Running the Project locally (without Docker Compose)](#running-the-project-locally-without-docker-compose)
 
 ### Project Goals
 
@@ -24,9 +30,34 @@ We are looking for product managers, GIS and data visualization experts, visual 
 - Align data schema with City of Boston standards where possible (See https://data.boston.gov/)
 
 ### Tech Stack
-- TBD
+- Frontend: React with Vite
+- Backend: Express
 
 ### Project Progress
 Meetings every Tuesday at [Code for Boston](https://www.codeforboston.org/)
 - March 4, 2025: Project Kickoff
 - March 11, 2025: Overall workplan discussion and sub-team breakouts around data, tech stack, and product design
+- March 18, 2025: Decided on express for a backend, react with vite for a frontend.
+
+## Running the Project locally (with Docker Compose)
+1. [Install Docker](https://www.docker.com/)
+2. From the root of this project, run docker-compose:
+```bash
+docker-compose up --build
+```
+
+## Running the Project locally (without Docker Compose)
+1. ### Run the api server:
+  * Change to the `api` directory:
+  ```bash
+  cd api
+  ```
+  * Install dependencies:
+  ```bash
+  npm install
+  ```
+  * Start the server:
+  ```bash
+  npm start
+  ```
+  * The api server will be running at [http://localhost:3000](http://localhost:3000)
