@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Code for Boston Liquor License Tracker Project",
   "main": "index.js",
+  "workspaces": [
+    "api", "client"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "dev": "npm run dev --workspace=api & npm run dev --workspace=client",
+    "dev:api": "npm run dev --workspace=api",
+    "dev:client": "npm run dev --workspace=client"
+  }
 }
