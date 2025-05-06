@@ -35,12 +35,7 @@ We are looking for product managers, GIS and data visualization experts, visual 
 - Frontend: React with Vite
 
 ### Project Progress
-
 Meetings every Tuesday at [Code for Boston](https://www.codeforboston.org/)
-
-- March 4, 2025: Project Kickoff
-- March 11, 2025: Overall workplan discussion and sub-team breakouts around data, tech stack, and product design
-- March 18, 2025: Decided on express for a backend, react with vite for a frontend.
 
 ### Run the React client:
 
