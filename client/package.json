@@ -17,6 +17,7 @@
     "@tanstack/react-router-devtools": "^1.116.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dependencies": "^0.0.1",
     "lucide-react": "^0.507.0",
     "maplibre-gl": "^5.3.0",
     "react": "^19.0.0",
