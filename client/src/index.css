@@ -1,4 +1,4 @@
-/* :root {
+:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,14 +12,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+header{
+  font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 400;
+  gap: 16px;
+  width: max;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color-scheme: light dark;
+  color: #FFF;
+  background-color: #2E2E2E;
+  text-transform: uppercase;
+
+
 }
+
+.logoImage{
+  height: 32px;
+  width: 230px;
+}
+
 a:hover {
-  color: #535bf2;
+  color: #a5a5a5;
 }
 
 body {
@@ -65,4 +80,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-} */
+}
