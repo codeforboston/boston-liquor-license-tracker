@@ -1,6 +1,4 @@
-import * as React from "react";
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import logo from "../assets/logo.svg";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 
