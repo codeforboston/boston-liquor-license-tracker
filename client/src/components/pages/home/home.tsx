@@ -1,10 +1,21 @@
 import "./home.css"
+import Hero from "@/components/pages/home/hero"
+import Navigation from "@/components/pages/home/navigation"
+import Quote from "@/components/pages/home/quote"
+import AboutUs from "@/components/pages/home/about-us"
+import CaseStudy from "@/components/pages/home/case-study"
+import ExtraWork from "@/components/pages/home/extra-work"
 
 const Home = () => {
   return (
-    <div className="homePage">
+    <div className="home-page">
       <h1>Home</h1>
-      <p>This is the Home page.</p>
+      <Hero />
+      <Navigation />
+      <Quote />
+      <AboutUs />
+      <CaseStudy />
+      <ExtraWork />
     </div>
   )
 }
