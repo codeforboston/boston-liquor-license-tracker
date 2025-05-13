@@ -1,0 +1,22 @@
+header {
+  font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 400;
+  gap: 16px;
+  width: max;
+
+  color-scheme: light dark;
+  color: #FFF;
+  background-color: #2E2E2E;
+  text-transform: uppercase;
+}
+
+header .logoImage{
+  height: 32px;
+  width: 230px;
+}
+
+header a:hover {
+  color: #a5a5a5;
+}

@@ -7,19 +7,29 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npm run dev"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.2",
+    "@tailwindcss/vite": "^4.1.5",
     "@tanstack/react-router": "^1.116.0",
     "@tanstack/react-router-devtools": "^1.116.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dependencies": "^0.0.1",
+    "lucide-react": "^0.507.0",
     "maplibre-gl": "^5.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-intl": "^7.1.11"
+    "react-intl": "^7.1.11",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@tanstack/router-plugin": "^1.116.1",
+    "@types/node": "^22.15.10",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
@@ -27,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "tw-animate-css": "^1.2.9",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"

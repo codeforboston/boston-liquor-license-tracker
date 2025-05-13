@@ -11,11 +11,32 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ResourcesImport } from './routes/resources'
+import { Route as MapsImport } from './routes/maps'
+import { Route as DatabaseImport } from './routes/database'
 import { Route as IndexImport } from './routes/index'
 import { Route as MapTestIndexImport } from './routes/map-test/index'
 import { Route as MapTestMaplibreImport } from './routes/map-test/maplibre'
 
 // Create/Update Routes
+
+const ResourcesRoute = ResourcesImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MapsRoute = MapsImport.update({
+  id: '/maps',
+  path: '/maps',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DatabaseRoute = DatabaseImport.update({
+  id: '/database',
+  path: '/database',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -46,6 +67,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/database': {
+      id: '/database'
+      path: '/database'
+      fullPath: '/database'
+      preLoaderRoute: typeof DatabaseImport
+      parentRoute: typeof rootRoute
+    }
+    '/maps': {
+      id: '/maps'
+      path: '/maps'
+      fullPath: '/maps'
+      preLoaderRoute: typeof MapsImport
+      parentRoute: typeof rootRoute
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesImport
+      parentRoute: typeof rootRoute
+    }
     '/map-test/maplibre': {
       id: '/map-test/maplibre'
       path: '/map-test/maplibre'
@@ -67,12 +109,18 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/database': typeof DatabaseRoute
+  '/maps': typeof MapsRoute
+  '/resources': typeof ResourcesRoute
   '/map-test/maplibre': typeof MapTestMaplibreRoute
   '/map-test': typeof MapTestIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/database': typeof DatabaseRoute
+  '/maps': typeof MapsRoute
+  '/resources': typeof ResourcesRoute
   '/map-test/maplibre': typeof MapTestMaplibreRoute
   '/map-test': typeof MapTestIndexRoute
 }
@@ -80,27 +128,55 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/database': typeof DatabaseRoute
+  '/maps': typeof MapsRoute
+  '/resources': typeof ResourcesRoute
   '/map-test/maplibre': typeof MapTestMaplibreRoute
   '/map-test/': typeof MapTestIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/map-test/maplibre' | '/map-test'
+  fullPaths:
+    | '/'
+    | '/database'
+    | '/maps'
+    | '/resources'
+    | '/map-test/maplibre'
+    | '/map-test'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/map-test/maplibre' | '/map-test'
-  id: '__root__' | '/' | '/map-test/maplibre' | '/map-test/'
+  to:
+    | '/'
+    | '/database'
+    | '/maps'
+    | '/resources'
+    | '/map-test/maplibre'
+    | '/map-test'
+  id:
+    | '__root__'
+    | '/'
+    | '/database'
+    | '/maps'
+    | '/resources'
+    | '/map-test/maplibre'
+    | '/map-test/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DatabaseRoute: typeof DatabaseRoute
+  MapsRoute: typeof MapsRoute
+  ResourcesRoute: typeof ResourcesRoute
   MapTestMaplibreRoute: typeof MapTestMaplibreRoute
   MapTestIndexRoute: typeof MapTestIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DatabaseRoute: DatabaseRoute,
+  MapsRoute: MapsRoute,
+  ResourcesRoute: ResourcesRoute,
   MapTestMaplibreRoute: MapTestMaplibreRoute,
   MapTestIndexRoute: MapTestIndexRoute,
 }
@@ -116,12 +192,24 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/database",
+        "/maps",
+        "/resources",
         "/map-test/maplibre",
         "/map-test/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/database": {
+      "filePath": "database.tsx"
+    },
+    "/maps": {
+      "filePath": "maps.tsx"
+    },
+    "/resources": {
+      "filePath": "resources.tsx"
     },
     "/map-test/maplibre": {
       "filePath": "map-test/maplibre.tsx"

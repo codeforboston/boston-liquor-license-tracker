@@ -42,7 +42,7 @@ Meetings every Tuesday at [Code for Boston](https://www.codeforboston.org/)
 ```bash
 cd client
 npm install # install dependencies
-npm run dev # start app
+npm start # start app
 ```
 
 The app will be running at [http://localhost:5173](http://localhost:5173)
