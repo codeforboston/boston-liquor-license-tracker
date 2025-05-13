@@ -1,3 +1,6 @@
 {
-    "example.intro": "Esta es mi aplicación de mapas"
+  "header.maps": "MAPAS",
+  "header.database": "BASE DE DATOS DE LICENCIAS",
+  "header.resources": "RECURSOS DE LICENCIAS",
+  "header.home": "INICIOS"
 }
