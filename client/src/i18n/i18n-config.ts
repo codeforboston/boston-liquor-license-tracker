@@ -1,5 +1,5 @@
-import ES_ES_MESSAGES from "../locales/es-ES.json";
-import EN_US_MESSAGES from "../locales/en-US.json";
+import ES_ES_MESSAGES from "@/data/locales/es-ES.json";
+import EN_US_MESSAGES from "@/data/locales/en-US.json";
 import { match } from "@formatjs/intl-localematcher";
 
 // Default to American English when app loads, or when translation files are missing
