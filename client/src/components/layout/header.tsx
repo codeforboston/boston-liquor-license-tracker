@@ -4,6 +4,7 @@ import logo from "@/assets/logo.svg";
 import "@/components/layout/header.css";
 import { FormattedMessage } from "react-intl";
 import LangSwitcher from "@/i18n/lang-switcher";
+import language from "@/assets/language.svg";
 
 const Spacer = () => {
   return <span className="mx-4 text-gray-400">&bull;</span>;
@@ -36,6 +37,11 @@ const Header = () => {
         </nav>
 
         <div className="ms-auto">
+          <img
+            src={language}
+            className="language-icon inline-block me-2"
+            alt="Language"
+          />
           <LangSwitcher />
         </div>
 

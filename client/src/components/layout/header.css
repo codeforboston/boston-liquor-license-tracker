@@ -26,3 +26,9 @@ header select {
   color: #fff;
   font-size: 16px;
 }
+
+header .language-icon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
