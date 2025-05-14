@@ -1,7 +1,4 @@
 .home-page .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   background-image: url("../../../assets/qui-nguyen-Zrp9b3PMIy8-unsplash.jpg");
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%),
