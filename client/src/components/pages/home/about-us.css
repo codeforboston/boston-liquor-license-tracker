@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .home-page .about-us {
   font-size: 16px;
   line-height: normal;
