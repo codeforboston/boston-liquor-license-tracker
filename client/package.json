@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "test": "vitest"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.2",
@@ -39,6 +40,7 @@
     "tw-animate-css": "^1.2.9",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vitest": "^3.1.3"
   }
 }
