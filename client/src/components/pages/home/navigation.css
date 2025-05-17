@@ -1,2 +1,29 @@
 .home-page navigation {
 }
+
+
+.button-css {
+  background-color: #2e2e2e;
+  color: #fff;
+  width: 400px;
+  height: 62px;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 32px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 64px;
+  gap: 56px;
+}
