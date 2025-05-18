@@ -19,6 +19,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  flex-direction: column;
+  justify-items: flex-start;
 }
 
 h1 {
