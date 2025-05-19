@@ -5,10 +5,10 @@ import {
   createHashHistory,
   createRouter,
 } from "@tanstack/react-router";
-
-import "./index.css";
-import "./App.css";
 import I18n from "./i18n/I18n";
+
+// Global styles
+import "@styles/index.css";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
