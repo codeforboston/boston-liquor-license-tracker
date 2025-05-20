@@ -1,8 +1,8 @@
 .home-page .hero {
-  background-image: url("../../../assets/qui-nguyen-Zrp9b3PMIy8-unsplash.jpg");
+  background-image: url("../../../assets/images/qui-nguyen-Zrp9b3PMIy8-unsplash.jpg");
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%),
-    url("../../../assets/qui-nguyen-Zrp9b3PMIy8-unsplash.jpg") lightgray
+    url("../../../assets/images/qui-nguyen-Zrp9b3PMIy8-unsplash.jpg") lightgray
       0px -613.65px / 100% 408.885% no-repeat;
 
   background-position: center;
