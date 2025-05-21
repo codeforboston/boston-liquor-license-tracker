@@ -25,7 +25,9 @@
     /* Resolve paths for IDE */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "include": ["src"]
