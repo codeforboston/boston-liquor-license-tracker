@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.svg";
-import '@/components/layout/header.css';
+import "@/components/layout/header.css";
+import { FormattedMessage } from "react-intl";
+import LangSwitcher from "@/i18n/lang-switcher";
+import language from "@/assets/language.svg";
 
 const Spacer = () => {
-  return <span className="mx-4 text-gray-400">&bull;</span>
-}
+  return <span className="mx-4 text-gray-400">&bull;</span>;
+};
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +23,27 @@ const Header = () => {
             <img className="logoImage" src={logo} alt="Logo" />
           </Link>
           <Spacer />
-          <Link to="/maps" className="hover:text-blue-500">MAPS</Link>
+          <Link to="/maps" className="hover:text-blue-500">
+            <FormattedMessage id="header.maps" />
+          </Link>
           <Spacer />
-          <Link to="/database" className="hover:text-blue-500">LICENSE DATABASE</Link>
+          <Link to="/database" className="hover:text-blue-500">
+            <FormattedMessage id="header.database" />
+          </Link>
           <Spacer />
-          <Link to="/resources" className="hover:text-blue-500">LICENSE RESOURCES</Link>
+          <Link to="/resources" className="hover:text-blue-500">
+            <FormattedMessage id="header.resources" />
+          </Link>
         </nav>
+
+        <div className="ms-auto">
+          <img
+            src={language}
+            className="language-icon inline-block me-2"
+            alt="Language"
+          />
+          <LangSwitcher />
+        </div>
 
         {/* Mobile Button */}
         <div className="md:hidden">
@@ -39,7 +57,7 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden px-4 pb-4 space-y-2 bg-white">
           <Link to="/" className="block hover:text-blue-500">
-            Home
+            <FormattedMessage id="header.home" />
           </Link>
           {/*
           Routes for these links do not exist yet
@@ -57,7 +75,7 @@ const Header = () => {
         </nav>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

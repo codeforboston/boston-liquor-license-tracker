@@ -7,16 +7,28 @@ header {
   width: max;
 
   color-scheme: light dark;
-  color: #FFF;
-  background-color: #2E2E2E;
+  color: #fff;
+  background-color: #2e2e2e;
   text-transform: uppercase;
 }
 
-header .logoImage{
+header .logoImage {
   height: 32px;
   width: 230px;
 }
 
 header a:hover {
   color: #a5a5a5;
+}
+
+header select {
+  background-color: #2e2e2e;
+  color: #fff;
+  font-size: 16px;
+}
+
+header .language-icon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
 }
