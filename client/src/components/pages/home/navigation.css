@@ -32,5 +32,13 @@
 .button-css {
   width: 100%;
   font-size: 20px;
+  margin: 24px 0;
+}
+.navigation {
+  display: block;
+  padding: 24px
+}
+.navigation :last-child {
+  margin-bottom: 0;
 }
 }
