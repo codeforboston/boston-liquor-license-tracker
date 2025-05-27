@@ -1,3 +1,4 @@
+import BackToHome from "@/components/ui/backToHome"
 import "./database.css"
 
 const Database = () => {
@@ -5,6 +6,7 @@ const Database = () => {
     <div className="databasePage">
       <h1>Database</h1>
       <p>This is the Database page.</p>
+      <BackToHome />
     </div>
   )
 }
