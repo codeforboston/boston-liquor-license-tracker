@@ -6,5 +6,8 @@
 	"navigation.maps": "MAPAS",
 	"navigation.database": "BASE DE DATOS DE LICENCIAS",
 	"navigation.resources": "RECURSOS DE LICENCIAS",
-  "hero.heading": "Navegar por el sistema de Licencias de Licor en Boston es difícil.{br}Estamos aquí para hacerlo un poco más fácil."
+	"hero.heading": "Navegar por el sistema de Licencias de Licor en Boston es difícil.{br}Estamos aquí para hacerlo un poco más fácil.",
+	"hero.photoCredit": "Foto de {photographerLink} en {platformLink}",
+	"aboutUs.title": "Quiénes somos:",
+	"aboutUs.weAre": "Somos un grupo de propietarios de restaurantes, camareros, chefs y clientes {br}como usted.{br} Entendemos lo difícil que es navegar por la burocracia de las licencias de licor en Boston. Desde el seguimiento de la disponibilidad a los posibles costes no escritos de la obtención de uno. Nuestra misión es desmitificar el proceso para ayudarle a poner en marcha su negocio."
 }

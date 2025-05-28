@@ -10,18 +10,25 @@ const Hero = () => {
         <FormattedMessage
         id="hero.heading"
 					values={{
-						br: <br />,
+						br: <br />
 					}} />
       </h2>
       <p className="text-white text-xs md:text-base">
-        Photo by{" "}
-        <a href="https://unsplash.com/@quinguyen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-          QUI NGUYEN
-        </a>{" "}
-        on{" "}
-        <a href="https://unsplash.com/photos/turned-on-filament-bulb-lights-at-bar-counter-Zrp9b3PMIy8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-          Unsplash
-        </a>
+        <FormattedMessage
+          id="hero.photoCredit"
+          values={{
+            photographerLink: (
+              <a href="https://unsplash.com/@quinguyen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+                QUI NGUYEN
+              </a>
+            ),
+            platformLink: (
+              <a href="https://unsplash.com/photos/turned-on-filament-bulb-lights-at-bar-counter-Zrp9b3PMIy8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+                Unsplash
+              </a>
+            ),
+          }}
+        />
       </p>
     </div>
   );
