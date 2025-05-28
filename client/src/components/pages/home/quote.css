@@ -1,2 +1,14 @@
-.home-page quote {
+.quote {
+  width: 100%;
+  text-align: center;
+  padding: 48px 400px;
+  box-sizing: border-box;
+}
+
+.quote h1 {
+  font-family: Lora, Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-style: italic;
+  line-height: normal;
+  width: 100%;
 }

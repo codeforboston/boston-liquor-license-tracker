@@ -2,5 +2,6 @@
   "header.maps": "MAPS",
   "header.database": "LICENSE DATABASE",
   "header.resources": "LICENSE RESOURCES",
-  "header.home": "HOME"
+  "header.home": "HOME",
+  "home.quote": "...working to create a more equitable restaurant ecosystem for all..."
 }
