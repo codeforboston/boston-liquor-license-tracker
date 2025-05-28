@@ -2,7 +2,6 @@ import "./hero.css";
 import logo from "@/assets/logo.svg";
 import { FormattedMessage } from "react-intl";
 
-
 const Hero = () => {
   return (
     <div className="hero flex flex-col md:items-start md:justify-start w-full sm:w-screen pl-3 pr-3 pt-[100px] pb-[70px] lg:mt-[64px] md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[24px]">
