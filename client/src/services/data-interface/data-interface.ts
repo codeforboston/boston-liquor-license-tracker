@@ -89,8 +89,64 @@ const validBostonZipCodes: Set<string> = new Set([
   "02467",
 ]);
 
+type ValidationResult =
+  | { valid: true; data: BusinessLicense }
+  | { valid: false; errors: Record<string, string> };
+
 function isBostonZipCode(zipcode: unknown): zipcode is BostonZipCode {
   return typeof zipcode === "string" && validBostonZipCodes.has(zipcode);
+}
+
+function validateBusinessLicense(license: unknown): ValidationResult {
+  const errors: Record<string, string> = {};
+
+  if (typeof license !== "object" || license === null) {
+    return { valid: false, errors: { root: "Not an object or is null" } };
+  }
+
+  const obj = license as Record<string, unknown>;
+
+  if (typeof obj.entity_number !== "string") {
+    errors.entity_number = "Must be a string";
+  }
+
+  if (typeof obj.business_name !== "string") {
+    errors.business_name = "Must be a string";
+  }
+
+  if (obj.dba_name !== null && typeof obj.dba_name !== "string") {
+    errors.dba_name = "Must be a string or null";
+  }
+
+  if (typeof obj.address !== "string") {
+    errors.address = "Must be a string";
+  }
+
+  if (!isBostonZipCode(obj.zipcode)) {
+    errors.zipcode = "Must be a valid Boston zip code";
+  }
+
+  if (typeof obj.license_number !== "string") {
+    errors.license_number = "Must be a string";
+  }
+
+  if (obj.status !== null && typeof obj.status !== "string") {
+    errors.status = "Must be a string or null";
+  }
+
+  if (typeof obj.alcohol_type !== "string") {
+    errors.alcohol_type = "Must be a string";
+  }
+
+  if (typeof obj.file_name !== "string") {
+    errors.file_name = "Must be a string";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return { valid: false, errors };
+  }
+
+  return { valid: true, data: obj as unknown as BusinessLicense };
 }
 
 export default function getNumOfLicenses(
@@ -106,14 +162,26 @@ export default function getNumOfLicenses(
     );
   }
 
-  const result = [...data];
+  for (const license of data) {
+    const validation = validateBusinessLicense(license);
 
-  const licensesByZip = result.filter(
+    if (!validation.valid) {
+      const errs = [];
+      for (const err in validation.errors) {
+        errs.push(err);
+      }
+      throw new Error(`Business License missing required fields: ${errs}`);
+    }
+  }
+
+  const copy = [...data];
+
+  const licensesByZip = copy.filter(
     (license) => license.zipcode === filterByZipcode
   );
 
   if (options?.filterByAlcoholType) {
-    const licenseByZipAndType = result.filter(
+    const licenseByZipAndType = copy.filter(
       (license) =>
         license.zipcode === filterByZipcode &&
         license.alcohol_type === options.filterByAlcoholType

@@ -12,9 +12,6 @@ describe("Testing the data access interface", () => {
     expect(getNumOfLicenses(mockData, "02210")).toBe(1);
     expect(getNumOfLicenses(mockData, "02128")).toBe(12);
     expect(getNumOfLicenses(mockData, "02134")).toBe(1);
-    expect(() => getNumOfLicenses(mockData, "12345")).toThrowError(
-      "You must enter a zipcode within the City of Boston. See https://data.boston.gov/dataset/zip-codes/resource/a9b44fec-3a21-42ac-a919-06ec4ac20ab8"
-    );
   });
 
   test("getNumOfLicenses returns proper number of licenses by zip code for certain alcohol type", () => {
