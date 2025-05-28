@@ -1,6 +1,9 @@
 {
-  "header.maps": "MAPS",
-  "header.database": "LICENSE DATABASE",
-  "header.resources": "LICENSE RESOURCES",
-  "header.home": "HOME"
+	"header.maps": "MAPS",
+	"header.database": "LICENSE DATABASE",
+	"header.resources": "LICENSE RESOURCES",
+	"header.home": "HOME",
+	"navigation.maps": "MAPS",
+	"navigation.database": "LICENSE DATABASE",
+	"navigation.resources": "LICENSE RESOURCES"
 }
