@@ -174,21 +174,19 @@ export default function getNumOfLicenses(
     }
   }
 
-  const copy = [...data];
-
-  const licensesByZip = copy.filter(
-    (license) => license.zipcode === filterByZipcode
-  );
-
   if (options?.filterByAlcoholType) {
-    const licenseByZipAndType = copy.filter(
+    const licenseByZipAndType = data.filter(
       (license) =>
         license.zipcode === filterByZipcode &&
         license.alcohol_type === options.filterByAlcoholType
     );
 
     return licenseByZipAndType.length;
+  } else {
+    const licensesByZip = copy.filter(
+      (license) => license.zipcode === filterByZipcode
+    );
+    
+    return licenseByZip.length
   }
-
-  return licensesByZip.length;
 }
