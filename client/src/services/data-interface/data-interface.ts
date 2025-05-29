@@ -94,7 +94,10 @@ type ValidationResult =
   | { valid: false; errors: Record<string, string> };
 
 function isBostonZipCode(zipcode: unknown): zipcode is BostonZipCode {
-  return typeof zipcode === "string" && validBostonZipCodes.has(zipcode);
+  return (
+    typeof zipcode === "string" &&
+    validBostonZipCodes.has(zipcode as BostonZipCode)
+  );
 }
 
 function validateBusinessLicense(license: unknown): ValidationResult {
@@ -147,18 +150,18 @@ function validateBusinessLicense(license: unknown): ValidationResult {
   }
 
   const validatedBusinessLicense: BusinessLicense = {
-    entity_number: obj.entity_number,
-    business_name: obj.business_name,
-    dba_name: obj.dba_name,
-    address: obj.address,
-    zipcode: obj.zipcode,
-    license_number: obj.license_number,
-    status: obj.status,
-    alcohol_type: obj.alcohol_type,
-    file_name: obj.file_name,
-  }
-  
-  return { valid: true, data: validatedBusinessLicense }
+    entity_number: String(obj.entity_number),
+    business_name: String(obj.business_name),
+    dba_name: obj.dba_name === null ? null : String(obj.dba_name),
+    address: String(obj.address),
+    zipcode: obj.zipcode as BostonZipCode,
+    license_number: String(obj.license_number),
+    status: obj.status === null ? null : String(obj.status),
+    alcohol_type: String(obj.alcohol_type),
+    file_name: String(obj.file_name),
+  };
+
+  return { valid: true, data: validatedBusinessLicense };
 }
 
 export default function getNumOfLicenses(
@@ -195,10 +198,10 @@ export default function getNumOfLicenses(
 
     return licenseByZipAndType.length;
   } else {
-    const licensesByZip = copy.filter(
+    const licensesByZip = data.filter(
       (license) => license.zipcode === filterByZipcode
     );
-    
-    return licenseByZip.length
+
+    return licensesByZip.length;
   }
 }
