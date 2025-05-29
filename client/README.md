@@ -1,54 +1,46 @@
-# React + TypeScript + Vite
+# React Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
 
-Currently, two official plugins are available:
+- Framework: React 19 with TypeScript
+- Build Tool: [Vite](https://vitejs.dev/)
+- Routing: [TanStack Router](https://tanstack.com/router)
+- Styling: [Tailwind CSS](https://tailwindcss.com/)
+- Maps: [MapLibre GL](https://maplibre.org/)
+- Internationalization: [react-intl](https://formatjs.io/docs/react-intl/)
+- UI Components: Custom component library with [shadcn/ui](https://ui.shadcn.com/)
+- Testing: [Vitest](https://vitest.dev/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Directory Structure
+```
+client/
+├── public/                    # Static public assets
+└── src/
+    ├── assets/                # Static assets (images, icons, logos)
+    ├── components/            # React components
+    │   ├── layout/            # Header, footer, and layout components
+    │   ├── pages/             # Page-specific components
+    │   │   ├── home/          # Homepage sections (hero, about, case studies)
+    │   │   ├── database/      # Database interface components
+    │   │   ├── maps/          # Map visualization components
+    │   │   ├── not-found/     # 404 error page
+    │   │   └── resources/     # Resource page components
+    │   └── ui/                # Reusable UI components
+    ├── data/                  # Static data files and schemas
+    ├── i18n/                  # Internationalization setup and utilities
+    ├── routes/                # TanStack Router route definitions
+    ├── services/              # API interfaces and business logic
+    └── styles/                # Global styles and CSS utilities
+```
+For further details, read the README.md in a specific directory.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Component Structure
+Each component follows this structure:
+```
+ComponentName/
+├── component-name.tsx    # React component
+└── component-name.css    # Component-specific styles
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Testing
+Testing is done using [Vitest](https://vitest.dev/). Tests are located in the same directory as the component they test, with a `.test.tsx` suffix.
