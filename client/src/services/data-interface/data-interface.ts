@@ -146,7 +146,19 @@ function validateBusinessLicense(license: unknown): ValidationResult {
     return { valid: false, errors };
   }
 
-  return { valid: true, data: obj as unknown as BusinessLicense };
+  const validatedBusinessLicense: BusinessLicense = {
+    entity_number: obj.entity_number,
+    business_name: obj.business_name,
+    dba_name: obj.dba_name,
+    address: obj.address,
+    zipcode: obj.zipcode,
+    license_number: obj.license_number,
+    status: obj.status,
+    alcohol_type: obj.alcohol_type,
+    file_name: obj.file_name,
+  }
+  
+  return { valid: true, data: validatedBusinessLicense }
 }
 
 export default function getNumOfLicenses(
