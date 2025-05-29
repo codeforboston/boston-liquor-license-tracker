@@ -49,7 +49,7 @@ type BostonZipCode =
   | "02459"
   | "02467";
 
-const validBostonZipCodes: Set<string> = new Set([
+const validBostonZipCodes: Set<BostonZipCode> = new Set([
   "02021",
   "02026",
   "02108",
