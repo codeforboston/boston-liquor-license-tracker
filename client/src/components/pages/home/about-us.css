@@ -12,15 +12,15 @@
   padding-left: 32px;
   padding-bottom: 64px;
   box-sizing: border-box;
-}
 
-.about-us h2 {
-  color: #ffffff;
-  width: calc(100% - 32px);
-  @apply break-words whitespace-normal;
-  line-height: 1.5;
-  box-sizing: border-box;
-  overflow-wrap: break-word !important;
-  word-wrap: break-word !important;
-  flex-shrink: 1;
+  h2 {
+    color: #ffffff;
+    width: calc(100% - 32px);
+    @apply break-words whitespace-normal;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    flex-shrink: 1;
+  }
 }
