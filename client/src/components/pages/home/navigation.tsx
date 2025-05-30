@@ -6,12 +6,12 @@ const Navigation = () => {
   return (
     <div className="navigation">
       <Link to="/maps">
-        <button className="button-css">
+        <button>
           <FormattedMessage id="navigation.maps" />
         </button>
       </Link>
       <Link to="/database">
-        <button className="button-css">
+        <button>
           <FormattedMessage id="navigation.database" />
         </button>
       </Link>

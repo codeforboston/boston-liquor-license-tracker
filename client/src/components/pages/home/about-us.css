@@ -1,22 +1,20 @@
 .home-page .about-us {
-    font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: normal;
-    background-color: #2E2E2E;
-    color: #FFFFFF;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding-top: 32px;
-    padding-left: 32px;
-    padding-bottom: 64px;
-    box-sizing: border-box;
-}
+  font-size: 16px;
+  line-height: normal;
+  background-color: #2e2e2e;
+  color: #ffffff;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 32px;
+  padding-left: 32px;
+  padding-bottom: 64px;
+  box-sizing: border-box;
 
-.about-us h2 {
-    color: #FFFFFF;
+  h2 {
+    color: #ffffff;
     width: calc(100% - 32px);
     @apply break-words whitespace-normal;
     line-height: 1.5;
@@ -24,4 +22,5 @@
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
     flex-shrink: 1;
+  }
 }

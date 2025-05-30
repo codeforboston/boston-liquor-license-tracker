@@ -1,29 +1,40 @@
-.home-page navigation {
-}
-
-
-.button-css {
-  background-color: #2e2e2e;
-  color: #fff;
-  width: 400px;
-  height: 62px;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 32px;
-  font-weight: 400;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-}
-
-.navigation {
+.home-page .navigation {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   padding: 48px 64px;
   gap: 56px;
+
+  button {
+    background-color: #2e2e2e;
+    color: #fff;
+    width: 400px;
+    height: 62px;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 32px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 450px) {
+    display: block;
+    padding: 24px;
+
+    button {
+      width: 100%;
+      font-size: 20px;
+      margin: 24px 0;
+    }
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
 }
