@@ -5,6 +5,7 @@
   align-items: flex-start;
   padding: 48px 64px;
   gap: 56px;
+}
 
   button {
     background-color: #2e2e2e;
@@ -26,7 +27,7 @@
   @media only screen and (max-width: 450px) {
     display: block;
     padding: 24px;
-
+    
     button {
       width: 100%;
       font-size: 20px;
@@ -38,3 +39,4 @@
     }
   }
 }
+
