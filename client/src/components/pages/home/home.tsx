@@ -8,14 +8,14 @@ import ExtraWork from "@/components/pages/home/extra-work";
 
 const Home = () => {
   return (
-    <div className="home-page">
+    <main className="home-page">
       <Hero />
       <Navigation />
       <AboutUs />
       <Quote />
       <CaseStudy />
       <ExtraWork />
-    </div>
+    </main>
   );
 };
 

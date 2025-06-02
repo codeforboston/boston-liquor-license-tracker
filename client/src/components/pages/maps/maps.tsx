@@ -2,10 +2,10 @@ import "./maps.css"
 
 const Maps = () => {
   return (
-    <div className="mapsPage">
+    <main className="mapsPage">
       <h1>Maps</h1>
       <p>This is the Maps page.</p>
-    </div>
+    </main>
   )
 }
 
