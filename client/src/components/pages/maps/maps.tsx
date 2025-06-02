@@ -1,4 +1,4 @@
-import BackToHome from "@/components/ui/backToHome"
+import BackToHome from "@/components/ui/back-to-home/back-to-home"
 import "./maps.css"
 
 const Maps = () => {

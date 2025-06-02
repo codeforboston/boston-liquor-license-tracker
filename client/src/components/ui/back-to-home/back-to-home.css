@@ -1,0 +1,23 @@
+    .back-to-home {
+        display: flex;
+        width: 311px;
+        padding: 8px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        border-radius: 8px;
+        background-color: #FDFDFD;
+
+        border: 1px solid black;
+        font-weight: bold;
+        color: black
+    }
+
+    @media only screen and (max-width: 450px) {
+        .back-to-home {
+            width: 100%;
+            margin: 0 auto;
+            font-size: 20px;
+        }
+    }
