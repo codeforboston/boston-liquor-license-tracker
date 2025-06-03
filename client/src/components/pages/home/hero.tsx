@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 const Hero = () => {
   return (
-    <div className="hero flex flex-col md:items-start md:justify-start w-full sm:w-screen pl-3 pr-3  pb-[70px]  md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[24px]">
+    <div className="hero flex flex-col md:items-start md:justify-start w-full w-full pl-3 pr-3  pb-[70px]  md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[24px]">
       <img src={logo} className="w-2xl lg:w-5xl" alt="Logo" />
       <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
         <FormattedMessage
