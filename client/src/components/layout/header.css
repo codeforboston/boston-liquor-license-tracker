@@ -10,14 +10,14 @@
   background-color: #2e2e2e;
   text-transform: uppercase;
 
-.logoImage {
-  height: 32px;
-  width: 230px;
-}
+  .logoImage {
+    height: 32px;
+    width: 230px;
+  }
 
-a:hover {
-  color: #a5a5a5;
-}
+  a:hover {
+    color: #a5a5a5;
+  }
 
   select {
     background-color: #2e2e2e;
