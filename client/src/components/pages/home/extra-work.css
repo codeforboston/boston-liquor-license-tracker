@@ -1,2 +1,39 @@
 .home-page .extra-work {
+    font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-bottom: 64px;
+    box-sizing: border-box; 
+}
+.extra-work h2 {
+    color: #FFFFFF;
+    background-color: #2E2E2E;
+    width: calc(100% - 32px);
+    max-width: 840px;
+    @apply break-words whitespace-normal;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    flex-shrink: 1;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.dotted-thick-border {
+  border: 10px solid transparent;
+  background:
+    radial-gradient(circle at center, white 1px, transparent 1.1px),
+    #F5B524;
+  background-size: 10px 10px, 100% 100%;
+  background-origin: border-box, border-box;
+  background-clip: border-box, border-box;
 }

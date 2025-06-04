@@ -2,5 +2,11 @@
   "header.maps": "MAPAS",
   "header.database": "BASE DE DATOS DE LICENCIAS",
   "header.resources": "RECURSOS DE LICENCIAS",
-  "header.home": "INICIOS"
+  "header.home": "INICIOS",
+  "extraWork.title": "¿Por qué es esto importante?",
+  "extraWork.par1": "Obtener una licencia para vender bebidas alcohólicas en Boston ha significado durante mucho tiempo formar parte de un club de propietarios de restaurantes, empresas hoteleras y abogados que dominan el proceso. Históricamente, esto ha significado que los recién llegados al sector han tenido dificultades para obtener estas licencias artificialmente escasas y ha generado sequías en barrios de toda la ciudad. A menudo, en barrios considerados tradicionalmente menos blancos y con un carácter más diverso.",
+  "extraWork.par2": "Los cambios recientes en el sistema de licencias de Boston han mejorado el acceso a ellas. Una nueva ley, aprobada en 2024, busca otorgar licencias específicas a ciertas zonas de la ciudad y permitir que los residentes abran negocios. Sin embargo, esto es solo el comienzo: rastrear las licencias disponibles sigue siendo difícil y, a menudo, inaccesible para algunos miembros de la comunidad de Boston.",
+  "extraWork.par3": "Con este sitio estamos trabajando para crear un ecosistema de restaurantes más equitativo para todos y permitirle realizar un seguimiento y comprender qué licencias están disponibles para usted.",
+  "extraWork.image.alt": "Cuadrada blanca vacía de tamaño mediano",
+  "extraWork.button.read": "LEA EL CASO PRÁCTICO COMPLETO"
 }

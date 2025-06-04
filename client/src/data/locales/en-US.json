@@ -2,5 +2,11 @@
   "header.maps": "MAPS",
   "header.database": "LICENSE DATABASE",
   "header.resources": "LICENSE RESOURCES",
-  "header.home": "HOME"
+  "header.home": "HOME",
+  "extraWork.title": "Why is this important?",
+  "extraWork.par1": "Getting a Liquor License in Boston has long meant being part of an \"In Club\" of restaurant owners, hospitality companies, and lawyers who've mastered the process. It has historically meant newcomers to the space have struggled to obtain these artificially scarce licenses and has created droughts in neighborhoods all over the city. Often in neighborhoods seen as traditionally less white with more diverse character.",
+  "extraWork.par2": "Recent changes to Boston's License system have made moves to improve access to Licenses. A new law passed in 2024 aims to give parts of the city specific Licenses and allow locals to open businesses. But this is just the start, tracking available licenses is still difficult and often out of reach to some members of Boston's community.",
+  "extraWork.par3": "With this site we are working to create a more equitable restaurant ecosystem for all, and allow you to track and understand what Licenses are available to you.",
+  "extraWork.image.alt": "Medium-sized empty white square",
+  "extraWork.button.read": "READ THE FULL CASE STUDY"
 }
