@@ -1,5 +1,5 @@
 import "./hero.css";
-import logo from "@/assets/logo.svg";
+import logo from "@/assets/images/logo.svg";
 import { FormattedMessage } from "react-intl";
 
 const Hero = () => {
