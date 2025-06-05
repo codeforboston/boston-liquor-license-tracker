@@ -49,7 +49,7 @@ const LicenseType = () => {
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage
           id="database-page.license-type.law-paragraph"
-          defaultMessage="In 2024, the city of Boston passed a new law to increase access to liquor licenses in several parts of Boston. Through this law, the city will issue five new on-premise liquor licenses to 13 of Boston's zip codes each year for the next three years."
+          defaultMessage="In 2024, the city of Boston passed a new law to increase access to liquor licenses in several parts of Boston. Through this law, the city will issue 5 new on-premise liquor licenses to 13 of Boston's zip codes each year for the next 3 years."
         />
       </p>
       <h4 className="font-medium text-[24px]">
