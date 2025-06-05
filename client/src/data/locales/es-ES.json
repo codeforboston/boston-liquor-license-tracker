@@ -2,6 +2,5 @@
   "header.maps": "MAPAS",
   "header.database": "BASE DE DATOS DE LICENCIAS",
   "header.resources": "RECURSOS DE LICENCIAS",
-  "header.home": "INICIOS",
-  "home.quote": ""
+  "header.home": "INICIOS"
 }
