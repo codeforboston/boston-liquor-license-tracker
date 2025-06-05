@@ -1,6 +1,6 @@
 import "./not-found.css"
 import { FormattedMessage } from "react-intl";
-import beerTap from "@/assets/images/Beer Tap.png";
+import beerTap from "@/assets/images/beer-tap.png";
 
 const NotFound = () => {
   return(
