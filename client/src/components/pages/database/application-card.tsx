@@ -2,7 +2,7 @@ import "./application-card.css";
 
 type ApplicationCardProps = {
   businessName: string;
-  DbaName: string;
+  dbaName: string;
   address: string;
   licenseNumber: string;
   licenseType: string;
@@ -10,6 +10,8 @@ type ApplicationCardProps = {
   applicationStatus: string;
 }
 
+// Remove this comment when implementing the component
+// @ts-expect-error - scaffolding: props defined but not yet implemented
 const ApplicationCard = ({
   businessName,
   dbaName,

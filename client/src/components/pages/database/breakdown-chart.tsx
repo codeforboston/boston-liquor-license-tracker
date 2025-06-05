@@ -1,12 +1,15 @@
 import "./breakdown-chart.css";
 
 type BreakdownChartProps = {
+  totalLicenses: number;
   transferableLicenses: number;
   nonTransferableLicenses: number;
   allAlcoholLicenses: number;
   wineAndBeerLicenses: number;
 }
 
+// Remove this comment when implementing the component
+// @ts-expect-error - scaffolding: props defined but not yet implemented
 const BreakdownChart = ({
   totalLicenses,
   transferableLicenses,
@@ -24,3 +27,5 @@ const BreakdownChart = ({
     </table>
   );
 };
+
+export default BreakdownChart;
