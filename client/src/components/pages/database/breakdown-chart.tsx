@@ -8,9 +8,9 @@ type BreakdownChartProps = {
   wineAndBeerLicenses: number;
 }
 
-// Remove this comment when implementing the component
-// @ts-expect-error - scaffolding: props defined but not yet implemented
+
 const BreakdownChart = ({
+  //Not sure where totalLicenses is supposed to go :(
   totalLicenses,
   transferableLicenses,
   nonTransferableLicenses,
@@ -21,8 +21,26 @@ const BreakdownChart = ({
     <table className="breakdown-chart">
       <caption></caption>
       <thead>
+        <th>License Type:</th>
+        <th>Total Available</th>
       </thead>
       <tbody>
+        <tr>
+          <td>Transferable Licenses:</td>
+          <td>{transferableLicenses}</td>
+        </tr>
+        <tr>
+          <td>Non-Transferable Licenses*:</td>
+          <td>{nonTransferableLicenses}</td>
+        </tr>
+        <tr>
+          <td>All Alcohol Licenses:</td>
+          <td>{allAlcoholLicenses}</td>
+        </tr>
+        <tr>
+          <td>Wine & Beer Licenses:</td>
+          <td>{wineAndBeerLicenses}</td>
+        </tr>
       </tbody>
     </table>
   );
