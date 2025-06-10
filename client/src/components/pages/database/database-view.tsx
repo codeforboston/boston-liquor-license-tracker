@@ -9,7 +9,6 @@ const DatabaseView = () => {
 
       {/* PLACEHOLDER */}
       <BreakdownChart
-        totalLicenses={46}
         transferableLicenses={44}
         nonTransferableLicenses={8}
         allAlcoholLicenses={46}

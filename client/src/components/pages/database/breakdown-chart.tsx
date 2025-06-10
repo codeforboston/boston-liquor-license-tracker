@@ -1,7 +1,6 @@
 import "./breakdown-chart.css";
 
 type BreakdownChartProps = {
-  totalLicenses: number;
   transferableLicenses: number;
   nonTransferableLicenses: number;
   allAlcoholLicenses: number;
@@ -10,8 +9,6 @@ type BreakdownChartProps = {
 
 
 const BreakdownChart = ({
-  //Not sure where totalLicenses is supposed to go :(
-  totalLicenses,
   transferableLicenses,
   nonTransferableLicenses,
   allAlcoholLicenses,
@@ -21,8 +18,10 @@ const BreakdownChart = ({
     <table className="breakdown-chart">
       <caption></caption>
       <thead>
-        <th>License Type:</th>
-        <th>Total Available</th>
+        <tr>
+          <th>License Type:</th>
+          <th>Total Available</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
