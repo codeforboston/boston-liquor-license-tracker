@@ -4,7 +4,11 @@ import "./back-to-home.css";
 
 function BackToHome() {
     return <Link to="/">
-        <button className="back-to-home">BACK TO HOME</button>
+        <button className="back-to-home">
+          <FormattedMessage
+            id="ui.backToHomeButton"
+          />
+        </button>
     </Link>
 }
 
