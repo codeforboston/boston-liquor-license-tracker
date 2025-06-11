@@ -1,4 +1,4 @@
-header {
+.site-header {
   font-size: 16px;
   line-height: normal;
   font-weight: 400;
@@ -9,25 +9,25 @@ header {
   color: #fff;
   background-color: #2e2e2e;
   text-transform: uppercase;
-}
 
-header .logoImage {
-  height: 32px;
-  width: 230px;
-}
+  .logoImage {
+    height: 32px;
+    width: 230px;
+  }
 
-header a:hover {
-  color: #a5a5a5;
-}
+  a:hover {
+    color: #a5a5a5;
+  }
 
-header select {
-  background-color: #2e2e2e;
-  color: #fff;
-  font-size: 16px;
-}
+  select {
+    background-color: #2e2e2e;
+    color: #fff;
+    font-size: 16px;
+  }
 
-header .language-icon {
-  width: 20px;
-  height: 20px;
-  color: #fff;
+  .language-icon {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+  }
 }

@@ -15,7 +15,7 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="bg shadow-md fixed top-0 left-0 w-full z-50">
+    <header className="site-header bg shadow-md sticky top-0 left-0 w-full z-50">
       <div className=" max-w-7xl p-4 sm:p-6 lg:p-8 flex items-center">
         {/* Desktop Links */}
         <nav className="hidden md:flex items-center">

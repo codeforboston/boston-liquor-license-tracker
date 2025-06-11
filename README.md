@@ -22,9 +22,6 @@ We are looking for product managers, GIS and data visualization experts, visual 
 
 - [Project Goals](#project-goals)
 - [Tech Stack](#tech-stack)
-- [Project Progress](#project-progress)
-- [Running the Project locally (with Docker Compose)](#running-the-project-locally-with-docker-compose)
-- [Running the Project locally (without Docker Compose)](#running-the-project-locally-without-docker-compose)
 
 ### Project Goals
 
@@ -32,15 +29,7 @@ We are looking for product managers, GIS and data visualization experts, visual 
 - Align data schema with City of Boston standards where possible (See https://data.boston.gov/)
 
 ### Tech Stack
-
-- Client: React, TypeScript, [Vite](https://vitejs.dev/)
-  - Router: [TanStack Router](https://tanstack.com/router)
-  - Testing: [Vitest](https://vitest.dev/)
-  - Styling: [Tailwind CSS](https://tailwindcss.com/)
-  - Component Library: [Shadcn UI](https://ui.shadcn.com/)
-
-### Project Progress
-Meetings every Tuesday at [Code for Boston](https://www.codeforboston.org/)
+See [Client Page](https://github.com/MattClarke131/boston-liquor-license-tracker/tree/main/client) 
 
 ### Running the React client:
 
@@ -49,5 +38,4 @@ cd client
 npm install # install dependencies
 npm start # start app
 ```
-
 The app will be running at [http://localhost:5173](http://localhost:5173)

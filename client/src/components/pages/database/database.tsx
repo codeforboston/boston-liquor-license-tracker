@@ -1,11 +1,17 @@
-import "./database.css"
+import "./database.css";
+import Header from "./header";
+import SubHeader from "./subheader";
+import DatabaseView from "./database-view";
+import LicenseType from "./license-type";
 
 const Database = () => {
   return (
-    <div className="databasePage">
-      <h1>Database</h1>
-      <p>This is the Database page.</p>
-    </div>
+    <main className="database-page">
+      <Header />
+      <SubHeader />
+      <DatabaseView />
+      <LicenseType />
+    </main>
   )
 }
 
