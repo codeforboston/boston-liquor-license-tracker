@@ -1,3 +1,6 @@
+import statusApprovedIcon from "@/assets/status-approved.svg"
+import statusPendingIcon from "@/assets/status-pending.svg"
+import statusDeniedIcon from "@/assets/status-denied.svg"
 
 interface RecentApplicationCardPropsType {
     applicationData: {
@@ -7,12 +10,31 @@ interface RecentApplicationCardPropsType {
         licenseNumber: string;
         licenseType: string;
         applicationDate: string;
+        status: "approved" | "pending" | "denied"
     }
 }
 
-const RecentApplicationCard = ({applicationData}: RecentApplicationCardPropsType) => {
+/* For Testing */
+const dummyData = {
+    businessName: "Business Name",
+    dbaName: "Dba Name",
+    address: "Street Address, Neighborhood, MA ZIP Code",
+    licenseNumber: "License Number",
+    licenseType: "License Type",    
+    applicationDate: "App. Date",
+    status: "denied"
+}
+
+const statusIconMap = {
+    approved: {icon: statusApprovedIcon, bgColor: "bg-[#46C800]"},
+    pending: {icon: statusPendingIcon, bgColor: "bg-[#FFF714]"},
+    denied: {icon: statusDeniedIcon, bgColor: "bg-[#FF1111]"},
+}
+
+const RecentApplicationCard = ({applicationData=dummyData}: RecentApplicationCardPropsType) => {
     return (
         <article className="
+            relative
             flex
             flex-col
             gap-y-[4px]
@@ -36,7 +58,11 @@ const RecentApplicationCard = ({applicationData}: RecentApplicationCardPropsType
                 <p>{applicationData.licenseType}</p>
                 <p>{applicationData.applicationDate}</p>
             </div>
-            
+            <img 
+                src={statusIconMap[applicationData.status].icon} 
+                alt={`status ${applicationData.status} icon`} 
+                className={`absolute top-[8px] right-[8px] size-[18px] p-[2px] rounded-full ${statusIconMap[applicationData.status].bgColor}`}
+            />
         </article>
     )
 }
