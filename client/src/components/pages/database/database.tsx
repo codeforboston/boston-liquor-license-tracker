@@ -1,4 +1,3 @@
-import BackToHome from "@/components/ui/back-to-home/back-to-home"
 import "./database.css"
 
 const Database = () => {
