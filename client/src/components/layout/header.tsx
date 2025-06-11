@@ -68,7 +68,7 @@ const Header = () => {
         </nav>
       </div>
 
-      /* Mobile Menu */}
+      {/* Mobile Menu */}
       {isOpen && (
         <nav className="md:hidden px-4  bg-[#2e2e2e]">
           <Link to="/maps" className="py-[8px] px-[24px] block hover:text-blue-500">
