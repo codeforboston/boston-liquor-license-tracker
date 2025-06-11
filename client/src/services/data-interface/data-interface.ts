@@ -189,7 +189,7 @@ export default function getNumOfLicenses(
     }
   }
 
-  if (options?.filterByAlcoholType && options.filterByZipcode) {
+  if (options?.filterByAlcoholType && options?.filterByZipcode) {
     const licenseByZipAndType = data.filter(
       (license) =>
         license.zipcode === options.filterByZipcode &&
