@@ -19,10 +19,11 @@
     color: #a5a5a5;
   }
 
-  select {
-    background-color: #2e2e2e;
-    color: #fff;
-    font-size: 16px;
+
+select {
+  background-color: #2e2e2e;
+  color: #fff;
+  font-size: 16px;
   }
 
   .language-icon {

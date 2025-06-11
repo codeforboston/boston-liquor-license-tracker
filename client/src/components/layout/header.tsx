@@ -10,68 +10,92 @@ const Spacer = () => {
   return <span className="mx-4 text-gray-400">&bull;</span>;
 };
 
+const LineSpacer = () => {
+  return <div className="w-[160px] h-px bg-gray-300 mx-4" />;
+};
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoClicked, setLogoClicked] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleLogoClick = () => {
+    setLogoClicked(true);
+  };
 
   return (
     <header className="site-header bg shadow-md sticky top-0 left-0 w-full z-50">
-      <div className=" max-w-7xl p-4 sm:p-6 lg:p-8 flex items-center">
+      <div className=" flex max-w-7xl sm: px-[24px] py-[18px] md:p-6 lg:items-center text-center">
         {/* Desktop Links */}
-        <nav className="hidden md:flex items-center">
-          <Link to="/" className="text-xl font-bold text-blue-600">
-            <img className="logoImage" src={logo} alt="Logo" />
+        <nav className="flex w-full items-center">
+          <Link
+            to="/"
+            className="text-xl font-bold"
+            onClick={handleLogoClick}
+          >
+            <img
+              className={`logoImage ${logoClicked ? "clicked" : ""}`}
+              src={logo}
+              alt="Logo"
+            />
           </Link>
-          <Spacer />
-          <Link to="/maps" className="hover:text-blue-500">
+        
+          <div className="hidden md:flex items-center w-full">
+            <Spacer />
+            <Link to="/maps">
+             <FormattedMessage id="header.maps" />
+            </Link>
+           <Spacer />
+            <Link to="/database">
+             <FormattedMessage id="header.database" />
+            </Link>
+            <Spacer />
+            <Link to="/resources">
+              <FormattedMessage id="header.resources" />
+            </Link>
+          
+            <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
+            <img
+              src={language}
+             className="language-icon inline-block m-0"
+             alt="Language"
+            />
+            <LangSwitcher />
+            </div>
+          </div>
+          <div className="flex md:hidden ml-auto">
+          <button onClick={toggleMenu} aria-label="Toggle menu">
+            <span className="justify-end  material-icons">
+              {isOpen ? "close" : "menu"}
+            </span>
+          </button>
+          </div> 
+        </nav>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <nav className="md:hidden px-4  bg-[#2e2e2e]">
+          <Link to="/maps" className="py-[8px] px-[24px] block hover:text-blue-500">
             <FormattedMessage id="header.maps" />
           </Link>
-          <Spacer />
-          <Link to="/database" className="hover:text-blue-500">
+          <LineSpacer />
+          <Link to="/database" className="py-[8px] px-[24px] block hover:text-blue-500">
             <FormattedMessage id="header.database" />
           </Link>
-          <Spacer />
-          <Link to="/resources" className="hover:text-blue-500">
+          <LineSpacer />
+          <Link to="/resources" className="py-[8px] px-[24px] block hover:text-blue-500">
             <FormattedMessage id="header.resources" />
           </Link>
-        </nav>
-
-        <div className="ms-auto">
+          <div className="py-[16px] px-[24px] pb-[8px] ms-auto">
           <img
             src={language}
             className="language-icon inline-block me-2"
             alt="Language"
           />
           <LangSwitcher />
-        </div>
-
-        {/* Mobile Button */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} aria-label="Toggle menu">
-            {isOpen ? "✕" : "☰"}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <nav className="md:hidden px-4 pb-4 space-y-2 bg-white">
-          <Link to="/" className="block hover:text-blue-500">
-            <FormattedMessage id="header.home" />
-          </Link>
-          {/*
-          Routes for these links do not exist yet
-
-          <Link to="/about" className="block hover:text-blue-500">
-            About
-          </Link>
-          <Link to="/services" className="block hover:text-blue-500">
-            Services
-          </Link>
-          <Link to="/contact" className="block hover:text-blue-500">
-            Contact
-          </Link>
-         */}
+          </div>
+        
         </nav>
       )}
     </header>
