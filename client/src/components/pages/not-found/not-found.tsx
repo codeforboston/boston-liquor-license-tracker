@@ -1,4 +1,4 @@
-import BackToHome from "@/components/ui/back-to-home/back-to-home"
+import BackToHome from "@/components/ui/back-to-home"
 
 const NotFound = () => {
   return(
