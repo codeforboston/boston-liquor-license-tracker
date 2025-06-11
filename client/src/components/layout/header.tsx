@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/images/logo.svg";
+import logo from "@/assets/logo.svg";
 import "@/components/layout/header.css";
 import { FormattedMessage } from "react-intl";
 import LangSwitcher from "@/i18n/lang-switcher";
