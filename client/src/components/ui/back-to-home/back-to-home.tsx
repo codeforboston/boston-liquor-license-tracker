@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
+import { FormattedMessage } from "react-intl";
 import "./back-to-home.css";
 
 function BackToHome() {
