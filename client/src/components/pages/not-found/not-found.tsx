@@ -2,6 +2,8 @@ import "./not-found.css"
 import { FormattedMessage } from "react-intl";
 import beerTap from "@/assets/images/beer-tap.png";
 
+import BackToHome from "@/components/ui/back-to-home/back-to-home"
+
 const NotFound = () => {
   return(
     <>
@@ -20,7 +22,7 @@ const NotFound = () => {
       </p>
       <br/>
       {/* Replace with back to home component when done */}
-      <a className="text-white" href="/">Go to Home</a>
+      <BackToHome />
       </div>
     </div>
       <img src={beerTap} className="beer-tap" alt="Beer Tap"/>
