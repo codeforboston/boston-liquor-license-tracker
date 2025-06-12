@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 
 :root {
+  --primary-background-color-gray: #2e2e2e;
+  --primary-text-color-white: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

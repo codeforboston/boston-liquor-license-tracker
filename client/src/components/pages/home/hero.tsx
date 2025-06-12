@@ -8,10 +8,11 @@ const Hero = () => {
       <img src={logo} className="w-2xl lg:w-5xl" alt="Logo" />
       <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
         <FormattedMessage
-        id="hero.heading"
-					values={{
-						br: <br />
-					}} />
+          id="hero.heading"
+          values={{
+            br: <br />,
+          }}
+        />
       </h2>
       <p className="text-white text-xs md:text-base">
         <FormattedMessage

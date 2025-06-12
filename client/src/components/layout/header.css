@@ -6,8 +6,8 @@
   width: max;
 
   color-scheme: light dark;
-  color: #fff;
-  background-color: #2e2e2e;
+  color: var(--primary-text-color-white);
+  background-color: var(--primary-background-color-gray);
   text-transform: uppercase;
 
   .logoImage {
@@ -19,16 +19,15 @@
     color: #a5a5a5;
   }
 
-
-select {
-  background-color: #2e2e2e;
-  color: #fff;
-  font-size: 16px;
+  select {
+    background-color: var(--primary-background-color-gray);
+    color: var(--primary-text-color-white);
+    font-size: 16px;
   }
 
   .language-icon {
     width: 20px;
     height: 20px;
-    color: #fff;
+    color: var(--primary-text-color-white);
   }
 }

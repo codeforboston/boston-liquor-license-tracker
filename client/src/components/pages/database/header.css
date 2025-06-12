@@ -1,6 +1,21 @@
 .database-page {
   .database-header {
-    /* Nest styles in here */
+    background-color: var(--primary-background-color-gray);
+    color: var(--primary-text-color-white);
+    padding-inline: 2rem;
 
+    .text-container {
+      max-width: 1440px;
+    }
+
+    .header-title {
+      font-size: 2rem;
+      font-weight: 600;
+      padding-block-start: 1rem;
+    }
+
+    .header-text {
+      padding-block-end: 2rem;
+    }
   }
 }

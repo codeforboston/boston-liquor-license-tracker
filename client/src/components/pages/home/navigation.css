@@ -7,8 +7,8 @@
   gap: 56px;
 
   button {
-    background-color: #2e2e2e;
-    color: #fff;
+    background-color: var(--primary-background-color-gray);
+    color: var(--primary-text-color-white);
     width: 400px;
     height: 62px;
     border: none;
