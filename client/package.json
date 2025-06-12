@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "npm run dev",
-    "test": "vitest"
+    "test": "vitest",
+    "check-for-missing-translations": "vitest run --config vitest.config.manual.ts src/i18n/vitest-translations-validation/checkForMissingTranslations.test.ts --reporter verbose"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.1",
