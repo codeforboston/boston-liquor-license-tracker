@@ -166,12 +166,12 @@ function validateBusinessLicense(license: unknown): ValidationResult {
 
 export default function getNumOfLicenses(
   data: BusinessLicense[],
-  filterByZipcode: BostonZipCode,
   options?: {
-    filterByAlcoholType: string;
+    filterByZipcode?: BostonZipCode;
+    filterByAlcoholType?: string;
   }
 ): number {
-  if (!isBostonZipCode(filterByZipcode)) {
+  if (options?.filterByZipcode && !isBostonZipCode(options?.filterByZipcode)) {
     throw new Error(
       "You must enter a zipcode within the City of Boston. See https://data.boston.gov/dataset/zip-codes/resource/a9b44fec-3a21-42ac-a919-06ec4ac20ab8"
     );
@@ -189,19 +189,27 @@ export default function getNumOfLicenses(
     }
   }
 
-  if (options?.filterByAlcoholType) {
+  if (options?.filterByAlcoholType && options?.filterByZipcode) {
     const licenseByZipAndType = data.filter(
       (license) =>
-        license.zipcode === filterByZipcode &&
+        license.zipcode === options.filterByZipcode &&
         license.alcohol_type === options.filterByAlcoholType
     );
 
     return licenseByZipAndType.length;
-  } else {
+  } else if (options?.filterByZipcode) {
     const licensesByZip = data.filter(
-      (license) => license.zipcode === filterByZipcode
+      (license) => license.zipcode === options.filterByZipcode
     );
 
     return licensesByZip.length;
+  } else if (options?.filterByAlcoholType) {
+    const licensesByType = data.filter(
+      (license) => license.alcohol_type === options.filterByAlcoholType
+    );
+
+    return licensesByType.length;
+  } else {
+    return data.length;
   }
 }
