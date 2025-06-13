@@ -1,11 +1,13 @@
 import "./not-found.css"
 import { FormattedMessage } from "react-intl";
 import beerTap from "@/assets/images/beer-tap.png";
-
 import BackToHome from "@/components/ui/back-to-home/back-to-home"
+
+
 
 const NotFound = () => {
   return(
+
     <>
     <div className="not-found">
       <div className="not-found-heading">
@@ -27,6 +29,7 @@ const NotFound = () => {
     </div>
       <img src={beerTap} className="beer-tap" alt="Beer Tap"/>
     </>
+
   )
 }
 
