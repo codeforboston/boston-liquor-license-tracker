@@ -20,11 +20,6 @@ const Navigation = () => {
           <FormattedMessage id="navigation.resources" />
         </button>
       </Link>
-      <Link to="/not-found">
-        <button>
-          <FormattedMessage id="navigation.notFound" />
-        </button>
-      </Link>
     </div>
   );
 };
