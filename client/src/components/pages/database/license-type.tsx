@@ -1,5 +1,6 @@
 import "./license-type.css";
 import { FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 const LicenseType = () => {
   return (
