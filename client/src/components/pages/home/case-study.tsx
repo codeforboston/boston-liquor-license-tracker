@@ -5,23 +5,23 @@ import myImage from '/src/assets/images/phimgsq460.png';
 const CaseStudy = () => {
   return (
     <div className="case-study">
-      <div className="w-full">
-        <h1>
+      <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
+        <h1 className ="max-w-[840px] w-auto flex-shrink mb-[16px]">
           <FormattedMessage
             id="caseStudy.title"
           />
         </h1>
-        <h2 className="w-full break-words whitespace-normal">
+        <h2 className="case-study h2 !p-0 !m-0 !ml-0 !pl-0 !indent-0 ![margin-bottom:32px]">
           <FormattedMessage
             id="caseStudy.par1"
           />
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <FormattedMessage
             id="caseStudy.par2"
           />
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <FormattedMessage
             id="caseStudy.par3"
         />
@@ -33,18 +33,24 @@ const CaseStudy = () => {
           overflow-hidden
           dotted-thick-border
           mx-auto
-          max w-480px
+          max w-[480px]
+          box-border
+          ![margin-bottom:32px]
         "
-        >
+      >
         <img
           src={myImage}
           alt={<FormattedMessage
             id="caseStudy.image.alt"
             />}
           className="
+            w-full
+            max-w-[480px]
+            h-auto
             object-cover
             transition-transform duration-300 hover:scale-105
-            max w-480px
+            block
+            margin: auto
           "
         />
       </div>
@@ -52,8 +58,7 @@ const CaseStudy = () => {
         w-full
         flex
         justify-center
-        padding-top: 32px
-        padding-bottom: 64px
+        ![margin-bottom:64px]
         "
         >
         <button
