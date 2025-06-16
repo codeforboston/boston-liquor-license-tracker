@@ -8,7 +8,7 @@ import BackToHome from "@/components/ui/back-to-home/back-to-home"
 const NotFound = () => {
   return(
 
-    <>
+    <main>
     <div className="not-found">
       <div className="not-found-heading">
       <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
@@ -28,7 +28,7 @@ const NotFound = () => {
       </div>
     </div>
       <img src={beerTap} className="beer-tap" alt="Beer Tap"/>
-    </>
+    </main>
 
   )
 }
