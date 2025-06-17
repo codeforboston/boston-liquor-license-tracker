@@ -1,4 +1,4 @@
-import "./database.css";
+import "./database.module.css";
 import Header from "./header";
 import SubHeader from "./subheader";
 import DatabaseView from "./database-view";
@@ -12,8 +12,7 @@ const Database = () => {
       <DatabaseView />
       <LicenseType />
     </main>
-  )
-}
+  );
+};
 
-export default Database
-
+export default Database;

@@ -1,4 +1,4 @@
-import "./home.css";
+import "./home.module.css";
 import Hero from "@/components/pages/home/hero";
 import Navigation from "@/components/pages/home/navigation";
 import Quote from "@/components/pages/home/quote";

@@ -1,4 +1,4 @@
-import "./resources.css"
+import "./resources.module.css";
 
 const Resources = () => {
   return (
@@ -6,8 +6,7 @@ const Resources = () => {
       <h1>Resources</h1>
       <p>This is the Resources page.</p>
     </main>
-  )
-}
+  );
+};
 
-export default Resources
-
+export default Resources;

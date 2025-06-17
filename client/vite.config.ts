@@ -8,24 +8,36 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
-    TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
-    react(),
-    tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@styles": path.resolve(__dirname, "./src/styles"),
-      "@components": path.resolve(__dirname, "./src/components"),
+export default defineConfig(({ mode }) => {
+  const generateScopedName = mode === 'production'
+    ? '[hash:base64:5]'
+    : '[name]__[local]___[hash:base64:5]';
+
+  return {
+    css: {
+      modules: {
+        generateScopedName,
+        localsConvention: 'camelCaseOnly',
+      },
     },
-  },
-  test: {
-    silent: 'passed-only',
-    typecheck: {
-      enabled: true,
+    plugins: [
+      // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
+      TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
+      react(),
+      tailwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+        "@styles": path.resolve(__dirname, "./src/styles"),
+        "@components": path.resolve(__dirname, "./src/components"),
+      },
     },
-    printConsoleTrace: true,
+    test: {
+      silent: 'passed-only',
+      typecheck: {
+        enabled: true,
+      },
+      printConsoleTrace: true,
+    }
   }
 })

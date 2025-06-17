@@ -1,4 +1,4 @@
-import "./database-view.css";
+import "./database-view.module.css";
 import BreakdownChart from "./breakdown-chart";
 
 const DatabaseView = () => {

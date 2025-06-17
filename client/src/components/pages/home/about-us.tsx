@@ -8,13 +8,13 @@ const AboutUs = () => {
         <FormattedMessage id="aboutUs.title" />
       </h1>
       <h2 className="w-full break-words whitespace-normal">
-        <FormattedMessage 
+        <FormattedMessage
           id="aboutUs.weAre"
           values={{ b: (chunks) => <b>{chunks}</b> }}
         />
       </h2>
     </div>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;
