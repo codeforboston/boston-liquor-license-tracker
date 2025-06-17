@@ -1,4 +1,4 @@
-import "./not-found.css"
+import "./not-found.module.css"
 import { FormattedMessage } from "react-intl";
 import beerTap from "@/assets/images/beer-tap.png";
 import BackToHome from "@/components/ui/back-to-home/back-to-home"
