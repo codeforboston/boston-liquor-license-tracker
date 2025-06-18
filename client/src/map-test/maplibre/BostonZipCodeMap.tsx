@@ -97,6 +97,7 @@ export const BostonZipCodeMap = () => {
 
   return (
     <div className="map-wrap">
+      <div className="absolute">44 licenses</div>
       <div ref={mapContainer} className="map" />
     </div>
   );
