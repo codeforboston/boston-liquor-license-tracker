@@ -1,5 +1,7 @@
 import ES_ES_MESSAGES from "@/data/locales/es-ES.json";
 import EN_US_MESSAGES from "@/data/locales/en-US.json";
+import ZH_CN_MESSAGES from "@/data/locales/zh-CN.json";
+import ZH_TW_MESSAGES from "@/data/locales/zh-TW.json";
 import { match } from "@formatjs/intl-localematcher";
 import { getStoredLocale } from "./stored-locale";
 
@@ -19,6 +21,16 @@ export const supportedLocales = {
     name: "Español",
     messages: ES_ES_MESSAGES,
   },
+
+  "zh-CN": {
+    name: "简体中文",
+    messages: ZH_CN_MESSAGES,
+  },
+
+  "zh-TW": {
+    name: "繁體中文",
+    messages: ZH_TW_MESSAGES,
+  }
 };
 
 // Locales supported by the browser
