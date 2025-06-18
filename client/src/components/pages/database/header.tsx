@@ -7,16 +7,18 @@ import { useEffect, useState } from "react";
 async function scrapeNextMeetingDate(url: string): Promise<Date | null> {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
+
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
-  const currentYearElement = $("section#content")
+
+  const currentYearElement = $("section#content") // Main page content
     .find(".paragraphs-item-drawers")
-    .first()
+    .first() // Upcoming Hearing Dates
     .find(
-      `.paragraphs-item-drawer .field.field-label-hidden div:contains('${currentYear}')`
+      `.paragraphs-item-drawer .field.field-label-hidden div:contains('${currentYear}')` // Label element containing the current year
     )
-    .parentsUntil(".section-drawers")
-    .find(".entity .field ul");
+    .parentsUntil(".section-drawers") // Lowest common ancestor of the label element and the list of dates
+    .find(".entity .field ul"); // List of dates
 
   const currentDateStrings = currentYearElement
     .text()
@@ -56,7 +58,7 @@ const getNextMeetingText = (nextMeeting: Date | null) => {
 
 const Header = () => {
   const [nextMeetingDate, setNextMeetingDate] = useState(
-    new Date("2000-01-01")
+    new Date("2000-01-01") // Use a date in the past so nothing is shown unless we get a valid and future date
   );
   useEffect(() => {
     async function fetchNextMeetingDate() {
