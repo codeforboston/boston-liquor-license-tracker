@@ -1,85 +1,88 @@
 import "./case-study.module.css";
 import { FormattedMessage } from 'react-intl';
 import myImage from '/src/assets/images/phimgsq460.png';
+import caseStudyStyles from "./case-study.module.css";
 
 const CaseStudy = () => {
   return (
-    <div className="case-study">
-      <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
-        <h1 className ="max-w-[840px] w-auto flex-shrink mb-[16px]">
+    <div className={caseStudyStyles.caseStudy}>
+      <div className="case-study">
+        <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
+          <h1 className ="max-w-[840px] w-auto flex-shrink mb-[16px]">
+            <FormattedMessage
+              id="caseStudy.title"
+            />
+          </h1>
+          <h2 className="case-study h2 !p-0 !m-0 !ml-0 !pl-0 !indent-0 ![margin-bottom:32px]">
+            <FormattedMessage
+              id="caseStudy.par1"
+            />
+          <br />
+          <br />
           <FormattedMessage
-            id="caseStudy.title"
-          />
-        </h1>
-        <h2 className="case-study h2 !p-0 !m-0 !ml-0 !pl-0 !indent-0 ![margin-bottom:32px]">
+              id="caseStudy.par2"
+            />
+          <br />
+          <br />
           <FormattedMessage
-            id="caseStudy.par1"
+              id="caseStudy.par3"
           />
-        <br />
-        <br />
-        <FormattedMessage
-            id="caseStudy.par2"
-          />
-        <br />
-        <br />
-        <FormattedMessage
-            id="caseStudy.par3"
-        />
-        </h2>
-      </div>
-      <div className="
-          flex justify-center
-          h-auto
-          overflow-hidden
-          dotted-thick-border
-          mx-auto
-          max w-[480px]
-          box-border
-          ![margin-bottom:32px]
-        "
-      >
-        <img
-          src={myImage}
-          alt={<FormattedMessage
-            id="caseStudy.image.alt"
-            />}
-          className="
-            w-full
-            max-w-[480px]
+          </h2>
+        </div>
+        <div className="
+            flex justify-center
             h-auto
-            object-cover
-            transition-transform duration-300 hover:scale-105
-            block
-            margin: auto
+            overflow-hidden
+            dotted-thick-border
+            mx-auto
+            max w-[480px]
+            box-border
+            ![margin-bottom:32px]
           "
-        />
-      </div>
-      <div className="
-        w-full
-        flex
-        justify-center
-        ![margin-bottom:64px]
-        "
         >
-        <button
-          className="
-            inline-flex
-            items-center
-            justify-center
-            hover:bg-black
-            text-black 
-            !bg-[#F5B524]
-            font-bold
-            padding: 16px 32px
-            rounded-lg shadow-md
-            border-radius: 16px
-            gap: 10px
+          <img
+            src={myImage}
+            alt={<FormattedMessage
+              id="caseStudy.image.alt"
+              />}
+            className="
+              w-full
+              max-w-[480px]
+              h-auto
+              object-cover
+              transition-transform duration-300 hover:scale-105
+              block
+              margin: auto
             "
-          >
-          <FormattedMessage
-            id="caseStudy.button.read"
           />
-        </button>
+        </div>
+        <div className="
+          w-full
+          flex
+          justify-center
+          ![margin-bottom:64px]
+          "
+          >
+          <button
+            className="
+              inline-flex
+              items-center
+              justify-center
+              hover:bg-black
+              text-black
+              !bg-[#F5B524]
+              font-bold
+              padding: 16px 32px
+              rounded-lg shadow-md
+              border-radius: 16px
+              gap: 10px
+              "
+            >
+            <FormattedMessage
+              id="caseStudy.button.read"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

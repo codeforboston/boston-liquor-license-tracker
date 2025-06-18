@@ -1,4 +1,4 @@
-.home-page .case-study {
+.case-study {
     font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: normal;
@@ -16,7 +16,7 @@
     padding-left: min(32px, 4vw);
     padding-right: min(32px, 4vw);
     box-sizing: border-box;
-    .case-study h2 {
+    h2 {
       color: #FFFFFF;
       background-color: #2E2E2E;
       box-sizing: border-box;
