@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <script>
+    // Get the path that GitHub Pages couldn't find
+    const originalPath = window.location.pathname + window.location.search;
+
+    // Redirect to hash-based version
+    const newUrl = window.location.origin + '/#' + originalPath;
+    window.location.replace(newUrl);
+  </script>
+</head>
+
+<body>
+  <p>Redirecting...</p>
+  <noscript>
+    <p>JavaScript is required for this webpage. <a href="/#/">Continue to main site</a></p>
+  </noscript>
+</body>
+</html>
