@@ -1,6 +1,4 @@
 .case-study {
-    font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 16px;
     line-height: normal;
     background-color: var(--primary-background-color-gray);
     color: var(--primary-text-color-white);
