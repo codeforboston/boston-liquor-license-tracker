@@ -2,8 +2,8 @@
     font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: normal;
-    background-color: #2E2E2E;
-    color: #FFFFFF;
+    background-color: var(--primary-background-color-gray);
+    color: var(--primary-text-color-white);
     display: flex;
     width: 100%;
     flex-direction: column;
