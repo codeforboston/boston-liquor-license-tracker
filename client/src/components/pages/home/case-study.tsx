@@ -6,7 +6,6 @@ import caseStudyStyles from "./case-study.module.css";
 const CaseStudy = () => {
   return (
     <div className={caseStudyStyles.caseStudy}>
-      <div className="case-study">
         <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
           <h1 className ="text-2xl max-w-[840px] w-auto flex-shrink mb-[16px]">
             <FormattedMessage
@@ -29,17 +28,8 @@ const CaseStudy = () => {
           />
           </h2>
         </div>
-        <div className="
-            flex justify-center
-            h-auto
-            overflow-hidden
-            dotted-thick-border
-            mx-auto
-            max w-[480px]
-            box-border
-            ![margin-bottom:32px]
-          "
-        >
+        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border ![margin-bottom:32px]`}
+          >
           <img
             src={myImage}
             alt={<FormattedMessage
@@ -52,7 +42,7 @@ const CaseStudy = () => {
               object-cover
               transition-transform duration-300 hover:scale-105
               block
-              margin: auto
+              m-auto
             "
           />
         </div>
@@ -84,7 +74,6 @@ const CaseStudy = () => {
           </button>
         </div>
       </div>
-    </div>
   );
 };
 

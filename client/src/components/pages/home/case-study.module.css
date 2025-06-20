@@ -25,7 +25,7 @@
       flex-shrink: 1;
       max-width: 100%;
     }
-    .dotted-thick-border {
+    .dottedThickBorder {
       border: 10px solid transparent;
       background:
         radial-gradient(circle at center, white 1px, transparent 1.1px),
