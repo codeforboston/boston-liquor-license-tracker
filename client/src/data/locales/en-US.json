@@ -6,14 +6,12 @@
   "navigation.maps": "MAPS",
   "navigation.database": "LICENSE DATABASE",
   "navigation.resources": "LICENSE RESOURCES",
-  "navigation.notFound": "Page Not Found",
   "hero.heading": "Navigating the Liquor License system in Boston is hard.{br}We are here to make it just a little bit easier.",
   "hero.photoCredit": "Photo by {photographerLink} on {platformLink}",
   "aboutUs.title": "Who We Are:",
   "aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You.</b> We understand how hard it is to navigate the red tape of liquor licenses in Boston. From tracking availability to the potential unwritten costs of obtaining one. We've made it our mission to demystify the process to help you get your business off the ground.",
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
-  "notFound.heading": "This page isn't on tap at the moment,",
-  "notFound.message": "The page you are looking for doesn't exist or has been moved, make sure you entered the right URL.",  "database.header.title": "License Database",
+  "database.header.title": "License Database",
   "database.header.description": "Browse through available licenses in each of Boston's zip codes, view recent license applications as well as important information regarding each license type and important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
   "database-page.license-type.header2": "What does each type of license mean?",
@@ -25,5 +23,11 @@
   "database-page.license-type.law-header4": "New 2024 Law",
   "database-page.license-type.law-paragraph": "In 2024, the city of Boston passed a new law to increase access to liquor licenses in several parts of Boston. Through this law, the city will issue 5 new on-premise liquor licenses to 13 of Boston's zip codes each year for the next 3 years.",
   "database-page.license-type.specialAreas-header4": "Special Areas of Boston",
-  "database-page.license-type.specialAreas-paragraph": "Another provision of the 2024 law was the creation of specialty licenses for Oak Square in Brighton. Several other laws in the past have also carved out licenses for specific areas of the city as well."
+  "database-page.license-type.specialAreas-paragraph": "Another provision of the 2024 law was the creation of specialty licenses for Oak Square in Brighton. Several other laws in the past have also carved out licenses for specific areas of the city as well.",
+  "caseStudy.title": "Why is this important?",
+  "caseStudy.par1": "Getting a Liquor License in Boston has long meant being part of an \"In Club\" of restaurant owners, hospitality companies, and lawyers who've mastered the process. It has historically meant newcomers to the space have struggled to obtain these artificially scarce licenses and has created droughts in neighborhoods all over the city. Often in neighborhoods seen as traditionally less white with more diverse character.",
+  "caseStudy.par2": "Recent changes to Boston's License system have made moves to improve access to Licenses. A new law passed in 2024 aims to give parts of the city specific Licenses and allow locals to open businesses. But this is just the start, tracking available licenses is still difficult and often out of reach to some members of Boston's community.",
+  "caseStudy.par3": "With this site we are working to create a more equitable restaurant ecosystem for all, and allow you to track and understand what Licenses are available to you.",
+  "caseStudy.image.alt": "Medium-sized empty white square",
+  "caseStudy.button.read": "READ THE FULL CASE STUDY"
 }
