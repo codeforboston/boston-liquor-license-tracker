@@ -8,7 +8,7 @@ const CaseStudy = () => {
     <div className={caseStudyStyles.caseStudy}>
       <div className="case-study">
         <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
-          <h1 className ="max-w-[840px] w-auto flex-shrink mb-[16px]">
+          <h1 className ="text-2xl max-w-[840px] w-auto flex-shrink mb-[16px]">
             <FormattedMessage
               id="caseStudy.title"
             />
@@ -72,10 +72,10 @@ const CaseStudy = () => {
               text-black
               !bg-[#F5B524]
               font-bold
-              padding: 16px 32px
+              px-8
+              py-4
               rounded-lg shadow-md
-              border-radius: 16px
-              gap: 10px
+              gap-2.5
               "
             >
             <FormattedMessage
