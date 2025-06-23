@@ -1,9 +1,10 @@
 import "./case-study.module.css";
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import myImage from '/src/assets/images/phimgsq460.png';
 import caseStudyStyles from "./case-study.module.css";
 
 const CaseStudy = () => {
+  const intl = useIntl();
   return (
     <div className={caseStudyStyles.caseStudy}>
         <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
@@ -32,9 +33,7 @@ const CaseStudy = () => {
           >
           <img
             src={myImage}
-            alt={<FormattedMessage
-              id="caseStudy.image.alt"
-              />}
+            alt={intl.formatMessage({ id: "caseStudy.image.alt" })}
             className="
               w-full
               max-w-[480px]
