@@ -14,6 +14,14 @@ export default defineConfig(({ mode }) => {
     : '[name]__[local]___[hash:base64:5]';
 
   return {
+    build: {
+      rollupOptions: {
+        input: {
+          main: 'index.html',
+          404: '404.html',
+        },
+      },
+    },
     css: {
       modules: {
         generateScopedName,
