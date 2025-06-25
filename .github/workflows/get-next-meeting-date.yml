@@ -1,10 +1,10 @@
 name: Get Next Meeting Date
 on:
-  push:
-    branches: ["scrape-next-meeting-date"] # Runs on pushes to the scrape-next-meeting-date branch
+  pull_request:
+    types: [ready_for_review] # This is to make sure the workflow runs on the main branch when PR is ready for review--will delete this line when we merge the PR
 
   schedule:
-    - cron: "0 * * * *" # Runs every hour on the hour
+    - cron: "0 0 * * 0" # Runs at midnight every Sunday
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
