@@ -1,7 +1,7 @@
 name: Get Next Meeting Date
 on:
   pull_request:
-    types: [ready_for_review] # This is to make sure the workflow runs on the main branch when PR is ready for review--will delete this line when we merge the PR
+    branches: [main]
 
   schedule:
     - cron: "0 0 * * 0" # Runs at midnight every Sunday
