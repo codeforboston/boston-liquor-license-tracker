@@ -2,7 +2,9 @@ import { expect, test, describe } from "vitest";
 import getNumOfLicenses from "./data-interface";
 import mockLicensesJson from "./mockData.json";
 import { BusinessLicense } from "./data-interface";
-const MAX_LICENSES_AVAILABLE = 165;
+
+// INFO on these constants in the data-interface.ts file
+const MAX_LICENSES_AVAILABLE = 195;
 const MAX_BEER_WINE_LICENSES = 78;
 const MAX_ALL_ALC_LICENSES = 117;
 
