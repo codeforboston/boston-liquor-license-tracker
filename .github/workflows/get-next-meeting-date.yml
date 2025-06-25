@@ -53,6 +53,8 @@ jobs:
 
       - name: Commit changes to repository
         run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "hello@codeforboston.org"
           git remote add upstream https://github.com/hailexiao/boston-liquor-license-tracker.git
           git commit -am "Update next meeting date"
           git push upstream HEAD:scrape-next-meeting-date
