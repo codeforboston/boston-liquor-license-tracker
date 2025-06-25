@@ -1,7 +1,7 @@
 name: Get Next Meeting Date
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches: ["scrape-next-meeting-date"] # Runs on pushes to the scrape-next-meeting-date branch
 
   schedule:
     - cron: "0 0 * * 0" # Runs at midnight every Sunday
