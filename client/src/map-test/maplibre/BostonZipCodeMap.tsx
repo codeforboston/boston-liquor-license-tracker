@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import maplibregl, { Map } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./BostonZipCodeMap.css";
@@ -10,6 +10,9 @@ export const BostonZipCodeMap = () => {
   const lng = -71.0782;
   const lat = 42.3164;
   const zoom = 11;
+
+  const hoverZipId = useRef<string | number | undefined>("");
+  const popup = useRef();
 
   // {lng: -71.07826226470809, lat: 42.316413557174286}
 
@@ -41,8 +44,13 @@ export const BostonZipCodeMap = () => {
         source: "boston",
         layout: {},
         paint: {
-          "fill-color": "#088",
-          "fill-opacity": 0.6,
+          "fill-color": "#b41313",
+          "fill-opacity": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            1,
+            0.5,
+          ],
         },
       });
       map.current.addLayer({
@@ -51,7 +59,7 @@ export const BostonZipCodeMap = () => {
         source: "boston",
         layout: {},
         paint: {
-          "line-color": "#088",
+          "line-color": "#b41313",
           "line-width": 2,
         },
       });
@@ -83,21 +91,50 @@ export const BostonZipCodeMap = () => {
     map.current.on("click", "boston", (e) => {
       const coordinates = e.lngLat;
       if (map.current) {
-        map.current.getCanvas().style.cursor = "pointer";
         const description = e.features?.[0].properties.ZIP5;
         popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
       }
-      // centers to clicked
-      // map.current?.flyTo({
-      //   center: coordinates,
-      // });
-      console.log(map.current?.getCenter());
+    });
+
+    map.current.on("mousemove", "boston", (e) => {
+      const features = e.features;
+      if (features && features.length > 0 && map.current) {
+        // Change the cursor style as a UI indicator.
+        map.current.getCanvas().style.cursor = "pointer";
+
+        if (hoverZipId.current !== "") {
+          // removes hover on previous shape
+          map.current.setFeatureState(
+            { source: "boston", id: hoverZipId.current },
+            { hover: false }
+          );
+        }
+
+        hoverZipId.current = features[0].id;
+        map.current.setFeatureState(
+          { source: "boston", id: features[0].id },
+          { hover: true }
+        );
+      }
+    });
+
+    map.current.on("mouseleave", "boston", () => {
+      if (hoverZipId.current !== "" && map.current) {
+        map.current.setFeatureState(
+          { source: "boston", id: hoverZipId.current },
+          { hover: false }
+        );
+        map.current.getCanvas().style.cursor = "default";
+      }
     });
   }, [lng, lat, zoom]);
 
   return (
     <div className="map-wrap">
-      <div className="absolute">44 licenses</div>
+      <div className="absolute">
+        <div>Currently Available Transferable Licenses</div>
+        44 licenses
+      </div>
       <div ref={mapContainer} className="map" />
     </div>
   );
