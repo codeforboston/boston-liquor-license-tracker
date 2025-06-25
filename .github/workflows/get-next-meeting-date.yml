@@ -1,5 +1,8 @@
 name: Get Next Meeting Date
 on:
+  push:
+    branches: ["scrape-next-meeting-date"] # Runs on pushes to the scrape-next-meeting-date branch
+
   schedule:
     - cron: "0 * * * *" # Runs every hour on the hour
 
