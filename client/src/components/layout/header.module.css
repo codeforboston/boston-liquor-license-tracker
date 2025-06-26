@@ -1,0 +1,36 @@
+.siteHeader {
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 400;
+  gap: 16px;
+  width: 100%;
+  color-scheme: light dark;
+  color: var(--primary-text-color-white);
+  background-color: #2e2e2e;
+  text-transform: uppercase;
+}
+
+.logoImage {
+  height: 32px;
+  width: 230px;
+}
+
+select {
+  background-color: var(--primary-background-color-gray);
+  color: var(--primary-text-color-white);
+  font-size: 16px;
+}
+
+.languageIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-text-color-white);
+}
+
+a:visited {
+  color: #999999;
+}
+
+a:hover {
+  color: #CCCCCC;
+}
