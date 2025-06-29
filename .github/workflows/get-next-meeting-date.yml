@@ -1,8 +1,5 @@
 name: Get Next Meeting Date
 on:
-  push:
-    branches: ["scrape-next-meeting-date"] # Runs on pushes to the scrape-next-meeting-date branch
-
   schedule:
     - cron: "0 0 * * 0" # Runs at midnight every Sunday
 
@@ -21,8 +18,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "hailexiao/boston-liquor-license-tracker"
-          ref: "scrape-next-meeting-date"
+          repository: "codeforboston/boston-liquor-license-tracker"
+          ref: "main"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -55,6 +52,5 @@ jobs:
         run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "hello@codeforboston.org"
-          git remote add upstream https://github.com/hailexiao/boston-liquor-license-tracker.git
-          git commit -am "Update next meeting date"
-          git push upstream HEAD:scrape-next-meeting-date
+          git commit -am "[SCRIPT] Update next meeting date"
+          git push
