@@ -1,8 +1,6 @@
 import { FormattedMessage } from "react-intl";
 import "./header.css";
-
-// TODO: Replace with actual logic for getting the next meeting date
-const nextMeetingDate = null;
+import NEXT_MEETING_DATE from "../../../data/next-meeting-date.json";
 
 // Show the next meeting date if and only if we have one and it is in the future
 const getNextMeetingText = (nextMeeting: Date | null) => {
@@ -25,6 +23,10 @@ const getNextMeetingText = (nextMeeting: Date | null) => {
 };
 
 const Header = () => {
+  const nextMeetingDate = NEXT_MEETING_DATE.nextMeetingDate
+    ? new Date(NEXT_MEETING_DATE.nextMeetingDate)
+    : null;
+
   return (
     <header className="database-header">
       <div className="text-container">

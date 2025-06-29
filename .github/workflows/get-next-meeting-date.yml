@@ -1,0 +1,56 @@
+name: Get Next Meeting Date
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Runs at midnight every Sunday
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets the GITHUB_TOKEN permissions to allow committing changes, so we can update the next meeting date
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: "codeforboston/boston-liquor-license-tracker"
+          ref: "main"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install axios
+        working-directory: ./client
+        run: npm i axios
+
+      - name: Install cheerio
+        working-directory: ./client
+        run: npm i cheerio
+
+      - name: Install fs
+        working-directory: ./client
+        run: npm i fs
+
+      - name: Compile next meeting date script
+        working-directory: ./client/src/scripts
+        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext next-meeting-date.ts
+
+      - name: Run next meeting date script
+        working-directory: ./client/src/scripts
+        run: node next-meeting-date.js
+
+      - name: Commit changes to repository
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "hello@codeforboston.org"
+          git commit -am "[SCRIPT] Update next meeting date"
+          git push
