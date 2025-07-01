@@ -10,7 +10,10 @@ const AboutUs = () => {
       <h2 className="w-full break-words whitespace-normal">
         <FormattedMessage
           id="aboutUs.weAre"
-          values={{ b: (chunks) => <b>{chunks}</b> }}
+          values={{ 
+              b: (chunks) => <b>{chunks}</b>,
+              br: <br/> 
+            }}
         />
       </h2>
     </div>
