@@ -4,13 +4,13 @@
 // the 15 non-transferable licenses for community spaces, including outdoor spaces, theaters with fewer than 750 seats, and non-profit organizations,
 // or the 12 transferable All Alcohol licenses
 
-const MAX_LICENSES_AVAILABLE = 195; // Total available remaining NON-TRANSFERABLE, ZIPCODE-RESTRICTED Licenses from the 2024 legislation
-const MAX_BEER_WINE_LICENSES = 78;
-const MAX_ALL_ALC_LICENSES = 117;
+export const MAX_LICENSES_AVAILABLE = 195; // Total available remaining NON-TRANSFERABLE, ZIPCODE-RESTRICTED Licenses from the 2024 legislation
+export const MAX_BEER_WINE_LICENSES = 78;
+export const MAX_ALL_ALC_LICENSES = 117;
 
-const MAX_AVAILABLE_PER_ZIP = 15; // 5 licenses granted per year for 3 years (3 All Alcohol, 2 Wines & Malt Liquor)
-const MAX_ALL_ALC_PER_ZIP = 9;
-const MAX_BEER_WINE_PER_ZIP = 6;
+export const MAX_AVAILABLE_PER_ZIP = 15; // 5 licenses granted per year for 3 years (3 All Alcohol, 2 Wines & Malt Liquor)
+export const MAX_ALL_ALC_PER_ZIP = 9;
+export const MAX_BEER_WINE_PER_ZIP = 6;
 
 export interface BusinessLicense {
   entity_number: string;
