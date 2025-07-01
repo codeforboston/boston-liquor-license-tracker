@@ -4,13 +4,14 @@ import mockLicensesJson from "./mockData.json";
 import { BusinessLicense } from "./data-interface";
 
 // INFO on these constants in the data-interface.ts file
-const MAX_LICENSES_AVAILABLE = 195;
-const MAX_BEER_WINE_LICENSES = 78;
-const MAX_ALL_ALC_LICENSES = 117;
-
-const MAX_AVAILABLE_PER_ZIP = 15;
-const MAX_ALL_ALC_PER_ZIP = 9;
-const MAX_BEER_WINE_PER_ZIP = 6;
+import {
+  MAX_LICENSES_AVAILABLE,
+  MAX_BEER_WINE_LICENSES,
+  MAX_ALL_ALC_LICENSES,
+  MAX_AVAILABLE_PER_ZIP,
+  MAX_ALL_ALC_PER_ZIP,
+  MAX_BEER_WINE_PER_ZIP
+} from "./data-interface";
 
 describe("Testing the data access interface", () => {
   test("return number of all city-wide licenses (all zipcodes & all alcohol types)", () => {
