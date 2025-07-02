@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/logo.svg";
+
 import "@/components/layout/header.css";
 import { FormattedMessage } from "react-intl";
 import LangSwitcher from "@/i18n/lang-switcher";
 import language from "@/assets/language.svg";
+import Logo from "./logo";
 
 const Spacer = () => {
   return <span className="mx-4 text-gray-400">&bull;</span>;
@@ -16,30 +17,17 @@ const LineSpacer = () => {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [logoClicked, setLogoClicked] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const handleLogoClick = () => {
-    setLogoClicked(true);
-  };
 
   return (
     <header className="site-header bg shadow-md sticky top-0 left-0 w-full z-50">
       <div className=" flex max-w-7xl sm: px-[24px] py-[18px] md:p-6 lg:items-center text-center">
         {/* Desktop Links */}
         <nav className="flex w-full items-center">
-          <Link
-            to="/"
-            className="text-xl font-bold"
-            onClick={handleLogoClick}
-          >
-            <img
-              className={`logoImage ${logoClicked ? "clicked" : ""}`}
-              src={logo}
-              alt="Logo"
-            />
-          </Link>
-        
+
+          <Logo/>    
+      
           <div className="hidden md:flex items-center w-full">
             <Spacer />
             <Link to="/maps">
