@@ -1,7 +1,7 @@
 import notFoundStyles from "./not-found.module.css"
 import { FormattedMessage } from "react-intl";
 import beerTap from "@/assets/images/beer-tap.png";
-import BackToHome from "@/components/ui/back-to-home/back-to-home"
+import BackToHome from "./back-to-home";
 
 
 
@@ -23,7 +23,6 @@ const NotFound = () => {
         />
       </p>
       <br/>
-      {/* Replace with back to home component when done */}
       <BackToHome />
       </div>
     </div>

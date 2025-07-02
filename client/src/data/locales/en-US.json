@@ -29,5 +29,7 @@
   "caseStudy.par2": "Recent changes to Boston's License system have made moves to improve access to Licenses. A new law passed in 2024 aims to give parts of the city specific Licenses and allow locals to open businesses. But this is just the start, tracking available licenses is still difficult and often out of reach to some members of Boston's community.",
   "caseStudy.par3": "With this site we are working to create a more equitable restaurant ecosystem for all, and allow you to track and understand what Licenses are available to you.",
   "caseStudy.image.alt": "Medium-sized empty white square",
-  "caseStudy.button.read": "READ THE FULL CASE STUDY"
+  "caseStudy.button.read": "READ THE FULL CASE STUDY",
+  "ui.backToHomeButton": "BACK TO HOME"
+
 }
