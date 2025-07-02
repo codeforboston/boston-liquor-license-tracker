@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
 
 import "@/components/layout/header.css";
-import { FormattedMessage } from "react-intl";
 import LangSwitcher from "@/i18n/lang-switcher";
+import HeaderLink from "./header-link";
 import language from "@/assets/language.svg";
 import Logo from "./logo";
 
@@ -28,27 +27,21 @@ const Header = () => {
 
           <Logo/>    
       
-          <div className="hidden md:flex items-center w-full">
+          <div className="hidden md:flex items-center w-full text-[#FAFAFA]">
             <Spacer />
-            <Link to="/maps">
-             <FormattedMessage id="header.maps" />
-            </Link>
-           <Spacer />
-            <Link to="/database">
-             <FormattedMessage id="header.database" />
-            </Link>
+            <HeaderLink to="/maps" messageId="header.maps"/>
             <Spacer />
-            <Link to="/resources">
-              <FormattedMessage id="header.resources" />
-            </Link>
+            <HeaderLink to="/database" messageId="header.database"/>
+            <Spacer />
+            <HeaderLink to="/resources" messageId="header.resources"/>
           
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
-            <img
-              src={language}
-             className="language-icon inline-block m-0"
-             alt="Language"
-            />
-            <LangSwitcher />
+              <img
+                src={language}
+              className="language-icon inline-block m-0"
+              alt="Language"
+              />
+              <LangSwitcher />
             </div>
           </div>
           <div className="flex md:hidden ml-auto">
@@ -64,17 +57,12 @@ const Header = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <nav className="md:hidden px-4  bg-[#2e2e2e]">
-          <Link to="/maps" className="py-[8px] px-[24px] block hover:text-blue-500">
-            <FormattedMessage id="header.maps" />
-          </Link>
+          <HeaderLink to="/maps" messageId="header.maps" isMobile/>
           <LineSpacer />
-          <Link to="/database" className="py-[8px] px-[24px] block hover:text-blue-500">
-            <FormattedMessage id="header.database" />
-          </Link>
+          <HeaderLink to="/database" messageId="header.database" isMobile/>
           <LineSpacer />
-          <Link to="/resources" className="py-[8px] px-[24px] block hover:text-blue-500">
-            <FormattedMessage id="header.resources" />
-          </Link>
+          <HeaderLink to="/resources" messageId="header.resources" isMobile/>
+
           <div className="py-[16px] px-[24px] pb-[8px] ms-auto">
           <img
             src={language}

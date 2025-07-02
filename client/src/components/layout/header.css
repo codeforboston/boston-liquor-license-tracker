@@ -15,9 +15,6 @@
     width: 230px;
   }
 
-  a:hover {
-    color: #a5a5a5;
-  }
 
   select {
     background-color: var(--primary-background-color-gray);
