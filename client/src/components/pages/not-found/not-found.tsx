@@ -7,27 +7,21 @@ import BackToHome from "@/components/ui/back-to-home/back-to-home"
 
 const NotFound = () => {
   return(
-
     <main className={notFoundStyles.notFound}>
-    <div className="not-found">
-      <div className="not-found-heading">
-      <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
-        <FormattedMessage
-        id="notFound.heading"
-        />
-      </h2>
-      <br/>
-      <p className="text-white">
-        <FormattedMessage
-          id="notFound.message"
-        />
-      </p>
-      <br/>
-      {/* Replace with back to home component when done */}
-      <BackToHome />
+      <div className={notFoundStyles.notFoundContent}>
+        <div className="not-found-heading">
+          <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
+            <FormattedMessage id="notFound.heading" />
+          </h2>
+          <br/>
+          <p className="text-white">
+            <FormattedMessage id="notFound.message" />
+          </p>
+          <br/>
+          <BackToHome />
+        </div>
       </div>
-    </div>
-      <img src={beerTap} className="beer-tap" alt="Beer Tap"/>
+      <img src={beerTap} className={notFoundStyles.beerTap} alt="Beer Tap"/>
     </main>
 
   )
