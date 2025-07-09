@@ -1,4 +1,18 @@
 
 .maplibregl-ctrl-group {
-  background-color: gray;
+  background-color: var(--secondary-background-color-gray);
+  /* border-radius: 8px; */
+}
+
+.maplibregl-ctrl-group:not(:empty) {
+  box-shadow: none;
+}
+
+.maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
+  background-image: url('../../assets/icons/plus.svg');
+  margin-bottom: 4px;
+}
+
+.maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
+  background-image: url('../../assets/icons/minus.svg');
 }
