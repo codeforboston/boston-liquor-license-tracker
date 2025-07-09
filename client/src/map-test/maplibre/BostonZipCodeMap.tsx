@@ -1,9 +1,57 @@
-import { useRef, useEffect, useState } from "react";
-import maplibregl, { Map } from "maplibre-gl";
+import { useRef, useEffect, RefObject } from "react";
+import maplibregl, { Map, Popup } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import "./BostonZipCodeMap.css";
+import mapStyles from "./BostonZipCodeMap.module.css";
 import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
+import "./mapStyleOverrides.css";
 
+const mouseActions = (
+  map: RefObject<Map | null>,
+  popup: Popup,
+  hoverZipId: RefObject<string | number | undefined>
+) => {
+  if (!map.current) return;
+
+  map.current.on("click", "boston", (e) => {
+    const coordinates = e.lngLat;
+    if (map.current) {
+      const description = e.features?.[0].properties.ZIP5;
+      popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
+    }
+  });
+
+  map.current.on("mousemove", "boston", (e) => {
+    const features = e.features;
+    if (features && features.length > 0 && map.current) {
+      // Change the cursor style as a UI indicator.
+      map.current.getCanvas().style.cursor = "pointer";
+
+      if (hoverZipId.current !== "") {
+        // removes hover on previous shape
+        map.current.setFeatureState(
+          { source: "boston", id: hoverZipId.current },
+          { hover: false }
+        );
+      }
+
+      hoverZipId.current = features[0].id;
+      map.current.setFeatureState(
+        { source: "boston", id: features[0].id },
+        { hover: true }
+      );
+    }
+  });
+
+  map.current.on("mouseleave", "boston", () => {
+    if (hoverZipId.current !== "" && map.current) {
+      map.current.setFeatureState(
+        { source: "boston", id: hoverZipId.current },
+        { hover: false }
+      );
+      map.current.getCanvas().style.cursor = "default";
+    }
+  });
+};
 export const BostonZipCodeMap = () => {
   const mapContainer = useRef(null);
   const map = useRef<Map | null>(null);
@@ -12,7 +60,6 @@ export const BostonZipCodeMap = () => {
   const zoom = 11;
 
   const hoverZipId = useRef<string | number | undefined>("");
-  const popup = useRef();
 
   // {lng: -71.07826226470809, lat: 42.316413557174286}
 
@@ -75,10 +122,8 @@ export const BostonZipCodeMap = () => {
     });
     map.current.addControl(
       new maplibregl.NavigationControl({
-        visualizePitch: true,
-        visualizeRoll: true,
         showZoom: true,
-        showCompass: true,
+        showCompass: false,
       })
     );
 
@@ -88,54 +133,31 @@ export const BostonZipCodeMap = () => {
       closeOnClick: false,
     });
 
-    map.current.on("click", "boston", (e) => {
-      const coordinates = e.lngLat;
-      if (map.current) {
-        const description = e.features?.[0].properties.ZIP5;
-        popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
-      }
-    });
-
-    map.current.on("mousemove", "boston", (e) => {
-      const features = e.features;
-      if (features && features.length > 0 && map.current) {
-        // Change the cursor style as a UI indicator.
-        map.current.getCanvas().style.cursor = "pointer";
-
-        if (hoverZipId.current !== "") {
-          // removes hover on previous shape
-          map.current.setFeatureState(
-            { source: "boston", id: hoverZipId.current },
-            { hover: false }
-          );
-        }
-
-        hoverZipId.current = features[0].id;
-        map.current.setFeatureState(
-          { source: "boston", id: features[0].id },
-          { hover: true }
-        );
-      }
-    });
-
-    map.current.on("mouseleave", "boston", () => {
-      if (hoverZipId.current !== "" && map.current) {
-        map.current.setFeatureState(
-          { source: "boston", id: hoverZipId.current },
-          { hover: false }
-        );
-        map.current.getCanvas().style.cursor = "default";
-      }
-    });
+    mouseActions(map, popup, hoverZipId);
   }, [lng, lat, zoom]);
 
   return (
-    <div className="map-wrap">
-      <div className="absolute">
-        <div>Currently Available Transferable Licenses</div>
-        44 licenses
+    <>
+      <div>
+        <div className="text-(--primary-text-color-white) bg-(--primary-background-color-gray) px-10 py-8">
+          <h1 className="text-5xl font-semibold mb-4">
+            License Availability Map
+          </h1>
+          <p className="max-w-[800px]">
+            Use the map to find information about licenses in each of Boston's
+            zip codes. Hover over any Zip Code and get instant information about
+            available licenses, their type, and recent applications. Use the
+            filters to narrow or expand your search to meet your exact business
+            needs
+          </p>
+        </div>
       </div>
-      <div ref={mapContainer} className="map" />
-    </div>
+      <div className="absolute flex flex-row justify-center items-center">
+        <div className="text-lg font-semibold">Filters will go here</div>
+      </div>
+      <div className={mapStyles.mapWrap}>
+        <div ref={mapContainer} className={mapStyles.map} />
+      </div>
+    </>
   );
 };

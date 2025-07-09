@@ -4,6 +4,7 @@
 :root {
   --primary-background-color-gray: #2e2e2e;
   --primary-text-color-white: #ffffff;
+  --primary-color-red: #b41313;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
