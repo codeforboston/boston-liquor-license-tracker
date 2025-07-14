@@ -4,4 +4,8 @@
   flex-shrink: 0;
   background: #2e2e2e;
   box-shadow: 0px 25px 20px 0px rgba(0, 0, 0, 0.45);
+
+  .not-found-content {
+    padding: 2rem;
+  }
 }
