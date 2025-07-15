@@ -35,7 +35,7 @@ async function scrapeNextMeetingDate(url: string): Promise<Date | null> {
     return nextMeetingDate;
   } catch (error) {
     console.log("Error scraping next meeting date:", error);
-    return null;
+    throw error; // Re-throw the error so further Github Actions steps are aborted
   }
 }
 
