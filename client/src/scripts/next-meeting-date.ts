@@ -34,7 +34,7 @@ async function scrapeNextMeetingDate(url: string): Promise<Date | null> {
 
     return nextMeetingDate;
   } catch (error) {
-    console.log("Error scraping next meeting date:", error);
+    console.error("Error scraping next meeting date:", error);
     throw error; // Re-throw the error so further Github Actions steps are aborted
   }
 }
@@ -53,5 +53,6 @@ if (
   const meetingDateString = JSON.stringify(meetingDateObject);
   writeFileSync("../data/next-meeting-date.json", meetingDateString);
 } else {
+  console.error("Invalid next meeting date:", nextMeetingDate);
   throw new Error("Failed to scrape a valid next meeting date.");
 }
