@@ -61,5 +61,4 @@ jobs:
           commit-message: "[SCRIPT] Update next meeting date"
           committer: Github Actions <hello@codeforboston.org>
           author: Github Actions <hello@codeforboston.org>
-          push-to-fork: "codeforboston/boston-liquor-license-tracker"
           add-paths: client/src/data/*.json
