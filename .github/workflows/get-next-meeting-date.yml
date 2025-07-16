@@ -62,3 +62,4 @@ jobs:
           committer: Github Actions <hello@codeforboston.org>
           author: Github Actions <hello@codeforboston.org>
           push-to-fork: "hailexiao/boston-liquor-license-tracker"
+          add-paths: client/src/data/*.json
