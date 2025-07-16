@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import styles from "@/components/layout/header.module.css";
 import { FormattedMessage } from "react-intl";
 import LangSwitcher from "@/i18n/lang-switcher";
-import HeaderLink from "./header-link";
 import language from "@/assets/language.svg";
 import logoDefault from "@/assets/logo.svg";
 import logoHover from "@/assets/logo_hover.svg";
