@@ -10,7 +10,6 @@
   "hero.photoCredit": "Photo by {photographerLink} on {platformLink}",
   "aboutUs.title": "Who We Are:",
   "aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially for your first time.{br}From tracking availability, understanding the application process, to the potential hidden costs of obtaining one. There is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
-  "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
   "database.header.title": "License Database",
   "database.header.description": "Browse through available licenses in each of Boston's zip codes, view recent license applications as well as important information regarding each license type and important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
@@ -32,5 +31,7 @@
   "caseStudy.button.read": "READ THE FULL CASE STUDY",
   "notFound.heading": "This page isn't on tap at the moment",
   "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
-  "ui.backToHomeButton": "BACK TO HOME"
+  "ui.backToHomeButton": "BACK TO HOME",
+  "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
+  "home.extra-work.h2": "Check out more of our work!"
 }
