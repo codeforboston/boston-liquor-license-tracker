@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "hailexiao/boston-liquor-license-tracker"
+          repository: "codeforboston/boston-liquor-license-tracker"
           ref: "main"
 
       - name: Setup Node.js
@@ -61,5 +61,5 @@ jobs:
           commit-message: "[SCRIPT] Update next meeting date"
           committer: Github Actions <hello@codeforboston.org>
           author: Github Actions <hello@codeforboston.org>
-          push-to-fork: "hailexiao/boston-liquor-license-tracker"
+          push-to-fork: "codeforboston/boston-liquor-license-tracker"
           add-paths: client/src/data/*.json
