@@ -21,8 +21,8 @@ const ExtraWorkCard = ({ item }: ExtraWorkCardProps) => {
                   bg-center
                   bg-no-repeat
                   cursor-pointer
-                  hover:opacity-85
-                  active:opacity-60
+                  hover:opacity-90
+                  active:opacity-70
               `}
         style={{ backgroundImage: `url(${item.imgSrc})` }}
       >
