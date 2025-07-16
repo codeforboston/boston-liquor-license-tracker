@@ -32,5 +32,7 @@
   "caseStudy.button.read": "READ THE FULL CASE STUDY",
   "notFound.heading": "This page isn't on tap at the moment",
   "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
-  "ui.backToHomeButton": "BACK TO HOME"
+  "ui.backToHomeButton": "BACK TO HOME",
+  "comingSoon.title": "Pardon Our Dust!",
+  "comingSoon.description": "We are currently working hard to get this page finished to best fit your needs. Check back soon for exciting things!"
 }
