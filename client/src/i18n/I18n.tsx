@@ -10,14 +10,7 @@ import { LocaleContext } from "./locale-context";
 type Locale = keyof typeof supportedLocales;
 
 const getMessagesWithFallback = (locale: Locale) => {
-  const baseMessages = supportedLocales[defaultLocale].messages;
-  const localeMessages = supportedLocales[locale].messages;
-
-  if (locale === defaultLocale) {
-    return localeMessages;
-  } else {
-    return { ...baseMessages, ...localeMessages };
-  }
+  return supportedLocales[locale]? {...supportedLocales[defaultLocale].messages, ...supportedLocales[locale].messages} : supportedLocales[defaultLocale].messages;
 }
 
 export default function I18n(props: React.PropsWithChildren) {

@@ -1,16 +1,15 @@
 {
   "header.maps": "MAPS",
   "header.database": "LICENSE DATABASE",
-  "header.resources": "LICENSE RESOURCES",
+  "header.resources": "LICENSING RESOURCES",
   "header.home": "HOME",
   "navigation.maps": "MAPS",
   "navigation.database": "LICENSE DATABASE",
   "navigation.resources": "LICENSE RESOURCES",
-  "hero.heading": "Navigating the Liquor License system in Boston is hard.{br}We are here to make it just a little bit easier.",
+  "hero.heading": "Boston’s Liquor License system can be confusing. We’re here to help you navigate it and ensure your business can succeed.",
   "hero.photoCredit": "Photo by {photographerLink} on {platformLink}",
   "aboutUs.title": "Who We Are:",
-  "aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You.</b> We understand how hard it is to navigate the red tape of liquor licenses in Boston. From tracking availability to the potential unwritten costs of obtaining one. We've made it our mission to demystify the process to help you get your business off the ground.",
-  "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
+  "aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially for your first time.{br}From tracking availability, understanding the application process, to the potential hidden costs of obtaining one. There is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
   "database.header.title": "License Database",
   "database.header.description": "Browse through available licenses in each of Boston's zip codes, view recent license applications as well as important information regarding each license type and important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
@@ -30,6 +29,9 @@
   "caseStudy.par3": "With this site we are working to create a more equitable restaurant ecosystem for all, and allow you to track and understand what Licenses are available to you.",
   "caseStudy.image.alt": "Medium-sized empty white square",
   "caseStudy.button.read": "READ THE FULL CASE STUDY",
-  "ui.backToHomeButton": "BACK TO HOME"
-
+  "notFound.heading": "This page isn't on tap at the moment",
+  "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
+  "ui.backToHomeButton": "BACK TO HOME",
+  "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
+  "home.extra-work.h2": "Check out more of our work!"
 }

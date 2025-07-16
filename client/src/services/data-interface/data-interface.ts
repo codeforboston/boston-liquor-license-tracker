@@ -1,3 +1,17 @@
+// The data interface relies on these constants below to calculate available licenses based off filtering options.
+
+// Does NOT include the 3 Oak Square all alcohol licenses,
+// the 15 non-transferable licenses for community spaces, including outdoor spaces, theaters with fewer than 750 seats, and non-profit organizations,
+// or the 12 transferable All Alcohol licenses
+
+export const MAX_LICENSES_AVAILABLE = 195; // Total available remaining NON-TRANSFERABLE, ZIPCODE-RESTRICTED Licenses from the 2024 legislation
+export const MAX_BEER_WINE_LICENSES = 78;
+export const MAX_ALL_ALC_LICENSES = 117;
+
+export const MAX_AVAILABLE_PER_ZIP = 15; // 5 licenses granted per year for 3 years (3 All Alcohol, 2 Wines & Malt Liquor)
+export const MAX_ALL_ALC_PER_ZIP = 9;
+export const MAX_BEER_WINE_PER_ZIP = 6;
+
 export interface BusinessLicense {
   entity_number: string;
   business_name: string;
@@ -190,26 +204,40 @@ export default function getNumOfLicenses(
   }
 
   if (options?.filterByAlcoholType && options?.filterByZipcode) {
-    const licenseByZipAndType = data.filter(
+    const licensesByZipAndType = data.filter(
       (license) =>
         license.zipcode === options.filterByZipcode &&
         license.alcohol_type === options.filterByAlcoholType
     );
 
-    return licenseByZipAndType.length;
+    if (options.filterByAlcoholType === "All Alcoholic Beverages") {
+      return MAX_ALL_ALC_PER_ZIP - licensesByZipAndType.length;
+    } else if (options.filterByAlcoholType === "Wines and Malt Beverages") {
+      return MAX_BEER_WINE_PER_ZIP - licensesByZipAndType.length;
+    } else {
+      console.error("improper alcohol license type used");
+      return -1;
+    }
   } else if (options?.filterByZipcode) {
     const licensesByZip = data.filter(
       (license) => license.zipcode === options.filterByZipcode
     );
 
-    return licensesByZip.length;
+    return MAX_AVAILABLE_PER_ZIP - licensesByZip.length;
   } else if (options?.filterByAlcoholType) {
     const licensesByType = data.filter(
       (license) => license.alcohol_type === options.filterByAlcoholType
     );
 
-    return licensesByType.length;
+    if (options.filterByAlcoholType === "All Alcoholic Beverages") {
+      return MAX_ALL_ALC_LICENSES - licensesByType.length;
+    } else if (options.filterByAlcoholType === "Wines and Malt Beverages") {
+      return MAX_BEER_WINE_LICENSES - licensesByType.length;
+    } else {
+      console.error("improper alcohol license type used");
+      return -1;
+    }
   } else {
-    return data.length;
+    return MAX_LICENSES_AVAILABLE - data.length;
   }
 }
