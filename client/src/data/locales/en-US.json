@@ -34,6 +34,7 @@
   "notFound.heading": "This page isn't on tap at the moment",
   "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
   "ui.backToHomeButton": "BACK TO HOME",
+<<<<<<< HEAD
   "footer.disclaimerTitle": "Disclaimer:",
   "footer.disclaimerText": "The information provided on this website is for general informational purposes only. The data represented on this site is not guaranteed to be accurate or complete. Information may change without notice.",
   "footer.builtBy": "Built by Code for Boston for Offsite Hospitality",
@@ -73,3 +74,8 @@
   "footer.bootcamp": "Bar Management Bootcamp",
   "footer.codeForBoston": "Code for Boston"
 }
+=======
+  "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
+  "home.extra-work.h2": "Check out more of our work!"
+}
+>>>>>>> 1d220f2 (completed extra work section with extra work card pulled out into com… (#129))
