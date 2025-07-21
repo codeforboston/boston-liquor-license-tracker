@@ -32,7 +32,7 @@ for pdf in pdf_file:
     except Exception as e:
         print(f"Error in file {pdf} : {e}")
 
-sorted_data = sorted(final_result, key=lambda x: (x["date"], x["entity_number"]))
+sorted_data = sorted(final_result, key=lambda x: (x["minutes_date"], x["entity_number"]))
 
 for i, entity in enumerate(sorted_data, start=1): 
     entity["index"] = i

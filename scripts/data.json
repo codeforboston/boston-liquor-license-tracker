@@ -9,8 +9,9 @@
         "license_number": "LB-574267",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 9-26-24.pdf",
-        "date": "2024-09-26"
+        "minutes_date": "2024-09-26",
+        "application_expiration_date": "2025-09-26",
+        "file_name": "Voting Minutes 9-26-24.pdf"
     },
     {
         "index": 2,
@@ -22,8 +23,9 @@
         "license_number": "LB-574154",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 9-26-24.pdf",
-        "date": "2024-09-26"
+        "minutes_date": "2024-09-26",
+        "application_expiration_date": "2025-09-26",
+        "file_name": "Voting Minutes 9-26-24.pdf"
     },
     {
         "index": 3,
@@ -35,8 +37,9 @@
         "license_number": "LB-574260",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 9-26-24.pdf",
-        "date": "2024-09-26"
+        "minutes_date": "2024-09-26",
+        "application_expiration_date": "2025-09-26",
+        "file_name": "Voting Minutes 9-26-24.pdf"
     },
     {
         "index": 4,
@@ -48,8 +51,9 @@
         "license_number": "LB-577182",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 10-15-24.docx.pdf",
-        "date": "2024-10-17"
+        "minutes_date": "2024-10-17",
+        "application_expiration_date": "2025-10-17",
+        "file_name": "Voting Minutes 10-15-24.docx.pdf"
     },
     {
         "index": 5,
@@ -61,8 +65,9 @@
         "license_number": "LB-577222",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-15-24.docx.pdf",
-        "date": "2024-10-17"
+        "minutes_date": "2024-10-17",
+        "application_expiration_date": "2025-10-17",
+        "file_name": "Voting Minutes 10-15-24.docx.pdf"
     },
     {
         "index": 6,
@@ -74,8 +79,9 @@
         "license_number": "LB-577208",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-15-24.docx.pdf",
-        "date": "2024-10-17"
+        "minutes_date": "2024-10-17",
+        "application_expiration_date": "2025-10-17",
+        "file_name": "Voting Minutes 10-15-24.docx.pdf"
     },
     {
         "index": 7,
@@ -87,8 +93,9 @@
         "license_number": "LB-577217",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-15-24.docx.pdf",
-        "date": "2024-10-17"
+        "minutes_date": "2024-10-17",
+        "application_expiration_date": "2025-10-17",
+        "file_name": "Voting Minutes 10-15-24.docx.pdf"
     },
     {
         "index": 8,
@@ -100,8 +107,9 @@
         "license_number": "LB-577220",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-15-24.docx.pdf",
-        "date": "2024-10-17"
+        "minutes_date": "2024-10-17",
+        "application_expiration_date": "2025-10-17",
+        "file_name": "Voting Minutes 10-15-24.docx.pdf"
     },
     {
         "index": 9,
@@ -113,8 +121,9 @@
         "license_number": "LB-578134",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 10,
@@ -126,8 +135,9 @@
         "license_number": "LB-578141",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 11,
@@ -139,8 +149,9 @@
         "license_number": "LB-578142",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 12,
@@ -152,8 +163,9 @@
         "license_number": "LB-578145",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 13,
@@ -165,8 +177,9 @@
         "license_number": "LB-578143",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 14,
@@ -178,8 +191,9 @@
         "license_number": "LB-578144",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 15,
@@ -191,8 +205,9 @@
         "license_number": "LB-578146",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 10-31-24.docx.pdf",
-        "date": "2024-10-31"
+        "minutes_date": "2024-10-31",
+        "application_expiration_date": "2025-10-31",
+        "file_name": "Voting Minutes 10-31-24.docx.pdf"
     },
     {
         "index": 16,
@@ -204,8 +219,9 @@
         "license_number": "LB-580946",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 17,
@@ -217,8 +233,9 @@
         "license_number": "LB-580948",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 18,
@@ -230,8 +247,9 @@
         "license_number": "LB-580949",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 19,
@@ -243,8 +261,9 @@
         "license_number": "LB-580950",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 20,
@@ -256,8 +275,9 @@
         "license_number": "LB-580951",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 21,
@@ -269,8 +289,9 @@
         "license_number": "LB-580952",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 22,
@@ -282,8 +303,9 @@
         "license_number": "LB-580953",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-14-24.docx (1).pdf",
-        "date": "2024-11-14"
+        "minutes_date": "2024-11-14",
+        "application_expiration_date": "2025-11-14",
+        "file_name": "Voting Minutes 11-14-24.docx (1).pdf"
     },
     {
         "index": 23,
@@ -295,8 +317,9 @@
         "license_number": "LB-581511",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-21-24.docx_0.pdf",
-        "date": "2024-11-21"
+        "minutes_date": "2024-11-21",
+        "application_expiration_date": "2025-11-21",
+        "file_name": "Voting Minutes 11-21-24.docx_0.pdf"
     },
     {
         "index": 24,
@@ -308,8 +331,9 @@
         "license_number": "LB-581512",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 11-21-24.docx_0.pdf",
-        "date": "2024-11-21"
+        "minutes_date": "2024-11-21",
+        "application_expiration_date": "2025-11-21",
+        "file_name": "Voting Minutes 11-21-24.docx_0.pdf"
     },
     {
         "index": 25,
@@ -321,8 +345,9 @@
         "license_number": "LB-580947",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-21-24.docx_0.pdf",
-        "date": "2024-11-21"
+        "minutes_date": "2024-11-21",
+        "application_expiration_date": "2025-11-21",
+        "file_name": "Voting Minutes 11-21-24.docx_0.pdf"
     },
     {
         "index": 26,
@@ -334,8 +359,9 @@
         "license_number": "LB-581522",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-21-24.docx_0.pdf",
-        "date": "2024-11-21"
+        "minutes_date": "2024-11-21",
+        "application_expiration_date": "2025-11-21",
+        "file_name": "Voting Minutes 11-21-24.docx_0.pdf"
     },
     {
         "index": 27,
@@ -347,8 +373,9 @@
         "license_number": "LB-581520",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-21-24.docx_0.pdf",
-        "date": "2024-11-21"
+        "minutes_date": "2024-11-21",
+        "application_expiration_date": "2025-11-21",
+        "file_name": "Voting Minutes 11-21-24.docx_0.pdf"
     },
     {
         "index": 28,
@@ -360,8 +387,9 @@
         "license_number": "LB-581524",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 11-21-24.docx_0.pdf",
-        "date": "2024-11-21"
+        "minutes_date": "2024-11-21",
+        "application_expiration_date": "2025-11-21",
+        "file_name": "Voting Minutes 11-21-24.docx_0.pdf"
     },
     {
         "index": 29,
@@ -373,8 +401,9 @@
         "license_number": "LB-582370",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 12-12-24.docx.pdf",
-        "date": "2024-12-12"
+        "minutes_date": "2024-12-12",
+        "application_expiration_date": "2025-12-12",
+        "file_name": "Voting Minutes 12-12-24.docx.pdf"
     },
     {
         "index": 30,
@@ -386,8 +415,9 @@
         "license_number": "LB-582381",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 12-12-24.docx.pdf",
-        "date": "2024-12-12"
+        "minutes_date": "2024-12-12",
+        "application_expiration_date": "2025-12-12",
+        "file_name": "Voting Minutes 12-12-24.docx.pdf"
     },
     {
         "index": 31,
@@ -399,8 +429,9 @@
         "license_number": "LB-582320",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 12-12-24.docx.pdf",
-        "date": "2024-12-12"
+        "minutes_date": "2024-12-12",
+        "application_expiration_date": "2025-12-12",
+        "file_name": "Voting Minutes 12-12-24.docx.pdf"
     },
     {
         "index": 32,
@@ -412,8 +443,9 @@
         "license_number": "LB-582328",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 12-12-24.docx.pdf",
-        "date": "2024-12-12"
+        "minutes_date": "2024-12-12",
+        "application_expiration_date": "2025-12-12",
+        "file_name": "Voting Minutes 12-12-24.docx.pdf"
     },
     {
         "index": 33,
@@ -425,8 +457,9 @@
         "license_number": "LB-582324",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-9-25.docx_0.pdf",
-        "date": "2025-01-09"
+        "minutes_date": "2025-01-09",
+        "application_expiration_date": "2026-01-09",
+        "file_name": "Voting Minutes 1-9-25.docx_0.pdf"
     },
     {
         "index": 34,
@@ -438,8 +471,9 @@
         "license_number": "LB-583839",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 1-9-25.docx_0.pdf",
-        "date": "2025-01-09"
+        "minutes_date": "2025-01-09",
+        "application_expiration_date": "2026-01-09",
+        "file_name": "Voting Minutes 1-9-25.docx_0.pdf"
     },
     {
         "index": 35,
@@ -451,8 +485,9 @@
         "license_number": "LB-583841",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-9-25.docx_0.pdf",
-        "date": "2025-01-09"
+        "minutes_date": "2025-01-09",
+        "application_expiration_date": "2026-01-09",
+        "file_name": "Voting Minutes 1-9-25.docx_0.pdf"
     },
     {
         "index": 36,
@@ -464,8 +499,9 @@
         "license_number": "LB-583884",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-9-25.docx_0.pdf",
-        "date": "2025-01-09"
+        "minutes_date": "2025-01-09",
+        "application_expiration_date": "2026-01-09",
+        "file_name": "Voting Minutes 1-9-25.docx_0.pdf"
     },
     {
         "index": 37,
@@ -477,8 +513,9 @@
         "license_number": "LB-583866",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-9-25.docx_0.pdf",
-        "date": "2025-01-09"
+        "minutes_date": "2025-01-09",
+        "application_expiration_date": "2026-01-09",
+        "file_name": "Voting Minutes 1-9-25.docx_0.pdf"
     },
     {
         "index": 38,
@@ -490,8 +527,9 @@
         "license_number": "LB-583877",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-9-25.docx_0.pdf",
-        "date": "2025-01-09"
+        "minutes_date": "2025-01-09",
+        "application_expiration_date": "2026-01-09",
+        "file_name": "Voting Minutes 1-9-25.docx_0.pdf"
     },
     {
         "index": 39,
@@ -503,8 +541,9 @@
         "license_number": "LB-584070",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-16-25.docx.pdf",
-        "date": "2025-01-16"
+        "minutes_date": "2025-01-16",
+        "application_expiration_date": "2026-01-16",
+        "file_name": "Voting Minutes 1-16-25.docx.pdf"
     },
     {
         "index": 40,
@@ -516,8 +555,9 @@
         "license_number": "LB-584080",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 1-16-25.docx.pdf",
-        "date": "2025-01-16"
+        "minutes_date": "2025-01-16",
+        "application_expiration_date": "2026-01-16",
+        "file_name": "Voting Minutes 1-16-25.docx.pdf"
     },
     {
         "index": 41,
@@ -529,8 +569,9 @@
         "license_number": "LB-584097",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 1-16-25.docx.pdf",
-        "date": "2025-01-16"
+        "minutes_date": "2025-01-16",
+        "application_expiration_date": "2026-01-16",
+        "file_name": "Voting Minutes 1-16-25.docx.pdf"
     },
     {
         "index": 42,
@@ -542,8 +583,9 @@
         "license_number": "LB-584103",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-16-25.docx.pdf",
-        "date": "2025-01-16"
+        "minutes_date": "2025-01-16",
+        "application_expiration_date": "2026-01-16",
+        "file_name": "Voting Minutes 1-16-25.docx.pdf"
     },
     {
         "index": 43,
@@ -555,8 +597,9 @@
         "license_number": "LB-584086",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-16-25.docx.pdf",
-        "date": "2025-01-16"
+        "minutes_date": "2025-01-16",
+        "application_expiration_date": "2026-01-16",
+        "file_name": "Voting Minutes 1-16-25.docx.pdf"
     },
     {
         "index": 44,
@@ -568,8 +611,9 @@
         "license_number": "LB-584345",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-23-25.pdf",
-        "date": "2025-01-23"
+        "minutes_date": "2025-01-23",
+        "application_expiration_date": "2026-01-23",
+        "file_name": "Voting Minutes 1-23-25.pdf"
     },
     {
         "index": 45,
@@ -581,8 +625,9 @@
         "license_number": "LB-584372",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 1-23-25.pdf",
-        "date": "2025-01-23"
+        "minutes_date": "2025-01-23",
+        "application_expiration_date": "2026-01-23",
+        "file_name": "Voting Minutes 1-23-25.pdf"
     },
     {
         "index": 46,
@@ -594,8 +639,9 @@
         "license_number": "LB-584369",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-23-25.pdf",
-        "date": "2025-01-23"
+        "minutes_date": "2025-01-23",
+        "application_expiration_date": "2026-01-23",
+        "file_name": "Voting Minutes 1-23-25.pdf"
     },
     {
         "index": 47,
@@ -607,8 +653,9 @@
         "license_number": "LB-584375",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 1-23-25.pdf",
-        "date": "2025-01-23"
+        "minutes_date": "2025-01-23",
+        "application_expiration_date": "2026-01-23",
+        "file_name": "Voting Minutes 1-23-25.pdf"
     },
     {
         "index": 48,
@@ -620,8 +667,9 @@
         "license_number": "LB-587125",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-13-25.docx.pdf",
-        "date": "2025-02-13"
+        "minutes_date": "2025-02-13",
+        "application_expiration_date": "2026-02-13",
+        "file_name": "Voting Minutes 2-13-25.docx.pdf"
     },
     {
         "index": 49,
@@ -633,8 +681,9 @@
         "license_number": "LB-587125",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-13-25.docx (1).pdf",
-        "date": "2025-02-13"
+        "minutes_date": "2025-02-13",
+        "application_expiration_date": "2026-02-13",
+        "file_name": "Voting Minutes 2-13-25.docx (1).pdf"
     },
     {
         "index": 50,
@@ -646,8 +695,9 @@
         "license_number": "LB-587130",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-13-25.docx.pdf",
-        "date": "2025-02-13"
+        "minutes_date": "2025-02-13",
+        "application_expiration_date": "2026-02-13",
+        "file_name": "Voting Minutes 2-13-25.docx.pdf"
     },
     {
         "index": 51,
@@ -659,8 +709,9 @@
         "license_number": "LB-587130",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-13-25.docx (1).pdf",
-        "date": "2025-02-13"
+        "minutes_date": "2025-02-13",
+        "application_expiration_date": "2026-02-13",
+        "file_name": "Voting Minutes 2-13-25.docx (1).pdf"
     },
     {
         "index": 52,
@@ -672,8 +723,9 @@
         "license_number": "LB-587134",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-13-25.docx.pdf",
-        "date": "2025-02-13"
+        "minutes_date": "2025-02-13",
+        "application_expiration_date": "2026-02-13",
+        "file_name": "Voting Minutes 2-13-25.docx.pdf"
     },
     {
         "index": 53,
@@ -685,8 +737,9 @@
         "license_number": "LB-587134",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-13-25.docx (1).pdf",
-        "date": "2025-02-13"
+        "minutes_date": "2025-02-13",
+        "application_expiration_date": "2026-02-13",
+        "file_name": "Voting Minutes 2-13-25.docx (1).pdf"
     },
     {
         "index": 54,
@@ -698,8 +751,9 @@
         "license_number": "LB-587880",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 2-27-25.docx.pdf",
-        "date": "2025-02-27"
+        "minutes_date": "2025-02-27",
+        "application_expiration_date": "2026-02-27",
+        "file_name": "Voting Minutes 2-27-25.docx.pdf"
     },
     {
         "index": 55,
@@ -711,8 +765,9 @@
         "license_number": "LB-587892",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-27-25.docx.pdf",
-        "date": "2025-02-27"
+        "minutes_date": "2025-02-27",
+        "application_expiration_date": "2026-02-27",
+        "file_name": "Voting Minutes 2-27-25.docx.pdf"
     },
     {
         "index": 56,
@@ -724,8 +779,9 @@
         "license_number": "LB-588316",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 2-27-25.docx.pdf",
-        "date": "2025-02-27"
+        "minutes_date": "2025-02-27",
+        "application_expiration_date": "2026-02-27",
+        "file_name": "Voting Minutes 2-27-25.docx.pdf"
     },
     {
         "index": 57,
@@ -737,8 +793,9 @@
         "license_number": "LB-590954",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 4-3-25.docx.pdf",
-        "date": "2025-04-03"
+        "minutes_date": "2025-04-03",
+        "application_expiration_date": "2026-04-03",
+        "file_name": "Voting Minutes 4-3-25.docx.pdf"
     },
     {
         "index": 58,
@@ -750,8 +807,9 @@
         "license_number": "LB-592854",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 4-17-25.docx.pdf",
-        "date": "2025-04-17"
+        "minutes_date": "2025-04-17",
+        "application_expiration_date": "2026-04-17",
+        "file_name": "Voting Minutes 4-17-25.docx.pdf"
     },
     {
         "index": 59,
@@ -763,8 +821,9 @@
         "license_number": "LB-592817",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 4-17-25.docx.pdf",
-        "date": "2025-04-17"
+        "minutes_date": "2025-04-17",
+        "application_expiration_date": "2026-04-17",
+        "file_name": "Voting Minutes 4-17-25.docx.pdf"
     },
     {
         "index": 60,
@@ -776,8 +835,9 @@
         "license_number": "LB-592801",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 4-17-25.docx.pdf",
-        "date": "2025-04-17"
+        "minutes_date": "2025-04-17",
+        "application_expiration_date": "2026-04-17",
+        "file_name": "Voting Minutes 4-17-25.docx.pdf"
     },
     {
         "index": 61,
@@ -789,8 +849,9 @@
         "license_number": "LB-592818",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 4-17-25.docx.pdf",
-        "date": "2025-04-17"
+        "minutes_date": "2025-04-17",
+        "application_expiration_date": "2026-04-17",
+        "file_name": "Voting Minutes 4-17-25.docx.pdf"
     },
     {
         "index": 62,
@@ -802,8 +863,9 @@
         "license_number": "LB-592810",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 4-17-25.docx.pdf",
-        "date": "2025-04-17"
+        "minutes_date": "2025-04-17",
+        "application_expiration_date": "2026-04-17",
+        "file_name": "Voting Minutes 4-17-25.docx.pdf"
     },
     {
         "index": 63,
@@ -815,8 +877,9 @@
         "license_number": "LB-593664",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 64,
@@ -828,8 +891,9 @@
         "license_number": "LB-593662",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 65,
@@ -841,8 +905,9 @@
         "license_number": "LB-593698",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 66,
@@ -854,8 +919,9 @@
         "license_number": "LB-593736",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 67,
@@ -867,8 +933,9 @@
         "license_number": "LB-593791",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 68,
@@ -880,8 +947,9 @@
         "license_number": "LB-593661",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 69,
@@ -893,8 +961,9 @@
         "license_number": "LB-593758",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-1-25.docx.pdf",
-        "date": "2025-05-01"
+        "minutes_date": "2025-05-01",
+        "application_expiration_date": "2026-05-01",
+        "file_name": "Voting Minutes 5-1-25.docx.pdf"
     },
     {
         "index": 70,
@@ -906,8 +975,9 @@
         "license_number": "LB-595045",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-15-25.docx.pdf",
-        "date": "2025-05-15"
+        "minutes_date": "2025-05-15",
+        "application_expiration_date": "2026-05-15",
+        "file_name": "Voting Minutes 5-15-25.docx.pdf"
     },
     {
         "index": 71,
@@ -919,8 +989,9 @@
         "license_number": "LB-595032",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-15-25.docx.pdf",
-        "date": "2025-05-15"
+        "minutes_date": "2025-05-15",
+        "application_expiration_date": "2026-05-15",
+        "file_name": "Voting Minutes 5-15-25.docx.pdf"
     },
     {
         "index": 72,
@@ -932,8 +1003,9 @@
         "license_number": "LB-595198",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-15-25.docx.pdf",
-        "date": "2025-05-15"
+        "minutes_date": "2025-05-15",
+        "application_expiration_date": "2026-05-15",
+        "file_name": "Voting Minutes 5-15-25.docx.pdf"
     },
     {
         "index": 73,
@@ -945,8 +1017,9 @@
         "license_number": "LB-595036",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-15-25.docx.pdf",
-        "date": "2025-05-15"
+        "minutes_date": "2025-05-15",
+        "application_expiration_date": "2026-05-15",
+        "file_name": "Voting Minutes 5-15-25.docx.pdf"
     },
     {
         "index": 74,
@@ -958,8 +1031,9 @@
         "license_number": "LB-595074",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 5-15-25.docx.pdf",
-        "date": "2025-05-15"
+        "minutes_date": "2025-05-15",
+        "application_expiration_date": "2026-05-15",
+        "file_name": "Voting Minutes 5-15-25.docx.pdf"
     },
     {
         "index": 75,
@@ -971,8 +1045,9 @@
         "license_number": "LB-596693",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 6-5-25.docx.pdf",
-        "date": "2025-06-05"
+        "minutes_date": "2025-06-05",
+        "application_expiration_date": "2026-06-05",
+        "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
         "index": 76,
@@ -984,8 +1059,9 @@
         "license_number": "LB-596687",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-5-25.docx.pdf",
-        "date": "2025-06-05"
+        "minutes_date": "2025-06-05",
+        "application_expiration_date": "2026-06-05",
+        "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
         "index": 77,
@@ -997,8 +1073,9 @@
         "license_number": "LB-596653",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-5-25.docx.pdf",
-        "date": "2025-06-05"
+        "minutes_date": "2025-06-05",
+        "application_expiration_date": "2026-06-05",
+        "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
         "index": 78,
@@ -1010,8 +1087,9 @@
         "license_number": "LB-596679",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-5-25.docx.pdf",
-        "date": "2025-06-05"
+        "minutes_date": "2025-06-05",
+        "application_expiration_date": "2026-06-05",
+        "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
         "index": 79,
@@ -1023,8 +1101,9 @@
         "license_number": "LB-597972",
         "status": "Deferred",
         "alcohol_type": "Wines and Malt Beverages",
-        "file_name": "Voting Minutes 6-26-25.docx (1).pdf",
-        "date": "2025-06-26"
+        "minutes_date": "2025-06-26",
+        "application_expiration_date": "2026-06-26",
+        "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
         "index": 80,
@@ -1036,8 +1115,9 @@
         "license_number": "LB-598023",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-26-25.docx (1).pdf",
-        "date": "2025-06-26"
+        "minutes_date": "2025-06-26",
+        "application_expiration_date": "2026-06-26",
+        "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
         "index": 81,
@@ -1049,8 +1129,9 @@
         "license_number": "LB-598009",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-26-25.docx (1).pdf",
-        "date": "2025-06-26"
+        "minutes_date": "2025-06-26",
+        "application_expiration_date": "2026-06-26",
+        "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
         "index": 82,
@@ -1062,8 +1143,9 @@
         "license_number": "LB-598072",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-26-25.docx (1).pdf",
-        "date": "2025-06-26"
+        "minutes_date": "2025-06-26",
+        "application_expiration_date": "2026-06-26",
+        "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
         "index": 83,
@@ -1075,8 +1157,9 @@
         "license_number": "LB-597998",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-26-25.docx (1).pdf",
-        "date": "2025-06-26"
+        "minutes_date": "2025-06-26",
+        "application_expiration_date": "2026-06-26",
+        "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
         "index": 84,
@@ -1088,8 +1171,9 @@
         "license_number": "LB-598021",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 6-26-25.docx (1).pdf",
-        "date": "2025-06-26"
+        "minutes_date": "2025-06-26",
+        "application_expiration_date": "2026-06-26",
+        "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
         "index": 85,
@@ -1101,8 +1185,9 @@
         "license_number": "LB-599543",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 7-17-25.docx.pdf",
-        "date": "2025-07-17"
+        "minutes_date": "2025-07-17",
+        "application_expiration_date": "2026-07-17",
+        "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
         "index": 86,
@@ -1114,8 +1199,9 @@
         "license_number": "LB-599562",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 7-17-25.docx.pdf",
-        "date": "2025-07-17"
+        "minutes_date": "2025-07-17",
+        "application_expiration_date": "2026-07-17",
+        "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
         "index": 87,
@@ -1127,8 +1213,9 @@
         "license_number": "LB-599554",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 7-17-25.docx.pdf",
-        "date": "2025-07-17"
+        "minutes_date": "2025-07-17",
+        "application_expiration_date": "2026-07-17",
+        "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
         "index": 88,
@@ -1140,8 +1227,9 @@
         "license_number": "LB-599561",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 7-17-25.docx.pdf",
-        "date": "2025-07-17"
+        "minutes_date": "2025-07-17",
+        "application_expiration_date": "2026-07-17",
+        "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
         "index": 89,
@@ -1153,8 +1241,9 @@
         "license_number": "LB-599551",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 7-17-25.docx.pdf",
-        "date": "2025-07-17"
+        "minutes_date": "2025-07-17",
+        "application_expiration_date": "2026-07-17",
+        "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
         "index": 90,
@@ -1166,7 +1255,8 @@
         "license_number": "LB-599529",
         "status": "Deferred",
         "alcohol_type": "All Alcoholic Beverages",
-        "file_name": "Voting Minutes 7-17-25.docx.pdf",
-        "date": "2025-07-17"
+        "minutes_date": "2025-07-17",
+        "application_expiration_date": "2026-07-17",
+        "file_name": "Voting Minutes 7-17-25.docx.pdf"
     }
 ]

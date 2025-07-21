@@ -4,6 +4,7 @@ import json
 import sys
 import re
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from typing import List, Dict, Optional, Any, Union
 
 def parse_entity(entity: str) -> Dict[str, Optional[str]]:
@@ -18,6 +19,8 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
         "license_number": None,
         "status": None,
         "alcohol_type": None,
+        "minutes_date": None,
+        "application_expiration_date": None, 
         "file_name": None
     }
 
@@ -97,7 +100,7 @@ def extract_hearing_date(pdf_path: str) -> str:
         try:
             date_obj: datetime = datetime.strptime(date_str, "%B %d, %Y")
             iso_date: str = date_obj.date().isoformat()
-            return iso_date
+            return date_obj
         except Exception as e:
             raise ValueError(f"Could not conver date string to iso format: {e}")
     else:
@@ -206,10 +209,11 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
     if not os.path.isfile(pdf_path):
         print(f"Error: File does not exist: {file_name}")
         sys.exit(1)
-    date: Optional[str] = None
-
+    date: Optional[datetime] = None
+    expiration_date: Optional[datetime] = None
     try:
         date = extract_hearing_date(pdf_path)
+        expiration_date = date + relativedelta(years=1)
     except Exception as e:
         print(f"Could not get date {pdf_path} : {e}")
 
@@ -223,7 +227,8 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
             continue
         if result['alcohol_type'] in ('Wines and Malt Beverages', 'All Alcoholic Beverages'):
             result['file_name'] = file_name
-            result['date'] = date
+            result['minutes_date'] = date.date().isoformat()
+            result['application_expiration_date'] = expiration_date.date().isoformat()
             result['status'] = 'Deferred'
             final_result.append(result)
             print('--------------------------')
