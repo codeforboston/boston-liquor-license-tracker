@@ -9,6 +9,7 @@ from typing import List, Dict, Optional, Any, Union
 def parse_entity(entity: str) -> Dict[str, Optional[str]]:
     lines: List[str] = [line.strip() for line in entity.splitlines() if line.strip()]
     result: Dict[str, Optional[str]] = {
+        "index": None, 
         "entity_number": None,
         "business_name": None,
         "dba_name": None,
@@ -97,7 +98,7 @@ def extract_hearing_date(pdf_path: str) -> str:
         except Exception as e:
             raise ValueError(f"Could not conver date string to iso format: {e}")
     else:
-        raise ValueError(f"Could not find date in the pdf: {e}") # e is not defined here if match is None
+        raise ValueError(f"Could not find date in the pdf: {e}")
 
 def extract_entities_from_pdf(pdf_path: str) -> List[str]:
     heading_regex: str = r'^\d+\.?\s+.*'
@@ -168,9 +169,18 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     if os.path.exists(output_file):
         try:
             with open(output_file, "r") as f:
-                existing_data = json.load(f)
+                content = f.read().strip()
+                if content:
+                    existing_data = json.loads(content)
         except Exception as e:
             print(f"Error: Failed to read from json: {e}")
+    
+
+    if existing_data:
+        last_entity_index = existing_data[len(existing_data)-1]['index']
+        for i, entity in enumerate(result, start=last_entity_index+1):
+            entity["index"] = i
+
 
     existing_data.extend(result)
 
@@ -184,6 +194,7 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
     pdf_folder: str = os.getcwd()
     pdf_path: str = os.path.join(pdf_folder, file_name)
     if not os.path.isfile(pdf_path):
+        print(f"Error: File does not exist: {file_name}")
         sys.exit(1)
     date: Optional[str] = None
 
@@ -194,7 +205,7 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
 
     entities: List[str] = extract_entities_from_pdf(pdf_path)
     final_result: List[Dict[str, Optional[str]]] = []
-    for entity_data in entities: # Renamed 'entity' to 'entity_data' to avoid conflict with initial 'entity' param
+    for entity_data in entities: 
         try:
             result: Dict[str, Optional[str]] = parse_entity(entity_data)
         except Exception as e:
@@ -203,6 +214,7 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
         if result['alcohol_type'] in ('Wines and Malt Beverages', 'All Alcoholic Beverages'):
             result['file_name'] = file_name
             result['date'] = date
+            result['status'] = 'Deferred'
             final_result.append(result)
             print('--------------------------')
 
@@ -210,4 +222,8 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
         return final_result
 
     write_to_file(final_result)
-    return final_result # Added return for consistency
+    return final_result 
+
+# Can be used to load just a single pdf
+# if __name__ == "__main__":
+#     process_pdf('Voting Minutes 7-17-25.docx.pdf')
