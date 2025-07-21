@@ -83,6 +83,9 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
 
     return result
 
+# Extracts the first hearing date from the first page of the PDF.
+# Assumes the date is in "Month DD, YYYY" format and exists on page 1.
+# If date does not exist the enity date will be marked as None
 def extract_hearing_date(pdf_path: str) -> str:
     date_pattern: str = r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}"
     doc: fitz.Document = fitz.open(pdf_path)
@@ -162,6 +165,13 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
     return entities
 
 def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
+    """
+    Appends new parsed entities to `data.json`, assigning incremental indices 
+    only if the file is not empty (i.e., not a seeding run).
+    
+    If `data.json` is empty, it is assumed that the incoming `result` is from 
+    a seeding step and that each entity already contains its own `index`.
+    """
     pdf_folder: str = os.getcwd()
     output_file: str = os.path.join(pdf_folder, "data.json")
     existing_data: List[Dict[str, Optional[str]]] = []
