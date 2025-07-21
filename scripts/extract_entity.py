@@ -89,7 +89,7 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
 # Extracts the first hearing date from the first page of the PDF.
 # Assumes the date is in "Month DD, YYYY" format and exists on page 1.
 # If date does not exist the enity date will be marked as None
-def extract_hearing_date(pdf_path: str) -> str:
+def extract_hearing_date(pdf_path: str) -> datetime:
     date_pattern: str = r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}"
     doc: fitz.Document = fitz.open(pdf_path)
     page: fitz.Page = doc[0]
@@ -99,7 +99,6 @@ def extract_hearing_date(pdf_path: str) -> str:
         date_str: str = match.group()
         try:
             date_obj: datetime = datetime.strptime(date_str, "%B %d, %Y")
-            iso_date: str = date_obj.date().isoformat()
             return date_obj
         except Exception as e:
             raise ValueError(f"Could not conver date string to iso format: {e}")
