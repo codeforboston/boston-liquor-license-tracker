@@ -37,9 +37,6 @@ sorted_data = sorted(final_result, key=lambda x: (x["minutes_date"], x["entity_n
 for i, entity in enumerate(sorted_data, start=1): 
     entity["index"] = i
 
-for i, entity in enumerate(sorted_data, start=1): 
-    entity["index"] = i
-
 write_to_file(sorted_data)
 
 
