@@ -34,22 +34,25 @@ async function scrapeNextMeetingDate(url: string): Promise<Date | null> {
 
     return nextMeetingDate;
   } catch (error) {
-    console.log("Error scraping next meeting date:", error);
-    return null;
+    console.error("Error scraping next meeting date:", error);
+    throw error; // Re-throw the error so further Github Actions steps are aborted
   }
 }
 
-try {
-  const nextMeetingDate = await scrapeNextMeetingDate(
-    "https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members"
-  );
-  if (nextMeetingDate) {
-    const meetingDateObject = {
-      nextMeetingDate: nextMeetingDate.toISOString(),
-    };
-    const meetingDateString = JSON.stringify(meetingDateObject);
-    writeFileSync("../data/next-meeting-date.json", meetingDateString);
-  }
-} catch (error) {
-  console.error("Error in next meeting date script execution:", error);
+const nextMeetingDate = await scrapeNextMeetingDate(
+  "https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members"
+);
+if (
+  nextMeetingDate &&
+  nextMeetingDate instanceof Date &&
+  !isNaN(nextMeetingDate.getTime())
+) {
+  const meetingDateObject = {
+    nextMeetingDate: nextMeetingDate.toISOString(),
+  };
+  const meetingDateString = JSON.stringify(meetingDateObject);
+  writeFileSync("../data/next-meeting-date.json", meetingDateString);
+} else {
+  console.error("Invalid next meeting date:", nextMeetingDate);
+  throw new Error("Failed to scrape a valid next meeting date.");
 }
