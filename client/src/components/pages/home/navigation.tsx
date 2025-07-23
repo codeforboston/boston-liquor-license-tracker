@@ -1,5 +1,4 @@
 import navigationStyles from "./navigation.module.css"
-// import "./navigation.css"
 import NavigationButton from './navigation-button';
 
 const Navigation = () => {

@@ -2,16 +2,16 @@ import { Link } from "@tanstack/react-router"
 import { FormattedMessage } from "react-intl"
 
 interface ReadStudyButtonProps {
-    to: string
-    messageId: string
+  to: string
+  messageId: string
 }
 
 
 const ReadStudyButton = ({ to, messageId }: ReadStudyButtonProps) => {
-    return (
-        < Link to={to} >
-            <button
-                className="
+  return (
+    < Link to={to} >
+      <button
+        className="
                 inline-flex
                 justify-center
                 items-center
@@ -27,12 +27,12 @@ const ReadStudyButton = ({ to, messageId }: ReadStudyButtonProps) => {
                 rounded-lg shadow-md
                 gap-2.5
                 "
-            >
-                <FormattedMessage
-                    id={messageId}
-                />
-            </button>
-          </Link >
+      >
+        <FormattedMessage
+          id={messageId}
+        />
+      </button>
+    </Link >
   )
 }
 

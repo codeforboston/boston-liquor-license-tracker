@@ -3,10 +3,10 @@ import { FormattedMessage } from "react-intl";
 import backToHomeStyles from "./back-to-home.module.css"
 
 function BackToHome() {
-    return (
-      <Link to="/"  >
-          <button 
-            className={`
+  return (
+    <Link to="/"  >
+      <button
+        className={`
               flex
               justify-center
               items-center
@@ -27,13 +27,13 @@ function BackToHome() {
               duration-200
               ${backToHomeStyles.backToHome}
             `}
-          >
-            <FormattedMessage
-              id="ui.backToHomeButton"
-            />
-          </button>
-      </Link>
-    )
+      >
+        <FormattedMessage
+          id="ui.backToHomeButton"
+        />
+      </button>
+    </Link>
+  )
 }
 
 export default BackToHome;

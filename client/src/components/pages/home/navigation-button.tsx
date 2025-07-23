@@ -2,14 +2,14 @@ import { Link } from "@tanstack/react-router"
 import { FormattedMessage } from "react-intl"
 
 interface NavigationButtonProps {
-    to: string
-    messageId: string
+  to: string
+  messageId: string
 }
 
-const NavigationButton = ({to, messageId}: NavigationButtonProps) => {
-    return (
-        <Link to={to}>
-            <button className="
+const NavigationButton = ({ to, messageId }: NavigationButtonProps) => {
+  return (
+    <Link to={to}>
+      <button className="
                 flex
                 justify-center
                 items-center
@@ -22,11 +22,11 @@ const NavigationButton = ({to, messageId}: NavigationButtonProps) => {
                 text-[32px] font-normal
                 cursor-pointer
             "
-            >
-                <FormattedMessage id={messageId} />
-            </button>
-        </Link>
-    )
+      >
+        <FormattedMessage id={messageId} />
+      </button>
+    </Link>
+  )
 }
 
 export default NavigationButton

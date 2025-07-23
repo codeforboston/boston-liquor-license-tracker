@@ -53,8 +53,7 @@ const CaseStudy = () => {
           ![margin-bottom:64px]
           "
           >
-          {/* Placeholder 'to'--I'm not sure where this is supposed to lead */}
-          <ReadStudyButton to={"/not-found"} messageId={"caseStudy.button.read"}/>
+          <ReadStudyButton to={"/coming-soon"} messageId={"caseStudy.button.read"}/>
         </div>
       </div>
   );
