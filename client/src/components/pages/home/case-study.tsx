@@ -2,6 +2,7 @@ import "./case-study.module.css";
 import { useIntl, FormattedMessage } from 'react-intl';
 import myImage from '/src/assets/images/phimgsq460.png';
 import caseStudyStyles from "./case-study.module.css";
+import ReadStudyButton from "./read-study-button";
 
 const CaseStudy = () => {
   const intl = useIntl();
@@ -52,25 +53,7 @@ const CaseStudy = () => {
           ![margin-bottom:64px]
           "
           >
-          <button
-            className="
-              inline-flex
-              items-center
-              justify-center
-              hover:bg-black
-              text-black
-              !bg-[#F5B524]
-              font-bold
-              px-8
-              py-4
-              rounded-lg shadow-md
-              gap-2.5
-              "
-            >
-            <FormattedMessage
-              id="caseStudy.button.read"
-            />
-          </button>
+          <ReadStudyButton to={"/coming-soon"} messageId={"caseStudy.button.read"}/>
         </div>
       </div>
   );

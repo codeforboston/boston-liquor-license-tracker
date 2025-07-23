@@ -1,25 +1,21 @@
-import './navigation.css';
-import { Link } from "@tanstack/react-router";
-import { FormattedMessage } from "react-intl";
+import navigationStyles from "./navigation.module.css"
+import NavigationButton from './navigation-button';
 
 const Navigation = () => {
   return (
-    <div className="navigation">
-      <Link to="/maps">
-        <button>
-          <FormattedMessage id="navigation.maps" />
-        </button>
-      </Link>
-      <Link to="/database">
-        <button>
-          <FormattedMessage id="navigation.database" />
-        </button>
-      </Link>
-      <Link to="/resources">
-        <button className="button-css">
-          <FormattedMessage id="navigation.resources" />
-        </button>
-      </Link>
+    <div 
+      className={`
+        ${navigationStyles.navigation}
+        navigation
+        flex flex-wrap 
+        justify-center items-start 
+        py-[48px] px-[64px] 
+        gap-[56px] last:mb-0
+      `}
+    >
+      <NavigationButton to='/maps' messageId='navigation.maps'/>
+      <NavigationButton to='/database' messageId='navigation.database'/>
+      <NavigationButton to='/resources' messageId='navigation.resources'/>
     </div>
   );
 };
