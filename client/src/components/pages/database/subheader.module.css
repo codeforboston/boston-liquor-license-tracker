@@ -1,6 +1,56 @@
-.database-page {
-  .subheader {
-    /* Nest styles in here */
+.subheader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1440px;
+  padding: 32px 32px;
+  /* reduced right padding for small screens */
+  gap: 8px;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+}
 
+.heading {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2e2e2e;
+  margin: 0;
+}
+
+.description {
+  font-size: 16px;
+  color: #2e2e2e;
+  margin: 0;
+}
+
+/* 📱 Responsive: Tablet and below */
+@media (max-width: 1024px) {
+  .heading {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .subheader {
+    padding: 24px;
+  }
+}
+
+/* 📱 Responsive: Mobile */
+@media (max-width: 600px) {
+  .heading {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .subheader {
+    padding: 16px;
   }
 }
