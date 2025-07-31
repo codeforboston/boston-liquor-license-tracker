@@ -59,7 +59,7 @@ const Header = () => {
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
               <img
                 src={language}
-                className={`${styles.languageIcon} inline-block m-0`}
+                className={`${styles.languageIcon} inline-block size-[20px] text-white m-0 `}
                 alt="Language"
               />
               <LangSwitcher />
