@@ -1,4 +1,4 @@
-name: Get Next Meeting Date
+name: Get data from next voting minute
 on:
   schedule:
     - cron: "0 0 * * 1" # Runs at midnight every Monday
