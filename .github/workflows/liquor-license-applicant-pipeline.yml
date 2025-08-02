@@ -83,4 +83,4 @@ jobs:
           author: Github Actions <gopalakrishnanunni.a@northeastern.edu>
           add-paths: |
             scripts/data.json
-            data/last_processed_date.json
+            data/*.json
