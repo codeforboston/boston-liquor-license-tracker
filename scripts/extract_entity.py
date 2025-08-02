@@ -239,5 +239,9 @@ def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optio
     return final_result 
 
 # Can be used to load just a single pdf
-# if __name__ == "__main__":
-#     process_pdf('Voting Minutes 7-17-25.docx.pdf')
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"Usage: argument should be extract_entity.py <pdf_filename>")
+        sys.exit(1)
+    process_pdf(sys.argv[1])
+    process_pdf('Voting Minutes 7-17-25.docx.pdf')
