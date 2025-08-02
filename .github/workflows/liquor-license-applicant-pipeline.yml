@@ -46,7 +46,9 @@ jobs:
       - name: Run get voting minutes
         working-directory: ./scripts
         run: |
-          PDF_FILE=$(node getVotingMinutes.js | tail -n 1)
+          OUTPUT=$(node getVotingMinutes.js)
+          echo "$OUTPUT"  
+          PDF_FILE=$(echo "$OUTPUT" | tail -n 1)
           echo "pdf_file=$PDF_FILE" >> $GITHUB_OUTPUT
       
       - name: Setup python 
