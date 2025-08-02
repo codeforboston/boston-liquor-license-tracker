@@ -50,8 +50,10 @@ jobs:
           OUTPUT=$(node getVotingMinutes.js)
           echo "$OUTPUT"  
           PDF_FILE=$(echo "$OUTPUT" | tail -n 1)
+          VOTING_DATE=$(echo "$OUTPUT" | tail -n 2 | head -n 1)
           echo "pdf_file=$PDF_FILE" >> $GITHUB_OUTPUT
-          echo "$GITHUB_OUTPUT"
+          echo "voing_date=$VOTING_DATE" >> $GITHUB_OUTPUT
+ 
       - name: Setup python 
         uses: actions/setup-python@v5
         with: 
@@ -65,6 +67,14 @@ jobs:
       - name: Run python script 
         working-directory: ./scripts
         run: python3 extract_entity.py ${{ steps.generate.outputs.pdf_file}}
+      
+      - name: Compile update processed date 
+        working-directory: ./scripts
+        run: npx tsc -t es2022 -m nodenext updateLastProcessedDate.ts
+
+      - name: Run update processed date 
+        working-directory: ./scripts 
+        run: node updateLastProcessedDate.js
 
       - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7

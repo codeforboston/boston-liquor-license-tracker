@@ -15,27 +15,15 @@ interface EntityType{
 
 async function main(){
    //get date 
-  const path = '../data/last_processed_date.json'
   const url = 'https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members'
-  let fileWasCreated = false
    try{
-      try{
-        await fs.access(path)
-      }catch(err){
-        if(err.code === "ENOENT"){
-           fileWasCreated = true
-        }
-      }
       const pdfDate = await getLatestDate(url)
       const fileName = await downloadVotingMinutes(pdfDate, url)
       console.log('Downloaded the pdf successfully')
+      console.log(`${pdfDate.toISOString()}`)
       console.log(`${fileName}`)
    }catch(err){
-      if(fileWasCreated){
-         await fs.unlink(path)
-         console.log('Deleted file due to rollback')
-      }
-      throw new Error(err)
+      throw err
    }
 }
 
@@ -138,7 +126,6 @@ async function getLatestDate(url: string) {
 
     const pastDates = meetingDates.filter((date) => date <= currentDate)
     const maxPastDate = new Date(Math.max(...pastDates.map(d => d.getTime())))
-    const path = '../data/last_processed_date.json'
     try{
       const lastProcessedDate = await getWrittenLatestDate(maxPastDate)
       if(lastProcessedDate.getTime() === maxPastDate.getTime()){
@@ -146,10 +133,7 @@ async function getLatestDate(url: string) {
         process.exit(0)
       }
     } catch(err){
-      if(err.code === "ENOENT"){
-        const content : DateType = {date : maxPastDate.toISOString()}
-        await fs.writeFile(path, JSON.stringify(content))
-      }
+       console.log('Last processed date file is not found')
     }
 
     return maxPastDate;
@@ -169,6 +153,7 @@ async function getWrittenLatestDate(date: Date){
      throw err
   }
 }
+
 
 main()
 
