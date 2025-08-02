@@ -244,4 +244,3 @@ if __name__ == "__main__":
         print(f"Usage: argument should be extract_entity.py <pdf_filename>")
         sys.exit(1)
     process_pdf(sys.argv[1])
-    process_pdf('Voting Minutes 7-17-25.docx.pdf')
