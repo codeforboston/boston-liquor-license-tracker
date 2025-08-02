@@ -1,8 +1,7 @@
 import * as cheerio from 'cheerio';
 import axios from 'axios'
 import fs from 'fs/promises';
-import path from 'path';
-
+import path from 'path'
 interface DateType {
    date: string
 }

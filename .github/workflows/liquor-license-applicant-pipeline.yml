@@ -27,18 +27,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: scripts/package-lock.json
 
-      - name: Install axios
-        working-directory: ./scripts
-        run: npm i axios
-
-      - name: Install cheerio
-        working-directory: ./scripts
-        run: npm i cheerio
-
-      - name: Install fs
-        working-directory: ./scripts
-        run: npm i fs
-
       - name: Compile get voting minutes
         working-directory: ./scripts
         run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext getVotingMinutes.ts
@@ -90,5 +78,5 @@ jobs:
           committer: Github Actions <gopalakrishnanunni.a@northeastern.edu>
           author: Github Actions <gopalakrishnanunni.a@northeastern.edu>
           add-paths: |
-            scripts/*.json
-            data/*.json
+            scripts/data.json
+            data/last_processed_date.json
