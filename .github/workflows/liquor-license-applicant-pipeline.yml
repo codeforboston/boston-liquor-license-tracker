@@ -44,6 +44,7 @@ jobs:
         run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext getVotingMinutes.ts
 
       - name: Run get voting minutes
+        id: generate
         working-directory: ./scripts
         run: |
           OUTPUT=$(node getVotingMinutes.js)
@@ -63,7 +64,7 @@ jobs:
 
       - name: Run python script 
         working-directory: ./scripts
-        run: python3 extract_entity.py ${{ steps.process_pdf.outputs.pdf_file}}
+        run: python3 extract_entity.py ${{ steps.generate.outputs.pdf_file}}
 
       - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7
