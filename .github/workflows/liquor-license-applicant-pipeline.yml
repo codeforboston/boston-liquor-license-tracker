@@ -26,6 +26,10 @@ jobs:
           node-version: lts/*
           cache: "npm"
           cache-dependency-path: scripts/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: ./scripts
+        run: npm ci 
 
       - name: Compile get voting minutes
         working-directory: ./scripts
