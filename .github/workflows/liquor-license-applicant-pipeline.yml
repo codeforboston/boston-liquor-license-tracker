@@ -50,7 +50,7 @@ jobs:
           echo "$OUTPUT"  
           PDF_FILE=$(echo "$OUTPUT" | tail -n 1)
           echo "pdf_file=$PDF_FILE" >> $GITHUB_OUTPUT
-      
+          echo "$GITHUB_OUTPUT"
       - name: Setup python 
         uses: actions/setup-python@v5
         with: 
