@@ -57,9 +57,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run python script 
+        working-directory: ./scripts
         run: python3 extract_entity.py ${{ steps.process_pdf.outputs.pdf_file}}
 
-          - name: Create pull request to merge in new next meeting date
+      - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7
         with:
           title: "[SCRIPT] Update liquor license applicant data"
