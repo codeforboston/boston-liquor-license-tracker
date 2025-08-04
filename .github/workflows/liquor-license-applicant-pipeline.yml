@@ -40,14 +40,14 @@ jobs:
         working-directory: ./scripts
         run: |
           OUTPUT=$(node getVotingMinutes.js)
-
-          SUCCESS=$(echo "$OUTPUT" | jq -r '.success')
+          SEL_OUTPUT=$(echo "$OUTPUT" | grep "::JSON_OUTPUT::" | sed 's/::JSON_OUTPUT:://')
+          SUCCESS=$(echo "$SEL_OUTPUT" | jq -r '.success')
           if [ "$SUCCESS" != "true" ]; then
-            echo "Script failed : $(echo "$OUTPUT" | jq -r '.message')"
+            echo "Script failed : $(echo "$SEL_OUTPUT" | jq -r '.message')"
             exit 1 
           fi
-          PDF_FILE=$(echo "$OUTPUT" | jq -r '.fileName')
-          VOTING_DATE=$(echo "$OUTPUT" | jq -r '.pdfDate')
+          PDF_FILE=$(echo "$SEL_OUTPUT" | jq -r '.fileName')
+          VOTING_DATE=$(echo "$SEL_OUTPUT" | jq -r '.pdfDate')
           echo "pdf_file=$PDF_FILE" >> $GITHUB_OUTPUT
           echo "voting_date=$VOTING_DATE" >> $GITHUB_OUTPUT
  

@@ -26,7 +26,7 @@ async function main(){
          fileName: fileName, 
          message: 'Downloaded the pdf successfully'
       }
-      console.log(JSON.stringify(result))
+      console.log("::JSON_OUTPUT::"+JSON.stringify(result))
 
    }catch(err){
       const errResult = {
@@ -35,7 +35,7 @@ async function main(){
         fileName: null, 
         message: String(err)
       }
-      console.log(JSON.stringify(errResult))
+      console.log("::JSON_OUTPUT::"+JSON.stringify(errResult))
       throw err
    }
 }
