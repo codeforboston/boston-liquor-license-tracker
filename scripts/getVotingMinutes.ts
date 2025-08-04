@@ -2,9 +2,6 @@ import * as cheerio from 'cheerio';
 import axios from 'axios'
 import fs from 'fs/promises';
 import path from 'path'
-interface DateType {
-   date: string
-}
 
 interface EntityType{
    href: string | null, 
@@ -13,15 +10,27 @@ interface EntityType{
 }
 
 async function main(){
-   //get date 
+   // Entrypoint: fetch the latest meeting date, download the corresponding PDF,
+   // and log structured JSON output for liqour-license-applicant-pipeline workflow.
   const url = 'https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members'
    try{
       const pdfDate = await getLatestDate(url)
       const fileName = await downloadVotingMinutes(pdfDate, url)
-      console.log('Downloaded the pdf successfully')
-      console.log(`${pdfDate.toISOString()}`)
-      console.log(`${fileName}`)
+      const result = {
+         success : true, 
+         pdfDate: pdfDate.toISOString(),
+         fileName: fileName, 
+         message: 'Downloaded the pdf successfully'
+      }
+      console.log(JSON.stringify(result))
    }catch(err){
+      const errResult = {
+        success : false, 
+        pdfDate: null, 
+        fileName: null, 
+        message: String(err)
+      }
+      console.log(JSON.stringify(errResult))
       throw err
    }
 }
@@ -33,7 +42,8 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
    const currentYear = currentDate.getFullYear()
    const response = await axios.get(url)
    const $ = cheerio.load(response.data)
-
+   
+   // Locate the container that has the list of past Voting Minutes for the current year
    const votingMinuteSection = $("section#content")
     .find(".paragraphs-item-drawers")
     .last()
@@ -61,12 +71,13 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
              console.log('url matched is ',$(e).attr("href") )
             entity['href'] = $(e).attr("href") ?? null
             entity['dateText'] = $(e).text() 
-            entity['date'] = date.toISOString()
+            entity['votingDate'] = date.toISOString()
           }
         }
     })
     
     if(!entity || !entity['href']){
+      // If this happens, the meeting date exists on the site but has no PDF link yet
       throw Error("Could not find entity")
     }
     const mainUrl = 'https://www.boston.gov/'
@@ -79,22 +90,24 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
     console.log('file name is ', fileName)
     if(fileName){
       const filePath = path.join(__dirname, fileName)
-      fs.writeFile(filePath, pdfData.data)
+      await fs.writeFile(filePath, pdfData.data)
     }else{
-      throw new Error("could not get the file name")
+      throw Error("could not get the file name")
     }
 
     return fileName
 
   }catch(err){
-     throw new Error(err)
+     throw err
   }
 
 }
-//fuction should get latest date, if date extracted is same as 
-//date in recorde_meeting_data.json then throw an error, 
-//if date is good then return 
-//date is good if it is latest less than correct date is differnt that recorded date
+
+/**
+ * Determines the most recent past meeting date that has already occurred.
+ * If the latest processed date matches it, the script terminates early
+ * to avoid redundant downloads.
+ */
 async function getLatestDate(url: string) {
    try {
     
@@ -123,10 +136,11 @@ async function getLatestDate(url: string) {
       (dateString) => new Date(`${dateString}, ${currentYear}`)
     );
 
+    // Only consider meetings that have already happened
     const pastDates = meetingDates.filter((date) => date <= currentDate)
     const maxPastDate = new Date(Math.max(...pastDates.map(d => d.getTime())))
     try{
-      const lastProcessedDate = await getWrittenLatestDate(maxPastDate)
+      const lastProcessedDate = await getWrittenLatestDate()
       if(lastProcessedDate.getTime() === maxPastDate.getTime()){
         console.log("No new date found to add entities")
         process.exit(0)
@@ -141,10 +155,10 @@ async function getLatestDate(url: string) {
     throw error; // Re-throw the error so further Github Actions steps are aborted
   }
 }
-async function getWrittenLatestDate(date: Date){
-  const path = '../data/last_processed_date.json'
+async function getWrittenLatestDate(){
+  const dateFilePath = path.join(__dirname, '../data/last_processed_date.json')
   try{
-      const data = await fs.readFile(path, 'utf-8')
+      const data = await fs.readFile(dateFilePath, 'utf-8')
       const parsed = JSON.parse(data)
       const lastestDate = new Date(parsed.date)
       return lastestDate
@@ -154,5 +168,5 @@ async function getWrittenLatestDate(date: Date){
 }
 
 
-main()
+await main()
 
