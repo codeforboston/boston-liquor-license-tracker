@@ -2,6 +2,7 @@ import * as cheerio from 'cheerio';
 import axios from 'axios'
 import fs from 'fs/promises';
 import path from 'path'
+import { fileURLToPath } from "url";
 
 interface EntityType{
    href: string | null, 
@@ -23,6 +24,7 @@ async function main(){
          message: 'Downloaded the pdf successfully'
       }
       console.log(JSON.stringify(result))
+      
    }catch(err){
       const errResult = {
         success : false, 
@@ -156,6 +158,8 @@ async function getLatestDate(url: string) {
   }
 }
 async function getWrittenLatestDate(){
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
   const dateFilePath = path.join(__dirname, '../data/last_processed_date.json')
   try{
       const data = await fs.readFile(dateFilePath, 'utf-8')
