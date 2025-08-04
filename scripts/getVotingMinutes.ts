@@ -10,6 +10,9 @@ interface EntityType{
    votingDate: string
 }
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 async function main(){
    // Entrypoint: fetch the latest meeting date, download the corresponding PDF,
    // and log structured JSON output for liqour-license-applicant-pipeline workflow.
@@ -24,7 +27,7 @@ async function main(){
          message: 'Downloaded the pdf successfully'
       }
       console.log(JSON.stringify(result))
-      
+
    }catch(err){
       const errResult = {
         success : false, 
@@ -158,8 +161,6 @@ async function getLatestDate(url: string) {
   }
 }
 async function getWrittenLatestDate(){
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
   const dateFilePath = path.join(__dirname, '../data/last_processed_date.json')
   try{
       const data = await fs.readFile(dateFilePath, 'utf-8')
