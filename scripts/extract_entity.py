@@ -175,7 +175,8 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     a seeding step and that each entity already contains its own `index`.
     """
     pdf_folder: str = os.getcwd()
-    output_file: str = os.path.join(pdf_folder, "data.json")
+    output_file: str = os.path.join(pdf_folder, "../data/application_data.json")
+
     existing_data: List[Dict[str, Optional[str]]] = []
 
     if os.path.exists(output_file):
