@@ -1,6 +1,6 @@
 import "./case-study.module.css";
 import { useIntl, FormattedMessage } from 'react-intl';
-import myImage from '/src/assets/images/phimgsq460.png';
+import myImage from '/src/assets/images/case-study-placeholder.png';
 import caseStudyStyles from "./case-study.module.css";
 import ReadStudyButton from "./read-study-button";
 
