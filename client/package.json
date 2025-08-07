@@ -12,7 +12,11 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@formatjs/intl-localematcher": "^0.6.1",
+    "@mui/icons-material": "^7.2.0",
+    "@mui/material": "^7.2.0",
     "@radix-ui/react-slot": "^1.2.2",
     "@tailwindcss/vite": "^4.1.5",
     "@tanstack/react-router": "^1.116.0",
