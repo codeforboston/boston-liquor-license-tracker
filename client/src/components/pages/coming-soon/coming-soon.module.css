@@ -1,0 +1,22 @@
+.comingSoonPage {
+    background:
+        url("../../../assets/images/chuttersnap-DOBIZ_sqgXM-unsplash.jpg");
+    background-size: cover;
+    /* Ensure coverage of entire area */
+    background-position: bottom center;
+    /*background-repeat: no-repeat;*/
+
+
+
+    width: 100%;
+    /* Width same as viewport */
+    height: 100vh;
+    /* Height same as viewport */
+    overflow: hidden;
+    /* Prevent content overflow scrolling */
+
+    margin: 0px;
+    padding: 0px;
+
+    /* fills viewport height */
+}
