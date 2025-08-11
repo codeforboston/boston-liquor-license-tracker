@@ -1,4 +1,5 @@
-#Ignore dependencies for scripts
 venv
 __pycache__/
 *.pdf
+node_modules/
+*.js

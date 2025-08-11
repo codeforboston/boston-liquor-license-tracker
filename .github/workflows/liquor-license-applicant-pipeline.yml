@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: "applicant_extraction_pipeline"
+          ref: "applicant-pipeline"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
