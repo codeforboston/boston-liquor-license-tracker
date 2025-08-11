@@ -87,5 +87,4 @@ jobs:
           committer: Github Actions <gopalakrishnanunni.a@northeastern.edu>
           author: Github Actions <gopalakrishnanunni.a@northeastern.edu>
           add-paths: |
-            scripts/data.json
             data/*.json
