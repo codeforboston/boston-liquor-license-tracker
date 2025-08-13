@@ -10,4 +10,25 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --color-dark: #2e2e2e;
+  --color-light: #fdfdfd;
+  --color-border: #e2e2e2;
+  --color-ui: #f2f2f2;
+  --color-accepted: #168500;
+  --color-expired: #a20000;
+  --color-deferred: #e9e100;
+  --color-case-study: #f5b524;
+  --color-logo: #b41313;
+}
+
+@theme {
+  --color-dark: #2e2e2e;
+  --color-light: #fdfdfd;
+  --color-border: #e2e2e2;
+  --color-ui: #f2f2f2;
+  --color-accepted:#168500;
+  --color-expired: #a20000;
+  --color-deferred: #e9e100;
+  --color-case-study: #f5b524;
+  --color-logo: #b41313;
 }

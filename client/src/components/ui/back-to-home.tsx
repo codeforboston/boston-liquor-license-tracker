@@ -16,10 +16,10 @@ function BackToHome() {
               border-[1px]
               border-black
               rounded-[8px]
-              bg-[#FDFDFD]
+              bg-light
               hover:bg-[#EAEAEA]
               active:bg-[#CDCDCD]
-              text-[#2E2E2E]
+              text-dark
               hover:text-[#383838]
               active:text-[#404040]
               font-bold

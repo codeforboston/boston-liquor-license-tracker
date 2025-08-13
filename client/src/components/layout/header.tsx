@@ -31,7 +31,7 @@ const Header = () => {
     : logoDefault;
 
   return (
-    <header className={`${styles.siteHeader} shadow-md sticky top-0 left-0 w-full z-50`}>
+    <header className={`${styles.siteHeader} bg-dark shadow-md sticky top-0 left-0 w-full z-50`}>
       <div className="flex max-w-7xl sm:px-[24px] py-[18px] md:p-6 lg:items-center text-center">
         <nav className="flex w-full items-center">
           <Link
@@ -77,7 +77,7 @@ const Header = () => {
       </div>
 
       {isOpen && (
-        <nav className="md:hidden px-4 bg-[#2e2e2e]">
+        <nav className="md:hidden px-4 bg-dark">
           <Link to="/maps" className="py-[8px] px-[24px] block">
             <FormattedMessage id="header.maps" />
           </Link>

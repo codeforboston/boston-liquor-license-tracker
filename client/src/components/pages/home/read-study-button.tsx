@@ -15,10 +15,10 @@ const ReadStudyButton = ({ to, messageId }: ReadStudyButtonProps) => {
                 inline-flex
                 justify-center
                 items-center
-                bg-[#F5B524]
+                bg-case-study
                 hover:bg-[#F6BD3C]
                 active:bg-[#DB9B0A]
-                text-[#2E2E2E]
+                text-dark
                 hover:text-[#333333]
                 active:text-[#212121]
                 font-bold

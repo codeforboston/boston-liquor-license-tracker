@@ -1,6 +1,6 @@
 .siteFooter {
 
-    background-color: #2e2e2e;
+    background-color: var(--color-dark);
     color: #ffffff;
     width: 100%;
     height: auto;
