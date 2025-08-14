@@ -1,7 +1,7 @@
 .case-study {
     line-height: normal;
-    background-color: var(--primary-background-color-gray);
-    color: var(--primary-text-color-white);
+    background-color: var(--color-gray-1);
+    color: var(--color-white);
     display: flex;
     width: 100%;
     flex-direction: column;
