@@ -1,13 +1,34 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Single source of truth for hex codes */
 :root {
-  --primary-background-color-gray: #2e2e2e;
-  --secondary-background-color-gray: #f2f2f2;
-  --primary-text-color-white: #ffffff;
-  --primary-color-red: #b41313;
+  --color-gray-1: #2e2e2e;
+  --color-gray-2: #f2f2f2;
+  --color-white: #ffffff;
+  --color-red: #b41313;
+  --color-light: #fdfdfd;
+  --color-border: #e2e2e2;
+  --color-accepted-green: #168500;
+  --color-expired-red: #a20000;
+  --color-deferred-yellow: #e9e100;
+  --color-case-study-yellow: #f5b524;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Semantic names for app usage */
+@theme {
+  --color-dark: var(--color-gray-1);
+  --color-ui: var(--color-gray-2);
+  --color-primary-text: var(--color-white);
+  --color-logo: var(--color-red);
+  --color-light: var(--color-light);
+  --color-border: var(--color-border);
+  --color-accepted: var(--color-accepted-green);
+  --color-expired: var(--color-expired-red);
+  --color-deferred: var(--color-deferred-yellow);
+  --color-case-study: var(--color-case-study-yellow);
 }

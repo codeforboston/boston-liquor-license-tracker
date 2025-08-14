@@ -1,7 +1,7 @@
 .case-study {
     line-height: normal;
-    background-color: var(--primary-background-color-gray);
-    color: var(--primary-text-color-white);
+    background-color: var(--color-gray-1);
+    color: var(--color-white);
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -16,7 +16,7 @@
     box-sizing: border-box;
     h2 {
       color: #FFFFFF;
-      background-color: #2E2E2E;
+      background-color:var(--color-dark);
       box-sizing: border-box;
       overflow-wrap: break-word !important;
       word-wrap: break-word !important;
@@ -29,7 +29,7 @@
       border: 10px solid transparent;
       background:
         radial-gradient(circle at center, white 1px, transparent 1.1px),
-        #F5B524;
+        var(--color-case-study);
       background-size: 10px 10px, 100% 100%;
       background-origin: border-box, border-box;
       background-clip: border-box, border-box;

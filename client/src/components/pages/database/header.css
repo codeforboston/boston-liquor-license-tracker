@@ -1,7 +1,7 @@
 .database-page {
   .database-header {
-    background-color: var(--primary-background-color-gray);
-    color: var(--primary-text-color-white);
+    background-color: var(--color-gray-1);
+    color: var(--color-white);
     padding-inline: 2rem;
 
     .text-container {
