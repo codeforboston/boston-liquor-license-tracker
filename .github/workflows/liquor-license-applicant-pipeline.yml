@@ -40,7 +40,7 @@ jobs:
         id: generate
         working-directory: ./scripts
         run: |
-          OUTPUT=$(node getVotingMinutes.js)
+          OUTPUT=$(node getVotingMinutes.js 2>&1 | tee /dev/stderr)
           SEL_OUTPUT=$(echo "$OUTPUT" | grep "::JSON_OUTPUT::" | sed 's/::JSON_OUTPUT:://')
           SUCCESS=$(echo "$SEL_OUTPUT" | jq -r '.success')
           if [ "$SUCCESS" != "true" ]; then
