@@ -1,46 +1,101 @@
 import { ChangeEvent, useState } from 'react'
-import { ExpandMore } from '@mui/icons-material';
+import {Button, Label, ListBox, ListBoxItem, Popover, Select, SelectValue, ListBoxItemProps, Selection, Checkbox, MenuTrigger, Menu, MenuTriggerProps, MenuItem, MenuProps} from 'react-aria-components';
+import { ExpandMore, ExpandLess, Check, CheckBox, CheckBoxOutlined, CheckBoxOutlineBlank } from '@mui/icons-material';
+import { MenuItemProps } from '@mui/material/MenuItem';
 
+interface DropdownOption { 
+  id: number
+  name: string
+}
 interface LicenseFilterDropdownProps {
-  options: string[]
-  placeholderOption?: string
+  title: string
+  options: DropdownOption[]
+  // placeholderOption?: string
 }
 
 
-const LicenseFilterDropdown = ({ options, placeholderOption }: LicenseFilterDropdownProps) => {
-  const [selected, setSelected] = useState<string>(placeholderOption ? "" : options[0])
 
-  const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelected(e.target.value)
-  }
+const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
+  const {id, option} = props
+  return (
+    <MenuItem 
+      id={id}
+      textValue={option.name}
+      className={"flex items-center bg-[#F2F2F2]"}
+    >
+      
+      {({isSelected}) => (
+        <>
+          <p className='flex-1'>{option.name}</p>
+          {isSelected ? 
+            <CheckBox style={{height: "13.5px", width: "13.5px"}}/> :
+            <CheckBoxOutlineBlank style={{height: "13.5px", width: "13.5px"}}/> 
+          }
+        </>
+      )}
+    </MenuItem>
+  )
+}
+
+
+const LicenseFilterDropdown = ({ title, options }: LicenseFilterDropdownProps) => {
+  const [selected, setSelected] = useState<Selection>(new Set())
 
   return (
-    <div
-      className={`filter-container relative inline-flex h-[40px] w-[160px] px-[16px] py-[8px] rounded-[8px] bg-[#F2F2F2]`}
-    >
-      <select
-        name="license-dropdown-filter"
-        id="license-dropdown-filter"
-        value={selected}
-        className={`appearance-none bg-[#F2F2F2] w-full text-[14px]`}
-        onChange={handleSelect}
+
+    <MenuTrigger >
+      <Button
+        aria-label='Licenst Filter Selection'
+        className="flex items-center gap-x-2 px-[16px] py-[8px] bg-[#F2F2F2] rounded-[8px] focus:outline-hidden focus-visible:ring-2 cursor-default " 
       >
-        {placeholderOption &&
-          <option disabled hidden value={""}>
-            {placeholderOption}
-          </option>
-        }
-        {options.map((opt, idx) => (
-          <option key={idx} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-      <span className='icon-container absolute right-[16px] pointer-events-none pl-[8px] border-l-[.5px] border-[#2e2e2e]'>
-        <ExpandMore id="expand-more" style={{ fontSize: 24, color: '#2e2e2e' }} />
-      </span>
-    </div>
+        {title}
+        <span aria-hidden="true" className='border-l-[.5px] border-[#2e2e2e]'>
+          <ExpandMore id="expand-more" style={{ fontSize: 24, color: '#2e2e2e' }} />
+        </span>
+      </Button>
+      <Popover 
+        className="m-0 p-0 w-[var(--trigger-width)]"
+      >
+        <Menu 
+          selectionMode='multiple'
+          selectedKeys={selected}
+          onSelectionChange={(keys) => setSelected(new Set(keys as Set<string>))}
+        >
+          {options.map(opt => (
+              <DropdownOption option={opt} key={opt.id}/>
+            ))}
+        </Menu>
+      </Popover>
+    </MenuTrigger>
+      // <MenuTrigger>
+      //   <Button 
+      //     onPress={() => setDropdownOpen(prev => !prev)}
+      //     className="flex items-center gap-x-2 px-[16px] py-[8px] bg-[#F2F2F2] rounded-[8px] focus:outline-hidden focus-visible:ring-2 cursor-default "
+      //   >
+      //     <p>Example Text</p>
+      //     <span aria-hidden="true" className='border-l-[.5px] border-[#2e2e2e]'>
+      //       <ExpandMore id="expand-more" style={{ fontSize: 24, color: '#2e2e2e' }} />
+      //     </span>
+      //   </Button>
+
+      //   <Popover className=" w-(--trigger-width) bg-[#F2F2F2] rounded-b-[8px] overflow-auto entering:animate-in entering:fade-in exiting:animate-out exiting:fade-out">
+      //     <Menu 
+      //       aria-label='License filter options'
+      //       selectionMode='multiple'
+      //       selectedKeys={selected}
+      //       onSelectionChange={(keys) => setSelected(new Set(keys as Set<string>))}
+      //       className="outline-hidden"
+      //     >
+      //       {options.map(opt => (
+      //         <DropdownOption option={opt} key={opt.id}/>
+      //       ))}
+      //     </Menu>
+      //   </Popover>
+
+      // </MenuTrigger>
+
   )
+
 }
 
 export default LicenseFilterDropdown
