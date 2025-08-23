@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "tailwindcss-react-aria-components";
 
 :root {
   --primary-background-color-gray: #2e2e2e;
