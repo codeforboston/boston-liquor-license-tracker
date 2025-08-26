@@ -21,7 +21,7 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
     <MenuItem 
       id={id}
       textValue={option.name}
-      className={"flex items-center px-[16px] pb-[8px]"}
+      className={"flex items-center px-[16px] pb-[8px] outline-none hover:bg-[#CCCCCC]"}
     >
       
       {({isSelected}) => (
@@ -49,7 +49,7 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
         <MenuTrigger onOpenChange={setMenuOpen}>
           <Button
             aria-label={label}
-            className={`inline-flex items-center bg-clip-padding gap-x-2 px-[16px] py-[8px] bg-[#F2F2F2] ${menuOpen ? "rounded-t-[8px]" : "rounded-[8px]" } cursor-default `}
+            className={`inline-flex items-center bg-clip-padding gap-x-2 px-[16px] py-[8px] bg-[#F2F2F2] ${menuOpen ? "rounded-t-[8px]" : "rounded-[8px]" } cursor-default outline-none `}
           >
 
             <p>{title}</p>
@@ -67,13 +67,13 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
             placement='bottom start'
             offset={0}
             shouldFlip={false}
-            className="m-0 p-0 w-[var(--trigger-width)] bg-[#F2F2F2] rounded-b-[8px] outline-hidden"
+            className="m-0 p-0 w-[var(--trigger-width)] bg-[#F2F2F2] rounded-b-[8px] outline-none "
           >
             <Menu 
               selectionMode='multiple'
               selectedKeys={selected}
               onSelectionChange={(keys) => setSelected(new Set(keys as Set<string>))}
-              className="w-full"
+              className="w-full outline-none "
             >
               {options.map(opt => (
                   <DropdownOption option={opt} key={opt.id}/>
