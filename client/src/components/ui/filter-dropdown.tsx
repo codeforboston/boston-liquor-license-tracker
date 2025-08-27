@@ -14,7 +14,6 @@ interface FilterDropdownProps {
 }
 
 
-
 const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
   const {id, option} = props
   return (
@@ -43,8 +42,6 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
   return (
-      // for some reason I can't figure out--needs to have padding wrapper in order to properly align the popover menu below the button/trigger
-      <div className='p-4'> 
 
         <MenuTrigger onOpenChange={setMenuOpen}>
           <Button
@@ -66,8 +63,9 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
           <Popover 
             placement='bottom start'
             offset={0}
+            containerPadding={0}
             shouldFlip={false}
-            className="m-0 p-0 w-[var(--trigger-width)] bg-[#F2F2F2] rounded-b-[8px] outline-none "
+            className="w-[var(--trigger-width)] bg-[#F2F2F2] rounded-b-[8px] outline-none "
           >
             <Menu 
               selectionMode='multiple'
@@ -81,7 +79,6 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
             </Menu>
           </Popover>
         </MenuTrigger>
-      </div>
 
   )
 
