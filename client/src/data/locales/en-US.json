@@ -15,6 +15,8 @@
   "aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially for your first time.{br}From tracking availability, understanding the application process, to the potential hidden costs of obtaining one. There is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
   "home.extra-work.h2": "Check out more of our work!",
+  "home.pageTitle": "License to Succeed",
+  "database.pageTitle": "License Database",
   "database.header.title": "License Database",
   "database.header.description": "Browse through available licenses in each of Boston's zip codes, view recent license applications as well as important information regarding each license type and important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
@@ -37,10 +39,12 @@
   "extra-work.offsite": "Off Site Logo, simple Logo type in bold Sans Serif Font",
   "extra-work.bar-management-bootcamp": "Several students sitting around a bar listening to a boot camp presenter",
   "extra-work.code-for-boston": "Code for Boston Logo, a geometric lantern with code brackets instead of a light with \"Code for Boston\" in text next to it",
+  "notFound.pageTitle": "Page Not Found",
   "notFound.heading": "This page isn't on tap at the moment",
   "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
   "notFound.beerPourImageAlt": "Bartender pouring a beer from a tap",
   "ui.backToHomeButton": "BACK TO HOME",
+  "comingSoon.pageTitle": "Coming Soon",
   "comingSoon.title": "Pardon Our Dust!",
   "comingSoon.description": "We are currently working hard to get this page finished to best fit your needs. Check back soon for exciting things!",
   "comingSoon.backgroundImageAlt": "Rack of wine glasses hanging waiting to be used",
@@ -63,5 +67,7 @@
   "footer.bootcamp": "Bar Management Bootcamp",
   "footer.codeForBoston": "Code for Boston",
   "footer.license": "LICENSE",
-  "footer.toSucceed": "TO SUCCEED"
+  "footer.toSucceed": "TO SUCCEED",
+  "maps.pageTitle": "Maps",
+  "resources.pageTitle": "Licensing Resources"
 }

@@ -13,6 +13,7 @@ export default function LangSwitcher() {
       onChange={(e) => {
         setLocale(e.target.value as Locale);
         setStoredLocale(e.target.value as Locale);
+        document.documentElement.lang = e.target.value;
       }}
       className="pe-2 bg-dark text-[16px] text-white"
     >

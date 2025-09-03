@@ -5,10 +5,14 @@ import Quote from "@/components/pages/home/quote";
 import AboutUs from "@/components/pages/home/about-us";
 import CaseStudy from "@/components/pages/home/case-study";
 import ExtraWork from "@/components/pages/home/extra-work";
+import { useIntl } from "react-intl";
 
 const Home = () => {
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: "home.pageTitle" });
   return (
     <main className="home-page">
+      <title>{title}</title>
       <Hero />
       <Navigation />
       <AboutUs />

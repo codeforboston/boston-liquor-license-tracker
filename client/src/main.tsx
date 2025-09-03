@@ -12,6 +12,7 @@ import "@styles/index.css";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
+import { K_LOCALE } from "./i18n/stored-locale";
 
 // Use hash history for routing instead of browser history
 // github pages does not route arbitrary URLs to index.html
@@ -19,6 +20,10 @@ const hashHistory = createHashHistory();
 
 // Create a new router instance
 const router = createRouter({ routeTree, history: hashHistory });
+
+// Set initial HTML lang attribute
+const locale = localStorage.getItem(K_LOCALE) || "en-US";
+document.documentElement.lang = locale;
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
