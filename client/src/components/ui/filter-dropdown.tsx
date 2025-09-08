@@ -2,7 +2,6 @@ import { useState } from 'react'
 import {Button, Popover, Selection, MenuTrigger, Menu, MenuItem} from 'react-aria-components';
 import { ExpandMore, ExpandLess, CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
 import { MenuItemProps } from '@mui/material/MenuItem';
-
 interface DropdownOption { 
   id: number
   name: string
