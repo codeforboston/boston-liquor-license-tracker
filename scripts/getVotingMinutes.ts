@@ -4,7 +4,6 @@ import axios from 'axios'
 import fs from 'fs/promises';
 import path from 'path'
 import { fileURLToPath } from "url";
-
 interface EntityType{
    href: string | null, 
    dateText: string, 
@@ -20,6 +19,17 @@ async function main(){
   const url = 'https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members'
    try{
       const pdfDate = await getLatestDate(url)
+      if(!pdfDate){
+        const result = {
+           success: true,
+           pdfDate: null, 
+           fileName: null, 
+           message: 'No new date found to add entities - already up to date'
+        }
+        console.log("::JSON_OUTPUT::"+JSON.stringify(result))
+        return
+      }
+      
       const fileName = await downloadVotingMinutes(pdfDate, url)
       const result = {
          success : true, 
@@ -73,8 +83,6 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
           const date = new Date(`${month} ${day}, ${year}`)
           console.log(`date checked is ${date}`)
           if(date.getTime() === pdfDate.getTime()){
-             console.log(`date matched is ${date}`)
-             console.log('url matched is ',$(e).attr("href") )
             entity['href'] = $(e).attr("href") ?? null
             entity['dateText'] = $(e).text() 
             entity['votingDate'] = date.toISOString()
@@ -91,9 +99,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
     const pdfData = await axios.get(fullUrl, {
       responseType: 'arraybuffer'
     })
-    console.log('pdf data is ', pdfData.data)
     const fileName = entity["href"].split('/').pop()
-    console.log('file name is ', fileName)
     if(fileName){
       const filePath = path.join(__dirname, fileName)
       await fs.writeFile(filePath, pdfData.data)
@@ -114,7 +120,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
  * If the latest processed date matches it, the script terminates early
  * to avoid redundant downloads.
  */
-async function getLatestDate(url: string) {
+async function getLatestDate(url: string): Promise<Date| null> {
    try {
     
     const currentDate = new Date();
@@ -144,18 +150,26 @@ async function getLatestDate(url: string) {
 
     // Only consider meetings that have already happened
     const pastDates = meetingDates.filter((date) => date <= currentDate)
-    const maxPastDate = new Date(Math.max(...pastDates.map(d => d.getTime())))
+    if (pastDates.length === 0) {
+      console.log("No past meeting dates found")
+      return null
+    }
     try{
       const lastProcessedDate = await getWrittenLatestDate()
-      if(lastProcessedDate.getTime() === maxPastDate.getTime()){
+      const unprocessedDates = pastDates.filter((date) => date > lastProcessedDate)
+
+      if (unprocessedDates.length === 0) {
         console.log("No new date found to add entities")
-        process.exit(0)
+        return null // Return null instead of process.exit(0)
       }
+      const nextDateToProcess = new Date(Math.min(...unprocessedDates.map(d => d.getTime())))
+      return nextDateToProcess
     } catch(err){
        console.log('Last processed date file is not found')
+       const maxPastDate = new Date(Math.max(...pastDates.map(date => date.getTime())))
+       return maxPastDate;
     }
 
-    return maxPastDate;
   } catch (error) {
     console.error("Error scraping next meeting date:", error);
     throw error; // Re-throw the error so further Github Actions steps are aborted
