@@ -2,8 +2,9 @@ import React, { ReactNode, useState } from 'react'
 import { Table, TableHeader, Column, Row, TableBody, Cell } from 'react-aria-components'
 
 
-interface StyledRowProps {
-  rowData: string[]
+interface RowWithSubRows {
+  rowData: [string, ...string[]]
+  subRowData?: [string, ...string[]][]
 }
 
 interface SubRowProps {
@@ -11,10 +12,11 @@ interface SubRowProps {
 }
 
 interface CustomTableProps {
-  tableData: string[][]
+  headers: string[]
+  tableData: RowWithSubRows[]
 }
 
-const StyledRow = ({rowData}: StyledRowProps) => {
+const StyledRow = ({rowData, subRowData}: RowWithSubRows) => {
   const [subRowsVisible, setSubRowsVisible] = useState<boolean>(false)
 
   return (
@@ -32,10 +34,9 @@ const StyledRow = ({rowData}: StyledRowProps) => {
         ))}  
       </Row>
       {subRowsVisible && (
-        <>
-          <SubRow subRowData={rowData}/>
-          <SubRow subRowData={rowData}/>
-        </>
+        subRowData?.map(subRow => (
+          <SubRow subRowData={subRow}/>
+        ))
       )}
     </>
     
@@ -49,26 +50,24 @@ const SubRow = ({subRowData}: SubRowProps) => {
         <Cell
           className={`${i === 0 ? "text-left" : "text-right"} px-[16px] pl-[48px] py-[12px] `}
         >
-          {i === 0 ? "Beer/Wine Licenses" : cell}
+          {cell}
         </Cell>
       ))}
     </Row>
   )
 }
 
-const CustomTable = ({tableData}: CustomTableProps) => {
+const CustomTable = ({tableData, headers}: CustomTableProps) => {
   return (
     <Table className={"w-[1400px]"}>
       <TableHeader className=" bg-[#2E2E2E] text-[#FDFDFD]">
-        <Column className="w-1/3 px-[16px] py-[12px] text-left " isRowHeader>Zipcode:</Column>
-        <Column className="px-[16px] py-[12px]" isRowHeader>Licenses Available:</Column>
-        <Column className="px-[16px] py-[12px]" isRowHeader>Recent Applicants:</Column>
-        <Column className="px-[16px] py-[12px]" isRowHeader>Licenses Granted:</Column>
-        <Column className="px-[16px] py-[12px]" isRowHeader>Total Licenses:</Column>
+        {headers.map((header, i) => (
+          <Column className={`px-[16px] py-[12px] ${i === 0 && "w-1/3 text-left"}`} isRowHeader>{header}</Column>
+        ))}
       </TableHeader>
       <TableBody>
         {tableData.map(row => (
-          <StyledRow rowData={row}/>
+          <StyledRow rowData={row.rowData} subRowData={row.subRowData}/>
         ))}
       </TableBody>
     </Table>
