@@ -62,7 +62,7 @@ const CustomTable = ({tableData, headers}: CustomTableProps) => {
     <Table className={"w-[1400px]"}>
       <TableHeader className=" bg-[#2E2E2E] text-[#FDFDFD]">
         {headers.map((header, i) => (
-          <Column className={`px-[16px] py-[12px] ${i === 0 && "w-1/3 text-left"}`} isRowHeader>{header}</Column>
+          <Column className={`px-[16px] py-[12px] ${i === 0 ? "w-1/3 text-left" : "text-right"}`} isRowHeader>{header}</Column>
         ))}
       </TableHeader>
       <TableBody>
