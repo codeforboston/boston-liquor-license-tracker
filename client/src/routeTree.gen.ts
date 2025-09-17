@@ -15,6 +15,7 @@ import { Route as ResourcesImport } from './routes/resources'
 import { Route as NotFoundImport } from './routes/not-found'
 import { Route as MapsImport } from './routes/maps'
 import { Route as DatabaseImport } from './routes/database'
+import { Route as ComingSoonImport } from './routes/coming-soon'
 import { Route as IndexImport } from './routes/index'
 import { Route as MapTestIndexImport } from './routes/map-test/index'
 import { Route as MapTestMaplibreImport } from './routes/map-test/maplibre'
@@ -45,6 +46,12 @@ const DatabaseRoute = DatabaseImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ComingSoonRoute = ComingSoonImport.update({
+  id: '/coming-soon',
+  path: '/coming-soon',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -72,6 +79,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/coming-soon': {
+      id: '/coming-soon'
+      path: '/coming-soon'
+      fullPath: '/coming-soon'
+      preLoaderRoute: typeof ComingSoonImport
       parentRoute: typeof rootRoute
     }
     '/database': {
@@ -123,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/coming-soon': typeof ComingSoonRoute
   '/database': typeof DatabaseRoute
   '/maps': typeof MapsRoute
   '/not-found': typeof NotFoundRoute
@@ -133,6 +148,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/coming-soon': typeof ComingSoonRoute
   '/database': typeof DatabaseRoute
   '/maps': typeof MapsRoute
   '/not-found': typeof NotFoundRoute
@@ -144,6 +160,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/coming-soon': typeof ComingSoonRoute
   '/database': typeof DatabaseRoute
   '/maps': typeof MapsRoute
   '/not-found': typeof NotFoundRoute
@@ -156,6 +173,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/coming-soon'
     | '/database'
     | '/maps'
     | '/not-found'
@@ -165,6 +183,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/coming-soon'
     | '/database'
     | '/maps'
     | '/not-found'
@@ -174,6 +193,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/coming-soon'
     | '/database'
     | '/maps'
     | '/not-found'
@@ -185,6 +205,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComingSoonRoute: typeof ComingSoonRoute
   DatabaseRoute: typeof DatabaseRoute
   MapsRoute: typeof MapsRoute
   NotFoundRoute: typeof NotFoundRoute
@@ -195,6 +216,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComingSoonRoute: ComingSoonRoute,
   DatabaseRoute: DatabaseRoute,
   MapsRoute: MapsRoute,
   NotFoundRoute: NotFoundRoute,
@@ -214,6 +236,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/coming-soon",
         "/database",
         "/maps",
         "/not-found",
@@ -224,6 +247,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/coming-soon": {
+      "filePath": "coming-soon.tsx"
     },
     "/database": {
       "filePath": "database.tsx"

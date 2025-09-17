@@ -13,8 +13,9 @@ export default function LangSwitcher() {
       onChange={(e) => {
         setLocale(e.target.value as Locale);
         setStoredLocale(e.target.value as Locale);
+        document.documentElement.lang = e.target.value;
       }}
-      className="pe-2"
+      className="pe-2 bg-dark text-[16px] text-white"
     >
       {Object.keys(supportedLocales).map((loc: string) => (
         <option value={loc} key={loc}>
