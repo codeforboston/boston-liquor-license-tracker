@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import {  useState } from 'react'
 import { Table, TableHeader, Column, Row, TableBody, Cell } from 'react-aria-components'
 
 
@@ -12,6 +12,7 @@ interface SubRowProps {
 }
 
 interface CustomTableProps {
+  ariaLabel: string
   headers: string[]
   tableData: RowWithSubRows[]
 }
@@ -22,11 +23,12 @@ const StyledRow = ({rowData, subRowData}: RowWithSubRows) => {
   return (
     <>
       <Row
-        className="bg-[#F2F2F2] border-b-[1px] border-[#E2E2E2] "
+        className="bg-ui border-b-[1px] border-border "
         onAction={() => setSubRowsVisible(prev => !prev)}
       >
         {rowData.map((cell, i) => (
           <Cell
+            key={i}
             className={`${i === 0 ? "text-left" : "text-right"} px-[16px] py-[12px] `}
           >
             {cell}
@@ -35,7 +37,10 @@ const StyledRow = ({rowData, subRowData}: RowWithSubRows) => {
       </Row>
       {subRowsVisible && (
         subRowData?.map(subRow => (
-          <SubRow subRowData={subRow}/>
+          <StyledSubRow 
+            key={`${rowData[0]}-${subRow[0]}`} 
+            subRowData={subRow}
+          />
         ))
       )}
     </>
@@ -43,11 +48,12 @@ const StyledRow = ({rowData, subRowData}: RowWithSubRows) => {
   )
 }
 
-const SubRow = ({subRowData}: SubRowProps) => {
+const StyledSubRow = ({subRowData}: SubRowProps) => {
   return (
-    <Row className='bg-[#FDFDFD] border-b-[1px] border-[#E2E2E2]'>
+    <Row className='bg-light border-b-[1px] border-border'>
       {subRowData.map((cell, i) => (
         <Cell
+          key={i}
           className={`${i === 0 ? "text-left" : "text-right"} px-[16px] pl-[48px] py-[12px] `}
         >
           {cell}
@@ -57,17 +63,27 @@ const SubRow = ({subRowData}: SubRowProps) => {
   )
 }
 
-const CustomTable = ({tableData, headers}: CustomTableProps) => {
+const CustomTable = ({ariaLabel, tableData, headers}: CustomTableProps) => {
   return (
-    <Table className={"w-[1400px]"}>
-      <TableHeader className=" bg-[#2E2E2E] text-[#FDFDFD]">
+    <Table aria-label={ariaLabel} className={"w-[1400px]"}>
+      <TableHeader className=" bg-dark text-light">
         {headers.map((header, i) => (
-          <Column className={`px-[16px] py-[12px] ${i === 0 ? "w-1/3 text-left" : "text-right"}`} isRowHeader>{header}</Column>
+          <Column 
+            key={header} 
+            isRowHeader
+            className={`px-[16px] py-[12px] ${i === 0 ? "w-1/3 text-left" : "text-right"}`} 
+          >
+            {header}
+          </Column>
         ))}
       </TableHeader>
       <TableBody>
-        {tableData.map(row => (
-          <StyledRow rowData={row.rowData} subRowData={row.subRowData}/>
+        {tableData.map((row, i) => (
+          <StyledRow 
+            key={row.rowData[0]}
+            rowData={row.rowData} 
+            subRowData={row.subRowData}
+          />
         ))}
       </TableBody>
     </Table>
