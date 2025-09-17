@@ -6,8 +6,10 @@ import { useIntl } from "react-intl";
 
 const NotFound = () => {
   const intl = useIntl();
+  const title = `${intl.formatMessage({ id: "notFound.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
   return (
     <main className={notFoundStyles.notFound}>
+      <title>{title}</title>
       <div className={notFoundStyles.notFoundContent}>
         <div className="not-found-heading">
           <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">

@@ -3,17 +3,17 @@ import { FormattedMessage } from "react-intl";
 
 const LicenseType = () => {
   return (
-    <section className="license-type p-[32px] bg-light">
+    <section className="license-type py-[32px] px-[64px] bg-light">
       <h2 className="font-bold text-[36px] m-0">
         <FormattedMessage id="database-page.license-type.header2" />
       </h2>
-      <p className="mt-[8px] mb-[32px] font-normal text-[16px]">
+      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage id="database-page.license-type.header2-paragraph" />
       </p>
       <h3 className="font-medium text-[32px]">
         <FormattedMessage id="database-page.license-type.transferable-header2" />
       </h3>
-      <p className="mt-[8px] mb-[32px] font-normal text-[16px]">
+      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage id="database-page.license-type.transferable-paragraph" />
       </p>
       <h3 className="font-medium text-[32px]">
