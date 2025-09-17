@@ -8,7 +8,8 @@ const SubHeader = () => {
         <FormattedMessage id="database.subheader.title"/>
      </h2>
       <p className={styles.description}>       
-        <FormattedMessage  id="database.subheader.description" defaultMessage="Select a Zip Code below to see the available licenses in each area. Use the filters to narrow or expand your search to meet your exact business needs."/></p>
+        <FormattedMessage  id="database.subheader.description"/>
+      </p>
     </section>
   );
 };
