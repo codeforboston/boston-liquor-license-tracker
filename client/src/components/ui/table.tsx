@@ -78,7 +78,7 @@ const CustomTable = ({ariaLabel, tableData, headers}: CustomTableProps) => {
         ))}
       </TableHeader>
       <TableBody>
-        {tableData.map((row, i) => (
+        {tableData.map((row) => (
           <StyledRow 
             key={row.rowData[0]}
             rowData={row.rowData} 
