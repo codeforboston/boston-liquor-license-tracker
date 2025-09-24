@@ -60,7 +60,7 @@ type ValidationResult =
   | { valid: true; data: BusinessLicense }
   | { valid: false; errors: Record<string, string> };
 
-function isEligibleBostonZipCode(
+export function isEligibleBostonZipCode(
   zipcode: unknown
 ): zipcode is EligibleBostonZipcode {
   return (
