@@ -4,11 +4,6 @@
     color: var(--color-white);
     padding-inline: 2rem;
 
-    .text-container {
-        max-width: 1440px;
-        max-height: 223px;
-    }
-
     .header-title {
         font-size: 2rem;
         font-weight: 600;
