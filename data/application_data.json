@@ -1412,5 +1412,33 @@
         "minutes_date": "2025-08-07",
         "application_expiration_date": "2026-08-07",
         "file_name": "Voting%20Minutes%208-7-25.docx.pdf"
+    },
+    {
+        "index": 102,
+        "entity_number": "39",
+        "business_name": "Perch, LLC",
+        "dba_name": "Perch",
+        "address": "102 Waltham St, Boston, MA 02118",
+        "zipcode": "02118",
+        "license_number": "LB-605364",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2025-08-28",
+        "application_expiration_date": "2026-08-28",
+        "file_name": "Voting%20Minutes%208-28-25.docx.pdf"
+    },
+    {
+        "index": 103,
+        "entity_number": "40",
+        "business_name": "Jimothy, LLC",
+        "dba_name": "Roza Lyons",
+        "address": "709 East Broadway, South Boston, MA 02127",
+        "zipcode": "02127",
+        "license_number": "LB-605351",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2025-08-28",
+        "application_expiration_date": "2026-08-28",
+        "file_name": "Voting%20Minutes%208-28-25.docx.pdf"
     }
 ]

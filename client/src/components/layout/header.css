@@ -15,16 +15,9 @@
     width: 230px;
   }
 
-
   select {
     background-color: var(--color-gray-1);
     color: var(--color-white);
     font-size: 16px;
-  }
-
-  .language-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--color-white);
   }
 }

@@ -31,7 +31,9 @@ const Header = () => {
   const intl = useIntl();
 
   return (
-    <header className={`${styles.siteHeader} bg-dark shadow-md sticky top-0 left-0 w-full z-50`}>
+    <header
+      className={`${styles.siteHeader} bg-dark shadow-md sticky top-0 left-0 w-full z-50`}
+    >
       <div className="flex max-w-7xl sm:px-[24px] py-[18px] md:p-6 lg:items-center text-center">
         <nav className="flex w-full items-center">
           <Link
@@ -59,13 +61,13 @@ const Header = () => {
             </Link>
             <Spacer />
             <Link to="/resources">
-              <FormattedMessage id="header.resources" />
+              <FormattedMessage id="ui.resources" />
             </Link>
 
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
               <img
                 src={language}
-                className={`${styles.languageIcon} inline-block size-[20px] text-white m-0 `}
+                className={"inline-block size-[20px] text-white me-2"}
                 alt={intl.formatMessage({ id: "header.language" })}
               />
               <LangSwitcher />
@@ -93,12 +95,12 @@ const Header = () => {
           </Link>
           <LineSpacer />
           <Link to="/resources" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="header.resources" />
+            <FormattedMessage id="ui.resources" />
           </Link>
           <div className="py-[16px] px-[24px] pb-[8px] ms-auto">
             <img
               src={language}
-              className={`${styles.languageIcon} inline-block me-2`}
+              className={"inline-block size-[20px] text-white me-2"}
               alt={intl.formatMessage({ id: "header.language" })}
             />
             <LangSwitcher />

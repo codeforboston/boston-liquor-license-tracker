@@ -12,7 +12,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  process-pdf:
+  check-pdf:
+    outputs:
+      pdf-found: ${{ steps.check.outputs.pdf-found }}
+      pdf-file: ${{ steps.check.outputs.pdf-file }}
+      voting-date: ${{ steps.check.outputs.voting-date }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -37,7 +41,7 @@ jobs:
         run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext getVotingMinutes.ts
 
       - name: Run get voting minutes
-        id: generate
+        id: check
         working-directory: ./scripts
         run: |
           OUTPUT=$(node getVotingMinutes.js 2>&1 | tee /dev/stderr)
@@ -47,11 +51,40 @@ jobs:
             echo "Script failed : $(echo "$SEL_OUTPUT" | jq -r '.message')"
             exit 1 
           fi
+
           PDF_FILE=$(echo "$SEL_OUTPUT" | jq -r '.fileName')
           VOTING_DATE=$(echo "$SEL_OUTPUT" | jq -r '.pdfDate')
-          echo "pdf_file=$PDF_FILE" >> $GITHUB_OUTPUT
-          echo "voting_date=$VOTING_DATE" >> $GITHUB_OUTPUT
- 
+
+          # Exit early if no new PDF to process
+          if [ "$PDF_FILE" = "null" ] || [ "$VOTING_DATE" = "null" ]; then
+            echo "pdf-found=false" >> $GITHUB_OUTPUT
+          else
+            echo "pdf-found=true" >> $GITHUB_OUTPUT
+            echo "pdf-file=$PDF_FILE" >> $GITHUB_OUTPUT
+            echo "voting-date=$VOTING_DATE" >> $GITHUB_OUTPUT
+          fi
+    
+      - name: Upload voting PDF
+        uses: actions/upload-artifact@v4
+        if: steps.check.outputs.pdf-found == 'true'
+        with:
+          name: voting-pdf 
+          path: ./scripts/${{ steps.check.outputs.pdf-file }}
+          if-no-files-found: error
+          retention-days: 2
+    
+  
+  process-pdf:
+    needs: check-pdf 
+    if: needs.check-pdf.outputs.pdf-found == 'true'
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: "codeforboston/boston-liquor-license-tracker"
+          ref: "main"
+
       - name: Setup python 
         uses: actions/setup-python@v5
         with: 
@@ -61,10 +94,27 @@ jobs:
       - name: Install Python dependencies
         working-directory: ./scripts
         run: pip install -r requirements.txt
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: scripts/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: ./scripts
+        run: npm ci 
+      
+      - name: Download voting pdf
+        uses: actions/download-artifact@v5
+        with: 
+          name: voting-pdf 
+          path: ./scripts
 
       - name: Run python script 
         working-directory: ./scripts
-        run: python3 extract_entity.py ${{ steps.generate.outputs.pdf_file}}
+        run: python3 extract_entity.py ${{ needs.check-pdf.outputs.pdf-file }}
       
       - name: Compile update processed date 
         working-directory: ./scripts
@@ -72,7 +122,7 @@ jobs:
 
       - name: Run update processed date 
         working-directory: ./scripts 
-        run: node updateLastProcessedDate.js ${{ steps.generate.outputs.voting_date}}
+        run: node updateLastProcessedDate.js ${{ needs.check-pdf.outputs.voting-date }}
 
       - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7

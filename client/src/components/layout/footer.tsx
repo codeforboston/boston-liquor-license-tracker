@@ -1,25 +1,25 @@
 import styles from "./footer.module.css";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "@tanstack/react-router";
+
+import logoDefault from "@/assets/logo.svg"
 
 const Footer = () => {
   const links = {
     cod: "https://www.codeforboston.org"
   };
 
+  const intl = useIntl();
+
   return (
     <footer className={styles.siteFooter} role="contentinfo">
       <div className={styles.footerContainer}>
         <section className={styles.footerLeft}>
-          <div className={styles.licenseHeader}>
-            <span className={styles.licenseBadge}>
-              <FormattedMessage id="footer.license" />
-            </span>
-            <span className={styles.licenseTitle}>
-              <FormattedMessage id="footer.toSucceed" />
-            </span>
-          </div>
-
+          <img
+                className={styles.logoImage}
+                src={logoDefault}
+                alt={intl.formatMessage({ id: "header.logo" })}
+          />
           <p className={styles.disclaimerTitle}>
             <FormattedMessage id="footer.disclaimerTitle" />
           </p>

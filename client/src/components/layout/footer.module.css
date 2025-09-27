@@ -22,27 +22,6 @@
     max-width: 400px;
 }
 
-.licenseHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.licenseBadge {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 4px 8px;
-    margin-right: 12px;
-    white-space: nowrap;
-}
-
-.licenseTitle {
-    font-size: 20px;
-    font-weight: 600;
-}
-
 .disclaimerTitle {
     margin-top: 12px;
     margin-bottom: 4px;
@@ -104,8 +83,18 @@
     text-decoration: underline;
 }
 
+.logoImage {
+   width: 306px;
+   height: 42px;
+}
+
 /* 🌐 Mobile & Accessibility Support */
 @media (max-width: 768px) {
+    .logoImage {
+        width: 250px;
+        height: 34px;
+    }
+    
     .footerContainer {
         flex-direction: column;
         align-items: flex-start;
@@ -119,20 +108,6 @@
 
     .footerSection {
         width: 100%;
-    }
-
-    .licenseHeader {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .licenseTitle {
-        font-size: 16px;
-    }
-
-    .licenseBadge {
-        font-size: 16px;
     }
 
     .disclaimerText {
