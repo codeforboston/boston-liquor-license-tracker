@@ -1,6 +1,5 @@
 import notFoundStyles from "./not-found.module.css";
 import { FormattedMessage } from "react-intl";
-import beerTap from "@/assets/images/beer-tap.png";
 import BackToHome from "@/components/ui/back-to-home";
 import { useIntl } from "react-intl";
 
@@ -23,11 +22,6 @@ const NotFound = () => {
           <BackToHome />
         </div>
       </div>
-      <img
-        src={beerTap}
-        className={notFoundStyles.beerTap}
-        alt={intl.formatMessage({ id: "notFound.beerPourImageAlt" })}
-      />
     </main>
   );
 };

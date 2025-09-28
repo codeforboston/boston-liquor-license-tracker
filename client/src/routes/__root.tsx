@@ -3,9 +3,20 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import NotFound from "@/components/pages/not-found/not-found";
 
+function NotFoundWithLayout() {
+  return (
+    <>
+      <HeadContent />
+      <Header />
+      <NotFound />
+      <Footer />
+    </>
+  );
+}
+
 export const Route = createRootRoute({
   component: RootComponent,
-  notFoundComponent: NotFound,
+  notFoundComponent: NotFoundWithLayout,
 });
 
 export function RootComponent() {
