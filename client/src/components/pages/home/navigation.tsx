@@ -15,7 +15,7 @@ const Navigation = () => {
     >
       <NavigationButton to='/maps' messageId='navigation.maps'/>
       <NavigationButton to='/database' messageId='navigation.database'/>
-      <NavigationButton to='/resources' messageId='navigation.resources'/>
+      <NavigationButton to='/resources' messageId='ui.resources'/>
     </div>
   );
 };
