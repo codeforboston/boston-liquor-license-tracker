@@ -16,11 +16,10 @@
   .not-found-content {
     padding: 2rem;
     text-align: center;
-    background: rgba(
-      46,
-      46,
-      46,
-      0.8
+    background: color-mix(
+      in srgb,
+      var(--color-dark) 80%,
+      transparent
     ); /* Semi-transparent overlay for readability */
     border-radius: 8px;
     z-index: 1;
