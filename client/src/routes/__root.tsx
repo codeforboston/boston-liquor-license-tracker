@@ -4,14 +4,7 @@ import Footer from "@/components/layout/footer";
 import NotFound from "@/components/pages/not-found/not-found";
 
 function NotFoundWithLayout() {
-  return (
-    <>
-      <HeadContent />
-      <Header />
-      <NotFound />
-      <Footer />
-    </>
-  );
+  return <NotFound />;
 }
 
 export const Route = createRootRoute({
