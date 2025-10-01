@@ -1,6 +1,6 @@
 .siteFooter {
-    background-color: var(--color-dark);
-    color: var(--color-white);
+    background-color: var(--color-background-dark);
+    color: var(--color-font-light);
     width: 100%;
     height: auto;
     padding: 32px;
@@ -33,13 +33,11 @@
     margin-bottom: 4px;
     font-size: 16px;
     font-weight: 600;
-    color:  var(--color-footer-gray-1);
 }
 
 .disclaimerText {
     font-size: 12px;
     font-weight: 400;
-    color: var(--color-footer-gray-2);
     line-height: 1.5;
     max-width: 100%;
 }
@@ -61,7 +59,6 @@
 
 .footerHeading {
     font-size: 16px;
-    color: var(--color-footer-gray-1);
     font-weight: 300;
     text-decoration: underline;
 }
@@ -78,7 +75,7 @@
 }
 
 .footerSection a {
-    color: var(--color-white);
+    color: var(--color-font-light);
     text-decoration: none;
 }
 
@@ -89,7 +86,6 @@
 .footerBottom {
     font-size: 12px;
     font-weight: 300;
-    color: var(--color-footer-gray-3);
 }
 
 /* 🌐 Desktop Styling */

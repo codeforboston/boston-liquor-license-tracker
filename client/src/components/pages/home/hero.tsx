@@ -14,7 +14,7 @@ const Hero = () => {
         className="w-2xl lg:w-5xl"
         alt={intl.formatMessage({ id: "header.logo-altText" })}
       />
-      <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
+      <h2 className="text-font-light text-2xl md:text-3xl lg:text-5xl w-full font-bold">
         <FormattedMessage
           id="home.hero.heading"
           values={{
@@ -22,7 +22,7 @@ const Hero = () => {
           }}
         />
       </h2>
-      <p className="text-white text-xs md:text-base">
+      <p className="text-font-light text-xs md:text-base">
         <FormattedMessage
           id="home.hero.photoCredit"
           values={{

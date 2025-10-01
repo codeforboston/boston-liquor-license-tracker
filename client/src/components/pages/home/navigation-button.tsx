@@ -17,8 +17,8 @@ const NavigationButton = ({ to, messageId }: NavigationButtonProps) => {
                 w-[400px] h-[62px]
                 px-[24px] py-[12px]
                 rounded-[8px]
-                bg-dark hover:bg-[#404040] active:bg-[#1A1A1A]
-                text-light hover:text-[#EAEAEA] active:text-[#F5F5F5]
+                bg-button-default-dark hover:bg-button-hovered-dark active:bg-button-active-dark
+                text-button-default-light hover:text-button-hovered-light active:text-button-active-light
                 text-[32px] font-normal
                 cursor-pointer
             "

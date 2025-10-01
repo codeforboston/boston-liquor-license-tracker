@@ -8,7 +8,7 @@ interface ExtraWorkCardProps {
 const ExtraWorkCard = ({ item }: ExtraWorkCardProps) => {
   const intl = useIntl();
   return (
-    <div className="shrink-0 size-[320px] rounded-[9px] bg-black  ">
+    <div className="shrink-0 size-[320px] rounded-[9px] bg-background-dark  ">
       <a
         href={item.href}
         target="_blank"
@@ -29,7 +29,7 @@ const ExtraWorkCard = ({ item }: ExtraWorkCardProps) => {
         title={intl.formatMessage({ id: item.alt })}
       >
         <p
-          className={`text-[24px] text-shadow-lg font-semibold ${item.textColor === "light" ? "text-black" : "text-white"}`}
+          className={`text-[24px] text-shadow-lg font-semibold ${item.textColor === "light" ? "text-font-dark" : "text-font-light"}`}
         >
           {item.title}
         </p>

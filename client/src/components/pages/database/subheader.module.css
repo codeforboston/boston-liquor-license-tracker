@@ -8,20 +8,20 @@
   padding: 32px 32px;
   /* reduced right padding for small screens */
   gap: 8px;
-  background-color:var(--color-light);
+  background-color:var(--color-background-light);
   box-sizing: border-box;
 }
 
 .heading {
   font-size: 32px;
   font-weight: 600;
-  color:var(--color-dark);
+  color:var(--color-font-dark);
   margin: 0;
 }
 
 .description {
   font-size: 16px;
-  color:var(--color-dark);
+  color:var(--color-font-dark);
   margin: 0;
 }
 

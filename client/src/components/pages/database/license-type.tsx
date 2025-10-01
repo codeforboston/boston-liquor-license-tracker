@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 const LicenseType = () => {
   return (
-    <section className="license-type py-[32px] px-[64px] bg-light">
+    <section className="license-type py-[32px] px-[64px] bg-background-light">
       <h2 className="font-bold text-[36px] m-0">
         <FormattedMessage id="database.licenseTerminology.header" />
       </h2>
