@@ -31,7 +31,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
         onClick={() => onPageChange(currentPage - 1)}
       >
         <ChevronLeftIcon sx={{
-          fill: currentPage === 1 ? "#EAEAEA" : "#2E2E2E"
+          fill: currentPage === 1 ? "var(--color-gray-3)" : "var(--color-gray-1)"
         }} />
       </PaginationArrow>
       {pageNumbers.map((page) => (
