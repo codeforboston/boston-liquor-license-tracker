@@ -1,10 +1,10 @@
 .siteFooter {
-
     background-color: var(--color-dark);
-    color: #ffffff;
+    color: var(--color-white);
     width: 100%;
     height: auto;
     padding: 32px;
+    padding-bottom: 16px;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
@@ -13,54 +13,57 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 64px;
 }
 
 .footerLeft {
-    flex: 1;
-    min-width: 280px;
+    flex: 30%;
     max-width: 400px;
+}
+
+.logoImage {
+    width: 306px;
+    height: 42px;
 }
 
 .disclaimerTitle {
     margin-top: 12px;
     margin-bottom: 4px;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
+    color:  var(--color-footer-gray-1);
 }
 
 .disclaimerText {
-    font-size: 14px;
-    color: #cccccc;
-    line-height: 1.5;
-    max-width: 400px;
-}
-
-.footerNote {
     font-size: 12px;
-    color: #aaaaaa;
-    margin-top: 32px;
+    font-weight: 400;
+    color: var(--color-footer-gray-2);
+    line-height: 1.5;
+    max-width: 100%;
 }
 
 .footerColumns {
     display: flex;
-    flex: 2;
+    flex:60%;
     flex-wrap: wrap;
-    gap: 64px;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .footerSection {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 198px;
+    width: 100%;
 }
 
 .footerHeading {
     font-size: 16px;
-    color: #bbbbbb;
-    font-weight: 500;
-    margin-bottom: 4px;
+    color: var(--color-footer-gray-1);
+    font-weight: 300;
+    text-decoration: underline;
 }
 
 .footerSection ul {
@@ -70,12 +73,12 @@
 }
 
 .footerSection li {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 6px;
 }
 
 .footerSection a {
-    color: white;
+    color: var(--color-white);
     text-decoration: none;
 }
 
@@ -83,34 +86,24 @@
     text-decoration: underline;
 }
 
-.logoImage {
-   width: 306px;
-   height: 42px;
+.footerBottom {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--color-footer-gray-3);
 }
 
-/* 🌐 Mobile & Accessibility Support */
-@media (max-width: 768px) {
-    .logoImage {
-        width: 250px;
-        height: 34px;
-    }
-    
+/* 🌐 Desktop Styling */
+@media (min-width: 768px) {
     .footerContainer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 32px;
+        flex-direction: row;
     }
 
     .footerColumns {
-        flex-direction: column;
-        gap: 32px;
+        gap: 64px;
+        flex-direction: row;
     }
 
     .footerSection {
-        width: 100%;
-    }
-
-    .disclaimerText {
-        max-width: 100%;
+        max-width: 198px;
     }
 }

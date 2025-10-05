@@ -6,6 +6,7 @@
 :root {
   --color-gray-1: #2e2e2e;
   --color-gray-2: #f2f2f2;
+  --color-gray-3: #eaeaea;
   --color-white: #ffffff;
   --color-red: #b41313;
   --color-light: #fdfdfd;
@@ -14,6 +15,9 @@
   --color-expired-red: #a20000;
   --color-deferred-yellow: #e9e100;
   --color-case-study-yellow: #f5b524;
+  --color-footer-gray-1: #C9C9C9;
+  --color-footer-gray-2: #E9E9E9;
+  --color-footer-gray-3: #aaaaaa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,6 +28,7 @@
 @theme {
   --color-dark: var(--color-gray-1);
   --color-ui: var(--color-gray-2);
+  --color-ui-hover: var(--color-gray-3);
   --color-primary-text: var(--color-white);
   --color-logo: var(--color-red);
   --color-light: var(--color-light);

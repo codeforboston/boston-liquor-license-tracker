@@ -17,104 +17,59 @@ export interface BusinessLicense {
   business_name: string;
   dba_name: string | null;
   address: string;
-  zipcode: BostonZipCode;
+  zipcode: EligibleBostonZipcode;
   license_number: string;
   status: string | null;
   alcohol_type: string;
   file_name: string;
 }
 
-type BostonZipCode =
-  | "02021"
-  | "02026"
-  | "02108"
-  | "02109"
-  | "02110"
-  | "02111"
-  | "02113"
-  | "02114"
-  | "02115"
-  | "02116"
+// Zipcodes that were granted NON-TRANSFERABLE, ZIPCODE-RESTRICTED Licenses from the 2024 legislation (Not including Oak Square)
+export type EligibleBostonZipcode =
   | "02118"
   | "02119"
-  | "02120"
   | "02121"
   | "02122"
   | "02124"
   | "02125"
   | "02126"
-  | "02127"
   | "02128"
   | "02129"
   | "02130"
   | "02131"
   | "02132"
-  | "02134"
-  | "02135"
-  | "02136"
-  | "02151"
-  | "02152"
-  | "02163"
-  | "02186"
-  | "02199"
-  | "02203"
-  | "02210"
-  | "02215"
-  | "02459"
-  | "02467";
+  | "02136";
 
-const validBostonZipCodes: Set<BostonZipCode> = new Set([
-  "02021",
-  "02026",
-  "02108",
-  "02109",
-  "02110",
-  "02111",
-  "02113",
-  "02114",
-  "02115",
-  "02116",
+export const eligibleBostonZipcodes: Set<EligibleBostonZipcode> = new Set([
   "02118",
   "02119",
-  "02120",
   "02121",
   "02122",
   "02124",
   "02125",
   "02126",
-  "02127",
   "02128",
   "02129",
   "02130",
   "02131",
   "02132",
-  "02134",
-  "02135",
   "02136",
-  "02151",
-  "02152",
-  "02163",
-  "02186",
-  "02199",
-  "02203",
-  "02210",
-  "02215",
-  "02459",
-  "02467",
 ]);
 
 type ValidationResult =
   | { valid: true; data: BusinessLicense }
   | { valid: false; errors: Record<string, string> };
 
-function isBostonZipCode(zipcode: unknown): zipcode is BostonZipCode {
+export function isEligibleBostonZipCode(
+  zipcode: unknown
+): zipcode is EligibleBostonZipcode {
   return (
     typeof zipcode === "string" &&
-    validBostonZipCodes.has(zipcode as BostonZipCode)
+    eligibleBostonZipcodes.has(zipcode as EligibleBostonZipcode)
   );
 }
 
-function validateBusinessLicense(license: unknown): ValidationResult {
+export function validateBusinessLicense(license: unknown): ValidationResult {
   const errors: Record<string, string> = {};
 
   if (typeof license !== "object" || license === null) {
@@ -139,8 +94,8 @@ function validateBusinessLicense(license: unknown): ValidationResult {
     errors.address = "Must be a string";
   }
 
-  if (!isBostonZipCode(obj.zipcode)) {
-    errors.zipcode = "Must be a valid Boston zip code";
+  if (!isEligibleBostonZipCode(obj.zipcode)) {
+    errors.zipcode = "Must be an Eligible Boston zip code";
   }
 
   if (typeof obj.license_number !== "string") {
@@ -168,7 +123,7 @@ function validateBusinessLicense(license: unknown): ValidationResult {
     business_name: String(obj.business_name),
     dba_name: obj.dba_name === null ? null : String(obj.dba_name),
     address: String(obj.address),
-    zipcode: obj.zipcode as BostonZipCode,
+    zipcode: obj.zipcode as EligibleBostonZipcode,
     license_number: String(obj.license_number),
     status: obj.status === null ? null : String(obj.status),
     alcohol_type: String(obj.alcohol_type),
@@ -181,11 +136,14 @@ function validateBusinessLicense(license: unknown): ValidationResult {
 export default function getNumOfLicenses(
   data: BusinessLicense[],
   options?: {
-    filterByZipcode?: BostonZipCode;
+    filterByZipcode?: EligibleBostonZipcode;
     filterByAlcoholType?: string;
   }
 ): number {
-  if (options?.filterByZipcode && !isBostonZipCode(options?.filterByZipcode)) {
+  if (
+    options?.filterByZipcode &&
+    !isEligibleBostonZipCode(options?.filterByZipcode)
+  ) {
     throw new Error(
       "You must enter a zipcode within the City of Boston. See https://data.boston.gov/dataset/zip-codes/resource/a9b44fec-3a21-42ac-a919-06ec4ac20ab8"
     );
@@ -195,11 +153,8 @@ export default function getNumOfLicenses(
     const validation = validateBusinessLicense(license);
 
     if (!validation.valid) {
-      const errs = [];
-      for (const err in validation.errors) {
-        errs.push(err);
-      }
-      throw new Error(`Business License missing required fields: ${errs}`);
+      const errors = Object.entries(validation.errors);
+      console.error(`skipped ${license} for the following errors: ${errors}`);
     }
   }
 
@@ -240,4 +195,100 @@ export default function getNumOfLicenses(
   } else {
     return MAX_LICENSES_AVAILABLE - data.length;
   }
+}
+
+interface LicenseAvailability {
+  totalAvailable: number;
+  allAlcoholAvailable: number;
+  beerWineAvailable: number;
+}
+
+export function getAvailableLicensesByZipcode(
+  data: BusinessLicense[],
+  zipcode: EligibleBostonZipcode
+): LicenseAvailability {
+  if (!isEligibleBostonZipCode(zipcode)) {
+    throw new Error(
+      "You must enter a zipcode within the City of Boston. See https://data.boston.gov/dataset/zip-codes/resource/a9b44fec-3a21-42ac-a919-06ec4ac20ab8"
+    );
+  }
+
+  let totalCount = 0;
+  let allAlcCount = 0;
+  let beerWineCount = 0;
+
+  for (const license of data) {
+    if (license.zipcode === zipcode) {
+      totalCount++;
+
+      switch (license.alcohol_type) {
+        case "All Alcoholic Beverages":
+          allAlcCount++;
+          break;
+        case "Wines and Malt Beverages":
+          beerWineCount++;
+          break;
+      }
+    }
+  }
+
+  return {
+    totalAvailable: MAX_AVAILABLE_PER_ZIP - totalCount,
+    allAlcoholAvailable: MAX_ALL_ALC_PER_ZIP - allAlcCount,
+    beerWineAvailable: MAX_BEER_WINE_PER_ZIP - beerWineCount,
+  };
+}
+
+export function getZipcodesWithAvailableLicenses(
+  data: BusinessLicense[],
+  alcoholType?: "All Alcoholic Beverages" | "Wines and Malt Beverages"
+): Array<{
+  zipcode: EligibleBostonZipcode;
+  totalAvailable: number;
+  allAlcoholAvailable: number;
+  beerWineAvailable: number;
+}> {
+  // Get all unique zipcodes from the data
+  const uniqueZipcodes = [...new Set(data.map((license) => license.zipcode))];
+
+  const availableZipcodes = [];
+
+  for (const zipcode of uniqueZipcodes) {
+    // Get availability for this zipcode
+    const { totalAvailable, allAlcoholAvailable, beerWineAvailable } =
+      getAvailableLicensesByZipcode(data, zipcode);
+
+    // Check if this zipcode has available licenses based on criteria
+    let hasAvailableLicenses = false;
+
+    if (alcoholType) {
+      if (
+        alcoholType === "All Alcoholic Beverages" &&
+        allAlcoholAvailable > 0
+      ) {
+        hasAvailableLicenses = true;
+      } else if (
+        alcoholType === "Wines and Malt Beverages" &&
+        beerWineAvailable > 0
+      ) {
+        hasAvailableLicenses = true;
+      }
+    } else {
+      // If no specific alcohol type, check if any licenses are available
+      hasAvailableLicenses =
+        totalAvailable > 0 || allAlcoholAvailable > 0 || beerWineAvailable > 0;
+    }
+
+    if (hasAvailableLicenses) {
+      availableZipcodes.push({
+        zipcode: zipcode as EligibleBostonZipcode,
+        totalAvailable,
+        allAlcoholAvailable,
+        beerWineAvailable,
+      });
+    }
+  }
+
+  // Sort by zipcode
+  return availableZipcodes.sort((a, b) => a.zipcode.localeCompare(b.zipcode));
 }

@@ -6,6 +6,12 @@ import logoDefault from "@/assets/logo.svg"
 
 const Footer = () => {
   const links = {
+    blb: "https://www.boston.gov/departments/licensing-board",
+    abcc: "https://www.mass.gov/orgs/alcoholic-beverages-control-commission",
+    application: "https://www.mass.gov/apply-for-an-alcoholic-beverages-license-abcc",
+    analyze: "https://data.boston.gov/",
+    offsite: "https://www.getoffsite.com/",
+    bootcamp: "https://www.getoffsite.com/bootcamp",
     cod: "https://www.codeforboston.org"
   };
 
@@ -25,12 +31,6 @@ const Footer = () => {
           </p>
           <p className={styles.disclaimerText}>
             <FormattedMessage id="footer.disclaimerText" />
-          </p>
-
-          <p className={styles.footerNote}>
-            <FormattedMessage id="footer.builtBy" />
-            <br />
-            <FormattedMessage id="footer.copyright" />
           </p>
         </section>
 
@@ -52,10 +52,26 @@ const Footer = () => {
               <FormattedMessage id="footer.importantLinks" />
             </h3>
             <ul>
-              <li><Link to="/"><FormattedMessage id="footer.bostonBoard" /></Link></li>
-              <li><Link to="/"><FormattedMessage id="footer.abcc" /></Link></li>
-              <li><Link to="/"><FormattedMessage id="footer.application" /></Link></li>
-              <li><Link to="/"><FormattedMessage id="footer.analyzeBoston" /></Link></li>
+              <li>
+                <a href={links.blb} target="_blank" rel="noopener noreferrer">
+                  <FormattedMessage id="footer.bostonBoard" />
+                </a>
+              </li>
+              <li>
+                <a href={links.abcc} target="_blank" rel="noopener noreferrer">
+                  <FormattedMessage id="footer.abcc" />
+                </a>
+              </li>
+              <li>
+                <a href={links.application} target="_blank" rel="noopener noreferrer">
+                  <FormattedMessage id="footer.application" />
+                </a>
+              </li>
+              <li>
+                <a href={links.analyze} target="_blank" rel="noopener noreferrer">
+                  <FormattedMessage id="footer.analyzeBoston" />
+                </a>
+              </li>
             </ul>
           </section>
 
@@ -64,8 +80,16 @@ const Footer = () => {
               <FormattedMessage id="footer.moreFromUs" />
             </h3>
             <ul>
-              <li><Link to="/"><FormattedMessage id="footer.offsite" /></Link></li>
-              <li><Link to="/"><FormattedMessage id="footer.bootcamp" /></Link></li>
+              <li>
+                <a href={links.offsite} target="_blank" rel="noopener noreferrer">
+                  <FormattedMessage id="footer.offsite" />
+                </a>
+              </li>
+              <li>
+                <a href={links.bootcamp} target="_blank" rel="noopener noreferrer">
+                  <FormattedMessage id="footer.bootcamp" />
+                </a>
+              </li>
               <li>
                 <a href={links.cod} target="_blank" rel="noopener noreferrer">
                   <FormattedMessage id="footer.codeForBoston" />
@@ -73,7 +97,16 @@ const Footer = () => {
               </li>
             </ul>
           </section>
-        </nav>
+        </nav>       
+
+        <section className={styles.footerBottom}>
+          <p className={styles.footerNote}>
+            <FormattedMessage id="footer.builtBy" />
+          </p>
+          <p className={styles.footerCopyright}>
+            <FormattedMessage id="footer.copyright" />
+          </p>
+        </section>
       </div>
     </footer>
   );
