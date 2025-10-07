@@ -1,3 +1,4 @@
+# WIP document
 # Contributing to the Boston Liquor License Tracker
 
 Thank you for your volunteer effort! We appreciate your help in improving visibility into Boston's liquor licensing process. This document outlines how you can contribute to the project.
