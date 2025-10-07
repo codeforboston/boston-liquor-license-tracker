@@ -7,11 +7,17 @@ type PaginationProps = {
   onPageChange: (page: number) => void;
 }
 
-function PaginationArrow({ isDisabled, onClick, children, ...props }: { isDisabled: boolean; onClick: () => void; children: React.ReactNode }) {
+type PaginationArrowProps = {
+  isDisabled: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
+
+function PaginationArrow({ isDisabled, onClick, children, ...props }: PaginationArrowProps) {
   return (
     <button
       disabled={isDisabled}
-      className={`flex justify-center items-center h-[32px] w-[32px] border-[2px] border-ui-hover rounded-[4px] bg-light cursor-pointer disabled:cursor-not-allowed ${!isDisabled ? "hover:bg-ui-hover" : ""}`}
+      className={`flex justify-center items-center h-[32px] min-w-[32px] border-[2px] border-ui-hover rounded-[4px] bg-light cursor-pointer disabled:cursor-not-allowed ${!isDisabled ? "hover:bg-ui-hover" : ""}`}
       onClick={onClick}
       {...props}
     >
@@ -25,7 +31,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className='flex justify-center items-center gap-[4px]'>
+    <div className='flex justify-center overflow-y-scroll items-center gap-[4px]'>
       <PaginationArrow
         isDisabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
@@ -38,7 +44,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`border border-[2px] h-[32px] w-[32px] cursor-pointer rounded-[4px] ${currentPage === page ? "border-[1px] border-dark bg-dark text-white" : "border-ui-hover hover:bg-ui-hover"}`}
+          className={`border border-[2px] h-[32px] min-w-[32px] cursor-pointer rounded-[4px] ${currentPage === page ? "border-[1px] border-dark bg-dark text-white" : "border-ui-hover hover:bg-ui-hover"}`}
         >
           {page}
         </button>
