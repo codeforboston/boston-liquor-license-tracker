@@ -1,4 +1,4 @@
-import RowWithSubRows from "@components/ui/table";
+import { RowWithSubRows } from "@components/ui/table";
 
 const mockAvailabilityData: RowWithSubRows[] = [
   {
