@@ -1,6 +1,6 @@
 import RowWithSubRows from "@components/ui/table";
 
-export default mockAvailabilityData: RowWithSubRows[] = [
+const mockAvailabilityData: RowWithSubRows[] = [
   {
     rowData: ['02108', '15', '8', '3', '45'],
     subRowData: [
@@ -72,3 +72,5 @@ export default mockAvailabilityData: RowWithSubRows[] = [
     ]
   }
 ]
+
+export default mockAvailabilityData;
