@@ -53,7 +53,7 @@ const Header = () => {
           <div className="hidden md:flex items-center w-full">
             <Spacer />
             <Link to="/maps">
-              <FormattedMessage id="header.maps" />
+              <FormattedMessage id="header.map" />
             </Link>
             <Spacer />
             <Link to="/database">
@@ -87,7 +87,7 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden px-4 bg-dark">
           <Link to="/maps" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="header.maps" />
+            <FormattedMessage id="header.map" />
           </Link>
           <LineSpacer />
           <Link to="/database" className="py-[8px] px-[24px] block">

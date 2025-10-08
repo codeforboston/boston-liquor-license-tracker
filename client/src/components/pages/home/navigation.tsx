@@ -13,7 +13,7 @@ const Navigation = () => {
         gap-[56px] last:mb-0
       `}
     >
-      <NavigationButton to="/maps" messageId="home.navigation.maps"/>
+      <NavigationButton to="/maps" messageId="home.navigation.map"/>
       <NavigationButton to="/database" messageId="home.navigation.database"/>
       <NavigationButton to="/resources" messageId="shared.resources"/>
     </div>

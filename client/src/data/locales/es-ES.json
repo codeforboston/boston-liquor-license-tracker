@@ -1,5 +1,5 @@
 {
-  "header.maps": "MAPAS",
+  "header.map": "MAPA",
   "header.database": "BASE DE DATOS DE LICENCIAS",
   "header.logo": "Logo",
   "header.language": "Lenguaje",
@@ -48,5 +48,5 @@
   "home.hero.title": "Bar exclusivo con bombillas de estilo industrial como decoración",
   "home.quote": "...trabajando en crear un ecosistema en restauración más equitativo para todos...",
   "home.navigation.database": "BASE DE DATOS DE LICENCIAS",
-  "home.navigation.maps": "MAPAS"
+  "home.navigation.map": "MAPA"
 }

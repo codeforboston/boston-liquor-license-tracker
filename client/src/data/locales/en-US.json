@@ -1,5 +1,5 @@
 {
-  "header.maps": "MAPS",
+  "header.map": "MAP",
   "header.database": "LICENSE DATABASE",
   "header.logo": "Logo",
   "header.language": "Language",
@@ -51,7 +51,7 @@
   "database.pageTitle": "License Database",
   "database.subheader.description": "Select a Zip Code below to see the available licenses in each area. Use the filters to narrow or expand your search to meet your exact business needs.",
   "database.subheader.title": "License Availability Lookup:",
-  "database.table.legend": "Table Legend"
+  "database.table.legend": "Table Legend",
 
 
   "home.aboutUs.title": "Who We Are:",
@@ -70,14 +70,14 @@
   "home.hero.photoCredit": "Photo by {photographerLink} on {platformLink}",
   "home.hero.title": "Upscale bar with old-school industrial bulbs as a decoration",
   "home.navigation.database": "LICENSE DATABASE",
-  "home.navigation.maps": "MAPS",
+  "home.navigation.map": "MAP",
   "home.pageTitle": "License to Succeed",
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
 
 
   "map.header.text": "Use the map to find information about licenses in each of Boston's zip codes. Hover over any Zip Code and get instant information about available licenses, their type, and recent applications. Use the filters to narrow or expand your search to meet your exact business needs",
   "map.header.title": "License Availability Map",
-  "map.pageTitle": "Maps",
+  "map.pageTitle": "Map",
 
 
   "notFound.beerPourImageAlt": "Bartender pouring a beer from a tap",
@@ -86,5 +86,5 @@
   "notFound.pageTitle": "Page Not Found",
 
 
-  "resources.pageTitle": "Licensing Resources",
+  "resources.pageTitle": "Licensing Resources"
 }
