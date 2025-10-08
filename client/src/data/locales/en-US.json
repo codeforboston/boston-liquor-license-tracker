@@ -1,9 +1,9 @@
 {
-  "header.maps": "MAPS",
-  "header.database": "LICENSE DATABASE",
-  "header.home": "HOME",
-  "header.logo": "Logo",
-  "header.language": "Language",
+  "shared.header.maps": "MAPS",
+  "shared.header.database": "LICENSE DATABASE",
+  "shared.header.logo": "Logo",
+  "shared.header.language": "Language",
+
   "ui.resources": "LICENSING RESOURCES",
   "navigation.maps": "MAPS",
   "navigation.database": "LICENSE DATABASE",

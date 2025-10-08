@@ -46,18 +46,18 @@ const Header = () => {
             <img
               className={styles.logoImage}
               src={logoSrc}
-              alt={intl.formatMessage({ id: "header.logo" })}
+              alt={intl.formatMessage({ id: "shared.header.logo" })}
             />
           </Link>
 
           <div className="hidden md:flex items-center w-full">
             <Spacer />
             <Link to="/maps">
-              <FormattedMessage id="header.maps" />
+              <FormattedMessage id="shared.header.maps" />
             </Link>
             <Spacer />
             <Link to="/database">
-              <FormattedMessage id="header.database" />
+              <FormattedMessage id="shared.header.database" />
             </Link>
             <Spacer />
             <Link to="/resources">
@@ -68,7 +68,7 @@ const Header = () => {
               <img
                 src={language}
                 className={"inline-block size-[20px] text-white me-2"}
-                alt={intl.formatMessage({ id: "header.language" })}
+                alt={intl.formatMessage({ id: "shared.header.language" })}
               />
               <LangSwitcher />
             </div>
@@ -87,11 +87,11 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden px-4 bg-dark">
           <Link to="/maps" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="header.maps" />
+            <FormattedMessage id="shared.header.maps" />
           </Link>
           <LineSpacer />
           <Link to="/database" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="header.database" />
+            <FormattedMessage id="shared.header.database" />
           </Link>
           <LineSpacer />
           <Link to="/resources" className="py-[8px] px-[24px] block">
@@ -101,7 +101,7 @@ const Header = () => {
             <img
               src={language}
               className={"inline-block size-[20px] text-white me-2"}
-              alt={intl.formatMessage({ id: "header.language" })}
+              alt={intl.formatMessage({ id: "shared.header.language" })}
             />
             <LangSwitcher />
           </div>
