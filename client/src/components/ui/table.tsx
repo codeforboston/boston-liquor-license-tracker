@@ -2,7 +2,7 @@ import {  useState } from 'react'
 import { Table, TableHeader, Column, Row, TableBody, Cell } from 'react-aria-components'
 
 
-interface RowWithSubRows {
+export interface RowWithSubRows {
   rowData: [string, ...string[]]
   subRowData?: [string, ...string[]][]
 }
