@@ -1,7 +1,7 @@
 import mockAvailabilityData from './mock-availability-data';
 import CustomTable from "@components/ui/table";
 
-export default function LicenseAvailabilityTable() {
+const LicenseAvailabilityTable = () => {
   const availabilityHeaders = [
     'Zipcode',
     'Licenses Available', 
@@ -16,3 +16,5 @@ export default function LicenseAvailabilityTable() {
     </section>
   )
 }
+
+export default LicenseAvailabilityTable;
