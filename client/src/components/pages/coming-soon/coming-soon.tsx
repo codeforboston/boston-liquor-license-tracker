@@ -1,4 +1,4 @@
-import PageHeader from "@components/pages/coming-soon/pageheader.tsx";
+import PageHeader from "@/components/ui/pageheader";
 import BackToHome from "@components/ui/back-to-home.tsx";
 import { FormattedMessage } from "react-intl";
 import styles from "./coming-soon.module.css";
@@ -16,6 +16,7 @@ const ComingSoon = () => {
       <PageHeader
         headerTitle={<FormattedMessage id="comingSoon.title" />}
         headerText={<FormattedMessage id="comingSoon.description" />}
+        showBottomBoxShadow
       >
         <BackToHome />
       </PageHeader>
