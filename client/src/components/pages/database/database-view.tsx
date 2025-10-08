@@ -1,12 +1,7 @@
 import "./database-view.module.css";
 import BreakdownChart from "./breakdown-chart";
 import CustomTable from "@/components/ui/table";
-
-
-interface RowWithSubRows {
-  rowData: [string, ...string[]]
-  subRowData?: [string, ...string[]][]
-}
+import RowWithSubRows from "@components/ui/table";
 
 const data: RowWithSubRows[] = [
   {
