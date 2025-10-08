@@ -46,29 +46,29 @@ const Header = () => {
             <img
               className={styles.logoImage}
               src={logoSrc}
-              alt={intl.formatMessage({ id: "shared.header.logo" })}
+              alt={intl.formatMessage({ id: "header.logo" })}
             />
           </Link>
 
           <div className="hidden md:flex items-center w-full">
             <Spacer />
             <Link to="/maps">
-              <FormattedMessage id="shared.header.maps" />
+              <FormattedMessage id="header.maps" />
             </Link>
             <Spacer />
             <Link to="/database">
-              <FormattedMessage id="shared.header.database" />
+              <FormattedMessage id="header.database" />
             </Link>
             <Spacer />
             <Link to="/resources">
-              <FormattedMessage id="ui.resources" />
+              <FormattedMessage id="shared.resources" />
             </Link>
 
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
               <img
                 src={language}
                 className={"inline-block size-[20px] text-white me-2"}
-                alt={intl.formatMessage({ id: "shared.header.language" })}
+                alt={intl.formatMessage({ id: "header.language" })}
               />
               <LangSwitcher />
             </div>
@@ -87,21 +87,21 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden px-4 bg-dark">
           <Link to="/maps" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="shared.header.maps" />
+            <FormattedMessage id="header.maps" />
           </Link>
           <LineSpacer />
           <Link to="/database" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="shared.header.database" />
+            <FormattedMessage id="header.database" />
           </Link>
           <LineSpacer />
           <Link to="/resources" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="ui.resources" />
+            <FormattedMessage id="shared.resources" />
           </Link>
           <div className="py-[16px] px-[24px] pb-[8px] ms-auto">
             <img
               src={language}
               className={"inline-block size-[20px] text-white me-2"}
-              alt={intl.formatMessage({ id: "shared.header.language" })}
+              alt={intl.formatMessage({ id: "header.language" })}
             />
             <LangSwitcher />
           </div>

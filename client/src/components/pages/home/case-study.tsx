@@ -11,22 +11,22 @@ const CaseStudy = () => {
         <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
           <h1 className ="text-2xl max-w-[840px] w-auto flex-shrink mb-[16px]">
             <FormattedMessage
-              id="caseStudy.title"
+              id="home.caseStudy.title"
             />
           </h1>
           <h2 className="case-study h2 !p-0 !m-0 !ml-0 !pl-0 !indent-0 ![margin-bottom:32px]">
             <FormattedMessage
-              id="caseStudy.par1"
+              id="home.caseStudy.part1"
             />
           <br />
           <br />
           <FormattedMessage
-              id="caseStudy.par2"
+              id="home.caseStudy.part2"
             />
           <br />
           <br />
           <FormattedMessage
-              id="caseStudy.par3"
+              id="home.caseStudy.part3"
           />
           </h2>
         </div>
@@ -34,7 +34,7 @@ const CaseStudy = () => {
           >
           <img
             src={myImage}
-            alt={intl.formatMessage({ id: "caseStudy.image.alt" })}
+            alt={intl.formatMessage({ id: "home.caseStudy.image.alt" })}
             className="
               w-full
               max-w-[480px]
@@ -53,7 +53,7 @@ const CaseStudy = () => {
           ![margin-bottom:64px]
           "
           >
-          <ReadStudyButton to={"/coming-soon"} messageId={"caseStudy.button.read"}/>
+          <ReadStudyButton to={"/coming-soon"} messageId={"home.caseStudy.button.read"}/>
         </div>
       </div>
   );

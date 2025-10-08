@@ -16,20 +16,20 @@ export const extraWorkData: ExtraWork[] = [
     imgSrc: offsiteLogo,
     href: "https://www.getoffsite.com/",
     textColor: "dark",
-    alt: "extra-work.offsite",
+    alt: "home.extra-work.offsite",
   },
   {
     title: "Bar Management Bootcamp",
     imgSrc: bootcampImg,
     href: "https://www.getoffsite.com/bootcamp",
     textColor: "dark",
-    alt: "extra-work.bar-management-bootcamp",
+    alt: "home.extra-work.bar-management-bootcamp",
   },
   {
     title: "Code for Boston",
     imgSrc: cfbLogo,
     href: "https://www.codeforboston.org/",
     textColor: "light",
-    alt: "extra-work.code-for-boston",
+    alt: "home.extra-work.code-for-boston",
   },
 ];

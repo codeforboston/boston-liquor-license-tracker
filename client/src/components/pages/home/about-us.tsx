@@ -5,11 +5,11 @@ const AboutUs = () => {
   return (
     <div className="about-us w-full">
       <h1>
-        <FormattedMessage id="aboutUs.title" />
+        <FormattedMessage id="home.aboutUs.title" />
       </h1>
       <h2 className="w-full break-words whitespace-normal">
         <FormattedMessage
-          id="aboutUs.weAre"
+          id="home.aboutUs.weAre"
           values={{ 
               b: (chunks) => <b>{chunks}</b>,
               br: <br/> 

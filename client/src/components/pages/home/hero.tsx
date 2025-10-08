@@ -7,16 +7,16 @@ const Hero = () => {
   return (
     <div
       className="hero flex flex-col md:items-start md:justify-start w-full w-full pl-3 pr-3  pb-[70px]  md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[24px]"
-      title={intl.formatMessage({ id: "hero.title" })}
+      title={intl.formatMessage({ id: "home.hero.title" })}
     >
       <img
         src={logo}
         className="w-2xl lg:w-5xl"
-        alt={intl.formatMessage({ id: "shared.header.logo" })}
+        alt={intl.formatMessage({ id: "header.logo" })}
       />
       <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
         <FormattedMessage
-          id="hero.heading"
+          id="home.hero.heading"
           values={{
             br: <br />,
           }}
@@ -24,7 +24,7 @@ const Hero = () => {
       </h2>
       <p className="text-white text-xs md:text-base">
         <FormattedMessage
-          id="hero.photoCredit"
+          id="home.hero.photoCredit"
           values={{
             photographerLink: (
               <a href="https://unsplash.com/@quinguyen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">

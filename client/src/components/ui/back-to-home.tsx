@@ -28,7 +28,7 @@ function BackToHome() {
         ${backToHomeStyles.backToHome}
     `}
     >
-      <FormattedMessage id="ui.backToHomeButton" />
+      <FormattedMessage id="shared.backToHomeButton" />
     </Link>
   );
 }
