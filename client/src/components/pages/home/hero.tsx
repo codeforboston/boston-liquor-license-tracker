@@ -1,11 +1,19 @@
 import "./hero.css";
 import logo from "@/assets/logo.svg";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const Hero = () => {
+  const intl = useIntl();
   return (
-    <div className="hero flex flex-col md:items-start md:justify-start w-full w-full pl-3 pr-3  pb-[70px]  md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[24px]">
-      <img src={logo} className="w-2xl lg:w-5xl" alt="Logo" />
+    <div
+      className="hero flex flex-col md:items-start md:justify-start w-full w-full pl-3 pr-3  pb-[70px]  md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[24px]"
+      title={intl.formatMessage({ id: "hero.title" })}
+    >
+      <img
+        src={logo}
+        className="w-2xl lg:w-5xl"
+        alt={intl.formatMessage({ id: "header.logo" })}
+      />
       <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
         <FormattedMessage
           id="hero.heading"
