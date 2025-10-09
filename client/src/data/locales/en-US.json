@@ -69,5 +69,7 @@
   "resources.pageTitle": "Licensing Resources",
   "database.subheader.title": "License Availability Lookup:",
   "database.subheader.description": "Select a Zip Code below to see the available licenses in each area. Use the filters to narrow or expand your search to meet your exact business needs.",
-  "database.table.legend": "Table Legend"
+  "database.table.legend": "Table Legend",
+  "map.header.title": "License Availability Map",
+  "map.header.text": "Use the map to find information about licenses in each of Boston's zip codes. Hover over any Zip Code and get instant information about available licenses, their type, and recent applications. Use the filters to narrow or expand your search to meet your exact business needs"
 }
