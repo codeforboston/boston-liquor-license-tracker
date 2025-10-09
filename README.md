@@ -39,3 +39,10 @@ npm install # install dependencies
 npm start # start app
 ```
 The app will be running at [http://localhost:5173](http://localhost:5173)
+
+### Running tests
+
+```bash
+npm run install:python # installs pytest
+npm test               # runs both react and python tests
+```
