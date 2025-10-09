@@ -1,3 +1,4 @@
+import maplibregl, { Map } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   useRef,
@@ -7,7 +8,8 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import maplibregl, { Map } from "maplibre-gl";
+import { FormattedMessage } from "react-intl";
+import { PageHeader } from "@/components/ui/pageheader";
 import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
@@ -165,19 +167,10 @@ export const BostonZipCodeMap = () => {
 
   return (
     <main>
-      {/* Top description */}
-      <div className="text-(--color-white) bg-(--color-gray-1) px-10 pb-8">
-        <h1 className="text-5xl font-semibold pt-8 pb-4">
-          License Availability Map
-        </h1>
-        <p className="max-w-[800px]">
-          Use the map to find information about licenses in each of Boston's zip
-          codes. Hover over any Zip Code and get instant information about
-          available licenses, their type, and recent applications. Use the
-          filters to narrow or expand your search to meet your exact business
-          needs
-        </p>
-      </div>
+      <PageHeader
+        headerTitle={<FormattedMessage id="map.header.title" />}
+        headerText={<FormattedMessage id="map.header.text" />}
+      />
       <div className={mapStyles.mapWrap}>
         {/* Map canvas */}
         <div ref={mapContainer} className={mapStyles.map} />
