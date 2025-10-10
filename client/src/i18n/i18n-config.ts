@@ -15,7 +15,7 @@ export type Locale = keyof typeof supportedLocales;
 const getNonNullMessages = (messages: Record<string, string | null>) => {
   return Object.fromEntries(
     Object.entries(messages).filter(([_, value]) => value !== null)
-  )
+  ) as Record<string, string>;
 }
 
 // Locales supported by the app
