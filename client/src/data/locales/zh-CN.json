@@ -6,8 +6,8 @@
 
 
   "footer.abcc": "酒精饮料控制委员会（Alcoholic Beverages Control Commission）",
-  "footer.application": "波士顿许可证申请",
   "footer.analyzeBoston": "分析波士顿",
+  "footer.application": "波士顿许可证申请",
   "footer.bootcamp": "Bar Management Bootcamp",
   "footer.bostonBoard": "波士顿许可委员会（Boston Licensing Board）",
   "footer.builtBy": "由 Code for Boston 为 Offsite Hospitality 构建",
@@ -49,8 +49,8 @@
   "database.license-type.transferable-header2": "可转让许可证（Transferable Licenses）",
   "database.license-type.transferable-paragraph": "这类许可证可以自由转让给其他商家，或转移至波士顿市内的其他区域。波士顿的大多数许可证都属于此类，且所有在 2006年之前签发的许可证均归于此类。",
   "database.pageTitle": "许可证数据库",
-  "database.subheader.title": "许可证可用性查询:",
   "database.subheader.description": "选择下面的邮政编码以查看每个区域可用的许可证。使用过滤器缩小或扩大搜索范围，以满足您的确切业务需求。",
+  "database.subheader.title": "许可证可用性查询:",
   "database.table.legend": "表格图例",
 
 
