@@ -75,8 +75,8 @@
   "home.quote": "...致力於為所有人打造一個更加公正包容的餐飲行業生態...",
 
 
-  "map.header.text": "",
-  "map.header.title": "",
+  "map.header.text": null,
+  "map.header.title": null,
   "map.pageTitle": "地圖",
 
 
