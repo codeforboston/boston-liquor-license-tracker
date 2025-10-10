@@ -10,26 +10,34 @@ export const defaultLocale = "en-US";
 
 export type Locale = keyof typeof supportedLocales;
 
+// Locales contain null values for missing translations
+// We filter them out to allow fallback to default locale
+const getNonNullMessages = (messages: Record<string, string | null>) => {
+  return Object.fromEntries(
+    Object.entries(messages).filter(([_, value]) => value !== null)
+  )
+}
+
 // Locales supported by the app
 export const supportedLocales = {
   "en-US": {
     name: "English",
-    messages: EN_US_MESSAGES,
+    messages: getNonNullMessages(EN_US_MESSAGES),
   },
 
   "es-ES": {
     name: "Español",
-    messages: ES_ES_MESSAGES,
+    messages: getNonNullMessages(ES_ES_MESSAGES),
   },
 
   "zh-CN": {
     name: "简体中文",
-    messages: ZH_CN_MESSAGES,
+    messages: getNonNullMessages(ZH_CN_MESSAGES),
   },
 
   "zh-TW": {
     name: "繁體中文",
-    messages: ZH_TW_MESSAGES,
+    messages: getNonNullMessages(ZH_TW_MESSAGES),
   }
 };
 
