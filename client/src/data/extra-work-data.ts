@@ -16,7 +16,7 @@ export const extraWorkData: ExtraWork[] = [
     imgSrc: offsiteLogo,
     href: "https://www.getoffsite.com/",
     textColor: "dark",
-    alt: "home.extraWork.offsite",
+    alt: "home.extraWork.altTest.offsite",
   },
   {
     title: "Bar Management Bootcamp",
