@@ -5,34 +5,34 @@ const LicenseType = () => {
   return (
     <section className="license-type py-[32px] px-[64px] bg-light">
       <h2 className="font-bold text-[36px] m-0">
-        <FormattedMessage id="database.license-type.header2" />
+        <FormattedMessage id="database.licenseType.header2" />
       </h2>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.header2-paragraph" />
+        <FormattedMessage id="database.licenseType.header2-paragraph" />
       </p>
       <h3 className="font-medium text-[32px]">
-        <FormattedMessage id="database.license-type.transferable-header2" />
+        <FormattedMessage id="database.licenseType.transferable-header2" />
       </h3>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.transferable-paragraph" />
+        <FormattedMessage id="database.licenseType.transferable-paragraph" />
       </p>
       <h3 className="font-medium text-[32px]">
-        <FormattedMessage id="database.license-type.nonTransferable-header3" />
+        <FormattedMessage id="database.licenseType.nonTransferable-header3" />
       </h3>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.nonTransferable-paragraph" />
+        <FormattedMessage id="database.licenseType.nonTransferable-paragraph" />
       </p>
       <h4 className="font-medium text-[24px]">
-        <FormattedMessage id="database.license-type.law-header4" />
+        <FormattedMessage id="database.licenseType.law-header4" />
       </h4>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.law-paragraph" />
+        <FormattedMessage id="database.licenseType.law-paragraph" />
       </p>
       <h4 className="font-medium text-[24px]">
-        <FormattedMessage id="database.license-type.specialAreas-header4" />
+        <FormattedMessage id="database.licenseType.specialAreas-header4" />
       </h4>
       <p className="mt-[8px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.specialAreas-paragraph" />
+        <FormattedMessage id="database.licenseType.specialAreas-paragraph" />
       </p>
     </section>
   );
