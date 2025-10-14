@@ -23,7 +23,7 @@ export const extraWorkData: ExtraWork[] = [
     imgSrc: bootcampImg,
     href: "https://www.getoffsite.com/bootcamp",
     textColor: "dark",
-    alt: "home.extraWork.bar-management-bootcamp",
+    alt: "home.extraWork.altText.barManagementBootcamp",
   },
   {
     title: "Code for Boston",
