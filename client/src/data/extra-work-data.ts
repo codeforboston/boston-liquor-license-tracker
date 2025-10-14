@@ -30,6 +30,6 @@ export const extraWorkData: ExtraWork[] = [
     imgSrc: cfbLogo,
     href: "https://www.codeforboston.org/",
     textColor: "light",
-    alt: "home.extraWork.code-for-boston",
+    alt: "home.extraWork.altText.codeForBoston",
   },
 ];
