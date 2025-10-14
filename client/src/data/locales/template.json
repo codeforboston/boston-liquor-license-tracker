@@ -37,7 +37,7 @@
 
   "database.header.description": null,
   "database.header.nextMeeting": null,
-  "shared.databaseTitle": null,
+  "database.header.title": null,
   "database.licenseType.header2": null,
   "database.licenseType.header2-paragraph": null,
   "database.licenseType.law-header4": null,

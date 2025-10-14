@@ -37,7 +37,7 @@
 
   "database.header.description": "按波士顿各邮编区域浏览可申请的酒类许可，查看近期的许可申请动态，以及各许可类型的关键信息与申请的重要日期。",
   "database.header.nextMeeting": "下次许可委员会会议时间为：<strong>{nextMeetingDate, date, long}</strong>",
-  "shared.databaseTitle": "许可证数据库",
+  "database.header.title": "许可证数据库",
   "database.licenseType.header2": "每种许可证类型意味着什么?",
   "database.licenseType.header2-paragraph": "波士顿的酒类许可种类繁多，来源于不同的法律与法规，这在申请许可时常常会引起混淆。这些许可证的范围从全市通用的类型，到仅适用于波士顿特定区域的类型不等。以下是各类许可的基本定义，可帮助您在查找时更好地理解。",
   "database.licenseType.law-header4": "2024年新法律",

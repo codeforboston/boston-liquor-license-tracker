@@ -37,7 +37,7 @@
 
   "database.header.description": "按波士頓各郵編區域瀏覽可申請的酒類許可，查看近期的許可申請動態，以及各許可類型的關鍵信息與申請的重要日期。",
   "database.header.nextMeeting": "下次許可委員會會議時間為：<strong>{nextMeetingDate, date, long}</strong>",
-  "shared.databaseTitle": "許可證數據庫",
+  "database.header.title": "許可證數據庫",
   "database.licenseType.header2": "每種許可證類型意味著什麼?",
   "database.licenseType.header2-paragraph": "波士頓的酒類許可種類繁多，來源於不同的法律與法規，這在申請許可時常常會引起混淆。這些許可證的範圍從全市通用的類型，到僅適用於波士頓特定區域的類型不等。以下是各類許可的基本定義，可幫助您在查找時更好地理解。",
   "database.licenseType.law-header4": "2024年新法律",

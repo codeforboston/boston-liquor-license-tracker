@@ -26,7 +26,6 @@
 
 
   "shared.backToHomeButton": "BACK TO HOME",
-  "shared.databaseTitle": "License Database",
   "shared.resources": "LICENSING RESOURCES",
 
 
@@ -38,6 +37,7 @@
 
   "database.header.description": "Browse through available licenses in each of Boston's zip codes, view recent license applications as well as important information regarding each license type and important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
+  "database.header.title": "License Database",
   "database.licenseType.header2": "What does each type of license mean?",
   "database.licenseType.header2-paragraph": "Boston has several different types of licenses from a variety of different laws and statutes, which can lead to some confusion when applying for a license. These licenses can range from those that apply city-wide to licenses for specific areas of Boston. Below are some basic definitions of each license type to aid you in your search.",
   "database.licenseType.law-header4": "New 2024 Law",

@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <header>
       <PageHeader
-        headerTitle={<FormattedMessage id="shared.databaseTitle" />}
+        headerTitle={<FormattedMessage id="database.header.title" />}
         headerText={<FormattedMessage id="database.header.description" />}
       >
         {getNextMeetingText(nextMeetingDate)}
