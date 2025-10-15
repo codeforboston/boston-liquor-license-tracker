@@ -1,6 +1,4 @@
 {
-  "header.map": null,
-  "header.database": null,
   "header.logo": null,
   "header.language": null,
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": null,
-  "shared.resources": null,
+  "shared.map.capitalized": null,
+  "shared.database.capitalized": null,
+  "shared.resources.capitalized": null,
 
 
   "comingSoon.backgroundImageAlt": null,

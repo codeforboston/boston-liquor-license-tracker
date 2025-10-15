@@ -1,6 +1,4 @@
 {
-  "header.map": "MAP",
-  "header.database": "LICENSE DATABASE",
   "header.logo": "Logo",
   "header.language": "Language",
 
@@ -26,7 +24,10 @@
 
 
   "shared.backToHomeButton": "BACK TO HOME",
-  "shared.resources": "LICENSING RESOURCES",
+  "shared.databaseTitle": "License Database",
+  "shared.database.capitalized": "LICENSE DATABASE",
+  "shared.map.capitalized": "MAP",
+  "shared.resources.capitalized": "LICENSING RESOURCES",
 
 
   "comingSoon.backgroundImageAlt": "Rack of wine glasses hanging waiting to be used",

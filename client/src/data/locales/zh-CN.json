@@ -1,6 +1,4 @@
 {
-  "header.map": "地图",
-  "header.database": "许可证数据库",
   "header.logo": "Logo",
   "header.language": "语言",
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": "返回首页",
-  "shared.resources": "许可资源",
+  "shared.map.capitalized": "地图",
+  "shared.database.capitalized": "许可证数据库",
+  "shared.resources.capitalized": "许可资源",
 
 
   "comingSoon.backgroundImageAlt": "悬挂酒杯、待用的酒杯架",

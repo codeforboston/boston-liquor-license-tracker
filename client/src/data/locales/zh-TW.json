@@ -1,6 +1,4 @@
 {
-  "header.map": "地圖",
-  "header.database": "許可證數據庫",
   "header.logo": "Logo",
   "header.language": "語言",
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": "返回首頁",
-  "shared.resources": "許可資源",
+  "shared.database.capitalized": "許可證數據庫",
+  "shared.map.capitalized": "地圖",
+  "shared.resources.capitalized": "許可資源",
 
 
   "comingSoon.backgroundImageAlt": "懸掛酒杯、待用的酒杯架",

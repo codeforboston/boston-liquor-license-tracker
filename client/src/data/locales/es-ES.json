@@ -1,6 +1,4 @@
 {
-  "header.map": "MAPA",
-  "header.database": "BASE DE DATOS DE LICENCIAS",
   "header.logo": "Logo",
   "header.language": "Lenguaje",
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": "VOLVER AL INICIO",
-  "shared.resources": "RECURSOS DE LICENCIAS",
+  "shared.database.capitalized": "BASE DE DATOS DE LICENCIAS",
+  "shared.map.capitalized": "MAPA",
+  "shared.resources.capitalized": "RECURSOS DE LICENCIAS",
 
 
   "home.aboutUs.title": "Quiénes Somos:",
