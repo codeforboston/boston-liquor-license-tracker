@@ -1,7 +1,6 @@
 import {  useState } from 'react'
 import { Table, TableHeader, Column, Row, TableBody, Cell } from 'react-aria-components'
 
-
 export interface RowWithSubRows {
   rowData: [string, ...string[]]
   subRowData?: [string, ...string[]][]
@@ -23,13 +22,13 @@ const StyledRow = ({rowData, subRowData}: RowWithSubRows) => {
   return (
     <>
       <Row
-        className="bg-ui border-b-[1px] border-border "
+        className={`bg-ui border-b-[1px] border-border `}
         onAction={() => setSubRowsVisible(prev => !prev)}
       >
         {rowData.map((cell, i) => (
           <Cell
             key={i}
-            className={`${i === 0 ? "text-left" : "text-right"} px-[16px] py-[12px] `}
+            className={`${i === 0 ? "text-left" : "text-right"} ${cell === '_' ? 'text-transparent' : ''} px-[16px] py-[12px] `}
           >
             {cell}
           </Cell>
@@ -50,7 +49,7 @@ const StyledRow = ({rowData, subRowData}: RowWithSubRows) => {
 
 const StyledSubRow = ({subRowData}: SubRowProps) => {
   return (
-    <Row className='bg-light border-b-[1px] border-border'>
+    <Row className={`bg-light border-b-[1px] border-border `}>
       {subRowData.map((cell, i) => (
         <Cell
           key={i}
@@ -65,13 +64,13 @@ const StyledSubRow = ({subRowData}: SubRowProps) => {
 
 const CustomTable = ({ariaLabel, tableData, headers}: CustomTableProps) => {
   return (
-    <Table aria-label={ariaLabel} className={"w-[1400px]"}>
-      <TableHeader className=" bg-dark text-light">
+    <Table aria-label={ariaLabel} className={"w-[1400px] table-fixed"}>
+      <TableHeader className={`bg-dark text-light `}>
         {headers.map((header, i) => (
           <Column 
             key={header} 
             isRowHeader
-            className={`px-[16px] py-[12px] ${i === 0 ? "w-1/3 text-left" : "text-right"}`} 
+            className={`px-[16px] py-[12px] ${i === 0 ? "w-1/5 text-left" : "text-right"} `} 
           >
             {header}
           </Column>
