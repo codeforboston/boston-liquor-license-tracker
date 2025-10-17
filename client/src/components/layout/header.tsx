@@ -46,7 +46,7 @@ const Header = () => {
             <img
               className={styles.logoImage}
               src={logoSrc}
-              alt={intl.formatMessage({ id: "header.logo" })}
+              alt={intl.formatMessage({ id: "header.logo-altText" })}
             />
           </Link>
 

@@ -12,7 +12,7 @@ const Hero = () => {
       <img
         src={logo}
         className="w-2xl lg:w-5xl"
-        alt={intl.formatMessage({ id: "header.logo" })}
+        alt={intl.formatMessage({ id: "header.logo-altText" })}
       />
       <h2 className="text-white text-2xl md:text-3xl lg:text-5xl w-full font-bold">
         <FormattedMessage
