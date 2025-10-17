@@ -1,7 +1,5 @@
 {
-  "header.map": "地圖",
-  "header.database": "許可證數據庫",
-  "header.logo": "Logo",
+  "header.logo-altText": "License to Succeed Logo",
   "header.language": "語言",
 
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": "返回首頁",
-  "shared.resources": "許可資源",
+  "shared.database.capitalized": "許可證數據庫",
+  "shared.map.capitalized": "地圖",
+  "shared.resources.capitalized": "許可資源",
 
 
   "comingSoon.backgroundImageAlt": "懸掛酒杯、待用的酒杯架",
@@ -38,16 +38,18 @@
   "database.header.description": "按波士頓各郵編區域瀏覽可申請的酒類許可，查看近期的許可申請動態，以及各許可類型的關鍵信息與申請的重要日期。",
   "database.header.nextMeeting": "下次許可委員會會議時間為：<strong>{nextMeetingDate, date, long}</strong>",
   "database.header.title": "許可證數據庫",
-  "database.license-type.header2": "每種許可證類型意味著什麼?",
-  "database.license-type.header2-paragraph": "波士頓的酒類許可種類繁多，來源於不同的法律與法規，這在申請許可時常常會引起混淆。這些許可證的範圍從全市通用的類型，到僅適用於波士頓特定區域的類型不等。以下是各類許可的基本定義，可幫助您在查找時更好地理解。",
-  "database.license-type.law-header4": "2024年新法律",
-  "database.license-type.law-paragraph": "2024年，波士頓市頒布了一項新法律，以擴大市內多個地區獲得酒類許可證的機會。根據該法律，未來三年內，市政府每年將在波士頓的13個郵政編碼區域中，各發放5份新的店內酒類許可證。",
-  "database.license-type.nonTransferable-header3": "不可轉讓許可證（Non-Transferable Licenses）",
-  "database.license-type.nonTransferable-paragraph": "某些許可證受到限制，不得轉讓至其法定指定區域之外。此類許可證有多種形式，其中最典型的是依據 2024 年法律設立的、分配至若干郵政編碼區域的許可證。",
-  "database.license-type.specialAreas-header4": "波士頓特殊區域",
-  "database.license-type.specialAreas-paragraph": "2024年法律的另一項規定是在布萊頓（Brighton）的橡樹廣場（Oak Square）設立專屬類型的許可證。過去還曾有數項法律，為波士頓市內特定區域單獨劃定許可名額。",
-  "database.license-type.transferable-header2": "可轉讓許可證（Transferable Licenses）",
-  "database.license-type.transferable-paragraph": "這類許可證可以自由轉讓給其他商家，或轉移至波士頓市內的其他區域。波士頓的大多數許可證都屬於此類，且所有在 2006年之前簽發的許可證均歸於此類。",
+
+  "database.licenseTerminology.title": null,
+  "database.licenseTerminology.description": null,
+  "database.licenseTerminology.allAlcohol.title": null,
+  "database.licenseTerminology.allAlcohol.description": null,
+  "database.licenseTerminology.beerAndWine.title": null,
+  "database.licenseTerminology.beerAndWine.description": null,
+  "database.licenseTerminology.nonTransferable.title": null,
+  "database.licenseTerminology.nonTransferable.description": null,
+  "database.licenseTerminology.transferable.title": null,
+  "database.licenseTerminology.transferable.description": null,
+
   "database.pageTitle": "許可證數據庫",
   "database.subheader.description": "選擇下面的郵政編碼以查看每個區域可用的許可證。使用過濾器縮小或擴大搜索範圍，以滿足您的確切業務需求。",
   "database.subheader.title": "許可證可用性查詢:",
@@ -62,10 +64,10 @@
   "home.caseStudy.part2": "波士頓近期對酒類許可制度的改革，開始改善獲取酒類許可證的途徑。2024年通過的一項新法規為部分社區設立了專屬酒類許可證，讓本地創業者更有機會開設餐廳和酒吧。但這僅僅是開始——目前要追蹤可申請的酒類許可證依舊複雜，對許多波士頓社區來說仍然難以觸及。",
   "home.caseStudy.part3": "通過這個網站，我們致力於為所有人創造一個更公平的餐飲生態系統，讓每個人都能方便地了解並追蹤可供申請的各類酒類許可證。",
   "home.caseStudy.title": "這為什麼重要?",
-  "home.extra-work.bar-management-bootcamp": "數名學生圍坐在酒吧周圍，聽取訓練營講師的講解",
-  "home.extra-work.code-for-boston": "Code for Boston的Logo，幾何燈籠形狀，代碼括號代替燈光，旁邊有\"Code for Boston\"的文字",
-  "home.extra-work.h2": "了解我們更多的工作!",
-  "home.extra-work.offsite": "Off Site的Logo，簡單的Logo類型，採用粗體無襯線字體",
+  "home.extraWork.altText.barManagementBootcamp": "數名學生圍坐在酒吧周圍，聽取訓練營講師的講解",
+  "home.extraWork.altText.codeForBoston": "Code for Boston的Logo，幾何燈籠形狀，代碼括號代替燈光，旁邊有\"Code for Boston\"的文字",
+  "home.extraWork.title": "了解我們更多的工作!",
+  "home.extraWork.altTest.offsite": "Off Site的Logo，簡單的Logo類型，採用粗體無襯線字體",
   "home.hero.heading": "波士頓的酒類許可制度可能令人困惑。我們將協助您順利應對相關流程，確保您的業務取得成功。",
   "home.hero.photoCredit": "照片由{photographerLink}提供，發佈於{platformLink}",
   "home.hero.title": "高檔酒吧，採用復古工業風燈泡裝飾",

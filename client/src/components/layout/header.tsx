@@ -46,22 +46,22 @@ const Header = () => {
             <img
               className={styles.logoImage}
               src={logoSrc}
-              alt={intl.formatMessage({ id: "header.logo" })}
+              alt={intl.formatMessage({ id: "header.logo-altText" })}
             />
           </Link>
 
           <div className="hidden md:flex items-center w-full">
             <Spacer />
             <Link to="/maps">
-              <FormattedMessage id="header.map" />
+              <FormattedMessage id="shared.map.capitalized" />
             </Link>
             <Spacer />
             <Link to="/database">
-              <FormattedMessage id="header.database" />
+              <FormattedMessage id="shared.database.capitalized" />
             </Link>
             <Spacer />
             <Link to="/resources">
-              <FormattedMessage id="shared.resources" />
+              <FormattedMessage id="shared.resources.capitalized" />
             </Link>
 
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
@@ -87,15 +87,15 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden px-4 bg-dark">
           <Link to="/maps" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="header.map" />
+            <FormattedMessage id="shared.map.capitalized" />
           </Link>
           <LineSpacer />
           <Link to="/database" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="header.database" />
+            <FormattedMessage id="shared.database.capitalized" />
           </Link>
           <LineSpacer />
           <Link to="/resources" className="py-[8px] px-[24px] block">
-            <FormattedMessage id="shared.resources" />
+            <FormattedMessage id="shared.resources.capitalized" />
           </Link>
           <div className="py-[16px] px-[24px] pb-[8px] ms-auto">
             <img

@@ -24,7 +24,7 @@ const Footer = () => {
           <img
                 className={styles.logoImage}
                 src={logoDefault}
-                alt={intl.formatMessage({ id: "header.logo" })}
+                alt={intl.formatMessage({ id: "header.logo-altText" })}
           />
           <p className={styles.disclaimerTitle}>
             <FormattedMessage id="footer.disclaimerTitle" />

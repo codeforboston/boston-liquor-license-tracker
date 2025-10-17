@@ -1,7 +1,5 @@
 {
-  "header.map": "MAPA",
-  "header.database": "BASE DE DATOS DE LICENCIAS",
-  "header.logo": "Logo",
+  "header.logo-altText": "License to Succeed Logo",
   "header.language": "Lenguaje",
 
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": "VOLVER AL INICIO",
-  "shared.resources": "RECURSOS DE LICENCIAS",
+  "shared.database.capitalized": "BASE DE DATOS DE LICENCIAS",
+  "shared.map.capitalized": "MAPA",
+  "shared.resources.capitalized": "RECURSOS DE LICENCIAS",
 
 
   "home.aboutUs.title": "Quiénes Somos:",
@@ -37,10 +37,10 @@
   "home.caseStudy.part2": "Recientemente se han hecho cambios en el sistema de licencias de Boston que mejoran el acceso a las licencias. Una nueva ley aprobada en 2024 busca otorgar licencias a partes específicas de la ciudad y permitir a la gente de la zona abrir nuevos negocios. Pero esto es sólo el principio. Encontrar licencias disponibles aún es difícil, y a menudo fuera del alcance para algunos miembros de la comunidad de Boston.",
   "home.caseStudy.part3": "Con este sitio estamos trabajando en crear un ecosistema en restauración más equitativo para todos, y permitirte buscar y entender qué licencias hay disponibles para ti.",
   "home.caseStudy.title": "¿Por qué es importante esto?",
-  "home.extra-work.bar-management-bootcamp": "Varios estudiantes sentados en una barra escuchando al presentador del bootcamp",
-  "home.extra-work.code-for-boston": "Logo de Code for Boston, un quinqué de líneas simples con un paréntesis angular en lugar de la llama, con \"Code for Boston\" escrito al lado derecho",
-  "home.extra-work.h2": "¡Echa un vistazo a nuestros otros proyectos!",
-  "home.extra-work.offsite": "Logo de Off Site, un logo simple en una tipografía sans serif en negrita",
+  "home.extraWork.altText.barManagementBootcamp": "Varios estudiantes sentados en una barra escuchando al presentador del bootcamp",
+  "home.extraWork.altText.codeForBoston": "Logo de Code for Boston, un quinqué de líneas simples con un paréntesis angular en lugar de la llama, con \"Code for Boston\" escrito al lado derecho",
+  "home.extraWork.title": "¡Echa un vistazo a nuestros otros proyectos!",
+  "home.extraWork.altTest.offsite": "Logo de Off Site, un logo simple en una tipografía sans serif en negrita",
   "home.hero.heading": "El sistema de licencias para servir bebidas alcohólicas de Boston puede resultar confuso. Estamos aquí para guiarte y asegurar que tu negocio tenga éxito.",
   "home.hero.photoCredit": "Foto tomada por {photographerLink} en {platformLink}",
   "home.hero.title": "Bar exclusivo con bombillas de estilo industrial como decoración",

@@ -5,34 +5,34 @@ const LicenseType = () => {
   return (
     <section className="license-type py-[32px] px-[64px] bg-light">
       <h2 className="font-bold text-[36px] m-0">
-        <FormattedMessage id="database.license-type.header2" />
+        <FormattedMessage id="database.licenseTerminology.header" />
       </h2>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.header2-paragraph" />
-      </p>
-      <h3 className="font-medium text-[32px]">
-        <FormattedMessage id="database.license-type.transferable-header2" />
-      </h3>
-      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.transferable-paragraph" />
-      </p>
-      <h3 className="font-medium text-[32px]">
-        <FormattedMessage id="database.license-type.nonTransferable-header3" />
-      </h3>
-      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.nonTransferable-paragraph" />
+        <FormattedMessage id="database.licenseTerminology.description" />
       </p>
       <h4 className="font-medium text-[24px]">
-        <FormattedMessage id="database.license-type.law-header4" />
+        <FormattedMessage id="database.licenseTerminology.allAlcohol.title" />
       </h4>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.law-paragraph" />
+        <FormattedMessage id="database.licenseTerminology.allAlcohol.description" />
       </p>
       <h4 className="font-medium text-[24px]">
-        <FormattedMessage id="database.license-type.specialAreas-header4" />
+        <FormattedMessage id="database.licenseTerminology.wineAndBeer.title" />
       </h4>
-      <p className="mt-[8px] font-normal text-[16px]">
-        <FormattedMessage id="database.license-type.specialAreas-paragraph" />
+      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
+        <FormattedMessage id="database.licenseTerminology.wineAndBeer.description" />
+      </p>
+      <h4 className="font-medium text-[24px]">
+        <FormattedMessage id="database.licenseTerminology.transferable.title" />
+      </h4>
+      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
+        <FormattedMessage id="database.licenseTerminology.transferable.description" />
+      </p>
+      <h4 className="font-medium text-[24px]">
+        <FormattedMessage id="database.licenseTerminology.nonTransferable.title" />
+      </h4>
+      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
+        <FormattedMessage id="database.licenseTerminology.nonTransferable.description" />
       </p>
     </section>
   );

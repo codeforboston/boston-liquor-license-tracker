@@ -1,7 +1,5 @@
 {
-  "header.map": "地图",
-  "header.database": "许可证数据库",
-  "header.logo": "Logo",
+  "header.logo-altText": "License to Succeed Logo",
   "header.language": "语言",
 
 
@@ -26,7 +24,9 @@
 
 
   "shared.backToHomeButton": "返回首页",
-  "shared.resources": "许可资源",
+  "shared.database.capitalized": "许可证数据库",
+  "shared.map.capitalized": "地图",
+  "shared.resources.capitalized": "许可资源",
 
 
   "comingSoon.backgroundImageAlt": "悬挂酒杯、待用的酒杯架",
@@ -38,16 +38,18 @@
   "database.header.description": "按波士顿各邮编区域浏览可申请的酒类许可，查看近期的许可申请动态，以及各许可类型的关键信息与申请的重要日期。",
   "database.header.nextMeeting": "下次许可委员会会议时间为：<strong>{nextMeetingDate, date, long}</strong>",
   "database.header.title": "许可证数据库",
-  "database.license-type.header2": "每种许可证类型意味着什么?",
-  "database.license-type.header2-paragraph": "波士顿的酒类许可种类繁多，来源于不同的法律与法规，这在申请许可时常常会引起混淆。这些许可证的范围从全市通用的类型，到仅适用于波士顿特定区域的类型不等。以下是各类许可的基本定义，可帮助您在查找时更好地理解。",
-  "database.license-type.law-header4": "2024年新法律",
-  "database.license-type.law-paragraph": "2024年，波士顿市颁布了一项新法律，以扩大市内多个地区获得酒类许可证的机会。根据该法律，未来三年内，市政府每年将在波士顿的13个邮政编码区域中，各发放5份新的店内酒类许可证。",
-  "database.license-type.nonTransferable-header3": "不可转让许可证（Non-Transferable Licenses）",
-  "database.license-type.nonTransferable-paragraph": "某些许可证受到限制，不得转让至其法定指定区域之外。此类许可证有多种形式，其中最典型的是依据 2024 年法律设立的、分配至若干邮政编码区域的许可证。",
-  "database.license-type.specialAreas-header4": "波士顿特殊区域",
-  "database.license-type.specialAreas-paragraph": "2024年法律的另一项规定是在布莱顿（Brighton）的橡树广场（Oak Square）设立专属类型的许可证。过去还曾有数项法律，为波士顿市内特定区域单独划定许可名额。",
-  "database.license-type.transferable-header2": "可转让许可证（Transferable Licenses）",
-  "database.license-type.transferable-paragraph": "这类许可证可以自由转让给其他商家，或转移至波士顿市内的其他区域。波士顿的大多数许可证都属于此类，且所有在 2006年之前签发的许可证均归于此类。",
+
+  "database.licenseTerminology.title": null,
+  "database.licenseTerminology.description": null,
+  "database.licenseTerminology.allAlcohol.title": null,
+  "database.licenseTerminology.allAlcohol.description": null,
+  "database.licenseTerminology.beerAndWine.title": null,
+  "database.licenseTerminology.beerAndWine.description": null,
+  "database.licenseTerminology.nonTransferable.title": null,
+  "database.licenseTerminology.nonTransferable.description": null,
+  "database.licenseTerminology.transferable.title": null,
+  "database.licenseTerminology.transferable.description": null,
+
   "database.pageTitle": "许可证数据库",
   "database.subheader.description": "选择下面的邮政编码以查看每个区域可用的许可证。使用过滤器缩小或扩大搜索范围，以满足您的确切业务需求。",
   "database.subheader.title": "许可证可用性查询:",
@@ -62,10 +64,10 @@
   "home.caseStudy.part2": "波士顿近期对酒类许可制度的改革，开始改善获取酒类许可证的途径。2024年通过的一项新法规为部分社区设立了专属酒类许可证，让本地创业者更有机会开设餐厅和酒吧。但这仅仅是开始——目前要追踪可申请的酒类许可证依旧复杂，对许多波士顿社区来说仍然难以触及。",
   "home.caseStudy.part3": "通过这个网站，我们致力于为所有人创造一个更公平的餐饮生态系统，让每个人都能方便地了解并追踪可供申请的各类酒类许可证。",
   "home.caseStudy.title": "这为什么重要?",
-  "home.extra-work.h2": "了解我们更多的工作!",
-  "home.extra-work.bar-management-bootcamp": "数名学生围坐在酒吧周围，听取训练营讲师的讲解",
-  "home.extra-work.code-for-boston": "Code for Boston的Logo，几何灯笼形状，代码括号代替灯光，旁边有\"Code for Boston\"的文字",
-  "home.extra-work.offsite": "Off Site的Logo，简单的Logo类型，采用粗体无衬线字体",
+  "home.extraWork.title": "了解我们更多的工作!",
+  "home.extraWork.altText.barManagementBootcamp": "数名学生围坐在酒吧周围，听取训练营讲师的讲解",
+  "home.extraWork.altText.codeForBoston": "Code for Boston的Logo，几何灯笼形状，代码括号代替灯光，旁边有\"Code for Boston\"的文字",
+  "home.extraWork.altTest.offsite": "Off Site的Logo，简单的Logo类型，采用粗体无衬线字体",
   "home.hero.heading": "波士顿的酒类许可制度可能令人困惑。我们将协助您顺利应对相关流程，确保您的业务取得成功。",
   "home.hero.photoCredit": "照片由{photographerLink}提供，发布于{platformLink}",
   "home.hero.title": "高档酒吧，采用复古工业风灯泡装饰",
