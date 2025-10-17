@@ -13,7 +13,7 @@ const LicenseType = () => {
       <h4 className="font-medium text-[24px]">
         <FormattedMessage id="database.licenseTerminology.allAlcohol.title" />
       </h4>
-      <p className="mt-[8px] font-normal text-[16px]">
+      <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage id="database.licenseTerminology.allAlcohol.description" />
       </p>
       <h4 className="font-medium text-[24px]">
@@ -22,15 +22,15 @@ const LicenseType = () => {
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage id="database.licenseTerminology.wineAndBeer.description" />
       </p>
-      <h3 className="font-medium text-[32px]">
+      <h4 className="font-medium text-[24px]">
         <FormattedMessage id="database.licenseTerminology.transferable.title" />
-      </h3>
+      </h4>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage id="database.licenseTerminology.transferable.description" />
       </p>
-      <h3 className="font-medium text-[32px]">
+      <h4 className="font-medium text-[24px]">
         <FormattedMessage id="database.licenseTerminology.nonTransferable.title" />
-      </h3>
+      </h4>
       <p className="mt-[8px] mb-[16px] font-normal text-[16px]">
         <FormattedMessage id="database.licenseTerminology.nonTransferable.description" />
       </p>
