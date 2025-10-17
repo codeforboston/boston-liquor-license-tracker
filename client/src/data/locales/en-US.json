@@ -63,7 +63,7 @@
   "database.licenseTerminology.transferable.title": "Transferable:",
   "database.licenseTerminology.transferable.description": "Boston’s default liquor license as such they are usable throughout the city and can be transferred between business and ownership when no longer in use.",
   "database.licenseTerminology.nonTransferable.title": "Non Transferable:",
-  "database.licenseTerminology.nonTransferable.description": "Boston's default liquor license as such they are usable throughout the city and can be transferred between business and ownership when no longer in use.",
+  "database.licenseTerminology.nonTransferable.description": "Created by special legislations, these licenses are beholden to the limitations of their respective legislation. They are non-transferable, meaning that should a business close or ownership change, they revert back to the City.",
   "database.licenseTerminology.allAlcohol.title": "All Alcohol Licenses:",
   "database.licenseTerminology.allAlcohol.description": "Mostly covered by the 2024 licenses created by the new law, these licenses cannot be transferred outside of the Zip Code they were created for. Leaving them to go back into their community when no longer in use.",
 
