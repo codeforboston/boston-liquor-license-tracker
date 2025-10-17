@@ -64,19 +64,6 @@
   database.licenseTerminology.transferable.description": null,
   database.licenseTerminology.nonTransferable.title": null,
   database.licenseTerminology.nonTransferable.description": null,
-  database.licenseTerminology.allAlcohol.title": null,
-  database.licenseTerminology.allAlcohol.description": null,
-
-  database.licenseType.header2": null,
-  database.licenseType.header2-paragraph": null,
-  database.licenseType.law-header4": null,
-  database.licenseType.law-paragraph": null,
-  database.licenseType.nonTransferable-header3": null,
-  database.licenseType.nonTransferable-paragraph": null,
-  database.licenseType.specialAreas-header4": null,
-  database.licenseType.specialAreas-paragraph": null,
-  database.licenseType.transferable-header2": null,
-  database.licenseType.transferable-paragraph": null,
 
   database.pageTitle": null,
 
