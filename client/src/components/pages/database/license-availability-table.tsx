@@ -1,4 +1,3 @@
-import mockAvailabilityData from './mock-availability-data';
 import licenseData from '../../../data/licenses.json';
 import { eligibleBostonZipcodes } from '@/services/data-interface/data-interface';
 import CustomTable from "@components/ui/table";
