@@ -4,7 +4,7 @@ import { eligibleBostonZipcodes } from '@/services/data-interface/data-interface
 import CustomTable from "@components/ui/table";
 import {useState, useEffect} from 'react';
 import { validateBusinessLicense, getAvailableLicensesByZipcode, BusinessLicense, EligibleBostonZipcode } from '@/services/data-interface/data-interface';
-import { MAX_ALL_ALC_PER_ZIP, MAX_AVAILABLE_PER_ZIP, MAX_BEER_WINE_PER_ZIP, MAX_ALL_ALC_LICENSES, MAX_LICENSES_AVAILABLE, MAX_BEER_WINE_LICENSES } from '@/services/data-interface/data-interface';
+import { MAX_ALL_ALC_PER_ZIP, MAX_AVAILABLE_PER_ZIP, MAX_BEER_WINE_PER_ZIP } from '@/services/data-interface/data-interface';
 import { RowWithSubRows } from '@components/ui/table';
 
 const LicenseAvailabilityTable = () => {
