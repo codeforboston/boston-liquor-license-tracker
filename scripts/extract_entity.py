@@ -3,6 +3,7 @@ import fitz
 import json
 import sys
 import re
+from pathlib import Path
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from typing import List, Dict, Optional, Any, Union
@@ -175,7 +176,7 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     a seeding step and that each entity already contains its own `index`.
     """
     pdf_folder: str = os.getcwd()
-    output_file: str = os.path.join(pdf_folder, "../data/application_data.json")
+    output_file: str = os.path.join(pdf_folder, "../client/src/data/application_data.json")
     existing_data: List[Dict[str, Optional[str]]] = []
 
     if os.path.exists(output_file):
