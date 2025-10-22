@@ -134,7 +134,7 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
   }
 
   const validatedBusinessLicense: BusinessLicense = {
-      index: Number(obj.index),
+    index: Number(obj.index),
     entity_number: String(obj.entity_number),
     business_name: String(obj.business_name),
     dba_name: obj.dba_name === null ? null : String(obj.dba_name),
