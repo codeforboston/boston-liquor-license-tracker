@@ -13,6 +13,7 @@ export const MAX_ALL_ALC_PER_ZIP = 9;
 export const MAX_BEER_WINE_PER_ZIP = 6;
 
 export interface BusinessLicense {
+  index: number; 
   entity_number: string;
   business_name: string;
   dba_name: string | null;
@@ -21,6 +22,8 @@ export interface BusinessLicense {
   license_number: string;
   status: string | null;
   alcohol_type: string;
+  minutes_date: string,
+  application_expiration_date: string,
   file_name: string;
 }
 
@@ -78,6 +81,10 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
 
   const obj = license as Record<string, unknown>;
 
+  if (typeof obj.index !== "number") {
+      errors.index = "Must be a number"
+  }
+
   if (typeof obj.entity_number !== "string") {
     errors.entity_number = "Must be a string";
   }
@@ -110,6 +117,14 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
     errors.alcohol_type = "Must be a string";
   }
 
+  if (typeof obj.minutes_date !== "string") {
+      errors.minutes_date = "Must be a string"
+  }
+
+  if (typeof obj.application_expiration_date !== "string") {
+      errors.application_expiration_date = "Must be a string"
+  }
+
   if (typeof obj.file_name !== "string") {
     errors.file_name = "Must be a string";
   }
@@ -119,6 +134,7 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
   }
 
   const validatedBusinessLicense: BusinessLicense = {
+    index: Number(obj.index),
     entity_number: String(obj.entity_number),
     business_name: String(obj.business_name),
     dba_name: obj.dba_name === null ? null : String(obj.dba_name),
@@ -127,6 +143,8 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
     license_number: String(obj.license_number),
     status: obj.status === null ? null : String(obj.status),
     alcohol_type: String(obj.alcohol_type),
+    minutes_date: String(obj.minutes_date),
+    application_expiration_date: String(obj.application_expiration_date),
     file_name: String(obj.file_name),
   };
 

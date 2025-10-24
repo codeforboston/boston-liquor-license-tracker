@@ -10,9 +10,6 @@ import {
 
 // INFO on these constants in the data-interface.ts file
 import {
-  MAX_LICENSES_AVAILABLE,
-  MAX_BEER_WINE_LICENSES,
-  MAX_ALL_ALC_LICENSES,
   MAX_AVAILABLE_PER_ZIP,
   MAX_ALL_ALC_PER_ZIP,
   MAX_BEER_WINE_PER_ZIP,
@@ -29,14 +26,14 @@ describe("Testing the data access interface", () => {
       const mockData = filteredMockData;
 
       expect(getAvailableLicensesByZipcode(mockData, "02122")).toStrictEqual({
-        allAlcoholAvailable: MAX_ALL_ALC_PER_ZIP - 0,
-        beerWineAvailable: MAX_BEER_WINE_PER_ZIP - 2,
-        totalAvailable: MAX_AVAILABLE_PER_ZIP - 2,
+        allAlcoholAvailable: 8,
+        beerWineAvailable: 2,
+        totalAvailable: 10,
       });
       expect(getAvailableLicensesByZipcode(mockData, "02130")).toStrictEqual({
-        allAlcoholAvailable: MAX_ALL_ALC_PER_ZIP - 2,
-        beerWineAvailable: MAX_BEER_WINE_PER_ZIP - 3,
-        totalAvailable: MAX_AVAILABLE_PER_ZIP - 5,
+        allAlcoholAvailable: 4,
+        beerWineAvailable: 1,
+        totalAvailable: 5,
       });
     });
     test("should handle empty data", () => {
@@ -83,7 +80,7 @@ describe("Testing the data access interface", () => {
   describe("getNumLicenses", () => {
     test("return number of all city-wide licenses (all zipcodes & all alcohol types)", () => {
       const mockData = filteredMockData;
-      const expected = MAX_LICENSES_AVAILABLE - 32;
+      const expected = 126;
       expect(getNumOfLicenses(mockData)).toBe(expected);
     });
 
@@ -94,12 +91,12 @@ describe("Testing the data access interface", () => {
         getNumOfLicenses(mockData, {
           filterByAlcoholType: "Wines and Malt Beverages",
         })
-      ).toBe(MAX_BEER_WINE_LICENSES - 12);
+      ).toBe(58);
       expect(
         getNumOfLicenses(mockData, {
           filterByAlcoholType: "All Alcoholic Beverages",
         })
-      ).toBe(MAX_ALL_ALC_LICENSES - 35);
+      ).toBe(34);
     });
 
     test("returns number of licenses by both zip code & alcohol type", () => {
@@ -109,19 +106,19 @@ describe("Testing the data access interface", () => {
           filterByZipcode: "02122",
           filterByAlcoholType: "Wines and Malt Beverages",
         })
-      ).toBe(MAX_BEER_WINE_PER_ZIP - 2);
+      ).toBe(2);
       expect(
         getNumOfLicenses(mockData, {
           filterByZipcode: "02130",
           filterByAlcoholType: "All Alcoholic Beverages",
         })
-      ).toBe(MAX_ALL_ALC_PER_ZIP - 2);
+      ).toBe(4);
       expect(
         getNumOfLicenses(mockData, {
           filterByZipcode: "02130",
           filterByAlcoholType: "Wines and Malt Beverages",
         })
-      ).toBe(MAX_BEER_WINE_PER_ZIP - 3);
+      ).toBe(1);
     });
   });
 });
