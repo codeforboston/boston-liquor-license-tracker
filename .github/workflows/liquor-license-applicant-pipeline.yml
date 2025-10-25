@@ -138,4 +138,5 @@ jobs:
           committer: Github Actions <hello@codeforboston.org>
           author: Github Actions <hello@codeforboston.org>
           add-paths: |
-            data/*.json
+            client/src/data/last_processed_date.json
+            client/src/data/licenses.json
