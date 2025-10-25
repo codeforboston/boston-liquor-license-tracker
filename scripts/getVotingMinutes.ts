@@ -157,7 +157,7 @@ async function getLatestDate(url: string): Promise<Date| null> {
     try{
       const lastProcessedDate = await getWrittenLatestDate()
       const unprocessedDates = pastDates.filter((date) => date > lastProcessedDate)
-
+      console.log("unprocessed dates are ",unprocessedDates);
       if (unprocessedDates.length === 0) {
         console.log("No new date found to add entities")
         return null // Return null instead of process.exit(0)
