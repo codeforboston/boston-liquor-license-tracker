@@ -143,13 +143,18 @@ async function getLatestDate(url: string): Promise<Date| null> {
       .split("\n")
       .filter((dateString) => !!dateString && dateString.includes("Voting"))
       .map((dateString) => dateString.replace(/\(Voting\)/g, "").trim());
-
+    
+    console.log("current Date Strings");
+    console.log(currentDateStrings)
     const meetingDates = currentDateStrings.map(
       (dateString) => new Date(`${dateString}, ${currentYear}`)
     );
 
+   
     // Only consider meetings that have already happened
     const pastDates = meetingDates.filter((date) => date <= currentDate)
+    console.log("pastDates are");
+    console.log(pastDates);
     if (pastDates.length === 0) {
       console.log("No past meeting dates found")
       return null
