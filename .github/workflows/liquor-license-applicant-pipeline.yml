@@ -22,8 +22,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "codeforboston/boston-liquor-license-tracker"
-          ref: "main"
+          repository: "abhishek98-force/boston-liquor-license-tracker"
+          ref: "data_cleanup"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -82,8 +82,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "codeforboston/boston-liquor-license-tracker"
-          ref: "main"
+          repository: "abhishek98-force/boston-liquor-license-tracker"
+          ref: "data_cleanup"
 
       - name: Setup python 
         uses: actions/setup-python@v5
