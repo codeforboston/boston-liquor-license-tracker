@@ -142,7 +142,14 @@ async function getLatestDate(url: string): Promise<Date| null> {
       .text()
       .split("\n")
       .filter((dateString) => !!dateString && dateString.includes("Voting"))
-      .map((dateString) => dateString.replace(/\(Voting\)/g, "").trim());
+       .map((dateString) => {
+        // Clean the date string more thoroughly
+        return dateString
+          .replace(/\(Voting\)/g, "")
+          .replace(/\s*-\s*\d+\s*p\.m\.?/gi, "") // Remove "- 2 p.m." part
+          .replace(/\s+/g, " ") // Normalize whitespace
+          .trim();
+      });
     
     console.log("current Date Strings");
     console.log(currentDateStrings)
