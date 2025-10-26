@@ -1,6 +1,6 @@
 /** The styles in this file override MapLibre defaults */
 .maplibregl-ctrl-group {
-  background-color: var(--color-background-dark);
+  background-color: var(--color-gray-light-1);
 }
 
 .maplibregl-ctrl-group:not(:empty) {
