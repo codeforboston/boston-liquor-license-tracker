@@ -1,6 +1,5 @@
 .pageheader {
     background-color: var(--color-background-dark);
-    box-shadow: 0px 25px 20px 0px rgba(0, 0, 0, 0.45);
     color: var(--color-font-light);
     padding-inline: 2rem;
 

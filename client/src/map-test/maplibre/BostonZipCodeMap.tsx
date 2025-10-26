@@ -14,6 +14,7 @@ import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
+import { MapZipCodeData } from "./types";
 
 const initializeMap = (
   map: RefObject<Map | null>,
@@ -26,7 +27,7 @@ const initializeMap = (
   };
 
   const fillColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-red")
+    .getPropertyValue("--color-red-1")
     .trim();
 
   map.current = new maplibregl.Map({
@@ -95,7 +96,7 @@ const initializeMap = (
 const initializeMouseActions = (
   map: RefObject<Map | null>,
   hoverZipId: RefObject<string | number | undefined>,
-  setZipData: Dispatch<SetStateAction<unknown>>
+  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>
 ) => {
   if (!map.current) return;
 
@@ -103,9 +104,9 @@ const initializeMouseActions = (
     const coordinates = e.lngLat;
     console.log(coordinates);
     if (map.current) {
-      const description = e.features?.[0].properties.ZIP5;
-      console.log(e.features?.[0].properties);
-      setZipData(description);
+      const zipCode = e.features?.[0].properties.ZIP5;
+      // console.log(e.features?.[0].properties);
+      setZipData({ zipCode, data: undefined });
     }
   });
 
@@ -154,8 +155,7 @@ export const BostonZipCodeMap = () => {
   const uniqueZips = new Set(zips);
   console.log({ uniqueZips });
 
-  // setting the type as unknown for now, will update when the data structure is more finalized
-  const [zipData, setZipData] = useState<unknown>();
+  const [zipData, setZipData] = useState<MapZipCodeData>();
 
   // Initialize map
   useEffect(() => {
