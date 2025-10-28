@@ -177,7 +177,7 @@ async function getLatestDate(url: string): Promise<Date| null> {
 }
 
 async function getWrittenLatestDate(){
-  const dateFilePath = path.join(__dirname, '../data/last_processed_date.json')
+  const dateFilePath = path.join(__dirname, '../client/src/data/last_processed_date.json')
   try{
       const data = await fs.readFile(dateFilePath, 'utf-8')
       const parsed = JSON.parse(data)

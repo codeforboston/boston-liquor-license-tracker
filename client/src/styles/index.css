@@ -4,20 +4,26 @@
 
 /* Single source of truth for hex codes */
 :root {
-  --color-gray-1: #2e2e2e;
-  --color-gray-2: #f2f2f2;
-  --color-gray-3: #eaeaea;
-  --color-white: #ffffff;
-  --color-red: #b41313;
-  --color-light: #fdfdfd;
-  --color-border: #e2e2e2;
-  --color-accepted-green: #168500;
-  --color-expired-red: #a20000;
-  --color-deferred-yellow: #e9e100;
-  --color-case-study-yellow: #f5b524;
-  --color-footer-gray-1: #C9C9C9;
-  --color-footer-gray-2: #E9E9E9;
-  --color-footer-gray-3: #aaaaaa;
+  --color-white-1: #fdfdfd;
+  --color-gray-dark-1: #2e2e2e;
+  --color-gray-light-1: #f2f2f2;
+  --color-gray-light-2: #e2e2e2;
+  --color-gray-light-3: #cccccc;
+  --color-gray-light-4: #bfbfbf;
+  --color-red-1: #b41313;
+  --color-red-2: #a61212;
+  --color-red-3: #941010;
+  --color-white-2: #ebebeb;
+  --color-yellow-1: #f5b524;
+  --color-yellow-2: #f6bd3c;
+  --color-yellow-3: #db9b0a;
+  --color-white-3: #eaeaea;
+  --color-white-4: #cdcdcd;
+  --color-gray-dark-2: #383838;
+  --color-gray-dark-3: #404040;
+  --color-green-1: #168500;
+  --color-red-4: #a20000;
+  --color-yellow-4: #e9e100;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,16 +32,36 @@
 
 /* Semantic names for app usage */
 @theme {
-  --background-light: var(--color-light);
-  --color-dark: var(--color-gray-1);
-  --color-ui: var(--color-gray-2);
-  --color-ui-hover: var(--color-gray-3);
-  --color-primary-text: var(--color-white);
-  --color-logo: var(--color-red);
-  --color-light: var(--color-light);
-  --color-border: var(--color-border);
-  --color-accepted: var(--color-accepted-green);
-  --color-expired: var(--color-expired-red);
-  --color-deferred: var(--color-deferred-yellow);
-  --color-case-study: var(--color-case-study-yellow);
+  --color-background-light: var(--color-white-1);
+  --color-background-dark: var(--color-gray-dark-1);
+  --color-ui-gray: var(--color-gray-light-1);
+  --color-border-gray: var(--color-gray-light-2);
+  --color-font-light: var(--color-white-1);
+  --color-font-dark: var(--color-gray-dark-1);
+  --color-font-text-links-hover: var(--color-gray-light-3);
+  --color-font-text-links-active: var(--color-gray-light-4);
+  --color-logo-default-red: var(--color-red-1);
+  --color-logo-hovered-red: var(--color-red-2);
+  --color-logo-active-red: var(--color-red-3);
+  --color-logo-default-white: var(--color-white-1);
+  --color-logo-hovered-white: var(--color-white-2);
+  --color-logo-active-white: var(--color-gray-light-4);
+  --color-case-study-button-default-yellow: var(--color-yellow-1);
+  --color-case-study-button-hover-yellow: var(--color-yellow-2);
+  --color-case-study-button-active-yellow: var(--color-yellow-3);
+  --color-button-default-light: var(--color-white-1);
+  --color-button-hovered-light: var(--color-white-3);
+  --color-button-active-light: var(--color-white-4);
+  --color-button-default-dark: var(--color-gray-dark-1);
+  --color-button-hovered-dark: var(--color-gray-dark-2);
+  --color-button-active-dark: var(--color-gray-dark-3);
+  --color-license-accepted-green: var(--color-green-1);
+  --color-license-expired-red: var(--color-red-4);
+  --color-license-deferred-yellow: var(--color-yellow-4);
 }
+
+
+
+
+
+

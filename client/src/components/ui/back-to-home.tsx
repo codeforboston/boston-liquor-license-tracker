@@ -14,14 +14,14 @@ function BackToHome() {
         w-[311px]
         px-[24px] py-[8px]
         border-[1px]
-        border-black
+        border-background-dark
         rounded-[8px]
-        bg-light
-        hover:bg-[#EAEAEA]
-        active:bg-[#CDCDCD]
-        !text-dark
-        !hover:text-[#383838]
-        !active:text-[#404040]
+        bg-button-default-light
+        hover:bg-button-hovered-light
+        active:bg-button-active-light
+        !text-font-dark
+        !hover:text-button-hovered-dark
+        !active:text-button-active-dark
         font-bold
         transition-all
         duration-200

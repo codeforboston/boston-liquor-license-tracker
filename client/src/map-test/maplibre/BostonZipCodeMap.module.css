@@ -13,8 +13,8 @@
 }
 
 .map-card {
-  background-color: var(--background-light);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-background-light);
+  border: 1px solid var(--color-border-gray);
   border-radius: 16px;
   box-shadow: 8px 16px 16px 0px rgba(0, 0, 0, 0.1);
   height: 90%;

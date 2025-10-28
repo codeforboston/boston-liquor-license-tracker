@@ -19,7 +19,7 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
     <MenuItem 
       id={id}
       textValue={option.name}
-      className={"flex items-center px-[16px] pb-[8px] outline-none hover:bg-[#CCCCCC]"}
+      className={"flex items-center px-[16px] pb-[8px] outline-none hover:bg-font-text-links-hover"}
     >
       
       {({isSelected}) => (
@@ -45,16 +45,16 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
         <MenuTrigger onOpenChange={setMenuOpen}>
           <Button
             aria-label={label}
-            className={`inline-flex items-center bg-clip-padding gap-x-2 px-[16px] py-[8px] bg-[#F2F2F2] ${menuOpen ? "rounded-t-[8px]" : "rounded-[8px]" } cursor-default outline-none `}
+            className={`inline-flex items-center bg-clip-padding gap-x-2 px-[16px] py-[8px] bg-ui-gray ${menuOpen ? "rounded-t-[8px]" : "rounded-[8px]" } cursor-default outline-none `}
           >
 
             <p>{title}</p>
-            <span className='bg-[#2e2e2e] w-[.5px] h-[24px]'/>
+            <span className='bg-background-dark w-[.5px] h-[24px]'/>
             <span aria-hidden="true">
               {menuOpen ? 
-                <ExpandLess style={{ fontSize: 24, color: '#2e2e2e' }} />
+                <ExpandLess style={{ fontSize: 24, color: 'var(--color-font-dark)' }} />
               :
-                <ExpandMore style={{ fontSize: 24, color: '#2e2e2e' }} />
+                <ExpandMore style={{ fontSize: 24, color: 'var(--color-font-dark)' }} />
               }
               
             </span>
@@ -64,7 +64,7 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
             offset={0}
             containerPadding={0}
             shouldFlip={false}
-            className="w-[var(--trigger-width)] bg-[#F2F2F2] rounded-b-[8px] outline-none "
+            className="w-[var(--trigger-width)] bg-ui-gray rounded-b-[8px] outline-none "
           >
             <Menu 
               selectionMode='multiple'

@@ -1,8 +1,8 @@
 .home-page .about-us {
   font-size: 16px;
   line-height: normal;
-  background-color: var(--color-gray-1);
-  color: var(--color-white);
+  background-color: var(--color-background-dark);
+  color: var(--color-font-light);
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -14,7 +14,7 @@
   box-sizing: border-box;
 
   h2 {
-    color: var(--color-white);
+    color: var(--color-font-light);
     width: calc(100% - 32px);
     @apply break-words whitespace-normal;
     line-height: 1.5;

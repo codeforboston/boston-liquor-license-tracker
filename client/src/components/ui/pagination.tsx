@@ -17,7 +17,7 @@ function PaginationArrow({ isDisabled, onClick, children, ...props }: Pagination
   return (
     <button
       disabled={isDisabled}
-      className={`flex justify-center items-center h-[32px] min-w-[32px] border-[2px] border-ui-hover rounded-[4px] bg-light cursor-pointer disabled:cursor-not-allowed ${!isDisabled ? "hover:bg-ui-hover" : ""}`}
+      className={`flex justify-center items-center h-[32px] min-w-[32px] border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer disabled:cursor-not-allowed ${!isDisabled ? "hover:bg-button-hovered-light" : ""}`}
       onClick={onClick}
       {...props}
     >
@@ -37,14 +37,14 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
         onClick={() => onPageChange(currentPage - 1)}
       >
         <ChevronLeftIcon sx={{
-          fill: currentPage === 1 ? "var(--color-gray-3)" : "var(--color-gray-1)"
+          fill: currentPage === 1 ? "var(--color-button-hovered-light)" : "var(--color-button-default-dark)"
         }} />
       </PaginationArrow>
       {pageNumbers.map((page) => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`border border-[2px] h-[32px] min-w-[32px] cursor-pointer rounded-[4px] ${currentPage === page ? "border-[1px] border-dark bg-dark text-white" : "border-ui-hover hover:bg-ui-hover"}`}
+          className={`border border-[2px] h-[32px] min-w-[32px] cursor-pointer rounded-[4px] ${currentPage === page ? "border-[1px] border-background-dark bg-button-default-dark text-font-light" : "border-button-hovered-light hover:bg-button-hovered-light"}`}
         >
           {page}
         </button>
@@ -54,7 +54,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
         onClick={() => onPageChange(currentPage + 1)}
       >
         <ChevronRightIcon sx={{
-          fill: currentPage === totalPages ? "var(--color-gray-3)" : "var(--color-gray-1)"
+          fill: currentPage === totalPages ? "var(--color-button-hovered-light)" : "var(--color-button-default-dark)"
         }} />
       </PaginationArrow>
     </div>

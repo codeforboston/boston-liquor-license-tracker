@@ -5,7 +5,7 @@
   gap: 16px;
   width: 100%;
   color-scheme: light dark;
-  color: var(--color-white);
+  color: var(--color-font-light);
   text-transform: uppercase;
 }
 
@@ -16,9 +16,9 @@
 
 
 a:visited {
-  color: #999999;
+  color: var(--font-text-links-active);
 }
 
 a:hover {
-  color: #CCCCCC;
+  color: var(--color-font-text-links-hover);
 }
