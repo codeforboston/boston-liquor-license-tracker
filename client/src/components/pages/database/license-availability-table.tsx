@@ -32,11 +32,8 @@ const LicenseAvailabilityTable = () => {
       const tmp = []
       for (const license of licenseData) {
         const validated = validateBusinessLicense(license);
-        if (validated.valid === true) {
+        if (validated.valid === true && license.status === "Granted") {
             tmp.push(validated.data);
-        }
-        if (validated.valid === true && validated.data.zipcode === "02128") {
-            console.log(validated)
         }
       }
 
