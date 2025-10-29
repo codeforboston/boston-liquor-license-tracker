@@ -15,8 +15,8 @@ const Database = () => {
       <Header />
       <SubHeader />
       <LicenseAvailabilityTable />
-      <RecentApplicationTable/>
       <LicenseType />
+      <RecentApplicationTable/>
     </main>
   );
 };
