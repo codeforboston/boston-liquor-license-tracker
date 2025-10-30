@@ -1,11 +1,11 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-import { LAST_PROCESSED_DATE_JSON } from "./paths"
+import { LAST_PROCESSED_DATE_JSON } from "./paths.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dateFilePath = path.join(__dirname, "../client/src/data/last_processed_date.json");
+const dateFilePath = path.join(__dirname, "..", LAST_PROCESSED_DATE_JSON);
 
 async function writeOrUpdateLastProcessedDate(lastProcessedDate: string) {
   try{

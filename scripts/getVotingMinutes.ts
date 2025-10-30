@@ -4,7 +4,7 @@ import axios from 'axios'
 import fs from 'fs/promises';
 import path from 'path'
 import { fileURLToPath } from "url";
-import {LAST_PROCESSED_DATE_JSON, BOSTON_URL} from "./paths"
+import {LAST_PROCESSED_DATE_JSON, BOSTON_URL} from "./paths.js"
 
 interface EntityType{
    href: string | null, 
