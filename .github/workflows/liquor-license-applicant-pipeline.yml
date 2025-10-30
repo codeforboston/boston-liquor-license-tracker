@@ -22,7 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "abhishek98-force/boston-liquor-license-tracker"
+          repository: "codeforboston/boston-liquor-license-tracker"
           ref: "data_cleanup"
 
       - name: Setup Node.js
