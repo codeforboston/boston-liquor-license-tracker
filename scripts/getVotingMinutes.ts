@@ -4,6 +4,8 @@ import axios from 'axios'
 import fs from 'fs/promises';
 import path from 'path'
 import { fileURLToPath } from "url";
+import {LAST_PROCESSED_DATE_JSON, BOSTON_URL} from "./paths"
+
 interface EntityType{
    href: string | null, 
    dateText: string, 
@@ -15,10 +17,9 @@ const __dirname = path.dirname(__filename);
 
 async function main(){
    // Entrypoint: fetch the latest meeting date, download the corresponding PDF,
-   // and log structured JSON output for liqour-license-applicant-pipeline workflow.
-  const url = 'https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members'
+   // and log structured JSON output for liqour-license-applicant-pipeline workflow.'
    try{
-      const pdfDate = await getLatestDate(url)
+      const pdfDate = await getLatestDate(BOSTON_URL)
       if(!pdfDate){
         const result = {
            success: true,
@@ -30,7 +31,7 @@ async function main(){
         return
       }
       
-      const fileName = await downloadVotingMinutes(pdfDate, url)
+      const fileName = await downloadVotingMinutes(pdfDate, BOSTON_URL)
       const result = {
          success : true, 
          pdfDate: pdfDate.toISOString(),
@@ -189,7 +190,7 @@ async function getLatestDate(url: string): Promise<Date| null> {
 }
 
 async function getWrittenLatestDate(){
-  const dateFilePath = path.join(__dirname, '../client/src/data/last_processed_date.json')
+  const dateFilePath = path.join(__dirname, '..', LAST_PROCESSED_DATE_JSON)
   try{
       const data = await fs.readFile(dateFilePath, 'utf-8')
       const parsed = JSON.parse(data)

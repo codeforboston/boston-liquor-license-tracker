@@ -7,6 +7,12 @@ from pathlib import Path
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from typing import List, Dict, Optional, Any, Union
+from dotenv import load_dotenv
+
+load_dotenv()
+
+LICENSES_JSON = os.getenv("LICENSES_JSON")
+LAST_PROCESSED_DATE_JSON = os.getenv("LAST_PROCESSED_DATE_JSON")
 
 def parse_entity(entity: str) -> Dict[str, Optional[str]]:
     lines: List[str] = [line.strip() for line in entity.splitlines() if line.strip()]
@@ -176,7 +182,7 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     a seeding step and that each entity already contains its own `index`.
     """
     pdf_folder: str = os.getcwd()
-    output_file: str = os.path.join(pdf_folder, "../client/src/data/licenses.json")
+    output_file: str = os.path.join(pdf_folder, "..", LICENSES_JSON)
     existing_data: List[Dict[str, Optional[str]]] = []
 
     if os.path.exists(output_file):

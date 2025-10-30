@@ -1,3 +1,4 @@
 PyMuPDF
 python-dateutil
 pytest>=7.0.0
+python-dotenv
