@@ -114,7 +114,9 @@ jobs:
 
       - name: Run python script 
         working-directory: ./scripts
-        run: python3 extract_entity.py ${{ needs.check-pdf.outputs.pdf-file }}
+        run: |
+          echo "PDF file: ${{ needs.check-pdf.outputs.pdf-file }}" 
+          python3 extract_entity.py ${{ needs.check-pdf.outputs.pdf-file }}
       
       - name: Compile update processed date 
         working-directory: ./scripts
