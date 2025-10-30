@@ -146,9 +146,7 @@ async function getLatestDate(url: string): Promise<Date| null> {
        .map((dateString) => {
         // Clean the date string more thoroughly
         return dateString
-          .replace(/\(Voting\)/g, "")
-          .replace(/\s*-\s*\d+\s*p\.m\.?/gi, "") // Remove "- 2 p.m." part
-          .replace(/\s+/g, " ") // Normalize whitespace
+          .replace(/^([A-Za-z]+ \d{1,2}).*$/, "$1") // Keep only "Month DD" at the start
           .trim();
       });
     
