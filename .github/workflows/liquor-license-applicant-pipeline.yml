@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: "codeforboston/boston-liquor-license-tracker"
-          ref: "data_cleanup"
+          ref: "main"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
