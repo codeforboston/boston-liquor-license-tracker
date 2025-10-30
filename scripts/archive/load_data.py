@@ -33,9 +33,9 @@ for pdf in pdf_file:
         print(f"Error in file {pdf} : {e}")
 
 sorted_data = sorted(final_result, key=lambda x: (x["minutes_date"], x["entity_number"]))
-
-for i, entity in enumerate(sorted_data, start=1): 
-    entity["index"] = i
+print(f"the data is ${sorted_data}")
+# for i, entity in enumerate(sorted_data, start=1): 
+#     entity["index"] = i
 
 write_to_file(sorted_data)
 
