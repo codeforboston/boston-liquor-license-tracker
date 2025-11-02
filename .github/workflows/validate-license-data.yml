@@ -1,0 +1,33 @@
+name: Validate Licenses
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: scripts/package-lock.json
+        
+      - name: Install dependencies
+        working-directory: ./scripts
+        run: npm ci 
+
+      - name: Compile validation script
+        working-directory: ./scripts
+        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext validateLicenseData.ts
+      
+      - name: Run validation script
+        working-directory: ./scripts 
+        run: node validateLicenseData.js 
