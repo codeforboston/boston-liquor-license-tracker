@@ -21,7 +21,7 @@
     "properties": {
       "index": {
         "type": "integer",
-        "minimum": 0,
+        "minimum": 1,
         "description": "Unique sequential index assigned when writing to file."
       },
       "entity_number": {
