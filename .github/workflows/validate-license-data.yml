@@ -30,8 +30,8 @@ jobs:
 
       - name: Compile validation script
         working-directory: ./scripts
-        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext getVotingMinutes.ts
+        run: npm run build:validate-license
       
       - name: Run validation script
         working-directory: ./scripts 
-        run: npm run validate:license
+        run: npm run run:validate-license

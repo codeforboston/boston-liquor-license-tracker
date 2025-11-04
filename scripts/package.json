@@ -10,9 +10,18 @@
     "cheerio": "^1.1.0",
     "dotenv": "^17.2.3"
   },
+  "config": {
+    "tscflags": "-t es2022 -m nodenext --moduleResolution nodenext"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "validate:license": "node validateLicenseData.js"
+    "build:validate-license": "npx tsc $npm_package_config_tscflags validateLicenseData.ts",
+    "run:validate-license": "node validateLicenseData.js",
+
+    "build:get-voting-minutes": "tsc $npm_package_config_tscflags getVotingMinutes.ts",
+    "run:get-voting-minutes": "node getVotingMinutes.js",
+
+    "build:update-last-processed": "tsc $npm_package_config_tscflags updateLastProcessedDate.ts",
+    "run:update-last-processed": "node updateLastProcessedDate.js"
   },
   "keywords": [],
   "author": "",
