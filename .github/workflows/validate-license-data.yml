@@ -2,7 +2,7 @@ name: Validate Licenses
 
 on:
   pull_request:
-    branches: [ test-schema ]
+    branches: [ main ]
     paths:
       - 'client/src/data/licenses.json'
       - 'client/src/data/schema/license-schema.json'
