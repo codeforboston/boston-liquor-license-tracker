@@ -30,7 +30,7 @@ jobs:
 
       - name: Compile validation script
         working-directory: ./scripts
-        run: npx tsc 
+        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext getVotingMinutes.ts
       
       - name: Run validation script
         working-directory: ./scripts 
