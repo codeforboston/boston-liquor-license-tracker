@@ -3,6 +3,10 @@ name: Validate Licenses
 on:
   pull_request:
     branches: [ main ]
+    paths: |
+    paths:
+      - 'client/src/data/licenses.json'
+      - 'client/src/data/schema/license-schema.json'
 
 jobs:
   validate:
@@ -26,8 +30,8 @@ jobs:
 
       - name: Compile validation script
         working-directory: ./scripts
-        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext validateLicenseData.ts
+        run: npx tsc 
       
       - name: Run validation script
         working-directory: ./scripts 
-        run: node validateLicenseData.js 
+        run: npm run validate:license
