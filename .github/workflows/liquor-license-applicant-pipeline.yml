@@ -38,13 +38,13 @@ jobs:
 
       - name: Compile get voting minutes
         working-directory: ./scripts
-        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext getVotingMinutes.ts
+        run: npm run build:get-voting-minutes
 
       - name: Run get voting minutes
         id: check
         working-directory: ./scripts
         run: |
-          OUTPUT=$(node getVotingMinutes.js 2>&1 | tee /dev/stderr)
+          OUTPUT=$(npm run run:get-voting-minutes 2>&1 | tee /dev/stderr)
           SEL_OUTPUT=$(echo "$OUTPUT" | grep "::JSON_OUTPUT::" | sed 's/::JSON_OUTPUT:://')
           SUCCESS=$(echo "$SEL_OUTPUT" | jq -r '.success')
           if [ "$SUCCESS" != "true" ]; then
@@ -120,11 +120,11 @@ jobs:
       
       - name: Compile update processed date 
         working-directory: ./scripts
-        run: npx tsc -t es2022 -m nodenext updateLastProcessedDate.ts
+        run: npm run build:update-last-processed
 
       - name: Run update processed date 
         working-directory: ./scripts 
-        run: node updateLastProcessedDate.js ${{ needs.check-pdf.outputs.voting-date }}
+        run: npm run run:update-last-processed -- ${{ needs.check-pdf.outputs.voting-date }}
 
       - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7
