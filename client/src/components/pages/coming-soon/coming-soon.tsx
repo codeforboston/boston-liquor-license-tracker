@@ -1,4 +1,4 @@
-import HeaderCard from "@/components/ui/pageheader";
+import HeaderCard from "@/components/ui/header-card";
 import BackToHome from "@components/ui/back-to-home.tsx";
 import { FormattedMessage } from "react-intl";
 import styles from "./coming-soon.module.css";

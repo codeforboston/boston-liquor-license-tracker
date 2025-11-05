@@ -1,4 +1,4 @@
-import "./pageheader.css";
+import "./header-card.css";
 
 export const HeaderCard = ({
   headerTitle,
