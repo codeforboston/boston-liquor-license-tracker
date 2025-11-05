@@ -310,3 +310,17 @@ export function getZipcodesWithAvailableLicenses(
   // Sort by zipcode
   return availableZipcodes.sort((a, b) => a.zipcode.localeCompare(b.zipcode));
 }
+
+export function getApplicantsByZipcode(zipcode: EligibleBostonZipcode, data: BusinessLicense[]) {
+   const applicants = []
+
+   for (const license of data) {
+           if (license.zipcode === zipcode) {
+                applicants.push(license)
+           }
+   }
+
+   return applicants
+
+
+}

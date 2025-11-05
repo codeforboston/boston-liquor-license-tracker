@@ -1,5 +1,9 @@
 import mockRecentApplicationData from "./mock-recent-application-data";
 import CustomTable, { CellFormat } from "@components/ui/table";
+import { BusinessLicense, EligibleBostonZipcode, eligibleBostonZipcodes, getApplicantsByZipcode, validateBusinessLicense} from "../../../services/data-interface/data-interface";
+import { RowWithSubRows } from '@components/ui/table';
+import {useState, useEffect} from "react"; 
+import licenseData from "../../../data/licenses.json";
 
 // Cell formatter function - only formats status column in sub-rows
 const statusCellFormatter = (
@@ -13,7 +17,7 @@ const statusCellFormatter = (
     const statusStyles: Record<string, string> = {
       'Granted': 'bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]',
       'Expired': 'bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]',
-      'Deffered': 'bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]',
+      'Deferred': 'bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]',
     }
 
     return {
@@ -26,7 +30,48 @@ const statusCellFormatter = (
   return { content: cell }
 }
 
+
+const formatData = (data: BusinessLicense[], zipcodeList: Set<EligibleBostonZipcode>) => {
+    const zips = [...zipcodeList]
+    const d = zips.map((zipcode) => {
+        const applicants = getApplicantsByZipcode(zipcode,data); 
+        const subrows = applicants.map((applicant) => {
+        
+            return [applicant.business_name, applicant.dba_name ?? 'N/A',  applicant.address, applicant.license_number, applicant.alcohol_type, applicant.minutes_date, applicant.status]
+
+        })
+        const entry = {
+            rowData: [`${zipcode}`, '_', '_', '_', '_', '_', `Total Applicants: ${applicants.length}`],
+            subRowData: subrows
+            //subRowData: [
+            //    ['Company Name', 'Business Name', '123 Mullholland Drive', 'LX33224455', 'All Alcohol', '04/05/2064', 'Granted'],
+            //    ['Company Name', 'Business Name', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Expired'],
+            //    ['Company Name', 'Business Name', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Deffered']
+            //]
+    }
+
+    return entry as RowWithSubRows;
+
+    })
+
+    return d;
+  }
+
 const RecentApplicationTable = () => {
+    const [data, setData] = useState<BusinessLicense[]>([]);
+
+    useEffect(() => {
+      const tmp = []
+      for (const license of licenseData) {
+        const validated = validateBusinessLicense(license);
+        if (validated.valid === true ) {
+            tmp.push(validated.data);
+        }
+      }
+
+      setData(tmp);
+
+    }, [])
   const recentApplicationHeaders = [
     'Zipcode/Business Name',
     'Dba',
@@ -36,12 +81,18 @@ const RecentApplicationTable = () => {
     'App. Date',
     'Status'
   ]
+  
+  const formattedData = formatData(data, eligibleBostonZipcodes) as RowWithSubRows[];
+
+ if (formattedData == null) {
+     return null
+ }
 
   return (
     <section className="license-availability-table">
       <CustomTable
         ariaLabel="Recent License Applications by Zipcode"
-        tableData={mockRecentApplicationData}
+        tableData={formattedData}
         headers={recentApplicationHeaders}
         cellFormatter={statusCellFormatter}
       />
