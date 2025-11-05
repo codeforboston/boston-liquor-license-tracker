@@ -2,7 +2,7 @@
 .idea/
 .vscode/
 *.swp
-
+.vscode/
 
 # All our scripts are in TS, so ignore compiled JS files
 client/src/scripts/*.js
