@@ -44,9 +44,9 @@ const formatData = (data: BusinessLicense[], zipcodeList: Set<EligibleBostonZipc
             rowData: [`${zipcode}`, '_', '_', '_', '_', '_', `Total Applicants: ${applicants.length}`],
             subRowData: subrows
             //subRowData: [
-            //    ['Company Name', 'Business Name', '123 Mullholland Drive', 'LX33224455', 'All Alcohol', '04/05/2064', 'Granted'],
-            //    ['Company Name', 'Business Name', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Expired'],
-            //    ['Company Name', 'Business Name', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Deffered']
+            //    ['Business Name', 'DBA', '123 Mullholland Drive', 'LX33224455', 'All Alcohol', '04/05/2064', 'Granted'],
+            //    ['Business Name', 'DBA', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Expired'],
+            //    ['Business Name', 'DBA', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Deffered']
             //]
     }
 
