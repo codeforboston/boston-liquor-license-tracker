@@ -42,12 +42,6 @@ const formatData = (data: BusinessLicense[], zipcodeList: Set<EligibleBostonZipc
         const entry = {
             rowData: [`${zipcode}`, '_', '_', '_', '_', '_', `Total Applicants: ${applicants.length}`],
             subRowData: subrows
-            //subRowData: [
-            //    ['Business Name', 'DBA', '123 Mullholland Drive', 'LX33224455', 'All Alcohol', '04/05/2064', 'Granted'],
-            //    ['Business Name', 'DBA', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Expired'],
-            //    ['Business Name', 'DBA', '123 Very long street name and address test', 'LX33224455', 'All Alcohol', '04/05/2064', 'Deffered']
-            //]
-    }
 
     return entry as RowWithSubRows;
 
