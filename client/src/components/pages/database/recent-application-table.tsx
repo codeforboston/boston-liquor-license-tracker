@@ -1,4 +1,3 @@
-import mockRecentApplicationData from "./mock-recent-application-data";
 import CustomTable, { CellFormat } from "@components/ui/table";
 import { BusinessLicense, EligibleBostonZipcode, eligibleBostonZipcodes, getApplicantsByZipcode, validateBusinessLicense} from "../../../services/data-interface/data-interface";
 import { RowWithSubRows } from '@components/ui/table';
