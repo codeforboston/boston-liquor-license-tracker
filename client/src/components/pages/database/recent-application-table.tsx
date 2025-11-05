@@ -82,7 +82,7 @@ const RecentApplicationTable = () => {
     'Status'
   ]
   
-  const formattedData = formatData(data, eligibleBostonZipcodes) as RowWithSubRows[];
+  const formattedData = formatData(data, eligibleBostonZipcodes);
 
  if (formattedData == null) {
      return null
