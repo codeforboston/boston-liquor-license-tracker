@@ -22,3 +22,13 @@
 .boxshadow {
     box-shadow: 0px 25px 20px 0px rgba(0, 0, 0, 0.45);
 }
+
+.card-style {
+    background: color-mix(
+        in srgb,
+        var(--color-background-dark) 90%,
+        transparent
+    );
+    border-radius: 16px;
+    box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
+}
