@@ -1,4 +1,4 @@
-import {Ajv, DefinedError } from "ajv"
+import { Ajv } from "ajv"
 import formatsPlugin from 'ajv-formats';
 import { LICENSE_SCHEMA_PATH, LICENSES_JSON} from "./paths.js"
 import path from "path"
