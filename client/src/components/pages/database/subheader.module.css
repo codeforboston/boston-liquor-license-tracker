@@ -12,28 +12,17 @@
 }
 
 .heading {
-  font-size: 36px;
-  font-weight: 700;
   color:var(--color-font-dark);
   margin: 0;
 }
 
 .description {
-  font-size: 16px;
   color:var(--color-font-dark);
   margin: 0;
 }
 
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
-  .heading {
-    font-size: 24px;
-  }
-
-  .description {
-    font-size: 12px;
-  }
-
   .subheader {
     padding: 24px;
   }

@@ -4,9 +4,9 @@ import { FormattedMessage } from "react-intl";
 const Quote = () => {
   return (
     <div className={`${styles.quote}`}>
-      <h1>
+      <h3>
         <FormattedMessage id="home.quote" />
-      </h1>
+      </h3>
     </div>
   )
 }

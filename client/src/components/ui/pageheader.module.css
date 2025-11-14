@@ -5,15 +5,12 @@
     padding-block-end: 2rem;
 
     .headerTitle {
-        font-size: 48px;
-        font-weight: 700;
         padding-block-start: 1rem;
         padding-block-end: 1rem;
     }
 
     .headerText {
         padding-block-end: 2rem;
-        font-size: 16px;
     }
 
     .headerChildren {
@@ -31,13 +28,10 @@
         padding-inline: 24px;
 
         .headerTitle {
-            font-size: 32px;
             padding-block-start: 32px;
             padding-block-end: 12px;
-
         }
         .headerText {
-            font-size: 12px;
             padding-block-end: 24px;
         }
     }

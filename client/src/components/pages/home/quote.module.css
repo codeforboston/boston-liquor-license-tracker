@@ -4,10 +4,9 @@
   padding: 48px 20px;
   box-sizing: border-box;
 
-  h1 {
+  h3 {
     font-family: Lora, Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 36px;
-    font-weight: 500;
     font-style: italic;
     line-height: normal;
     margin: 0 auto;
@@ -21,7 +20,7 @@
   .quote {
     padding: 24px 77px;
 
-    h1 {
+    h3 {
       font-size: 14px;
     }
   }

@@ -1,10 +1,6 @@
 .siteHeader {
-  font-size: 16px;
-  line-height: normal;
-  font-weight: 400;
   gap: 16px;
   width: 100%;
-  color-scheme: light dark;
   color: var(--color-font-light);
   text-transform: uppercase;
 

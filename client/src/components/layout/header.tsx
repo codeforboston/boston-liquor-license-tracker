@@ -8,9 +8,9 @@ import logoDefault from "@/assets/logo.svg";
 import logoHover from "@/assets/logo_hover.svg";
 import logoPressed from "@/assets/logo_pressed.svg";
 
-const Spacer = () => <span className="mx-4 text-gray-400">&bull;</span>;
+const Spacer = () => <span className="mx-4">&bull;</span>;
 
-const LineSpacer = () => <div className="w-[160px] h-px bg-gray-300 mx-4" />;
+const LineSpacer = () => <div className="w-[160px] h-px bg-background-light mx-4" />;
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

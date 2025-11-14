@@ -5,16 +5,10 @@
     .tableHeader {
         background-color: var(--color-background-dark);
         color: var(--color-font-light);
-        font-size: 16px;
     }
 
-    .tableBody {
-        font-weight: 400;
-        font-size: 16px;
-
-        td {
-            padding: 12px 16px;
-        }
+    .tableBody td {
+        padding: 12px 16px;
     }
     
     .tableSubRow {
@@ -34,16 +28,8 @@
             font-weight: 500;
         }
 
-        .tableHeader {
-            font-size: 12px;
-        }
-
-        .tableBody {
-            font-size: 12px;
-            
-            td {
-                padding: 8px 12px;
-            }
+        .tableBody td {
+            padding: 8px 12px;
         }
         
         .tableSubRow {

@@ -6,7 +6,7 @@ const Hero = () => {
   const intl = useIntl();
   return (
     <div
-      className={`${styles.hero} flex flex-col md:items-start md:justify-start w-full pl-6 pt-[48px] pr-3 pb-[48px]  md:pt-[200px] md:pb-[144px] md:pl-[64px] gap-[8px] md:gap-[24px]`}
+      className={`${styles.hero} flex flex-col md:items-start md:justify-start w-full gap-[8px] md:gap-[24px]`}
       title={intl.formatMessage({ id: "home.hero.title" })}
     >
       <img
@@ -14,15 +14,12 @@ const Hero = () => {
         className="w-3xs md:w-4xl lg:w-5xl"
         alt={intl.formatMessage({ id: "header.logo-altText" })}
       />
-      <h2 className="text-font-light text-sm md:text-3xl lg:text-5xl w-full font-bold">
+      <h2 className={styles.homepageDisplay}>
         <FormattedMessage
           id="home.hero.heading"
-          values={{
-            br: <br />,
-          }}
         />
       </h2>
-      <p className="text-font-light text-xs md:text-base">
+      <p>
         <FormattedMessage
           id="home.hero.photoCredit"
           values={{

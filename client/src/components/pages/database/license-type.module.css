@@ -1,35 +1,24 @@
 .licenseType {
-   background-color: var(--color-background-light);
-    padding: 1rem 4rem;
+  background-color: var(--color-background-light);
+  padding: 1rem 4rem;
 
-    h2 {
-      font-size: 36px;
-      margin-bottom: 8px;
-    }
-    h4 {
-      font-size: 24px;
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-    p {
-      font-size: 16px;
-    }
+  h2 {
+    margin-bottom: 8px;
+  }
+  
+  h3 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
 }
 
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
   .licenseType {
-      padding: 24px;
-    
-    h2 {
-      font-size: 24px;
-    }
-    h4 {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: 12px;
+    padding: 24px;
+
+    h3 {
+      margin-top: 8px;
     }
   }
 }

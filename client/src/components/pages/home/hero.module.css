@@ -6,4 +6,16 @@
 
   background-position: center;
   background-size: cover;
+  color: var(--color-font-light);
+  padding: 120px 64px;
+}
+
+/* 🌐 Mobile Styling */
+@media (max-width: 768px) {
+  .hero {
+    padding: 48px 24px;
+  }
+  .homepageDisplay {
+    font-size: 14px;
+  }
 }

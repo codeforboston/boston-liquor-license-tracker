@@ -1,5 +1,4 @@
 .aboutUs {
-  line-height: normal;
   background-color: var(--color-background-dark);
   color: var(--color-font-light);
   display: flex;
@@ -9,23 +8,6 @@
   gap: 16px;
   padding: 32px 32px 64px 32px;
   box-sizing: border-box;
-
-  h1 {
-    font-size: 36px;
-    font-weight: 700;
-  }
-
-  h2 {
-    font-size: 16px;
-    color: var(--color-font-light);
-    width: calc(100% - 32px);
-    @apply break-words whitespace-normal;
-    line-height: 1.5;
-    box-sizing: border-box;
-    overflow-wrap: break-word !important;
-    word-wrap: break-word !important;
-    flex-shrink: 1;
-  }
 }
 
 /* 🌐 Mobile Styling */
@@ -33,12 +15,5 @@
   .aboutUs {
     padding: 24px;
     gap: 8px;
-
-    h1 {
-      font-size: 24px;
-    }
-    h2 {
-      font-size: 12px;
-    }
   }
 }

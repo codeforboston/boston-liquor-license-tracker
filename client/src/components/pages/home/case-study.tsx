@@ -7,27 +7,13 @@ const CaseStudy = () => {
   const intl = useIntl();
   return (
     <div className={caseStudyStyles.caseStudy}>
-        <div className={`${caseStudyStyles.studyIntro} !p-0 max-w-[840px] w-auto flex-shrink`}>
-          <h1 className ="max-w-[840px] w-auto flex-shrink">
-            <FormattedMessage
-              id="home.caseStudy.title"
-            />
-          </h1>
+        <div className={`${caseStudyStyles.studyIntro}`}>
           <h2>
-            <FormattedMessage
-              id="home.caseStudy.part1"
-            />
-            </h2>
-          <h2>
-            <FormattedMessage
-              id="home.caseStudy.part2"
-            />
-            </h2>
-          <h2>
-          <FormattedMessage
-              id="home.caseStudy.part3"
-          />
+            <FormattedMessage id="home.caseStudy.title" />
           </h2>
+          <p><FormattedMessage id="home.caseStudy.part1" /></p>
+          <p><FormattedMessage id="home.caseStudy.part2" /></p>
+          <p><FormattedMessage id="home.caseStudy.part3" /></p>
         </div>
 
         <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border`}

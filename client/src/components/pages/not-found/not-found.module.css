@@ -1,4 +1,4 @@
-.not-found {
+.notFound {
   width: 100%;
   min-height: calc(100vh - 200px); /* Account for header and footer space */
   flex-shrink: 0;
@@ -12,16 +12,27 @@
   align-items: center;
   justify-content: center;
   position: relative;
+}
 
-  .not-found-content {
-    padding: 2rem;
-    text-align: center;
-    background: color-mix(
-      in srgb,
-      var(--color-background-dark) 80%,
-      transparent
-    ); /* Semi-transparent overlay for readability */
-    border-radius: 8px;
-    z-index: 1;
+.notFoundContent {
+  padding: 2rem;
+  text-align: left;
+  background: color-mix(
+    in srgb,
+    var(--color-background-dark) 80%,
+    transparent
+  ); /* Semi-transparent overlay for readability */
+  border-radius: 8px;
+  z-index: 1;
+  color: var(--color-font-light);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 🌐 Mobile Styling */
+@media (max-width: 768px) {
+  .notFoundContent {
+    gap: 16px;
   }
 }
