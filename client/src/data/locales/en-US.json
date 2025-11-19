@@ -35,11 +35,8 @@
   "comingSoon.title": "Pardon Our Dust!",
 
 
-  "database.availableLicenses.title": "2024 Cohort Licenses",
-  "database.availableLicenses.description": "In 2024 the city of Boston passed a new law to increase access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
-  "database.availableLicenses.filterBy": "Filter By:",
-  "database.availableLicenses.title": "2024 Cohort Licenses",
   "database.availableLicenses.description": "In 2024 a new law increased access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
+  "database.availableLicenses.title": "2024 Cohort Licenses",
   "database.availableLicenses.filterBy": "Filter By",
   "database.availableLicenses.zipCode": "Zip Code",
   "database.availableLicenses.licenseType": "License Type",
@@ -50,7 +47,7 @@
   "database.availableLicenses.allAlcohol": "All Alcohol Licenses:",
   "database.availableLicenses.wineBeerLicenses": "Wine & Beer Licenses:",
 
-  "database.header.description": "Browse through available licenses in each of Boston’s ZIP codes, view important information regarding each license type and recent license applications. As well as important dates for license applications.",
+  "database.header.description": "Browse through available licenses in each of Boston's ZIP codes, view important information regarding each license type and recent license applications. As well as important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
   "database.header.title": "License Database",
 
@@ -59,7 +56,7 @@
   "database.licenseTerminology.allAlcohol.title": "All Alcohol Licenses:",
   "database.licenseTerminology.allAlcohol.description": "The most common of licenses, All Alcohol Licenses allow for its holders to sell all categories of liquor to their patrons (including distilled spirits like gin, vodka, and rum).",
   "database.licenseTerminology.wineAndBeer.title": "Wine & Beer Licenses:",
-  "database.licenseTerminology.wineAndBeer.description": "These licenses allow establishments to sell wine and malt drinks such as beer and cider as well as so called cordials which are defined as \"distilled spirits [mixed] with or over fruits, flowers, plants [etc.] containing no less than two and one-half percent sugar by weight,\" while limiting the ability to sell distilled spirits and other \“hard\” liquor.",
+  "database.licenseTerminology.wineAndBeer.description": "These licenses allow establishments to sell wine and malt drinks such as beer and cider as well as so called cordials which are defined as \"distilled spirits [mixed] with or over fruits, flowers, plants [etc.] containing no less than two and one-half percent sugar by weight,\" while limiting the ability to sell distilled spirits and other \"hard\" liquor.",
   "database.licenseTerminology.transferable.title": "Transferable:",
   "database.licenseTerminology.transferable.description": "The majority of Boston’s liquor licenses, they are usable throughout the city and can be transferred between business and ownership, with approval by the City and State.",
   "database.licenseTerminology.nonTransferable.title": "Non Transferable:",
