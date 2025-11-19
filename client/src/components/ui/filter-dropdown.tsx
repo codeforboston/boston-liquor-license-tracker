@@ -2,14 +2,16 @@ import { useState } from 'react'
 import {Button, Popover, Selection, MenuTrigger, Menu, MenuItem} from 'react-aria-components';
 import { ExpandMore, ExpandLess, CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
 import { MenuItemProps } from '@mui/material/MenuItem';
+import { BusinessLicense, EligibleBostonZipcode, eligibleBostonZipcodes } from '@/services/data-interface/data-interface';
 interface DropdownOption { 
-  id: number
+  id: string
   name: string
 }
 interface FilterDropdownProps {
   title: string
   label: string
   options: DropdownOption[]
+  setZipcodeList: (zipcodes: Set<EligibleBostonZipcode>) => void
 }
 
 
@@ -36,9 +38,10 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
 }
 
 
-const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
+const FilterDropdown = ({ title, label, options, setZipcodeList  }: FilterDropdownProps) => {
   const [selected, setSelected] = useState<Selection>(new Set())
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
 
   return (
 
@@ -69,7 +72,25 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
             <Menu 
               selectionMode='multiple'
               selectedKeys={selected}
-              onSelectionChange={(keys) => setSelected(new Set(keys as Set<string>))}
+              onSelectionChange={(keys) => {
+                setSelected(new Set(keys as Set<string>))
+
+                // Convert selected IDs back to zipcode objects
+                const selectedOptions = options.filter(option => 
+                  (keys as Set<string>).has(option.id.toString())
+                )
+  
+                // Get zipcodes from selected options
+                const zipcodes = selectedOptions.map(option => 
+                  option.name as EligibleBostonZipcode // assuming option.name is the zipcode
+                )
+
+                if (zipcodes.length) {
+                  setZipcodeList(new Set(zipcodes))
+                } else {
+                  setZipcodeList(eligibleBostonZipcodes);
+                }
+              }}
               className="w-full outline-none "
             >
               {options.map(opt => (

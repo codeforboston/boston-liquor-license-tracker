@@ -6,6 +6,7 @@ import {useState, useEffect} from 'react';
 import { validateBusinessLicense, getAvailableLicensesByZipcode, BusinessLicense, EligibleBostonZipcode } from '@/services/data-interface/data-interface';
 import { MAX_ALL_ALC_PER_ZIP, MAX_AVAILABLE_PER_ZIP, MAX_BEER_WINE_PER_ZIP } from '@/services/data-interface/data-interface';
 import { RowWithSubRows } from '@components/ui/table';
+import FilterDropdown from "../../ui/filter-dropdown";
 
 const formatData = (data: BusinessLicense[], zipcodeList: Set<EligibleBostonZipcode>) => {
     const zips = [...zipcodeList]
@@ -28,6 +29,7 @@ const formatData = (data: BusinessLicense[], zipcodeList: Set<EligibleBostonZipc
 
 const LicenseAvailabilityTable = () => {
     const [data, setData] = useState<BusinessLicense[]>([]);
+    const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(new Set());
 
     useEffect(() => {
       const tmp = []
@@ -39,6 +41,7 @@ const LicenseAvailabilityTable = () => {
       }
 
       setData(tmp);
+      setZipcodeList(eligibleBostonZipcodes)
 
     }, [])
 
@@ -50,7 +53,11 @@ const LicenseAvailabilityTable = () => {
     'Total Licenses'
   ]
 
-  const formattedData = formatData(data, eligibleBostonZipcodes);
+  const formattedData = formatData(data, zipcodeList);
+
+  const dropdownZipArray = [...eligibleBostonZipcodes].map((zip, index) => {
+    return {id: `react-aria-${index + 1}`, name: String(zip)}
+  });
 
  if (formattedData == null) {
      return null
@@ -58,6 +65,7 @@ const LicenseAvailabilityTable = () => {
 
   return (
     <section className={styles.licenseAvailabilityTable}>
+      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipArray} setZipcodeList={setZipcodeList} />
       <CustomTable ariaLabel="Licenses by Zipcode" tableData={formattedData} headers={availabilityHeaders}/>
     </section>
   )
