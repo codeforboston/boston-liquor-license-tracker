@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {Button, Popover, Selection, MenuTrigger, Menu, MenuItem} from 'react-aria-components';
 import { ExpandMore, ExpandLess, CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
 import { MenuItemProps } from '@mui/material/MenuItem';
-import { BusinessLicense, EligibleBostonZipcode, eligibleBostonZipcodes } from '@/services/data-interface/data-interface';
+import { EligibleBostonZipcode, eligibleBostonZipcodes } from '@/services/data-interface/data-interface';
 interface DropdownOption { 
   id: string
   name: string
