@@ -16,7 +16,7 @@
 
   .not-found-content {
     padding: 2rem;
-    text-align: center;
+    text-align: left;
     background: color-mix(in srgb,
         var(--color-background-dark) 90%,
         transparent);
