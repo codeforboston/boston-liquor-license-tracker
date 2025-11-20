@@ -18,7 +18,7 @@ const ComingSoon = () => {
           headerTitle={<FormattedMessage id="comingSoon.title" />}
           headerText={<FormattedMessage id="comingSoon.description" />}
           showBottomBoxShadow={false}
-          cardStyle={true}
+          cardStyle
         >
           <BackToHome />
         </HeaderCard>
