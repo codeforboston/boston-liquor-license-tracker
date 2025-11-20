@@ -6,12 +6,12 @@
     .header-title {
         font-size: 2rem;
         font-weight: 600;
-        padding-block-start: 1rem;
+        padding-block-start: 2rem;
         padding-block-end: 1rem;
     }
 
     .header-text {
-        padding-block-end: 1rem;
+        padding-block-end: 1.5rem;
     }
 
     .header-children {
@@ -24,11 +24,9 @@
 }
 
 .card-style {
-    background: color-mix(
-        in srgb,
-        var(--color-background-dark) 90%,
-        transparent
-    );
+    background: color-mix(in srgb,
+            var(--color-background-dark) 90%,
+            transparent);
     border-radius: 16px;
     box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
 }
