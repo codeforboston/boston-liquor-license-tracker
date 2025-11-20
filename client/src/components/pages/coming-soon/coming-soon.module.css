@@ -26,3 +26,11 @@
     width: 100%;
     height: 100%;
 }
+
+/* 移动设备响应式设计 */
+@media (max-width: 768px) {
+    .infoBoxContainer {
+        padding: 1rem; /* 16px 屏幕边距 */
+        box-sizing: border-box;
+    }
+}

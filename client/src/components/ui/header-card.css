@@ -30,3 +30,28 @@
     border-radius: 16px;
     box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
 }
+
+/* 移动设备响应式设计 */
+@media (max-width: 768px) {
+    .pageheader {
+        padding-inline: 1.5rem;
+        /* 24px */
+    }
+
+    .pageheader .header-title {
+        padding-block-start: 2rem;
+        /* 32px */
+        padding-block-end: 0.75rem;
+        /* 12px */
+    }
+
+    .pageheader .header-text {
+        padding-block-end: 1.5rem;
+        /* 24px */
+    }
+
+    .pageheader .header-children {
+        padding-block-end: 2rem;
+        /* 32px */
+    }
+}
