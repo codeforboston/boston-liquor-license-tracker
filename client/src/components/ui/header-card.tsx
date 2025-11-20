@@ -32,7 +32,4 @@ export const HeaderCard = ({
   );
 };
 
-// Keep PageHeader as an alias for backward compatibility
-export const PageHeader = HeaderCard;
-
 export default HeaderCard;
