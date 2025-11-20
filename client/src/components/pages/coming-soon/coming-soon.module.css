@@ -27,12 +27,11 @@
     height: 100%;
 }
 
-.infoBox {
-    background: color-mix(
-        in srgb,
-        var(--color-background-dark) 90%,
-        transparent
-    );
-    border-radius: 16px;
-    box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
+/* Mobile responsive design */
+@media (max-width: 768px) {
+    .infoBoxContainer {
+        padding: 1rem;
+        /* 16px screen margin */
+        box-sizing: border-box;
+    }
 }
