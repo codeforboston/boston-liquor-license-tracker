@@ -1,4 +1,4 @@
-import PageHeader from "@/components/ui/pageheader";
+import HeaderCard from "@/components/ui/header-card";
 import BackToHome from "@components/ui/back-to-home.tsx";
 import { FormattedMessage } from "react-intl";
 import styles from "./coming-soon.module.css";
@@ -13,13 +13,16 @@ const ComingSoon = () => {
       title={intl.formatMessage({ id: "comingSoon.backgroundImageAlt" })}
     >
       <title>{title}</title>
-      <PageHeader
-        headerTitle={<FormattedMessage id="comingSoon.title" />}
-        headerText={<FormattedMessage id="comingSoon.description" />}
-        showBottomBoxShadow
-      >
-        <BackToHome />
-      </PageHeader>
+      <div className={styles.infoBoxContainer}>
+        <HeaderCard
+          headerTitle={<FormattedMessage id="comingSoon.title" />}
+          headerText={<FormattedMessage id="comingSoon.description" />}
+          showBottomBoxShadow={false}
+          cardStyle
+        >
+          <BackToHome />
+        </HeaderCard>
+      </div>
     </main>
   );
 };

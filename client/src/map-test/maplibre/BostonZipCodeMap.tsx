@@ -9,7 +9,7 @@ import {
   SetStateAction,
 } from "react";
 import { FormattedMessage } from "react-intl";
-import { PageHeader } from "@/components/ui/pageheader";
+import { PageHeader } from "@/components/ui/header-card";
 import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";

@@ -6,8 +6,6 @@
     background-position: bottom center;
     /*background-repeat: no-repeat;*/
 
-
-
     width: 100%;
     /* Width same as viewport */
     height: 100vh;
@@ -19,4 +17,21 @@
     padding: 0px;
 
     /* fills viewport height */
+}
+
+.infoBoxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+    .infoBoxContainer {
+        padding: 1rem;
+        /* 16px screen margin */
+        box-sizing: border-box;
+    }
 }
