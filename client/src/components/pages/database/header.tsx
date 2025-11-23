@@ -1,6 +1,6 @@
 import { FormattedMessage } from "react-intl";
 import NEXT_MEETING_DATE from "../../../data/next-meeting-date.json";
-import { PageHeader } from "@/components/ui/header-card";
+import { PageHeader } from "@/components/ui/pageheader";
 
 // Show the next meeting date if and only if we have one and it is in the future
 const getNextMeetingText = (nextMeeting: Date | null) => {
