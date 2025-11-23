@@ -4,19 +4,15 @@ export const HeaderCard = ({
   headerTitle,
   headerText,
   children,
-  showBottomBoxShadow = false,
-  cardStyle = false,
 }: {
   headerTitle: React.ReactNode;
   headerText: React.ReactNode;
   children?: React.ReactNode;
-  showBottomBoxShadow?: boolean;
-  cardStyle?: boolean;
 }) => {
   const classes = [
     "pageheader",
-    showBottomBoxShadow && "boxshadow",
-    cardStyle && "card-style",
+    "boxshadow",
+    "card-style",
   ]
     .filter(Boolean)
     .join(" ");
