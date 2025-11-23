@@ -1,4 +1,4 @@
-.pageheader {
+.header-card {
   background-color: var(--color-background-dark);
   color: var(--color-font-light);
   padding-inline: 2rem;
@@ -35,7 +35,7 @@
 
 /* Mobile responsive design */
 @media (max-width: 768px) {
-  .pageheader {
+  .header-card {
     padding-inline: 1.5rem;
     /* 24px */
 
