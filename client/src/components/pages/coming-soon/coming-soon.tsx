@@ -13,14 +13,13 @@ const ComingSoon = () => {
       title={intl.formatMessage({ id: "comingSoon.backgroundImageAlt" })}
     >
       <title>{title}</title>
-      <div className={styles.infoBoxContainer}>
-        <HeaderCard
-          headerTitle={<FormattedMessage id="comingSoon.title" />}
-          headerText={<FormattedMessage id="comingSoon.description" />}
-        >
-          <BackToHome />
-        </HeaderCard>
-      </div>
+
+      <HeaderCard
+        headerTitle={<FormattedMessage id="comingSoon.title" />}
+        headerText={<FormattedMessage id="comingSoon.description" />}
+      >
+        <BackToHome />
+      </HeaderCard>
     </main>
   );
 };

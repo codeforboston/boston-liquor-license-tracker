@@ -19,6 +19,14 @@
   }
 }
 
+.infoBoxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .card-style {
   background: color-mix(in srgb, var(--color-background-dark) 90%, transparent);
   border-radius: 16px;

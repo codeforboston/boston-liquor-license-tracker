@@ -12,13 +12,15 @@ export const HeaderCard = ({
   const classes = ["pageheader", "card-style"].filter(Boolean).join(" ");
 
   return (
-    <header className={classes}>
-      <div className="text-container">
-        <h1 className="header-title">{headerTitle}</h1>
-        <p className="header-text max-w-3xl">{headerText}</p>
-        <div className="header-children">{children}</div>
-      </div>
-    </header>
+    <div className="infoBoxContainer">
+      <header className={classes}>
+        <div className="text-container">
+          <h1 className="header-title">{headerTitle}</h1>
+          <p className="header-text max-w-3xl">{headerText}</p>
+          <div className="header-children">{children}</div>
+        </div>
+      </header>
+    </div>
   );
 };
 

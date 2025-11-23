@@ -23,14 +23,12 @@ const NotFound = () => {
           <BackToHome />
         </div>
       </div> */}
-      <div className={notFoundStyles.infoBoxContainer}>
-        <HeaderCard
-          headerTitle={<FormattedMessage id="notFound.heading" />}
-          headerText={<FormattedMessage id="notFound.message" />}
-        >
-          <BackToHome />
-        </HeaderCard>
-      </div>
+      <HeaderCard
+        headerTitle={<FormattedMessage id="notFound.heading" />}
+        headerText={<FormattedMessage id="notFound.message" />}
+      >
+        <BackToHome />
+      </HeaderCard>
     </main>
   );
 };
