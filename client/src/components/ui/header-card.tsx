@@ -9,13 +9,7 @@ export const HeaderCard = ({
   headerText: React.ReactNode;
   children?: React.ReactNode;
 }) => {
-  const classes = [
-    "pageheader",
-    "boxshadow",
-    "card-style",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const classes = ["pageheader", "card-style"].filter(Boolean).join(" ");
 
   return (
     <header className={classes}>
