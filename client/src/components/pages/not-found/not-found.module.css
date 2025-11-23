@@ -1,3 +1,5 @@
+@import "@/components/ui/header-card.css";
+
 .not-found {
   width: 100%;
   min-height: calc(100vh - 200px);
@@ -17,11 +19,8 @@
   .not-found-content {
     padding: 2rem;
     text-align: left;
-    background: color-mix(in srgb,
-        var(--color-background-dark) 90%,
-        transparent);
-    border-radius: 16px;
-    box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
+    /* Card overlay styles are applied via composes */
+    composes: card-overlay from "@/components/ui/header-card.css";
     z-index: 1;
   }
 }

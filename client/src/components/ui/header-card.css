@@ -19,7 +19,8 @@
   }
 }
 
-.card-style {
+/* Shared card overlay styling - can be used across components */
+.card-overlay {
   background: color-mix(in srgb, var(--color-background-dark) 90%, transparent);
   border-radius: 16px;
   box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
