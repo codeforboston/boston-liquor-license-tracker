@@ -2,6 +2,7 @@ import notFoundStyles from "./not-found.module.css";
 import { FormattedMessage } from "react-intl";
 import BackToHome from "@/components/ui/back-to-home";
 import { useIntl } from "react-intl";
+import HeaderCard from "@/components/ui/header-card";
 
 const NotFound = () => {
   const intl = useIntl();
@@ -9,7 +10,7 @@ const NotFound = () => {
   return (
     <main className={notFoundStyles.notFound}>
       <title>{title}</title>
-      <div className={notFoundStyles.notFoundContent}>
+      {/* <div className={notFoundStyles.notFoundContent}>
         <div className="not-found-heading">
           <h2 className="text-font-light text-2xl md:text-3xl lg:text-5xl w-full font-bold">
             <FormattedMessage id="notFound.heading" />
@@ -21,6 +22,14 @@ const NotFound = () => {
           <br />
           <BackToHome />
         </div>
+      </div> */}
+      <div className={notFoundStyles.infoBoxContainer}>
+        <HeaderCard
+          headerTitle={<FormattedMessage id="notFound.heading" />}
+          headerText={<FormattedMessage id="notFound.message" />}
+        >
+          <BackToHome />
+        </HeaderCard>
       </div>
     </main>
   );
