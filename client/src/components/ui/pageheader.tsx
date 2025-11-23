@@ -4,12 +4,10 @@ export const PageHeader = ({
   headerTitle,
   headerText,
   children,
-  
 }: {
   headerTitle: React.ReactNode;
   headerText: React.ReactNode;
   children?: React.ReactNode;
-  
 }) => {
   return (
     <header className={`${styles.pageheader}`}>

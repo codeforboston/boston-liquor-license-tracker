@@ -1,4 +1,4 @@
-import "./header-card.css";
+import styles from "./header-card.module.css";
 
 export const HeaderCard = ({
   headerTitle,
@@ -9,15 +9,13 @@ export const HeaderCard = ({
   headerText: React.ReactNode;
   children?: React.ReactNode;
 }) => {
-  const classes = ["header-card", "card-style"].filter(Boolean).join(" ");
-
   return (
-    <div className="infoBoxContainer">
-      <header className={classes}>
-        <div className="text-container">
-          <h1 className="header-title">{headerTitle}</h1>
-          <p className="header-text max-w-3xl">{headerText}</p>
-          <div className="header-children">{children}</div>
+    <div className={`${styles.infoBoxContainer}`}>
+      <header className={`${styles.headerCard}`}>
+        <div className={`${styles.textContainer}`}>
+          <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
+          <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
+          <div className={`${styles.headerChildren}`}>{children}</div>
         </div>
       </header>
     </div>
