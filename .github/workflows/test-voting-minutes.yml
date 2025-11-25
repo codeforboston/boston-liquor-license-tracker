@@ -2,16 +2,6 @@ name: TEST - GET Voting minutes workflow
 
 on:
  workflow_dispatch:
-    inputs:
-      username:
-        description: "GitHub username or org name"
-        required: true
-        type: string
-      branch:
-        description: "Branch to test from"
-        required: false
-        default: "main"
-        type: string
 
 jobs:
   test-run:
