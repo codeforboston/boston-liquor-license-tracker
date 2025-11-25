@@ -5,6 +5,7 @@ import fs from 'fs/promises';
 import path from 'path'
 import { fileURLToPath } from "url";
 import {LAST_PROCESSED_DATE_JSON, BOSTON_URL} from "./paths.js"
+import { writeFile } from 'fs';
 
 interface EntityType{
    href: string | null, 
@@ -97,20 +98,45 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
       // If this happens, the meeting date exists on the site but has no PDF link yet
       throw Error("Could not find entity")
     }
-    console.log("the entity is ", entity)
-    const mainUrl = 'https://www.boston.gov/'
-    const fullUrl = new URL(entity["href"], mainUrl).toString()
-    const pdfData = await axios.get(fullUrl, {
-      responseType: 'arraybuffer'
+    let downloadUrl = entity['href'] as string;
+
+    // 1. Convert Google Drive preview link → direct download
+    const driveMatch = downloadUrl.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)/);
+    if (driveMatch) {
+      const fileId = driveMatch[1];
+      downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    }
+
+    const pdfData = await axios.get(downloadUrl, {
+      responseType: "arraybuffer",
     })
-    const fileName = `${entity['votingDate']}.pdf`
-    console.log("file name is", fileName)
+
+    let fileName;
+
+    const disposition = pdfData.headers["content-disposition"];
+    if (disposition) {
+      const match = disposition.match(/filename="(.+?)"/);
+      if (match) {
+        fileName = match[1];
+      }
+    }
+
+    if (typeof downloadUrl !== "string") {
+      throw new Error("downloadUrl is not a string");
+    } 
+
+    if (!fileName) {
+      let elems = downloadUrl.split("/")
+      fileName = elems.pop()
+    }
+    
     if(fileName){
       const filePath = path.join(__dirname, fileName)
       await fs.writeFile(filePath, pdfData.data)
     }else{
       throw Error("could not get the file name")
     }
+
 
     return fileName
 
@@ -119,6 +145,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
   }
 
 }
+
 
 /**
  * Determines the most recent past meeting date that has already occurred.
@@ -154,7 +181,6 @@ async function getLatestDate(url: string): Promise<Date| null> {
           .trim();
       });
     
-    console.log("Current date strings are", currentDateStrings)
     const meetingDates = currentDateStrings.map((dateString) => {
       const d = new Date(`${dateString}, ${currentYear} UTC`);
         d.setUTCHours(0, 0, 0, 0); // normalize to UTC midnight
@@ -164,7 +190,6 @@ async function getLatestDate(url: string): Promise<Date| null> {
    
     // Only consider meetings that have already happened
     const pastDates = meetingDates.filter((date) => date <= currentDate)
-    console.log("past dates are ", pastDates)
     if (pastDates.length === 0) {
       console.log("No past meeting dates found")
       return null
