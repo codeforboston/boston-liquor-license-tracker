@@ -24,4 +24,9 @@
 
 /* Mobile responsive design */
 @media (max-width: 768px) {
+  .comingSoonPage {
+    padding: 1rem;
+    /* 16px screen margin */
+    box-sizing: border-box;
+  }
 }
