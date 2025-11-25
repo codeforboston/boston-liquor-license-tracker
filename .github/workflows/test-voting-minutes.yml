@@ -17,5 +17,5 @@ jobs:
   test-run:
     uses: ./.github/workflows/liquor-license-applicant-pipeline.yml
     with:
-      target-repository: "${{ inputs.username }}/boston-liquor-license-tracker"
-      target-ref: ${{ inputs.branch }}
+      target-repository: "${{ github.repository_owner }}/boston-liquor-license-tracker"
+      target-ref: ${{ github.ref_name }}
