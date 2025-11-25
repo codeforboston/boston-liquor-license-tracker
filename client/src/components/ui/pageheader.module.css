@@ -24,6 +24,7 @@
   border-radius: 16px;
   box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
   padding-inline: 2rem;
+  padding-block-end: 0;
   display: flex;
   align-items: center;
   justify-content: center;
