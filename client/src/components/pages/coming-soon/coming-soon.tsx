@@ -1,4 +1,4 @@
-import HeaderCard from "@/components/ui/header-card";
+import PageHeader from "@/components/ui/pageheader";
 import BackToHome from "@components/ui/back-to-home.tsx";
 import { FormattedMessage } from "react-intl";
 import styles from "./coming-soon.module.css";
@@ -14,12 +14,13 @@ const ComingSoon = () => {
     >
       <title>{title}</title>
 
-      <HeaderCard
+      <PageHeader
+        cardMode={true}
         headerTitle={<FormattedMessage id="comingSoon.title" />}
         headerText={<FormattedMessage id="comingSoon.description" />}
       >
         <BackToHome />
-      </HeaderCard>
+      </PageHeader>
     </main>
   );
 };
