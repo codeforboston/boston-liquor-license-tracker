@@ -6,15 +6,15 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   workflow_call:
-  inputs:
-    target-repository:
-      required: false
-      type: string
-      default: "codeforboston/boston-liquor-license-tracker"
-    target-ref:
-      required: false
-      type: string
-      default: "main"
+    inputs:
+      target-repository:
+        required: false
+        type: string
+        default: "codeforboston/boston-liquor-license-tracker"
+      target-ref:
+        required: false
+        type: string
+        default: "main"
 
 # Sets the GITHUB_TOKEN permissions to allow committing changes, so we can update the next meeting date
 permissions:
