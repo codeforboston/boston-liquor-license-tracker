@@ -11,24 +11,22 @@ export const PageHeader = ({
   children?: React.ReactNode;
   cardMode?: boolean;
 }) => {
+  const content = (
+    <div className={`${styles.textContainer}`}>
+      <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
+      <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
+      <div className={`${styles.headerChildren}`}>{children}</div>
+    </div>
+  );
+
   return (
     <header
       className={`${styles.pageheader} ${cardMode ? styles.cardMode : ""}`}
     >
       {cardMode ? (
-        <div className={`${styles.infoBoxContainer}`}>
-          <div className={`${styles.textContainer}`}>
-            <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
-            <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
-            <div className={`${styles.headerChildren}`}>{children}</div>
-          </div>
-        </div>
+        <div className={`${styles.infoBoxContainer}`}>{content}</div>
       ) : (
-        <div className={`${styles.textContainer}`}>
-          <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
-          <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
-          <div className={`${styles.headerChildren}`}>{children}</div>
-        </div>
+        content
       )}
     </header>
   );
