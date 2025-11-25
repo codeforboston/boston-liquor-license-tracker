@@ -30,8 +30,9 @@ async function main(){
         console.log("::JSON_OUTPUT::"+JSON.stringify(result))
         return
       }
-      
+    
       const fileName = await downloadVotingMinutes(pdfDate, BOSTON_URL)
+      console.log("fileName is ", fileName)
       const result = {
          success : true, 
          pdfDate: pdfDate.toISOString(),
@@ -82,6 +83,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
           const day = parseInt(match[2])
           const year = currentYear
           const date = new Date(`${month} ${day}, ${year}`)
+          date.setUTCHours(0, 0, 0, 0);
           console.log(`date checked is ${date}`)
           if(date.getTime() === pdfDate.getTime()){
             entity['href'] = $(e).attr("href") ?? null
@@ -95,12 +97,14 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
       // If this happens, the meeting date exists on the site but has no PDF link yet
       throw Error("Could not find entity")
     }
+    console.log("the entity is ", entity)
     const mainUrl = 'https://www.boston.gov/'
     const fullUrl = new URL(entity["href"], mainUrl).toString()
     const pdfData = await axios.get(fullUrl, {
       responseType: 'arraybuffer'
     })
-    const fileName = entity["href"].split('/').pop()
+    const fileName = `${entity['votingDate']}.pdf`
+    console.log("file name is", fileName)
     if(fileName){
       const filePath = path.join(__dirname, fileName)
       await fs.writeFile(filePath, pdfData.data)
@@ -150,20 +154,24 @@ async function getLatestDate(url: string): Promise<Date| null> {
           .trim();
       });
     
-    const meetingDates = currentDateStrings.map(
-      (dateString) => new Date(`${dateString}, ${currentYear}`)
-    );
+    console.log("Current date strings are", currentDateStrings)
+    const meetingDates = currentDateStrings.map((dateString) => {
+      const d = new Date(`${dateString}, ${currentYear} UTC`);
+        d.setUTCHours(0, 0, 0, 0); // normalize to UTC midnight
+        return d;
+    });
 
    
     // Only consider meetings that have already happened
     const pastDates = meetingDates.filter((date) => date <= currentDate)
-
+    console.log("past dates are ", pastDates)
     if (pastDates.length === 0) {
       console.log("No past meeting dates found")
       return null
     }
     try{
       const lastProcessedDate = await getWrittenLatestDate()
+      console.log("lat processed date is ", lastProcessedDate)
       const unprocessedDates = pastDates.filter((date) => date > lastProcessedDate)
       console.log("unprocessed dates are ",unprocessedDates);
       if (unprocessedDates.length === 0) {
