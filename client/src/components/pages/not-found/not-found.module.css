@@ -30,8 +30,6 @@
   gap: 24px;
 }
 
-}
-
 /* Mobile responsive design */
 @media (max-width: 768px) {
   .notFound {
