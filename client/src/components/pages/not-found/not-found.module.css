@@ -34,13 +34,13 @@
 
 /* Mobile responsive design */
 @media (max-width: 768px) {
-  .not-found {
+  .notFound {
     padding: 1rem;
     /* 16px screen margin */
     box-sizing: border-box;
   }
 
-  .not-found-content {
+  .notFoundContent {
     padding: 1.5rem;
     /* 24px inner padding */
   }
