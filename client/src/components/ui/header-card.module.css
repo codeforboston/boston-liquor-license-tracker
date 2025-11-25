@@ -3,8 +3,19 @@
   color: var(--color-font-light);
   border-radius: 16px;
   box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
-
   padding-inline: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .infoBoxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
   .header-title {
     font-size: 2rem;
     font-weight: 600;
@@ -19,14 +30,6 @@
   .header-children {
     padding-block-end: 2rem;
   }
-}
-
-.infoBoxContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 /* Mobile responsive design */

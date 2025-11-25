@@ -7,7 +7,8 @@
 
   width: 100%;
   /* Width same as viewport */
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: calc(100vh - 200px);
   /* Height same as viewport */
   overflow: hidden;
   /* Prevent content overflow scrolling */
@@ -15,7 +16,10 @@
   margin: 0px;
   padding: 0px;
 
-  /* fills viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 /* Mobile responsive design */

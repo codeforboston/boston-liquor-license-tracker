@@ -10,15 +10,15 @@ export const HeaderCard = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div className={`${styles.infoBoxContainer}`}>
-      <header className={`${styles.headerCard}`}>
+    <header className={`${styles.headerCard}`}>
+      <div className={`${styles.infoBoxContainer}`}>
         <div className={`${styles.textContainer}`}>
           <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
           <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
           <div className={`${styles.headerChildren}`}>{children}</div>
         </div>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 };
 
