@@ -3,6 +3,7 @@
   "title": "Licenses",
   "description": "Schema for parsed restaurant license data",
   "type": "array",
+  "sequentialIndexes": true,
   "items": {
     "type": "object",
     "required": [

@@ -7,7 +7,7 @@ const getNextMeetingText = (nextMeeting: Date | null) => {
   const today = new Date();
   if (nextMeeting && nextMeeting > today) {
     return (
-      <p className="header-text">
+      <p>
         <FormattedMessage
           id="database.header.nextMeeting"
           values={{

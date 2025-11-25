@@ -30,16 +30,13 @@
 
 
   "comingSoon.backgroundImageAlt": "Rack of wine glasses hanging waiting to be used",
-  "comingSoon.description": "We are currently working hard to get this page finished to best fit your needs. Check back soon for exciting things!",
+  "comingSoon.description": "We are currently working hard to get this page finished to best fit your needs. Please Check back soon for exciting things!",
   "comingSoon.pageTitle": "Coming Soon",
   "comingSoon.title": "Pardon Our Dust!",
 
 
+  "database.availableLicenses.description": "In 2024 a new law increased access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
   "database.availableLicenses.title": "2024 Cohort Licenses",
-  "database.availableLicenses.description": "In 2024 the city of Boston passed a new law to increase access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
-  "database.availableLicenses.filterBy": "Filter By:",
-  "database.availableLicenses.title": "2024 Cohort Licenses",
-  "database.availableLicenses.description": "In 2024 the city of Boston passed a new law to increase access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
   "database.availableLicenses.filterBy": "Filter By",
   "database.availableLicenses.zipCode": "Zip Code",
   "database.availableLicenses.licenseType": "License Type",
@@ -50,20 +47,20 @@
   "database.availableLicenses.allAlcohol": "All Alcohol Licenses:",
   "database.availableLicenses.wineBeerLicenses": "Wine & Beer Licenses:",
 
-  "database.header.description": "Browse through available licenses in each of Boston's zip codes, view recent license applications as well as important information regarding each license type and important dates for license applications.",
+  "database.header.description": "Browse through available licenses in each of Boston's ZIP codes, view important information regarding each license type and recent license applications. As well as important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
   "database.header.title": "License Database",
 
   "database.licenseTerminology.header": "Basic License Terminology",
-  "database.licenseTerminology.description": "Boston has several different types of licenses all coming from a variety of different needs, laws, and statues. Which can be confusing when navigating through the licensing process for the first time. Below are some basic licenses and terms along with their definitions to help you navigate the Boston liquor license system.",
+  "database.licenseTerminology.description": "Boston has several different types of licenses all coming from a variety of different needs, laws, and statues. This can be confusing when navigating through the licensing process for the first time. Below are some basic licensing terms along with their definitions to help navigate the Boston liquor license system.",
   "database.licenseTerminology.allAlcohol.title": "All Alcohol Licenses:",
-  "database.licenseTerminology.allAlcohol.description": "Often the most common of licenses All Alcohol Licenses allow for its holders to sell all categories of liquor to their patrons without any restrictions other than legal limits and pour requirements",
+  "database.licenseTerminology.allAlcohol.description": "The most common of licenses, All Alcohol Licenses allow for its holders to sell all categories of liquor to their patrons (including distilled spirits like gin, vodka, and rum).",
   "database.licenseTerminology.wineAndBeer.title": "Wine & Beer Licenses:",
-  "database.licenseTerminology.wineAndBeer.description": "These licenses allow for establishments to sell wine and beer, while limiting the ability to sell spirits and other harder liquor and drinks. Existing to provide flexibility to restaurants and non traditional dining experiences.",
+  "database.licenseTerminology.wineAndBeer.description": "These licenses allow establishments to sell wine and malt drinks such as beer and cider as well as so called cordials which are defined as \"distilled spirits [mixed] with or over fruits, flowers, plants [etc.] containing no less than two and one-half percent sugar by weight,\" while limiting the ability to sell distilled spirits and other \"hard\" liquor.",
   "database.licenseTerminology.transferable.title": "Transferable:",
-  "database.licenseTerminology.transferable.description": "Boston’s default liquor license as such they are usable throughout the city and can be transferred between business and ownership when no longer in use.",
+  "database.licenseTerminology.transferable.description": "The majority of Boston’s liquor licenses, they are usable throughout the city and can be transferred between business and ownership, with approval by the City and State.",
   "database.licenseTerminology.nonTransferable.title": "Non Transferable:",
-  "database.licenseTerminology.nonTransferable.description": "Created by special legislations, these licenses are beholden to the limitations of their respective legislation. They are non-transferable, meaning that should a business close or ownership change, they revert back to the City.",
+  "database.licenseTerminology.nonTransferable.description": "Created by special legislations, including the 2024 law, These licenses are beholden to the limitations of their respective legislation. They are non-transferable, meaning that should a business close or ownership change, they revert back to the City.",
 
 
   "database.pageTitle": "License Database",
@@ -91,12 +88,13 @@
 
 
   "home.aboutUs.title": "Who We Are:",
-  "home.aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially as a newcomer.{br}From tracking availability, understanding the application process, to the potential hidden costs of obtaining one: there is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
+  "home.aboutUs.weAre.part1": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially as a newcomer.",
+  "home.aboutUs.weAre.part2": "From tracking availability, understanding the application process, to the potential hidden costs of obtaining one: there is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
   "home.caseStudy.button.read": "READ THE FULL CASE STUDY",
   "home.caseStudy.image.alt": "Medium-sized empty white square",
-  "home.caseStudy.part1": "Getting a Liquor License in Boston has long meant being part of an \"In Club\" of restaurant owners, hospitality companies, and lawyers who've mastered the process. It has historically meant newcomers to the space have struggled to obtain these artificially scarce licenses and has created droughts in neighborhoods all over the city. Often in neighborhoods seen as traditionally less white with more diverse character.",
-  "home.caseStudy.part2": "Recent changes to Boston's License system have made moves to improve access to Licenses. A new law passed in 2024 aims to give parts of the city specific Licenses and allow locals to open businesses. But this is just the start, tracking available licenses is still difficult and often out of reach to some members of Boston's community.",
-  "home.caseStudy.part3": "With this site we are working to create a more equitable restaurant ecosystem for all, and allow you to track and understand what Licenses are available to you.",
+  "home.caseStudy.part1": "Getting a Liquor License in Boston has long meant being part of an \"In Club\" of restaurant owners, hospitality companies, and lawyers who've mastered the process. It has historically meant newcomers to the space have struggled to obtain these artificially scarce licenses, and has created droughts in neighborhoods all over the city. Our research has shown a direct correlation between how white a neighborhood is and how many liquor licenses it has.",
+  "home.caseStudy.part2": "Recent changes have made moves to improve access to Licenses. A new law passed in 2024 aims to increase access to liquor licenses, creating licenses for specific ZIP codes. However, this is just the start. Tracking available licenses is still difficult, and access to accurate, up-to-date information is often out of reach.",
+  "home.caseStudy.part3": "With this site we are working to create a more equitable restaurant ecosystem with readily available, free, and accurate information for all and enabling restaurant operators to track and understand what Licenses are available to them.",
   "home.caseStudy.title": "Why is this important?",
   "home.extraWork.altText.barManagementBootcamp": "Several students sitting around a bar listening to a boot camp presenter",
   "home.extraWork.altText.codeForBoston": "Code for Boston Logo, a geometric lantern with code brackets instead of a light with \"Code for Boston\" in text next to it",

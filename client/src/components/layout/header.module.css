@@ -1,24 +1,26 @@
 .siteHeader {
-  font-size: 16px;
-  line-height: normal;
-  font-weight: 400;
-  gap: 16px;
-  width: 100%;
-  color-scheme: light dark;
+  padding: 32px 64px;
   color: var(--color-font-light);
   text-transform: uppercase;
+  
+  .logoImage {
+    max-height: 32px;
+    max-width: 230px;
+  }
+
+  a:hover {
+    color: var(--color-font-text-links-hover);
+  }
 }
 
-.logoImage {
-  height: 32px;
-  width: 230px;
-}
-
-
-a:visited {
-  color: var(--font-text-links-active);
-}
-
-a:hover {
-  color: var(--color-font-text-links-hover);
+/* 🌐 Mobile Styling */
+@media (max-width: 768px) {
+  .siteHeader {
+    padding: 18px 24px;
+    
+    .logoImage {
+      max-height: 20px;
+      max-width: 160px;
+    }
+  }
 }

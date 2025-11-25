@@ -13,7 +13,7 @@ export const MAX_ALL_ALC_PER_ZIP = 9;
 export const MAX_BEER_WINE_PER_ZIP = 6;
 
 export interface BusinessLicense {
-  index: number; 
+  index: number;
   entity_number: string;
   business_name: string;
   dba_name: string | null;
@@ -22,8 +22,8 @@ export interface BusinessLicense {
   license_number: string;
   status: string | null;
   alcohol_type: string;
-  minutes_date: string,
-  application_expiration_date: string,
+  minutes_date: string;
+  application_expiration_date: string;
   file_name: string;
 }
 
@@ -82,7 +82,7 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
   const obj = license as Record<string, unknown>;
 
   if (typeof obj.index !== "number") {
-      errors.index = "Must be a number"
+    errors.index = "Must be a number";
   }
 
   if (typeof obj.entity_number !== "string") {
@@ -118,11 +118,11 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
   }
 
   if (typeof obj.minutes_date !== "string") {
-      errors.minutes_date = "Must be a string"
+    errors.minutes_date = "Must be a string";
   }
 
   if (typeof obj.application_expiration_date !== "string") {
-      errors.application_expiration_date = "Must be a string"
+    errors.application_expiration_date = "Must be a string";
   }
 
   if (typeof obj.file_name !== "string") {
@@ -309,4 +309,19 @@ export function getZipcodesWithAvailableLicenses(
 
   // Sort by zipcode
   return availableZipcodes.sort((a, b) => a.zipcode.localeCompare(b.zipcode));
+}
+
+export function getApplicantsByZipcode(
+  zipcode: EligibleBostonZipcode,
+  data: BusinessLicense[]
+) {
+  const applicants = [];
+
+  for (const license of data) {
+    if (license.zipcode === zipcode) {
+      applicants.push(license);
+    }
+  }
+
+  return applicants;
 }

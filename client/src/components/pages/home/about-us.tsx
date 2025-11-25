@@ -1,21 +1,19 @@
-import "./about-us.css";
+import styles from "./about-us.module.css";
 import { FormattedMessage } from "react-intl";
 
 const AboutUs = () => {
   return (
-    <div className="about-us w-full">
-      <h1>
+    <div className={`${styles.aboutUs}`}>
+      <h2>
         <FormattedMessage id="home.aboutUs.title" />
-      </h1>
-      <h2 className="w-full break-words whitespace-normal">
-        <FormattedMessage
-          id="home.aboutUs.weAre"
+      </h2>
+      <p><FormattedMessage
+          id="home.aboutUs.weAre.part1"
           values={{ 
               b: (chunks) => <b>{chunks}</b>,
-              br: <br/> 
             }}
-        />
-      </h2>
+      /></p>
+      <p><FormattedMessage id="home.aboutUs.weAre.part2" /></p>
     </div>
   );
 };

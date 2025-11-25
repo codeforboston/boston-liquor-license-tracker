@@ -1,3 +1,4 @@
+import styles from "./license-availability-table.module.css"
 import licenseData from '../../../data/licenses.json';
 import { eligibleBostonZipcodes } from '@/services/data-interface/data-interface';
 import CustomTable from "@components/ui/table";
@@ -56,7 +57,7 @@ const LicenseAvailabilityTable = () => {
  }
 
   return (
-    <section className="license-availability-table">
+    <section className={styles.licenseAvailabilityTable}>
       <CustomTable ariaLabel="Licenses by Zipcode" tableData={formattedData} headers={availabilityHeaders}/>
     </section>
   )

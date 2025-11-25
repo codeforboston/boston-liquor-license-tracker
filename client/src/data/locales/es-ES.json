@@ -90,7 +90,8 @@
 
 
   "home.aboutUs.title": "Quiénes somos:",
-  "home.aboutUs.weAre": "Somos un grupo de dueños de restaurantes, cantineros, chefs y clientes; <b>Igual Que Usted</b>. Entendemos lo difícil que es navegar la burocracia de las licencias de bebidas alcohólicas en Boston, especialmente como recién llegado.{br}Desde monitorear la disponibilidad y entender el proceso de solicitud, hasta los posibles costos ocultos de obtener una: hay mucho que tener en cuenta. Hemos hecho nuestra misión desmitificar el proceso y ayudarle a poner en marcha su negocio de la manera más sencilla posible.",
+  "home.aboutUs.weAre.part1": "Somos un grupo de dueños de restaurantes, cantineros, chefs y clientes; <b>Igual Que Usted</b>. Entendemos lo difícil que es navegar la burocracia de las licencias de bebidas alcohólicas en Boston, especialmente como recién llegado.",
+  "home.aboutUs.weAre.part2": "Desde monitorear la disponibilidad y entender el proceso de solicitud, hasta los posibles costos ocultos de obtener una: hay mucho que tener en cuenta. Hemos hecho nuestra misión desmitificar el proceso y ayudarle a poner en marcha su negocio de la manera más sencilla posible.",
   "home.caseStudy.button.read": "LEA EL ESTUDIO DE CASO COMPLETO",
   "home.caseStudy.image.alt": "Medium-sized empty white square",
   "home.caseStudy.part1": "Obtener una licencia de bebidas alcohólicas en Boston ha significado durante mucho tiempo ser parte de un club exclusivo de dueños de restaurantes, empresas de hospitalidad y abogados que han dominado el proceso. Históricamente, esto ha significado que los recién llegados al sector han tenido dificultades para obtener estas licencias artificialmente escasas, y ha creado sequías en vecindarios por toda la ciudad. Nuestra investigación ha mostrado una correlación directa entre qué tan blanco es un vecindario y cuántas licencias de bebidas alcohólicas tiene.",

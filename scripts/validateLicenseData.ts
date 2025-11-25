@@ -1,4 +1,4 @@
-import {Ajv, JSONSchemaType} from "ajv"
+import { Ajv } from "ajv"
 import formatsPlugin from 'ajv-formats';
 import { LICENSE_SCHEMA_PATH, LICENSES_JSON} from "./paths.js"
 import path from "path"
@@ -20,6 +20,22 @@ async function main() {
 
     const ajv = new Ajv({ allErrors: true });
     formatsPlugin.default(ajv);
+
+    //check for sequential indexing
+    ajv.addKeyword({
+        keyword: "sequentialIndexes",
+        type: "array",
+        errors: true,
+        validate: function (schema: boolean, data: any[]) {
+            if (!schema) return true; 
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].index !== i + 1) {
+                    return false;
+                }
+            }
+            return true;
+        },
+    });
 
     const validate = ajv.compile(schemaJson);
 

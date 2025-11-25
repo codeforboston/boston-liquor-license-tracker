@@ -1,0 +1,41 @@
+.customTable {
+    width: 100%;
+    table-layout: fixed;
+
+    .tableHeader {
+        background-color: var(--color-background-dark);
+        color: var(--color-font-light);
+    }
+
+    .tableBody td {
+        padding: 12px 16px;
+    }
+    
+    .tableSubRow {
+        td:first-child {
+            padding-left: 48px;
+        }
+    }
+}
+
+
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
+    .customTable {
+        width: auto;
+        
+        th {
+            font-weight: 500;
+        }
+
+        .tableBody td {
+            padding: 8px 12px;
+        }
+        
+        .tableSubRow {
+            td:first-child {
+                padding-left: 24px;
+            }
+        }
+    }
+}

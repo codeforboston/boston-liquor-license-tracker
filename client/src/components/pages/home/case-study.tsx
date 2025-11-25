@@ -1,4 +1,3 @@
-import "./case-study.module.css";
 import { useIntl, FormattedMessage } from 'react-intl';
 import myImage from '/src/assets/images/case-study-placeholder.png';
 import caseStudyStyles from "./case-study.module.css";
@@ -8,29 +7,16 @@ const CaseStudy = () => {
   const intl = useIntl();
   return (
     <div className={caseStudyStyles.caseStudy}>
-        <div className="!p-0 !m-0 max-w-[840px] w-auto flex-shrink">
-          <h1 className ="text-2xl max-w-[840px] w-auto flex-shrink mb-[16px]">
-            <FormattedMessage
-              id="home.caseStudy.title"
-            />
-          </h1>
-          <h2 className="case-study h2 !p-0 !m-0 !ml-0 !pl-0 !indent-0 ![margin-bottom:32px]">
-            <FormattedMessage
-              id="home.caseStudy.part1"
-            />
-          <br />
-          <br />
-          <FormattedMessage
-              id="home.caseStudy.part2"
-            />
-          <br />
-          <br />
-          <FormattedMessage
-              id="home.caseStudy.part3"
-          />
+        <div className={`${caseStudyStyles.studyIntro}`}>
+          <h2>
+            <FormattedMessage id="home.caseStudy.title" />
           </h2>
+          <p><FormattedMessage id="home.caseStudy.part1" /></p>
+          <p><FormattedMessage id="home.caseStudy.part2" /></p>
+          <p><FormattedMessage id="home.caseStudy.part3" /></p>
         </div>
-        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border ![margin-bottom:32px]`}
+
+        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border`}
           >
           <img
             src={myImage}
@@ -46,11 +32,11 @@ const CaseStudy = () => {
             "
           />
         </div>
+
         <div className="
           w-full
           flex
           justify-center
-          ![margin-bottom:64px]
           "
           >
           <ReadStudyButton to={"/coming-soon"} messageId={"home.caseStudy.button.read"}/>

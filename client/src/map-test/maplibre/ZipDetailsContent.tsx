@@ -37,7 +37,7 @@ export const ZipDetailsError = () => {
 export const ZipDetailsEmpty = ({ zipCode }: { zipCode: string }) => {
   return (
     <div className="flex flex-col h-full w-full font-medium text-[18px]">
-      <h2 className="text-2xl font-bold mb-[8px]">{zipCode}</h2>
+      <h2 className="mb-[8px]">{zipCode}</h2>
       <hr />
       <div className="items-center text-center h-[stretch] content-center px-[32px]">
         <h3>Sorry! It appears we don't have data for this zip code</h3>

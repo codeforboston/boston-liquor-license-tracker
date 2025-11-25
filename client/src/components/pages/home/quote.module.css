@@ -1,11 +1,10 @@
-.home-page .quote {
+.quote {
   width: 100%;
   text-align: center;
   padding: 48px 20px;
-  /* padding: 48px 400px; */
   box-sizing: border-box;
 
-  h1 {
+  h3 {
     font-family: Lora, Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 36px;
     font-style: italic;
@@ -13,5 +12,16 @@
     margin: 0 auto;
     max-width: 800px;
     width: 100%;
+  }
+}
+
+/* 🌐 Mobile Styling */
+@media (max-width: 768px) {
+  .quote {
+    padding: 24px 77px;
+
+    h3 {
+      font-size: 14px;
+    }
   }
 }

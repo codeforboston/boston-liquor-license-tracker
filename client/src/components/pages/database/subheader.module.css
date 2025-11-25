@@ -4,8 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  max-width: 1440px;
-  padding: 32px 32px;
+  padding: 1rem 4rem;
   /* reduced right padding for small screens */
   gap: 8px;
   background-color:var(--color-background-light);
@@ -13,44 +12,18 @@
 }
 
 .heading {
-  font-size: 32px;
-  font-weight: 600;
   color:var(--color-font-dark);
   margin: 0;
 }
 
 .description {
-  font-size: 16px;
   color:var(--color-font-dark);
   margin: 0;
 }
 
-/* 📱 Responsive: Tablet and below */
-@media (max-width: 1024px) {
-  .heading {
-    font-size: 28px;
-  }
-
-  .description {
-    font-size: 15px;
-  }
-
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
   .subheader {
     padding: 24px;
-  }
-}
-
-/* 📱 Responsive: Mobile */
-@media (max-width: 600px) {
-  .heading {
-    font-size: 24px;
-  }
-
-  .description {
-    font-size: 14px;
-  }
-
-  .subheader {
-    padding: 16px;
   }
 }

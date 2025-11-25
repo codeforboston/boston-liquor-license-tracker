@@ -2,9 +2,13 @@
 @import "tw-animate-css";
 @plugin "tailwindcss-react-aria-components";
 
-/* Single source of truth for hex codes */
+/* This file contains global (site-wide) color definiditions and text styling */
+
+/********************/
+/* Color Definitions: Single source of truth for hex codes in our codebase */
+/********************/
 :root {
-  /* Do not use these variables directly */
+  /* DO NOT use these variables directly */
   /* Only reference variables from the @theme block below */
   --color-white-1: #fdfdfd;
   --color-gray-dark-1: #2e2e2e;
@@ -32,37 +36,108 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Semantic names for app usage */
-/* Tailwind creates utility classes for each of these variables. We defined `--color-button-default-dark`, so we can now have `bg-button-default-dark` available to use as a class name across the codebase. `bg-` is a common suffix, but for other ways to use custom colors see Tailwind's documentation: https://v3.tailwindcss.com/docs/customizing-colors#using-custom-colors */
+/********************/
+/* @theme Semantic Names: use these across the codebase */
+/********************/
+/* Tailwind creates utility classes for each of these variables. 
+We defined `--color-background-light`, so we can 
+now have `bg-background-light` available to use 
+as a class name across the codebase. 
+
+`bg-` is a common suffix, but for other ways 
+to use custom colors see Tailwind's documentation: 
+https://v3.tailwindcss.com/docs/customizing-colors#using-custom-colors */
 
 /* Colors and associated names for this project are defined in this figma:
 https://www.figma.com/design/JSN042XA3HiNNVEqdFHS01/Liquor-License-Tracker-Mockups?node-id=647-1061&t=NGbbAuEFuN9SRa4K-4 */
 
 @theme {
+  /* Base UI */
   --color-background-light: var(--color-white-1);
   --color-background-dark: var(--color-gray-dark-1);
   --color-ui-gray: var(--color-gray-light-1);
   --color-border-gray: var(--color-gray-light-2);
+
+  /* Text */
   --color-font-light: var(--color-white-1);
   --color-font-dark: var(--color-gray-dark-1);
   --color-font-text-links-hover: var(--color-gray-light-3);
   --color-font-text-links-active: var(--color-gray-light-4);
+
+  /* Buttons */
+  --color-button-default-light: var(--color-white-1);
+  --color-button-hovered-light: var(--color-white-3);
+  --color-button-active-light: var(--color-white-4);
+
+  --color-button-default-dark: var(--color-gray-dark-1);
+  --color-button-hovered-dark: var(--color-gray-dark-2);
+  --color-button-active-dark: var(--color-gray-dark-3);
+
+  /* Logo */
   --color-logo-default-red: var(--color-red-1);
   --color-logo-hovered-red: var(--color-red-2);
   --color-logo-active-red: var(--color-red-3);
   --color-logo-default-white: var(--color-white-1);
   --color-logo-hovered-white: var(--color-white-2);
   --color-logo-active-white: var(--color-gray-light-4);
+
+  /* Case Study Button */
   --color-case-study-button-default-yellow: var(--color-yellow-1);
   --color-case-study-button-hover-yellow: var(--color-yellow-2);
   --color-case-study-button-active-yellow: var(--color-yellow-3);
-  --color-button-default-light: var(--color-white-1);
-  --color-button-hovered-light: var(--color-white-3);
-  --color-button-active-light: var(--color-white-4);
-  --color-button-default-dark: var(--color-gray-dark-1);
-  --color-button-hovered-dark: var(--color-gray-dark-2);
-  --color-button-active-dark: var(--color-gray-dark-3);
+
+  /* License States */
   --color-license-accepted-green: var(--color-green-1);
   --color-license-expired-red: var(--color-red-4);
   --color-license-deferred-yellow: var(--color-yellow-4);
+}
+
+
+/********************/
+/* Text styling */
+/********************/
+h1, h2, h3, h4, body, button, nav {
+  font-family: 'Roboto', system-ui, sans-serif;
+  line-height: normal;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+h4 {
+  font-size: 16px;
+  font-weight: 500;
+}
+body, nav {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+  body, nav {
+    font-size: 12px;
+  }
 }

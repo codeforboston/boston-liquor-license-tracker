@@ -1,6 +1,24 @@
-.database-page {
-  .license-type {
-    /* Nest styles in here */
+.licenseType {
+  background-color: var(--color-background-light);
+  padding: 1rem 4rem;
 
+  h2 {
+    margin-bottom: 8px;
+  }
+  
+  h3 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+}
+
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
+  .licenseType {
+    padding: 24px;
+
+    h3 {
+      margin-top: 8px;
+    }
   }
 }

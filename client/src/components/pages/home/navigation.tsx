@@ -1,16 +1,16 @@
-import navigationStyles from "./navigation.module.css"
 import NavigationButton from "./navigation-button";
 
 const Navigation = () => {
   return (
     <div 
       className={`
-        ${navigationStyles.navigation}
         navigation
         flex flex-wrap 
-        justify-center items-start 
-        py-[48px] px-[64px] 
-        gap-[56px] last:mb-0
+        flex-col md:flex-row
+        justify-center items-stretch md:items-start
+        py-[16px] px-[24px]
+        md:py-[48px] md:px-[64px]  
+        gap-[16px] md:gap-[56px] last:mb-0
       `}
     >
       <NavigationButton to="/maps" messageId="shared.map.capitalized"/>
