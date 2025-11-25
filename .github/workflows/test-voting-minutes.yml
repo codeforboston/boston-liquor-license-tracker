@@ -1,0 +1,21 @@
+name: TEST - GET Voting minutes workflow
+
+on:
+ workflow_dispatch:
+    inputs:
+      username:
+        description: "GitHub username or org name"
+        required: true
+        type: string
+      branch:
+        description: "Branch to test from"
+        required: false
+        default: "main"
+        type: string
+
+jobs:
+  test-run:
+    uses: ./.github/workflows/get-voting-minutes.yml
+    with:
+      target-repository: "${{ inputs.username }}/boston-liquor-license-tracker"
+      target-ref: ${{ inputs.branch }}
