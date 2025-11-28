@@ -12,7 +12,7 @@ export const PageHeader = ({
   cardMode?: boolean;
 }) => {
   const content = (
-    <div className={`${styles.textContainer}`}>
+    <div>
       <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
       <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
       <div className={`${styles.headerChildren}`}>{children}</div>
