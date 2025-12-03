@@ -11,7 +11,7 @@ interface FilterDropdownProps {
   label: string
   options: DropdownOption[]
   selected: Selection 
-  setSelected: (options: Set<string>) => void
+  setSelected?: (options: Set<string>) => void
   onSelectionChange: (keys: Selection) => void
 }
 
@@ -40,7 +40,7 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
 
 
 const FilterDropdown = ({ title, label, options, selected, setSelected, onSelectionChange  }: FilterDropdownProps) => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
 
   return (

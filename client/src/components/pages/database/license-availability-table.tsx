@@ -57,39 +57,38 @@ const LicenseAvailabilityTable = () => {
 
   const formattedData = formatData(data, zipcodeList);
 
-  const dropdownZipArray = [...eligibleBostonZipcodes].map((zip, index) => {
+  const dropdownZipOptions = [...eligibleBostonZipcodes].map((zip, index) => {
     return {id: `react-aria-${index + 1}`, name: String(zip)}
   });
 
   const onSelectionChange = useCallback((keys: Selection) => {
   
-                setSelectedDropdownOptions(new Set(keys as Set<string>))
+    setSelectedDropdownOptions(new Set(keys as Set<string>))
 
-                // Convert selected IDs back to zipcode objects
-                const selectedOptions = dropdownZipArray.filter(option => 
-                  (keys as Set<string>).has(option.id.toString())
-                )
-  
-                // Get zipcodes from selected options
-                const zipcodes = selectedOptions.map(option => 
-                  option.name as EligibleBostonZipcode // assuming option.name is the zipcode
-                )
+    const selectedOptions = dropdownZipOptions.filter(option => 
+      (keys as Set<string>).has(option.id.toString())
+    )
 
-                if (zipcodes.length) {
-                  setZipcodeList(new Set(zipcodes))
-                } else {
-                  setZipcodeList(eligibleBostonZipcodes);
-                }
-  }, [dropdownZipArray])
+    // Get zipcodes from selected options
+    const zipcodes = selectedOptions.map(option => 
+      option.name as EligibleBostonZipcode // assuming option.name is the zipcode
+    )
+
+    if (zipcodes.length) {
+      setZipcodeList(new Set(zipcodes))
+    } else {
+      setZipcodeList(eligibleBostonZipcodes);
+    }
+  }, [dropdownZipOptions])
 
 
- if (formattedData == null) {
-     return null
- }
+   if (formattedData == null) {
+       return null
+   }
 
   return (
     <section className={styles.licenseAvailabilityTable}>
-      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipArray} selected={selectedDropdownOptions} setSelected={setSelectedDropdownOptions} onSelectionChange={onSelectionChange} />
+      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipOptions} selected={selectedDropdownOptions} setSelected={setSelectedDropdownOptions} onSelectionChange={onSelectionChange} />
       <CustomTable ariaLabel="Licenses by Zipcode" tableData={formattedData} headers={availabilityHeaders}/>
     </section>
   )
