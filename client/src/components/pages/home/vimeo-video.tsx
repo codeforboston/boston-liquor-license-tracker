@@ -3,13 +3,13 @@ import React from 'react';
 // Define the props for the component
 interface VimeoPlayerProps {
   videoId: string;
+  hash?: string;
   width?: number | string;
   height?: number | string;
 }
 
-const VimeoPlayer: React.FC<VimeoPlayerProps> = ({ videoId, width = 640, height = 360 }) => {
-  // Construct the full embed URL
-  const embedUrl = `https://player.vimeo.com/video/${videoId}?h=abcdef1234&badge=0&autopause=0&player_id=0&app_id=58479`;
+const VimeoPlayer: React.FC<VimeoPlayerProps> = ({ videoId, hash, width = 640, height = 360 }) => {
+  const embedUrl = `https://player.vimeo.com/video/${videoId}${hash ? `?h=${hash}` : ''}`;
 
   return (
     <div className="vimeo-player-container">
