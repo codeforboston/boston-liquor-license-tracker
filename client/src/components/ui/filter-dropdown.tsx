@@ -2,14 +2,16 @@ import { useState } from 'react'
 import {Button, Popover, Selection, MenuTrigger, Menu, MenuItem} from 'react-aria-components';
 import { ExpandMore, ExpandLess, CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
 import { MenuItemProps } from '@mui/material/MenuItem';
-interface DropdownOption { 
-  id: number
+export interface DropdownOption { 
+  id: string
   name: string
 }
 interface FilterDropdownProps {
   title: string
   label: string
   options: DropdownOption[]
+  selected: Selection 
+  onSelectionChange: (keys: Selection) => void
 }
 
 
@@ -36,9 +38,9 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
 }
 
 
-const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
-  const [selected, setSelected] = useState<Selection>(new Set())
-  const [menuOpen, setMenuOpen] = useState<boolean>(false)
+const FilterDropdown = ({ title, label, options, selected, onSelectionChange  }: FilterDropdownProps) => {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
 
   return (
 
@@ -69,7 +71,7 @@ const FilterDropdown = ({ title, label, options,  }: FilterDropdownProps) => {
             <Menu 
               selectionMode='multiple'
               selectedKeys={selected}
-              onSelectionChange={(keys) => setSelected(new Set(keys as Set<string>))}
+              onSelectionChange={onSelectionChange}
               className="w-full outline-none "
             >
               {options.map(opt => (
