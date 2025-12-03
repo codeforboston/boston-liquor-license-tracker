@@ -88,7 +88,7 @@ const LicenseAvailabilityTable = () => {
 
   return (
     <section className={styles.licenseAvailabilityTable}>
-      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipOptions} selected={selectedDropdownOptions} setSelected={setSelectedDropdownOptions} onSelectionChange={onSelectionChange} />
+      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipOptions} selected={selectedDropdownOptions} onSelectionChange={onSelectionChange} />
       <CustomTable ariaLabel="Licenses by Zipcode" tableData={formattedData} headers={availabilityHeaders}/>
     </section>
   )
