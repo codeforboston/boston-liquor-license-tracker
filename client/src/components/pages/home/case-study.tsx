@@ -1,7 +1,7 @@
 import { useIntl, FormattedMessage } from 'react-intl';
-import myImage from '/src/assets/images/case-study-placeholder.png';
 import caseStudyStyles from "./case-study.module.css";
 import ReadStudyButton from "./read-study-button";
+import VimeoPlayer from "./vimeo-video";
 
 const CaseStudy = () => {
   const intl = useIntl();
@@ -18,18 +18,11 @@ const CaseStudy = () => {
 
         <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border`}
           >
-          <img
-            src={myImage}
-            alt={intl.formatMessage({ id: "home.caseStudy.image.alt" })}
-            className="
-              w-full
-              max-w-[480px]
-              h-auto
-              object-cover
-              transition-transform duration-300 hover:scale-105
-              block
-              m-auto
-            "
+          <VimeoPlayer 
+            videoId="882676233"
+            hash="2f05014c6a"
+            width="100%"
+            height="290"
           />
         </div>
 
