@@ -1,8 +1,8 @@
 import styles from "./license-availability-table.module.css"
 import licenseData from '../../../data/licenses.json';
-import { eligibleBostonZipcodes } from '@/services/data-interface/data-interface';
+import { eligibleBostonZipcodes, getZipcodesWithAvailableLicenses } from '@/services/data-interface/data-interface';
 import CustomTable from "@components/ui/table";
-import {useState, useEffect, useCallback} from 'react';
+import { useMemo,useState, useEffect, useCallback} from 'react';
 import { validateBusinessLicense, getAvailableLicensesByZipcode, BusinessLicense, EligibleBostonZipcode } from '@/services/data-interface/data-interface';
 import { MAX_ALL_ALC_PER_ZIP, MAX_AVAILABLE_PER_ZIP, MAX_BEER_WINE_PER_ZIP } from '@/services/data-interface/data-interface';
 import { RowWithSubRows } from '@components/ui/table';
@@ -28,10 +28,18 @@ const formatData = (data: BusinessLicense[], zipcodeList: Set<EligibleBostonZipc
     return d;
   }
 
+const licenseTypeOptions = [
+  {id: "react-aria-1", name: "All Alcoholic Beverages" as const}, 
+  {id: "react-aria-2", name: "Wines and Malt Beverages" as const}
+];
+
+
+
 const LicenseAvailabilityTable = () => {
     const [data, setData] = useState<BusinessLicense[]>([]);
     const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(new Set());
     const [selectedDropdownOptions, setSelectedDropdownOptions] = useState<Selection>(new Set())
+    const [selectedLicDropdownOptions, setSelectedLicDropdownOptions] = useState<Selection>(new Set())
 
     useEffect(() => {
       const tmp = []
@@ -57,11 +65,14 @@ const LicenseAvailabilityTable = () => {
 
   const formattedData = formatData(data, zipcodeList);
 
-  const dropdownZipOptions = [...eligibleBostonZipcodes].map((zip, index) => {
-    return {id: `react-aria-${index + 1}`, name: String(zip)}
-  });
+  const dropdownZipOptions = useMemo(() => 
+    [...eligibleBostonZipcodes].map((zip, index) => ({
+      id: `react-aria-${index + 1}`, 
+      name: String(zip)
+    })), []
+  );
 
-  const onSelectionChange = useCallback((keys: Selection) => {
+  const onZipSelectionChange = useCallback((keys: Selection) => {
   
     setSelectedDropdownOptions(new Set(keys as Set<string>))
 
@@ -82,13 +93,36 @@ const LicenseAvailabilityTable = () => {
   }, [dropdownZipOptions])
 
 
+  const onLicenseTypeSelectionChange = useCallback((keys: Selection) => {
+    setSelectedLicDropdownOptions(new Set(keys as Set<string>))
+
+
+    const selectedLicenseType = licenseTypeOptions.filter(option => 
+      (keys as Set<string>).has(option.id.toString())
+    )
+
+    let licenses;
+    if (selectedLicenseType.length == 1) {
+     licenses = getZipcodesWithAvailableLicenses(data, selectedLicenseType[0].name) 
+    } else {
+      licenses = getZipcodesWithAvailableLicenses(data)
+    }
+
+    const zipcodes = licenses.map(license => license.zipcode)
+
+    setZipcodeList(new Set(zipcodes))
+
+  }, [data])
+
+
    if (formattedData == null) {
        return null
    }
 
   return (
     <section className={styles.licenseAvailabilityTable}>
-      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipOptions} selected={selectedDropdownOptions} onSelectionChange={onSelectionChange} />
+      <FilterDropdown title="Zipcode" label="Zipcode dropdown selection" options={dropdownZipOptions} selected={selectedDropdownOptions} onSelectionChange={onZipSelectionChange} />
+      <FilterDropdown title="License Type" label="License Type dropdown selection" options={licenseTypeOptions} selected={selectedLicDropdownOptions} onSelectionChange={onLicenseTypeSelectionChange} />
       <CustomTable ariaLabel="Licenses by Zipcode" tableData={formattedData} headers={availabilityHeaders}/>
     </section>
   )
