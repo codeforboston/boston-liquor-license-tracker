@@ -10,26 +10,39 @@
 :root {
   /* DO NOT use these variables directly */
   /* Only reference variables from the @theme block below */
-  --color-white-1: #fdfdfd;
-  --color-gray-dark-1: #2e2e2e;
-  --color-gray-light-1: #f2f2f2;
-  --color-gray-light-2: #e2e2e2;
-  --color-gray-light-3: #cccccc;
-  --color-gray-light-4: #bfbfbf;
-  --color-red-1: #b41313;
-  --color-red-2: #a61212;
-  --color-red-3: #941010;
-  --color-white-2: #ebebeb;
-  --color-yellow-1: #f5b524;
-  --color-yellow-2: #f6bd3c;
-  --color-yellow-3: #db9b0a;
-  --color-white-3: #eaeaea;
-  --color-white-4: #cdcdcd;
-  --color-gray-dark-2: #383838;
-  --color-gray-dark-3: #404040;
-  --color-green-1: #168500;
-  --color-red-4: #a20000;
-  --color-yellow-4: #e9e100;
+
+  /* Whites - ordered lightest to darkest */
+  --color-white-1: #fdfdfd;  /* lightest (near pure white) */
+  --color-white-2: #ebebeb;  /* medium-light */
+  --color-white-3: #eaeaea;  /* medium-dark */
+  --color-white-4: #cdcdcd;  /* darkest */
+  
+  /* Grays (Light) - ordered lightest to darkest */
+  --color-gray-light-1: #f2f2f2;  /* lightest */
+  --color-gray-light-2: #e2e2e2;  /* medium-light */
+  --color-gray-light-3: #cccccc;  /* medium-dark */
+  --color-gray-light-4: #bfbfbf;  /* darkest */
+
+  /* Grays (Dark) - ordered lightest to darkest */
+  --color-gray-dark-1: #404040;  /* lightest */
+  --color-gray-dark-2: #383838;  /* medium */
+  --color-gray-dark-3: #2e2e2e;  /* darkest */
+  
+  /* Yellows (ordered by hue, then lightness) */
+  --color-yellow-1: #f6bd3c;  /* orange-leaning, lightest */
+  --color-yellow-2: #f5b524;  /* orange-leaning, medium */
+  --color-yellow-3: #e9e100;  /* green-leaning (chartreuse), bright */
+  --color-yellow-4: #db9b0a;  /* most orange-leaning, darkest */
+  
+  /* Reds (ordered by hue, then lightness) */
+  --color-red-1: #b41313;  /* warmest (orange-leaning), lightest */
+  --color-red-2: #a61212;  /* slightly warm, medium */
+  --color-red-3: #a20000;  /* purest, darkest */
+  --color-red-4: #941010;  /* pure, medium-dark */
+  
+  /* Greens */
+  --color-green-1: #168500;  /* pure, medium-dark */
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -40,58 +53,65 @@
 /* @theme Semantic Names: use these across the codebase */
 /********************/
 /* Tailwind creates utility classes for each of these variables. 
-We defined `--color-background-light`, so we can 
-now have `bg-background-light` available to use 
-as a class name across the codebase. 
+A variable like `--color-font-light`,
+can be used inline as a tailwind class name like `text-font-light` 
+or as a variable in a css file like `color: var(--color-font-light)
 
-`bg-` is a common suffix, but for other ways 
+`text-`, bg-`, `border-` are common suffixes, but for other ways 
 to use custom colors see Tailwind's documentation: 
 https://v3.tailwindcss.com/docs/customizing-colors#using-custom-colors */
 
 /* Colors and associated names for this project are defined in this figma:
 https://www.figma.com/design/JSN042XA3HiNNVEqdFHS01/Liquor-License-Tracker-Mockups?node-id=647-1061&t=NGbbAuEFuN9SRa4K-4 */
 
+/* If you don't find an appropriate semantic name below,
+one may need to be created. 
+For example, as the Maps page is built, 
+colors will be named as they are used */
+
 @theme {
   /* Base UI */
   --color-background-light: var(--color-white-1);
-  --color-background-dark: var(--color-gray-dark-1);
+  --color-background-dark: var(--color-gray-dark-3);
   --color-ui-gray: var(--color-gray-light-1);
   --color-border-gray: var(--color-gray-light-2);
 
   /* Text */
   --color-font-light: var(--color-white-1);
-  --color-font-dark: var(--color-gray-dark-1);
-  --color-font-text-links-hover: var(--color-gray-light-3);
-  --color-font-text-links-active: var(--color-gray-light-4);
+  --color-font-dark: var(--color-gray-dark-3);
+  --color-font-links-hover: var(--color-gray-light-3);
+  --color-font-links-active: var(--color-gray-light-4);
 
   /* Buttons */
   --color-button-default-light: var(--color-white-1);
   --color-button-hovered-light: var(--color-white-3);
   --color-button-active-light: var(--color-white-4);
 
-  --color-button-default-dark: var(--color-gray-dark-1);
+  --color-button-default-dark: var(--color-gray-dark-3);
   --color-button-hovered-dark: var(--color-gray-dark-2);
-  --color-button-active-dark: var(--color-gray-dark-3);
+  --color-button-active-dark: var(--color-gray-dark-1);
 
-  /* Logo */
+  /* Logo */  /* None of these are in use yet */
   --color-logo-default-red: var(--color-red-1);
   --color-logo-hovered-red: var(--color-red-2);
-  --color-logo-active-red: var(--color-red-3);
+  --color-logo-active-red: var(--color-red-4);
   --color-logo-default-white: var(--color-white-1);
   --color-logo-hovered-white: var(--color-white-2);
   --color-logo-active-white: var(--color-gray-light-4);
 
   /* Case Study Button */
-  --color-case-study-button-default-yellow: var(--color-yellow-1);
-  --color-case-study-button-hover-yellow: var(--color-yellow-2);
-  --color-case-study-button-active-yellow: var(--color-yellow-3);
+  --color-case-study-button-default-yellow: var(--color-yellow-2);
+  --color-case-study-button-hover-yellow: var(--color-yellow-1);
+  --color-case-study-button-active-yellow: var(--color-yellow-4);
 
   /* License States */
   --color-license-accepted-green: var(--color-green-1);
-  --color-license-expired-red: var(--color-red-4);
-  --color-license-deferred-yellow: var(--color-yellow-4);
-}
+  --color-license-expired-red: var(--color-red-3);
+  --color-license-deferred-yellow: var(--color-yellow-3);
 
+  /* Map */
+  --color-map-red: var(--color-red-1);
+}
 
 /********************/
 /* Text styling */
@@ -100,7 +120,6 @@ h1, h2, h3, h4, body, button, nav {
   font-family: 'Roboto', system-ui, sans-serif;
   line-height: normal;
 }
-
 h1 {
   font-size: 48px;
   font-weight: 700;

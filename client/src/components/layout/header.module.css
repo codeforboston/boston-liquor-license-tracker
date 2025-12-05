@@ -9,7 +9,7 @@
   }
 
   a:hover {
-    color: var(--color-font-text-links-hover);
+    color: var(--color-font-links-hover);
   }
 }
 

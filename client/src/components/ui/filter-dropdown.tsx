@@ -19,7 +19,7 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
     <MenuItem 
       id={id}
       textValue={option.name}
-      className={"flex items-center px-[16px] pb-[8px] outline-none hover:bg-font-text-links-hover"}
+      className={"flex items-center px-[16px] pb-[8px] outline-none hover:bg-font-links-hover"}
     >
       
       {({isSelected}) => (
