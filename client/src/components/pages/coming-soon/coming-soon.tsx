@@ -13,10 +13,11 @@ const ComingSoon = () => {
       title={intl.formatMessage({ id: "comingSoon.backgroundImageAlt" })}
     >
       <title>{title}</title>
+
       <PageHeader
+        cardMode={true}
         headerTitle={<FormattedMessage id="comingSoon.title" />}
         headerText={<FormattedMessage id="comingSoon.description" />}
-        showBottomBoxShadow
       >
         <BackToHome />
       </PageHeader>

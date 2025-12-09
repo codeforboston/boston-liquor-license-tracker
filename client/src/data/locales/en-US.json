@@ -88,7 +88,8 @@
 
 
   "home.aboutUs.title": "Who We Are:",
-  "home.aboutUs.weAre": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially as a newcomer.{br}From tracking availability, understanding the application process, to the potential hidden costs of obtaining one: there is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
+  "home.aboutUs.weAre.part1": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially as a newcomer.",
+  "home.aboutUs.weAre.part2": "From tracking availability, understanding the application process, to the potential hidden costs of obtaining one: there is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
   "home.caseStudy.button.read": "READ THE FULL CASE STUDY",
   "home.caseStudy.image.alt": "Medium-sized empty white square",
   "home.caseStudy.part1": "Getting a Liquor License in Boston has long meant being part of an \"In Club\" of restaurant owners, hospitality companies, and lawyers who've mastered the process. It has historically meant newcomers to the space have struggled to obtain these artificially scarce licenses, and has created droughts in neighborhoods all over the city. Our research has shown a direct correlation between how white a neighborhood is and how many liquor licenses it has.",

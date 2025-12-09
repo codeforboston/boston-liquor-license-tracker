@@ -1,0 +1,11 @@
+name: TEST - GET Voting minutes workflow
+
+on:
+ workflow_dispatch:
+
+jobs:
+  test-run:
+    uses: ./.github/workflows/liquor-license-applicant-pipeline.yml
+    with:
+      target-repository: "${{ github.repository_owner }}/boston-liquor-license-tracker"
+      target-ref: ${{ github.ref_name }}

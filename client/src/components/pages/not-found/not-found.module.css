@@ -1,13 +1,13 @@
 .notFound {
   width: 100%;
-  min-height: calc(100vh - 200px); /* Account for header and footer space */
+  min-height: calc(100vh - 200px);
+  /* Account for header and footer space */
   flex-shrink: 0;
   background: var(--color-background-dark);
   background-image: url("@/assets/images/beer-tap.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  box-shadow: 0px 25px 20px 0px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,9 +30,16 @@
   gap: 24px;
 }
 
-/* 🌐 Mobile Styling */
+/* Mobile responsive design */
 @media (max-width: 768px) {
+  .notFound {
+    padding: 1rem;
+    /* 16px screen margin */
+    box-sizing: border-box;
+  }
+
   .notFoundContent {
-    gap: 16px;
+    padding: 1.5rem;
+    /* 24px inner padding */
   }
 }

@@ -1,38 +1,86 @@
 .pageheader {
-    background-color: var(--color-background-dark);
-    color: var(--color-font-light);
-    padding-inline: 4rem;
+  background-color: var(--color-background-dark);
+  color: var(--color-font-light);
+  padding-inline: 4rem;
+  padding-block-end: 2rem;
+
+  .headerTitle {
+    padding-block-start: 1rem;
+    padding-block-end: 1rem;
+  }
+
+  .headerText {
     padding-block-end: 2rem;
+  }
 
-    .headerTitle {
-        padding-block-start: 1rem;
-        padding-block-end: 1rem;
-    }
-
-    .headerText {
-        padding-block-end: 2rem;
-    }
-
-    .headerChildren {
-        padding-block-end: 0;
-    }
+  .headerChildren {
+    padding-block-end: 0;
+  }
 }
 
-.boxshadow {
-    box-shadow: 0px 25px 20px 0px rgba(0, 0, 0, 0.45);
+/* Card Mode Styling */
+.pageheader.cardMode {
+  background: color-mix(in srgb, var(--color-background-dark) 90%, transparent);
+  border-radius: 16px;
+  box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.45);
+  padding-inline: 2rem;
+  padding-block-end: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .infoBoxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    padding-block-start: 2rem;
+    padding-block-end: 1rem;
+  }
+
+  .headerText {
+    padding-block-end: 1.5rem;
+  }
+
+  .headerChildren {
+    padding-block-end: 2rem;
+  }
 }
 
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
-    .pageheader {
-        padding-inline: 24px;
+  .pageheader {
+    padding-inline: 24px;
 
-        .headerTitle {
-            padding-block-start: 32px;
-            padding-block-end: 12px;
-        }
-        .headerText {
-            padding-block-end: 24px;
-        }
+    .headerTitle {
+      padding-block-start: 32px;
+      padding-block-end: 12px;
     }
+    .headerText {
+      padding-block-end: 24px;
+    }
+  }
+
+  .pageheader.cardMode {
+    padding-inline: 1.5rem;
+
+    .headerTitle {
+      padding-block-start: 2rem;
+      padding-block-end: 0.75rem;
+    }
+
+    .headerText {
+      padding-block-end: 1.5rem;
+    }
+
+    .headerChildren {
+      padding-block-end: 2rem;
+    }
+  }
 }

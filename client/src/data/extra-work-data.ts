@@ -1,4 +1,4 @@
-import offsiteLogo from "@/assets/images/offsite-logo.png";
+import offsiteLogo from "@/assets/images/offsite-logo.jpeg";
 import bootcampImg from "@/assets/images/bootcamp.jpeg";
 import cfbLogo from "@/assets/images/cfb-logo.png";
 

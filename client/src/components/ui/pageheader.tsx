@@ -4,20 +4,30 @@ export const PageHeader = ({
   headerTitle,
   headerText,
   children,
-  showBottomBoxShadow = false,
+  cardMode = false,
 }: {
   headerTitle: React.ReactNode;
   headerText: React.ReactNode;
   children?: React.ReactNode;
-  showBottomBoxShadow?: boolean;
+  cardMode?: boolean;
 }) => {
+  const content = (
+    <div>
+      <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
+      <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
+      <div className={`${styles.headerChildren}`}>{children}</div>
+    </div>
+  );
+
   return (
-    <header className={`${styles.pageheader} ${showBottomBoxShadow && "boxshadow"}`}>
-      <div className={`${styles.textContainer}`}>
-        <h1 className={`${styles.headerTitle}`}>{headerTitle}</h1>
-        <p className={`${styles.headerText} max-w-3xl`}>{headerText}</p>
-        <div className={`${styles.headerChildren}`}>{children}</div>
-      </div>
+    <header
+      className={`${styles.pageheader} ${cardMode ? styles.cardMode : ""}`}
+    >
+      {cardMode ? (
+        <div className={`${styles.infoBoxContainer}`}>{content}</div>
+      ) : (
+        content
+      )}
     </header>
   );
 };

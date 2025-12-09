@@ -8,12 +8,12 @@ const AboutUs = () => {
         <FormattedMessage id="home.aboutUs.title" />
       </h2>
       <p><FormattedMessage
-          id="home.aboutUs.weAre"
+          id="home.aboutUs.weAre.part1"
           values={{ 
               b: (chunks) => <b>{chunks}</b>,
-              br: <><br/><br/></>
             }}
       /></p>
+      <p><FormattedMessage id="home.aboutUs.weAre.part2" /></p>
     </div>
   );
 };

@@ -1,22 +1,32 @@
 .comingSoonPage {
-    background:
-        url("../../../assets/images/coming-soon-backdrop.jpg");
-    background-size: cover;
-    /* Ensure coverage of entire area */
-    background-position: bottom center;
-    /*background-repeat: no-repeat;*/
+  background: url("../../../assets/images/coming-soon-backdrop.jpg");
+  background-size: cover;
+  /* Ensure coverage of entire area */
+  background-position: bottom center;
+  /*background-repeat: no-repeat;*/
 
+  width: 100%;
+  /* Width same as viewport */
+  /* height: 100vh; */
+  min-height: calc(100vh - 200px);
+  /* Height same as viewport */
+  overflow: hidden;
+  /* Prevent content overflow scrolling */
 
+  margin: 0px;
+  padding: 0px;
 
-    width: 100%;
-    /* Width same as viewport */
-    height: 100vh;
-    /* Height same as viewport */
-    overflow: hidden;
-    /* Prevent content overflow scrolling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
-    margin: 0px;
-    padding: 0px;
-
-    /* fills viewport height */
+/* Mobile responsive design */
+@media (max-width: 768px) {
+  .comingSoonPage {
+    padding: 1rem;
+    /* 16px screen margin */
+    box-sizing: border-box;
+  }
 }

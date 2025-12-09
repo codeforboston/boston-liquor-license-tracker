@@ -2,6 +2,7 @@ import notFoundStyles from "./not-found.module.css";
 import { FormattedMessage } from "react-intl";
 import BackToHome from "@/components/ui/back-to-home";
 import { useIntl } from "react-intl";
+import PageHeader from "@/components/ui/pageheader";
 
 const NotFound = () => {
   const intl = useIntl();
@@ -9,15 +10,13 @@ const NotFound = () => {
   return (
     <section className={notFoundStyles.notFound}>
       <title>{title}</title>
-      <div className={notFoundStyles.notFoundContent}>
-        <h1 className="w-full">
-          <FormattedMessage id="notFound.heading" />
-        </h1>
-        <p>
-          <FormattedMessage id="notFound.message" />
-        </p>
+      <PageHeader
+        cardMode={true}
+        headerTitle={<FormattedMessage id="notFound.heading" />}
+        headerText={<FormattedMessage id="notFound.message" />}
+      >
         <BackToHome />
-      </div>
+      </PageHeader>
     </section>
   );
 };

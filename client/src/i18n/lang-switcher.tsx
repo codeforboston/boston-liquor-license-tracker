@@ -15,7 +15,7 @@ export default function LangSwitcher() {
         setStoredLocale(e.target.value as Locale);
         document.documentElement.lang = e.target.value;
       }}
-      className="pe-2 bg-background-dark text-[16px] text-font-light"
+      className="bg-background-dark text-[16px] text-font-light"
     >
       {Object.keys(supportedLocales).map((loc: string) => (
         <option value={loc} key={loc}>

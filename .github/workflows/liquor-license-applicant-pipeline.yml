@@ -5,6 +5,16 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      target-repository:
+        required: false
+        type: string
+        default: "codeforboston/boston-liquor-license-tracker"
+      target-ref:
+        required: false
+        type: string
+        default: "main"
 
 # Sets the GITHUB_TOKEN permissions to allow committing changes, so we can update the next meeting date
 permissions:
@@ -22,8 +32,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "codeforboston/boston-liquor-license-tracker"
-          ref: "main"
+          repository: ${{ inputs.target-repository }}
+          ref: ${{ inputs.target-ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -82,8 +92,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: "codeforboston/boston-liquor-license-tracker"
-          ref: "main"
+          repository: ${{ inputs.target-repository }}
+          ref: ${{ inputs.target-ref }}
 
       - name: Setup python 
         uses: actions/setup-python@v5
@@ -116,7 +126,7 @@ jobs:
         working-directory: ./scripts
         run: |
           echo "PDF file: ${{ needs.check-pdf.outputs.pdf-file }}" 
-          python3 extract_entity.py ${{ needs.check-pdf.outputs.pdf-file }}
+          python3 extract_entity.py "${{ needs.check-pdf.outputs.pdf-file }}"
       
       - name: Compile update processed date 
         working-directory: ./scripts
