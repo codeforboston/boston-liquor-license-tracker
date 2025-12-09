@@ -11,7 +11,7 @@ const Home = () => {
   const intl = useIntl();
   const title = intl.formatMessage({ id: "home.pageTitle" });
   return (
-    <main className="home-page">
+    <article className="home-page">
       <title>{title}</title>
       <Hero />
       <Navigation />
@@ -19,7 +19,7 @@ const Home = () => {
       <Quote />
       <CaseStudy />
       <ExtraWork />
-    </main>
+    </article>
   );
 };
 

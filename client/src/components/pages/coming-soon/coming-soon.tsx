@@ -8,7 +8,7 @@ const ComingSoon = () => {
   const intl = useIntl();
   const title = `${intl.formatMessage({ id: "comingSoon.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
   return (
-    <main
+    <section
       className={`${styles.comingSoonPage} coming-soon-page`}
       title={intl.formatMessage({ id: "comingSoon.backgroundImageAlt" })}
     >
@@ -20,7 +20,7 @@ const ComingSoon = () => {
       >
         <BackToHome />
       </PageHeader>
-    </main>
+    </section>
   );
 };
 
