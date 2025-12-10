@@ -1,3 +1,4 @@
+import { useIntl, FormattedMessage } from 'react-intl';
 import caseStudyStyles from "./case-study.module.css";
 import ReadStudyButton from "./read-study-button";
 import VimeoPlayer from "./vimeo-video";
