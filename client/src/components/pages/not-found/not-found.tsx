@@ -8,7 +8,7 @@ const NotFound = () => {
   const intl = useIntl();
   const title = `${intl.formatMessage({ id: "notFound.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
   return (
-    <main className={notFoundStyles.notFound}>
+    <section className={notFoundStyles.notFound}>
       <title>{title}</title>
       <PageHeader
         cardMode={true}
@@ -17,7 +17,7 @@ const NotFound = () => {
       >
         <BackToHome />
       </PageHeader>
-    </main>
+    </section>
   );
 };
 

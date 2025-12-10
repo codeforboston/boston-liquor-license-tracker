@@ -91,7 +91,7 @@ const Header = () => {
           <Link to="/resources" className="py-[8px] block">
             <FormattedMessage id="shared.resources.capitalized" />
           </Link>
-          <div className="pt-[16px] ms-auto">
+          <div className="pt-[16px] text-xs ms-auto">
             <img
               src={language}
               className={"inline-block size-[20px] text-font-light me-2"}

@@ -109,4 +109,8 @@
     .footerHeading {
         font-size: 14px;
     }
+
+    .footerSection li {
+        font-size: 12px;
+    }
 }

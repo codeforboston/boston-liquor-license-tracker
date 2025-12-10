@@ -27,7 +27,7 @@ const initializeMap = (
   };
 
   const fillColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-red-1")
+    .getPropertyValue("--color-map-red")
     .trim();
 
   map.current = new maplibregl.Map({

@@ -2,7 +2,7 @@ import NavigationButton from "./navigation-button";
 
 const Navigation = () => {
   return (
-    <div 
+    <nav 
       className={`
         navigation
         flex flex-wrap 
@@ -16,7 +16,7 @@ const Navigation = () => {
       <NavigationButton to="/maps" messageId="shared.map.capitalized"/>
       <NavigationButton to="/database" messageId="shared.database.capitalized"/>
       <NavigationButton to="/resources" messageId="shared.resources.capitalized"/>
-    </div>
+    </nav>
   );
 };
 

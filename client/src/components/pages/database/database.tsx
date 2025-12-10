@@ -9,14 +9,14 @@ const Database = () => {
   const intl = useIntl();
   const title = `${intl.formatMessage({ id: "database.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
   return (
-    <main>
+    <article>
       <title>{title}</title>
       <Header />
       <SubHeader />
       <LicenseAvailabilityTable />
       <LicenseType />
       <RecentApplicationTable/>
-    </main>
+    </article>
   );
 };
 
