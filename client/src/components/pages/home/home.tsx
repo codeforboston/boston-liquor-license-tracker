@@ -7,6 +7,8 @@ import CaseStudy from "@/components/pages/home/case-study";
 import ExtraWork from "@/components/pages/home/extra-work";
 import { useIntl } from "react-intl";
 
+const unused = null;
+
 const Home = () => {
   const intl = useIntl();
   const title = intl.formatMessage({ id: "home.pageTitle" });
