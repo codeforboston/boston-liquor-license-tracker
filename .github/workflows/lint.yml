@@ -20,4 +20,5 @@ jobs:
         with:
           workdir: ./client
           eslint_flags: '.'
-
+          reporter: github-pr-review
+          filter_mode: 'added'
