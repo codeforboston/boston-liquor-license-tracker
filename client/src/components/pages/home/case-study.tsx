@@ -4,7 +4,6 @@ import ReadStudyButton from "./read-study-button";
 import VimeoPlayer from "./vimeo-video";
 
 const CaseStudy = () => {
-  const intl = useIntl();
   return (
     <div className={caseStudyStyles.caseStudy}>
         <div className={`${caseStudyStyles.studyIntro}`}>
@@ -16,14 +15,16 @@ const CaseStudy = () => {
           <p><FormattedMessage id="home.caseStudy.part3" /></p>
         </div>
 
-        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border`}
+        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[640px] box-border`}
           >
-          <VimeoPlayer 
-            videoId="882676233"
-            hash="2f05014c6a"
-            width="100%"
-            height="290"
-          />
+          <div className="scale-110 w-full">
+            <VimeoPlayer 
+              videoId="882676233"
+              hash="2f05014c6a"
+              width="100%"
+              height="290"
+            />
+          </div>
         </div>
 
         <div className="
