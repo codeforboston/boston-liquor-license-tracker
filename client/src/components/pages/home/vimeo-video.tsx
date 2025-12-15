@@ -6,10 +6,17 @@ interface VimeoPlayerProps {
   hash?: string;
   width?: number | string;
   height?: number | string;
+  title?: string;
 }
 
-const VimeoPlayer: React.FC<VimeoPlayerProps> = ({ videoId, hash, width = 640, height = 360 }) => {
-  const embedUrl = `https://player.vimeo.com/video/${videoId}${hash ? `?h=${hash}` : ''}`;
+const VimeoPlayer: React.FC<VimeoPlayerProps> = ({
+  videoId,
+  hash,
+  width = 640,
+  height = 360,
+  title = 'Vimeo Video Player'
+  }) => {
+    const embedUrl = `https://player.vimeo.com/video/${videoId}${hash ? `?h=${hash}` : ''}`;
 
   return (
     <div className="vimeo-player-container">
@@ -20,7 +27,7 @@ const VimeoPlayer: React.FC<VimeoPlayerProps> = ({ videoId, hash, width = 640, h
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        title="Vimeo Video Player"
+        title={}
       ></iframe>
     </div>
   );
