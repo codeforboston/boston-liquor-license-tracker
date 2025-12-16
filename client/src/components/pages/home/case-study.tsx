@@ -4,6 +4,8 @@ import ReadStudyButton from "./read-study-button";
 import VimeoPlayer from "./vimeo-video";
 
 const CaseStudy = () => {
+  const intl = useIntl();
+  const videoTitle = intl.formatMessage({ id: "home.caseStudy.video.title" });
   return (
     <div className={caseStudyStyles.caseStudy}>
         <div className={`${caseStudyStyles.studyIntro}`}>
@@ -23,6 +25,7 @@ const CaseStudy = () => {
               hash="2f05014c6a"
               width="100%"
               height="290"
+              title={videoTitle}
             />
           </div>
         </div>

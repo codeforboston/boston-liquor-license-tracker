@@ -27,8 +27,9 @@ const VimeoPlayer: React.FC<VimeoPlayerProps> = ({
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        title={}
-      ></iframe>
+        title={title}
+        >
+      </iframe>
     </div>
   );
 };
