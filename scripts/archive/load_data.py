@@ -20,10 +20,11 @@ import json
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from extract_entity import process_pdf
-from extract_entity import write_to_file
+from extract_entity import process_pdf, read_data
+
 
 class ArchiveFunctions: 
+
 
     def __init__(self):
         load_dotenv()
@@ -33,6 +34,7 @@ class ArchiveFunctions:
     def seed_with_local_files(self):
 
         pdf_file = [f for f in os.listdir(self.current_loc) if f.endswith('.pdf')]
+        print(f"pdf files are {pdf_file}")
         final_result = []
         for pdf in pdf_file:
             try:
@@ -41,12 +43,24 @@ class ArchiveFunctions:
             except Exception as e:
                 print(f"Error in file {pdf} : {e}")
 
-        sorted_data = sorted(final_result, key=lambda x: (x["minutes_date"], x["entity_number"]))
-        print(f"the data is ${sorted_data}")
-        # for i, entity in enumerate(sorted_data, start=1): 
-        #     entity["index"] = i
 
-        write_to_file(sorted_data)
+       
+        data_stored = read_data()
+
+        resultant_data = data_stored + final_result  
+        resultant_data = sorted(resultant_data, key=lambda x: (x["minutes_date"], x["entity_number"]))
+
+        for i, entity in enumerate(resultant_data, start=1): 
+            entity["index"] = i
+        
+
+        output_file: str = os.path.join(self.current_loc, "..", "..", self.LICENSES_JSON)
+        try:
+            with open(output_file, "w") as f:
+                json.dump(resultant_data, f, indent=4)
+        except Exception as e:
+            raise RuntimeError(f"Failed to write data to {output_file}: {e}")
+
     
     def reindex_dataset(self):
         # Path to the JSON file
