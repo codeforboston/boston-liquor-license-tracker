@@ -173,6 +173,25 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
     doc.close()
     return entities
 
+def read_data() -> List[Dict[str, Optional[str]]]:
+    current_dir = Path(__file__).resolve().parent   # folder containing load_data.py  
+    output_file: str = os.path.join(current_dir, "..", LICENSES_JSON)
+    print(f"output file loc is {output_file}")
+    existing_data: List[Dict[str, Optional[str]]] = []
+
+    if os.path.exists(output_file):
+        try:
+            with open(output_file, "r") as f:
+                content = f.read().strip()
+                if content:
+                    print(f"content is {content}")
+                    existing_data = json.loads(content)
+        except Exception as e:
+            raise RuntimeError(f"Failed to read existing data from {output_file}: {e}")
+    
+    return existing_data
+
+
 def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     """
     Appends new parsed entities to `data.json`, assigning incremental indices 
@@ -185,14 +204,7 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     output_file: str = os.path.join(pdf_folder, "..", LICENSES_JSON)
     existing_data: List[Dict[str, Optional[str]]] = []
 
-    if os.path.exists(output_file):
-        try:
-            with open(output_file, "r") as f:
-                content = f.read().strip()
-                if content:
-                    existing_data = json.loads(content)
-        except Exception as e:
-            raise RuntimeError(f"Failed to read existing data from {output_file}: {e}")
+    existing_data = read_data()
     
 
     if existing_data:
