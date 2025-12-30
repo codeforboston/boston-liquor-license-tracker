@@ -89,6 +89,8 @@ const getRowData = (
         String(MAX_BEER_WINE_PER_ZIP),
       ],
     ]
+  } else {
+    throw new Error("License Type not supported for filtering");
   }
 
   const tableData = {rowData: rowData, subRowData: subRowData}
