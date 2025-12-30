@@ -1,10 +1,11 @@
 import { useIntl, FormattedMessage } from 'react-intl';
-import myImage from '/src/assets/images/case-study-placeholder.png';
 import caseStudyStyles from "./case-study.module.css";
 import ReadStudyButton from "./read-study-button";
+import VimeoPlayer from "./vimeo-video";
 
 const CaseStudy = () => {
   const intl = useIntl();
+  const videoTitle = intl.formatMessage({ id: "home.caseStudy.video.title" });
   return (
     <div className={caseStudyStyles.caseStudy}>
         <div className={`${caseStudyStyles.studyIntro}`}>
@@ -16,21 +17,17 @@ const CaseStudy = () => {
           <p><FormattedMessage id="home.caseStudy.part3" /></p>
         </div>
 
-        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[480px] box-border`}
+        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[640px] box-border`}
           >
-          <img
-            src={myImage}
-            alt={intl.formatMessage({ id: "home.caseStudy.image.alt" })}
-            className="
-              w-full
-              max-w-[480px]
-              h-auto
-              object-cover
-              transition-transform duration-300 hover:scale-105
-              block
-              m-auto
-            "
-          />
+          <div className="scale-110 w-full">
+            <VimeoPlayer 
+              videoId="882676233"
+              hash="2f05014c6a"
+              width="100%"
+              height="290"
+              title={videoTitle}
+            />
+          </div>
         </div>
 
         <div className="

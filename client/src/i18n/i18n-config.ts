@@ -14,7 +14,8 @@ export type Locale = keyof typeof supportedLocales;
 // We filter them out to allow fallback to default locale
 const getNonNullMessages = (messages: Record<string, string | null>) => {
   return Object.fromEntries(
-    Object.entries(messages).filter(([_, value]) => value !== null)
+    // We do not need to use keys, hence the part: [, value]
+    Object.entries(messages).filter(([, value]) => value !== null)
   ) as Record<string, string>;
 }
 
