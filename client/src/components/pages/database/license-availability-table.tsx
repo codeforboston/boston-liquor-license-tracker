@@ -2,7 +2,6 @@ import styles from "./license-availability-table.module.css";
 import licenseData from "../../../data/licenses.json";
 import {
   eligibleBostonZipcodes,
-  getZipcodesWithAvailableLicenses,
 } from "@/services/data-interface/data-interface";
 import CustomTable from "@components/ui/table";
 import { useMemo, useState, useEffect, useCallback } from "react";
