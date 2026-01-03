@@ -10,11 +10,15 @@ import {
 } from "react";
 import { FormattedMessage } from "react-intl";
 import { PageHeader } from "@/components/ui/pageheader";
+import {
+  BusinessLicense,
+  validateBusinessLicense,
+} from "@/services/data-interface/data-interface";
 import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
+import licenseData from "../../data/licenses.json";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
-import { MapZipCodeData } from "./types";
 
 const initializeMap = (
   map: RefObject<Map | null>,
@@ -102,8 +106,8 @@ const initializeMap = (
 const initializeMouseActions = (
   map: RefObject<Map | null>,
   hoverZipId: RefObject<string | number | undefined>,
-  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>,
-  clickedFeatureId: RefObject<string | number | undefined>
+  setSelectedZip: Dispatch<SetStateAction<string | undefined>>,
+  clickedFeatureId: RefObject<string | number | null | undefined>
 ) => {
   if (!map.current) return;
 
@@ -114,9 +118,9 @@ const initializeMouseActions = (
     console.log({ coordinates, feature });
     if (map.current && feature) {
       const zipCode = feature.properties.ZIP5;
-      setZipData({ zipCode, data: undefined });
+      setSelectedZip(zipCode);
       console.log("clickedfeature", clickedFeatureId);
-      if (clickedFeatureId.current) {
+      if (clickedFeatureId?.current) {
         map.current.setFeatureState(
           { source: "boston", id: clickedFeatureId.current },
           { clicked: false }
@@ -163,6 +167,17 @@ const initializeMouseActions = (
   });
 };
 
+const getValidatedLicenseData = (): BusinessLicense[] => {
+  const tmp = [];
+  for (const license of licenseData) {
+    const validated = validateBusinessLicense(license);
+    if (validated.valid) {
+      tmp.push(validated.data);
+    }
+  }
+  return tmp;
+};
+
 export const BostonZipCodeMap = () => {
   const mapContainer = useRef(null);
   const map = useRef<Map | null>(null);
@@ -170,20 +185,17 @@ export const BostonZipCodeMap = () => {
   const hoverZipId = useRef<string | number | undefined>("");
   const clickedFeatureId = useRef(null);
 
-  const zips = BostonZipCodeGeoJSON.features.map((feature) => {
-    return feature.properties.ZIP5;
-  });
-  const uniqueZips = new Set(zips);
-  console.log({ uniqueZips });
+  const licenses = getValidatedLicenseData();
+  console.log("licenses", licenses);
 
-  const [zipData, setZipData] = useState<MapZipCodeData>();
+  const [selectedZip, setSelectedZip] = useState<string>();
 
   // Initialize map
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
 
     initializeMap(map, mapContainer);
-    initializeMouseActions(map, hoverZipId, setZipData, clickedFeatureId);
+    initializeMouseActions(map, hoverZipId, setSelectedZip, clickedFeatureId);
   }, []);
 
   return (
@@ -200,9 +212,9 @@ export const BostonZipCodeMap = () => {
           <div
             className={`${mapStyles.mapCard} mr-8`}
             ref={detailsCard}
-            id="zip-details-card"
+            id="zip-code-details-card"
           >
-            <ZipDetailsContent zipData={zipData} />
+            <ZipDetailsContent licenses={licenses} zipCode={selectedZip} />
           </div>
         </div>
       </div>

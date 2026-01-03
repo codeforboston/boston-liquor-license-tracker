@@ -102,6 +102,8 @@
   "map.empty.noData": "Sorry! It appears we don't have data for this zip code",
   "map.empty.tryLater": "Check back later or try another Zip Code",
   "map.error.message": "Whoops! There was an error loading the data, please reload or try again later",
+  "map.zipDetails.subtitle": "2024 License Zip Code",
+  "map.zipDetails.description": "This Zip Code is included in the 2024 law passed by the City of Boston. For the next three years, five new restricted on-premise licenses will be issued each year.",
   "notFound.beerPourImageAlt": "Bartender pouring a beer from a tap",
   "notFound.heading": "This page isn't on tap at the moment",
   "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",

@@ -1,25 +1,79 @@
 import { Button } from "@/components/ui/button";
-import { MapZipCodeData } from "./types";
+import getNumOfLicenses, {
+  BusinessLicense,
+  EligibleBostonZipcode,
+  getAvailableLicensesByZipcode,
+  isEligibleBostonZipCode,
+} from "@/services/data-interface/data-interface";
 import dataError from "../../assets/icons/data-error.svg";
 import clipboards from "../../assets/icons/clipboards-question-mark.svg";
 import { FormattedMessage } from "react-intl";
 
-export const ZipDetailsContent = ({
-  zipData,
-}: {
-  zipData?: MapZipCodeData;
-}) => {
-  if (!zipData) {
+type ZipDetailsProps = {
+  zipCode?: string;
+  licenses?: BusinessLicense[];
+};
+
+const LicenseFilterValue = {
+  AllLicenses: "All Licenses",
+  AllAlcohol: "All Alcoholic Beverages",
+  BeerAndWine: "Wines and Malt Beverages",
+} as const;
+
+// filters: all licenses, beer and wine, all alcohol
+// each has: licenses available, licenses granted, total licenses
+const getZipCodeLicenseData = (
+  licenses: BusinessLicense[],
+  zipCode: EligibleBostonZipcode
+) => {
+  const filteredByZip = licenses.filter(
+    (license) => license.zipcode === zipCode
+  );
+  const { totalAvailable, allAlcoholAvailable, beerWineAvailable } =
+    getAvailableLicensesByZipcode(filteredByZip, zipCode);
+  const licensesGranted = filteredByZip.filter(
+    (license) => license.zipcode === zipCode && license.status === "Granted"
+  ).length;
+  const totalLicenses = 0;
+
+  const numLicenses = getNumOfLicenses(licenses, { filterByZipcode: zipCode });
+
+  filteredByZip.forEach((license) => console.log(license.zipcode));
+
+  console.log({
+    totalAvailable,
+    allAlcoholAvailable,
+    beerWineAvailable,
+    licensesGranted,
+    totalLicenses,
+    numLicenses,
+  });
+  return {
+    [LicenseFilterValue.AllLicenses]: getAvailableLicensesByZipcode(
+      licenses,
+      zipCode
+    ),
+    // [LicenseFilterValue.AllAlcohol]
+  };
+};
+
+export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
+  if (!zipCode || !licenses) {
     return <ZipDetailsError />;
   }
 
-  const { zipCode, data } = zipData;
-
-  if (!data) {
+  if (!isEligibleBostonZipCode(zipCode)) {
     return <ZipDetailsEmpty zipCode={zipCode} />;
   }
 
-  return <>{`${zipData}`}</>;
+  const zipcodeLicenseData = getZipCodeLicenseData(licenses, zipCode);
+  console.log({ zipcodeLicenseData });
+
+  return (
+    <div className="flex flex-col h-full w-full font-medium text-[18px]">
+      <ZipCodeDetailsHeader zipCode={zipCode} showSubtitle />
+    </div>
+  );
 };
 
 export const ZipDetailsError = () => {
@@ -34,11 +88,10 @@ export const ZipDetailsError = () => {
   );
 };
 
-export const ZipDetailsEmpty = ({ zipCode }: { zipCode: string }) => {
+export const ZipDetailsEmpty = ({ zipCode }: ZipDetailsProps) => {
   return (
     <div className="flex flex-col h-full w-full font-medium text-[18px]">
-      <h2 className="mb-[8px]">{zipCode}</h2>
-      <hr />
+      <ZipCodeDetailsHeader zipCode={zipCode} />
       <div className="items-center text-center h-[stretch] content-center px-[32px]">
         <h3>
           <FormattedMessage id="map.empty.noData" />
@@ -54,3 +107,18 @@ export const ZipDetailsEmpty = ({ zipCode }: { zipCode: string }) => {
     </div>
   );
 };
+
+const ZipCodeDetailsHeader = ({
+  zipCode,
+  showSubtitle = false,
+}: ZipDetailsProps & { showSubtitle?: boolean }) => (
+  <>
+    <h2 className="text-2xl font-bold mb-[8px]">{zipCode}</h2>
+    {showSubtitle && (
+      <div>
+        <FormattedMessage id="map.zipDetails.subtitle" />
+      </div>
+    )}
+    <hr />
+  </>
+);
