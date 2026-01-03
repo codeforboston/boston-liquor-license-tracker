@@ -112,6 +112,8 @@ colors will be named as they are used */
 
   /* Map */
   --color-map-red: var(--color-red-1);
+  --color-map-border-red: var(--color-red-4);
+  --color-map-selected: var(--color-red-4);
 }
 
 /********************/
