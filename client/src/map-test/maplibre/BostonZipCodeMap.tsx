@@ -55,7 +55,13 @@ const initializeMap = (
       source: "boston",
       layout: {},
       paint: {
-        "fill-color": fillColor,
+        // "fill-color": fillColor,
+        "fill-color": [
+          "case",
+          ["boolean", ["feature-state", "clicked"], false],
+          "blue",
+          fillColor, // your default color
+        ],
         "fill-opacity": [
           "case",
           ["boolean", ["feature-state", "hover"], false],
@@ -96,17 +102,31 @@ const initializeMap = (
 const initializeMouseActions = (
   map: RefObject<Map | null>,
   hoverZipId: RefObject<string | number | undefined>,
-  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>
+  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>,
+  clickedFeatureId: RefObject<string | number | undefined>
 ) => {
   if (!map.current) return;
 
   map.current.on("click", "boston", (e) => {
     const coordinates = e.lngLat;
-    console.log(coordinates);
-    if (map.current) {
-      const zipCode = e.features?.[0].properties.ZIP5;
-      // console.log(e.features?.[0].properties);
+    const feature = e.features?.[0];
+
+    console.log({ coordinates, feature });
+    if (map.current && feature) {
+      const zipCode = feature.properties.ZIP5;
       setZipData({ zipCode, data: undefined });
+      console.log("clickedfeature", clickedFeatureId);
+      if (clickedFeatureId.current) {
+        map.current.setFeatureState(
+          { source: "boston", id: clickedFeatureId.current },
+          { clicked: false }
+        );
+      }
+      map.current.setFeatureState(
+        { source: "boston", id: feature.id },
+        { clicked: true }
+      );
+      clickedFeatureId.current = feature.id;
     }
   });
 
@@ -148,6 +168,7 @@ export const BostonZipCodeMap = () => {
   const map = useRef<Map | null>(null);
   const detailsCard = useRef(null);
   const hoverZipId = useRef<string | number | undefined>("");
+  const clickedFeatureId = useRef(null);
 
   const zips = BostonZipCodeGeoJSON.features.map((feature) => {
     return feature.properties.ZIP5;
@@ -162,7 +183,7 @@ export const BostonZipCodeMap = () => {
     if (map.current) return; // stops map from intializing more than once
 
     initializeMap(map, mapContainer);
-    initializeMouseActions(map, hoverZipId, setZipData);
+    initializeMouseActions(map, hoverZipId, setZipData, clickedFeatureId);
   }, []);
 
   return (
