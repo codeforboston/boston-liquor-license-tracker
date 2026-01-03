@@ -10,11 +10,15 @@ import {
 } from "react";
 import { FormattedMessage } from "react-intl";
 import { PageHeader } from "@/components/ui/pageheader";
+import {
+  BusinessLicense,
+  validateBusinessLicense,
+} from "@/services/data-interface/data-interface";
 import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
+import licenseData from "../../data/licenses.json";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
-import { MapZipCodeData } from "./types";
 
 const initializeMap = (
   map: RefObject<Map | null>,
@@ -26,8 +30,14 @@ const initializeMap = (
     lat: 42.33759424383746,
   };
 
+  const borderColor = getComputedStyle(document.documentElement)
+    .getPropertyValue("--color-map-border-red")
+    .trim();
   const fillColor = getComputedStyle(document.documentElement)
     .getPropertyValue("--color-map-red")
+    .trim();
+  const selectedColor = getComputedStyle(document.documentElement)
+    .getPropertyValue("--color-map-selected")
     .trim();
 
   map.current = new maplibregl.Map({
@@ -55,12 +65,19 @@ const initializeMap = (
       source: "boston",
       layout: {},
       paint: {
-        "fill-color": fillColor,
+        "fill-color": [
+          "case",
+          ["boolean", ["feature-state", "clicked"], false],
+          selectedColor,
+          fillColor,
+        ],
         "fill-opacity": [
           "case",
+          ["boolean", ["feature-state", "clicked"], false],
+          1, // Full opacity when clicked
           ["boolean", ["feature-state", "hover"], false],
-          1,
-          0.5,
+          1, // Full opacity when hovered
+          0.5, // Default opacity
         ],
       },
     });
@@ -70,7 +87,7 @@ const initializeMap = (
       source: "boston",
       layout: {},
       paint: {
-        "line-color": fillColor,
+        "line-color": borderColor,
         "line-width": 2,
       },
     });
@@ -96,17 +113,28 @@ const initializeMap = (
 const initializeMouseActions = (
   map: RefObject<Map | null>,
   hoverZipId: RefObject<string | number | undefined>,
-  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>
+  setSelectedZip: Dispatch<SetStateAction<string | undefined>>,
+  clickedFeatureId: RefObject<string | number | null | undefined>
 ) => {
   if (!map.current) return;
 
   map.current.on("click", "boston", (e) => {
-    const coordinates = e.lngLat;
-    console.log(coordinates);
-    if (map.current) {
-      const zipCode = e.features?.[0].properties.ZIP5;
-      // console.log(e.features?.[0].properties);
-      setZipData({ zipCode, data: undefined });
+    const feature = e.features?.[0];
+
+    if (map.current && feature) {
+      const zipCode = feature.properties.ZIP5;
+      setSelectedZip(zipCode);
+      if (clickedFeatureId?.current) {
+        map.current.setFeatureState(
+          { source: "boston", id: clickedFeatureId.current },
+          { clicked: false }
+        );
+      }
+      map.current.setFeatureState(
+        { source: "boston", id: feature.id },
+        { clicked: true }
+      );
+      clickedFeatureId.current = feature.id;
     }
   });
 
@@ -143,26 +171,34 @@ const initializeMouseActions = (
   });
 };
 
+const getValidatedLicenseData = (): BusinessLicense[] => {
+  const tmp = [];
+  for (const license of licenseData) {
+    const validated = validateBusinessLicense(license);
+    if (validated.valid) {
+      tmp.push(validated.data);
+    }
+  }
+  return tmp;
+};
+
 export const BostonZipCodeMap = () => {
   const mapContainer = useRef(null);
   const map = useRef<Map | null>(null);
   const detailsCard = useRef(null);
   const hoverZipId = useRef<string | number | undefined>("");
+  const clickedFeatureId = useRef(null);
 
-  const zips = BostonZipCodeGeoJSON.features.map((feature) => {
-    return feature.properties.ZIP5;
-  });
-  const uniqueZips = new Set(zips);
-  console.log({ uniqueZips });
+  const licenses = getValidatedLicenseData();
 
-  const [zipData, setZipData] = useState<MapZipCodeData>();
+  const [selectedZip, setSelectedZip] = useState<string>();
 
   // Initialize map
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
 
     initializeMap(map, mapContainer);
-    initializeMouseActions(map, hoverZipId, setZipData);
+    initializeMouseActions(map, hoverZipId, setSelectedZip, clickedFeatureId);
   }, []);
 
   return (
@@ -175,13 +211,13 @@ export const BostonZipCodeMap = () => {
         {/* Map canvas */}
         <div ref={mapContainer} className={mapStyles.map} />
         {/* Zip details */}
-        <div className="absolute flex flex-row justify-center items-center right-0 h-full">
+        <div className={`absolute flex flex-row right-0 top-10 h-full`}>
           <div
             className={`${mapStyles.mapCard} mr-8`}
             ref={detailsCard}
-            id="zip-details-card"
+            id="zip-code-details-card"
           >
-            <ZipDetailsContent zipData={zipData} />
+            <ZipDetailsContent licenses={licenses} zipCode={selectedZip} />
           </div>
         </div>
       </div>
