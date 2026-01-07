@@ -1,0 +1,48 @@
+a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-color: transparent;
+    opacity: 0;
+}
+.offsite {
+    background-color: var(--color-background-dark);
+    color: var(--color-font-light);
+
+    &:hover::before {
+        opacity: 0.10;
+        background-color: var(--color-background-light);
+    }
+    &:active::before {
+        opacity: 0.15;
+        background-color: var(--color-background-dark);
+    }
+}
+.bootcamp {
+    background-color: var(--color-background-dark);
+    color: var(--color-font-light);
+
+    &:hover::before {
+        opacity: 0.25;
+        background-color: var(--color-background-dark);
+    }
+    &:active::before {
+        opacity: 0.50;
+        background-color: var(--color-background-dark);
+    }
+}
+.cfb {
+    background-color: var(--color-background-light);
+    color: var(--color-font-dark);
+
+    &:hover::before {
+        opacity: 0.10;
+        background-color: var(--color-background-dark);
+    }
+    &:active::before {
+        opacity: 0.15;
+        background-color: var(--color-background-dark);
+    }
+}
