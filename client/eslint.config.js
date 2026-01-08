@@ -2,6 +2,7 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import eslintLocalRules from './eslint-local-rules.js'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
@@ -16,6 +17,7 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'local-rules': eslintLocalRules,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -23,6 +25,12 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'local-rules/no-hex-colors': 'warn'
+    },
+    settings: {
+      'local-rules': {
+        'local-rules': path.join(__dirname, 'eslint-local-rules.js')
+      }
     },
   },
 )

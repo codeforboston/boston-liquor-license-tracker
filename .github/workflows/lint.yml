@@ -19,6 +19,6 @@ jobs:
       - uses: reviewdog/action-eslint@v1
         with:
           workdir: ./client
-          eslint_flags: '.'
+          eslint_flags: '-f rdjson --no-color .'
           reporter: github-pr-review
           filter_mode: 'added'

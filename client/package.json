@@ -44,6 +44,7 @@
     "axios": "^1.10.0",
     "cheerio": "^1.1.0",
     "eslint": "^9.21.0",
+    "eslint-plugin-local-rules": "^3.0.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "fs": "^0.0.1-security",
