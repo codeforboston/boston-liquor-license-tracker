@@ -7,6 +7,8 @@ import {
 } from "@tanstack/react-router";
 import I18n from "./i18n/I18n";
 
+const unusedVar = null;
+
 // Global styles
 import "@styles/index.css";
 
