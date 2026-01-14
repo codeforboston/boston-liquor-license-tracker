@@ -217,7 +217,7 @@
         "address": "403A Centre St, Jamaica Plain, MA 02130",
         "zipcode": "02130",
         "license_number": "LB-578134",
-        "status": "Deferred",
+        "status": "Granted",
         "alcohol_type": "Wines and Malt Beverages",
         "minutes_date": "2024-10-31",
         "application_expiration_date": "2025-10-31",
@@ -1093,6 +1093,48 @@
     },
     {
         "index": 79,
+        "entity_number": "17",
+        "business_name": "490 Harrison Restaurant, LLC",
+        "dba_name": "Capri",
+        "address": "License #:  LB-595024",
+        "zipcode": "02118",
+        "license_number": "LB-595024",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2025-05-29",
+        "application_expiration_date": "2026-05-29",
+        "file_name": "Voting Minutes 5-29-25.docx.pdf"
+    },
+    {
+        "index": 80,
+        "entity_number": "18",
+        "business_name": "1010 Morrissey Corp.",
+        "dba_name": "Milkweed",
+        "address": "1010 William T Morrissey Blvd, Dorchester, MA 02122",
+        "zipcode": "02122",
+        "license_number": "LB-596016",
+        "status": "Granted",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2025-05-29",
+        "application_expiration_date": "2026-05-29",
+        "file_name": "Voting Minutes 5-29-25.docx.pdf"
+    },
+    {
+        "index": 81,
+        "entity_number": "19",
+        "business_name": "Dynasty Restaurant, Inc.",
+        "dba_name": "Dynasty Restaurant",
+        "address": "14A Hudson St, Boston, MA 02111",
+        "zipcode": "02111",
+        "license_number": "LB-596018",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2025-05-29",
+        "application_expiration_date": "2026-05-29",
+        "file_name": "Voting Minutes 5-29-25.docx.pdf"
+    },
+    {
+        "index": 82,
         "entity_number": "6",
         "business_name": "Third Cliff Bakery, LLC",
         "dba_name": "Third Cliff Bakery",
@@ -1106,7 +1148,7 @@
         "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
-        "index": 80,
+        "index": 83,
         "entity_number": "7",
         "business_name": "Wash El Beverages, LLC",
         "dba_name": null,
@@ -1120,7 +1162,7 @@
         "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
-        "index": 81,
+        "index": 84,
         "entity_number": "8",
         "business_name": "Mr Drinky LLC",
         "dba_name": "Mr Drinky",
@@ -1134,7 +1176,7 @@
         "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
-        "index": 82,
+        "index": 85,
         "entity_number": "9",
         "business_name": "O'Brien & Armstrong, Inc.",
         "dba_name": "The Green T Coffee Shop",
@@ -1148,7 +1190,7 @@
         "file_name": "Voting Minutes 6-5-25.docx.pdf"
     },
     {
-        "index": 83,
+        "index": 86,
         "entity_number": "17",
         "business_name": "Pizza 24, Inc.",
         "dba_name": "Pizza 24",
@@ -1162,7 +1204,7 @@
         "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
-        "index": 84,
+        "index": 87,
         "entity_number": "18",
         "business_name": "DQC, Inc.",
         "dba_name": "Chilacates Cantina",
@@ -1176,7 +1218,7 @@
         "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
-        "index": 85,
+        "index": 88,
         "entity_number": "19",
         "business_name": "GR Restaurant and Catering Inc.",
         "dba_name": "Bono Restaurant and Catering",
@@ -1190,7 +1232,7 @@
         "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
-        "index": 86,
+        "index": 89,
         "entity_number": "20",
         "business_name": "Tejeda Brothers Investment, LLC",
         "dba_name": "Miami Restaurant",
@@ -1204,7 +1246,7 @@
         "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
-        "index": 87,
+        "index": 90,
         "entity_number": "21",
         "business_name": "Coffee Coffee, LLC",
         "dba_name": "Gracenote Coffee Boston",
@@ -1218,7 +1260,7 @@
         "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
-        "index": 88,
+        "index": 91,
         "entity_number": "22",
         "business_name": "Cilantro Latin Kitchen Corp.",
         "dba_name": "Merengue Express",
@@ -1232,7 +1274,7 @@
         "file_name": "Voting Minutes 6-26-25.docx (1).pdf"
     },
     {
-        "index": 89,
+        "index": 92,
         "entity_number": "11",
         "business_name": "Soul & Spice, LLC",
         "dba_name": null,
@@ -1246,7 +1288,7 @@
         "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
-        "index": 90,
+        "index": 93,
         "entity_number": "12",
         "business_name": "355 Bennington Holdings, LLC",
         "dba_name": null,
@@ -1260,7 +1302,7 @@
         "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
-        "index": 91,
+        "index": 94,
         "entity_number": "14",
         "business_name": "Boston Center for the Arts, Inc.",
         "dba_name": "Boston Center for the Arts",
@@ -1274,7 +1316,7 @@
         "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
-        "index": 92,
+        "index": 95,
         "entity_number": "15",
         "business_name": "American Repertory Theatre Company, Inc.",
         "dba_name": "American Repertory Theatre",
@@ -1288,7 +1330,7 @@
         "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
-        "index": 93,
+        "index": 96,
         "entity_number": "16",
         "business_name": "The Comfort Collective, LLC",
         "dba_name": "AMA",
@@ -1302,7 +1344,7 @@
         "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
-        "index": 94,
+        "index": 97,
         "entity_number": "17",
         "business_name": "Rosa y Marigold, LLC",
         "dba_name": "Rosa y Marigold",
@@ -1316,7 +1358,7 @@
         "file_name": "Voting Minutes 7-17-25.docx.pdf"
     },
     {
-        "index": 95,
+        "index": 98,
         "entity_number": "11",
         "business_name": "Shunny Day, LLC",
         "dba_name": "mondo",
@@ -1330,7 +1372,7 @@
         "file_name": "Voting%20Minutes%207-31-25.docx.pdf"
     },
     {
-        "index": 96,
+        "index": 99,
         "entity_number": "12",
         "business_name": "El Barrio MX, LLC",
         "dba_name": "El Barrio Mexican Grill",
@@ -1344,7 +1386,7 @@
         "file_name": "Voting%20Minutes%207-31-25.docx.pdf"
     },
     {
-        "index": 97,
+        "index": 100,
         "entity_number": "13",
         "business_name": "J.J. & R, LLC",
         "dba_name": "The Mix Vault",
@@ -1358,7 +1400,7 @@
         "file_name": "Voting%20Minutes%207-31-25.docx.pdf"
     },
     {
-        "index": 98,
+        "index": 101,
         "entity_number": "14",
         "business_name": "Lisboa Cafe & Mini-Market, LLC",
         "dba_name": "Lisboa Cafe",
@@ -1372,7 +1414,7 @@
         "file_name": "Voting%20Minutes%207-31-25.docx.pdf"
     },
     {
-        "index": 99,
+        "index": 102,
         "entity_number": "15",
         "business_name": "AUA168, Inc.",
         "dba_name": "Rice Away",
@@ -1386,7 +1428,7 @@
         "file_name": "Voting%20Minutes%207-31-25.docx.pdf"
     },
     {
-        "index": 100,
+        "index": 103,
         "entity_number": "17",
         "business_name": "Hugo and Co Holding, LLC",
         "dba_name": "Hugo & Co",
@@ -1400,7 +1442,7 @@
         "file_name": "Voting%20Minutes%207-31-25.docx.pdf"
     },
     {
-        "index": 101,
+        "index": 104,
         "entity_number": "17",
         "business_name": "Liuyishou Hotpot Boston, LLC",
         "dba_name": "Liuyishou Hotpot",
@@ -1414,7 +1456,7 @@
         "file_name": "Voting%20Minutes%208-7-25.docx.pdf"
     },
     {
-        "index": 102,
+        "index": 105,
         "entity_number": "18",
         "business_name": "RFC LA, LLC",
         "dba_name": "Roger\u2019s Fish & Chips",
@@ -1428,7 +1470,7 @@
         "file_name": "Voting%20Minutes%208-7-25.docx.pdf"
     },
     {
-        "index": 103,
+        "index": 106,
         "entity_number": "19",
         "business_name": "South Bay Fields Pie Company, LLC",
         "dba_name": "Sally\u2019s Apizza",
@@ -1442,7 +1484,7 @@
         "file_name": "Voting%20Minutes%208-7-25.docx.pdf"
     },
     {
-        "index": 104,
+        "index": 107,
         "entity_number": "20",
         "business_name": "1750 Washington, Inc.",
         "dba_name": "Nan Xiang Express",
@@ -1456,7 +1498,7 @@
         "file_name": "Voting%20Minutes%208-7-25.docx.pdf"
     },
     {
-        "index": 105,
+        "index": 108,
         "entity_number": "21",
         "business_name": "Beitna, LLC",
         "dba_name": "BEY",
@@ -1470,7 +1512,7 @@
         "file_name": "Voting%20Minutes%208-7-25.docx.pdf"
     },
     {
-        "index": 106,
+        "index": 109,
         "entity_number": "39",
         "business_name": "Perch, LLC",
         "dba_name": "Perch",
@@ -1484,7 +1526,7 @@
         "file_name": "Voting%20Minutes%208-28-25.docx.pdf"
     },
     {
-        "index": 107,
+        "index": 110,
         "entity_number": "40",
         "business_name": "Jimothy, LLC",
         "dba_name": "Roza Lyons",
