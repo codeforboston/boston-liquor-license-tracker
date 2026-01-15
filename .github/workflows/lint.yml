@@ -1,6 +1,8 @@
 name: Lint comments
 
-on: [pull_request]
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
 
 jobs:
   eslint:
@@ -11,6 +13,9 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v6
+        with:
+          # Checkout the PR code, not the base branch
+          ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v6
         with:
           node-version: '20'
@@ -21,4 +26,6 @@ jobs:
           workdir: ./client
           eslint_flags: '.'
           reporter: github-pr-review
+          # See the following for filter options:
+          # https://github.com/reviewdog/reviewdog?tab=readme-ov-file#filter-mode
           filter_mode: 'added'
