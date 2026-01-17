@@ -29,7 +29,6 @@ It is recommended that you familiarize yourself with Web Content Accessibility G
 - [ ] Only add new text in English. We will handle translations internally. Please name translation keys that indicate which page they are for, or with `ui` for general UI elements.
 ### Code Style / Linting
 - [ ] You can run our linters locally with `npm run lint` and `npm run lint:css`. You will also notice automated comments on your PR from our linter. We will request that you address linter errors before merging.
-
 #### Merge Process
 - [ ] Ensure that you have tested your changes locally. You can run the test suite with `npm test`.
 - [ ] Request a review from the @maintainers group.
