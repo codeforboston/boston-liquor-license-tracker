@@ -76,8 +76,12 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
     }
 
     let entity = {} as EntityType
-    $(votingMinuteSection).find("ul li a").each((_, e) => {
+    // NOTE: Updated selector from `ul li a` to `a[href*=".pdf"]` because the webpage
+    // DOM structure changed and no longer uses list-based markup. Selecting by `href`
+    // makes the scraper resilient to layout changes and focuses on the actual document links.
+    $(votingMinuteSection).find(`a[href$=".pdf"]`).each((_, e) => {
         const dateText = $(e).text()
+        console.log("date text is ", dateText)
         const match = dateText.match(regex)
         if(match){
           const month = match[1]
@@ -90,6 +94,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
             entity['href'] = $(e).attr("href") ?? null
             entity['dateText'] = $(e).text() 
             entity['votingDate'] = date.toISOString()
+            console.log(JSON.stringify(entity))
           }
         }
     })
@@ -98,16 +103,16 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
       // If this happens, the meeting date exists on the site but has no PDF link yet
       throw Error("Could not find entity")
     }
-    let downloadUrl = entity['href'] as string;
-
+    const downloadUrlString = entity['href'] as string;
+    let downloadUrl = new URL(downloadUrlString, "https://www.boston.gov")
     // 1. Convert Google Drive preview link → direct download
-    const driveMatch = downloadUrl.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)/);
+    const driveMatch = downloadUrlString.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)/);
     if (driveMatch) {
       const fileId = driveMatch[1];
-      downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      downloadUrl = new URL(`https://drive.google.com/uc?export=download&id=${fileId}`);
     }
 
-    const pdfData = await axios.get(downloadUrl, {
+    const pdfData = await axios.get(downloadUrl.toString(), {
       responseType: "arraybuffer",
     })
 
@@ -121,12 +126,12 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
       }
     }
 
-    if (typeof downloadUrl !== "string") {
+    if (typeof downloadUrlString !== "string") {
       throw new Error("downloadUrl is not a string");
     } 
 
     if (!fileName) {
-      let elems = downloadUrl.split("/")
+      let elems = downloadUrlString.split("/")
       fileName = elems.pop()
     }
     
