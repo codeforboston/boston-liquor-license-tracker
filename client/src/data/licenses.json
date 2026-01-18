@@ -1538,5 +1538,33 @@
         "minutes_date": "2025-08-28",
         "application_expiration_date": "2026-08-28",
         "file_name": "Voting%20Minutes%208-28-25.docx.pdf"
+    },
+    {
+        "index": 111,
+        "entity_number": "19",
+        "business_name": "Centre Foodservice LLC",
+        "dba_name": "Maria\u2019s Kitchen",
+        "address": "1829 Centre St, West Roxbury, MA 02132",
+        "zipcode": "02132",
+        "license_number": "LB-615311",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-01-08",
+        "application_expiration_date": "2027-01-08",
+        "file_name": "Voting%20Minutes%201-9-26.docx.pdf"
+    },
+    {
+        "index": 112,
+        "entity_number": "20",
+        "business_name": "Shoyu Boston LLC",
+        "dba_name": "Shoyu Boston",
+        "address": "36-38 Harrison Ave, Boston, MA 02111",
+        "zipcode": "02111",
+        "license_number": "LB-615293",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-01-08",
+        "application_expiration_date": "2027-01-08",
+        "file_name": "Voting%20Minutes%201-9-26.docx.pdf"
     }
 ]
