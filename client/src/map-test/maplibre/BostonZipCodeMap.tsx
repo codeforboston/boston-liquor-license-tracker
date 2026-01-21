@@ -15,6 +15,7 @@ import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
 import { MapZipCodeData } from "./types";
+import DotPagination from "../../components/ui/dot-pagination";
 
 const initializeMap = (
   map: RefObject<Map | null>,
@@ -105,7 +106,7 @@ const initializeMouseActions = (
     console.log(coordinates);
     if (map.current) {
       const zipCode = e.features?.[0].properties.ZIP5;
-      // console.log(e.features?.[0].properties);
+      //console.log(e.features?.[0].properties);
       setZipData({ zipCode, data: undefined });
     }
   });
@@ -151,11 +152,13 @@ export const BostonZipCodeMap = () => {
 
   const zips = BostonZipCodeGeoJSON.features.map((feature) => {
     return feature.properties.ZIP5;
-  });
-  const uniqueZips = new Set(zips);
-  console.log({ uniqueZips });
+  }).sort();
+  const uniqueZips = [...new Set(zips)];
 
-  const [zipData, setZipData] = useState<MapZipCodeData>();
+  let indexToZipCodeParam = {};
+  uniqueZips.entries().forEach((i, z)  => { indexToZipCodeParam[i] = z } );
+
+  const [zipData, setZipData] = useState<MapZipCodeData>(uniqueZips[0]);
 
   // Initialize map
   useEffect(() => {
@@ -164,6 +167,7 @@ export const BostonZipCodeMap = () => {
     initializeMap(map, mapContainer);
     initializeMouseActions(map, hoverZipId, setZipData);
   }, []);
+
 
   return (
     <main>
@@ -181,7 +185,15 @@ export const BostonZipCodeMap = () => {
             ref={detailsCard}
             id="zip-details-card"
           >
-            <ZipDetailsContent zipData={zipData} />
+            <ZipDetailsContent zipData={zipData}/>
+            <DotPagination 
+              currentPage={uniqueZips.indexOf(zipData.zipCode)} 
+              totalPages={uniqueZips.length - 1} 
+              indexToZipCode={indexToZipCodeParam}
+              onPageChange={(newZip) => {
+                setZipData({ zipCode: uniqueZips[newZip], data: undefined });
+              }} 
+            />
           </div>
         </div>
       </div>
