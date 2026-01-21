@@ -1,0 +1,84 @@
+{
+  "$id": "https://example.com/license.schema.json",
+  "title": "Licenses",
+  "description": "Schema for parsed restaurant license data",
+  "type": "array",
+  "sequentialIndexes": true,
+  "items": {
+    "type": "object",
+    "required": [
+      "index",
+      "entity_number",
+      "business_name",
+      "address",
+      "zipcode",
+      "license_number",
+      "status",
+      "alcohol_type",
+      "minutes_date",
+      "application_expiration_date",
+      "file_name"
+    ],
+    "properties": {
+      "index": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Unique sequential index assigned when writing to file."
+      },
+      "entity_number": {
+        "type": "string",
+        "pattern": "^[0-9]+$",
+        "description": "Number associated with the license in the voting minutes."
+      },
+      "business_name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Registered business name."
+      },
+      "dba_name": {
+        "type": ["string", "null"],
+        "description": "Doing Business As name, may not be present."
+      },
+      "address": {
+        "type": "string",
+        "minLength": 5,
+        "description": "Business address."
+      },
+      "zipcode": {
+        "type": "string",
+        "pattern": "^[0-9]{5}$",
+        "description": "5-digit ZIP code extracted from address."
+      },
+      "license_number": {
+        "type": "string",
+        "pattern": "^LB-[0-9]+$",
+        "description": "License number assigned by the Licensing Board (prefix LB- followed by digits)."
+      },
+      "status": {
+        "type": "string",
+        "pattern": "^(?i)(deferred|granted|withdrawn)$",
+        "description": "Current application status."
+      },
+      "alcohol_type": {
+        "type": "string",
+        "enum": ["Wines and Malt Beverages", "All Alcoholic Beverages"],
+        "description": "Type of alcoholic beverage license."
+      },
+      "minutes_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Voting minute date in which the license appears as an applicant."
+      },
+      "application_expiration_date": {
+        "type": "string",
+        "format": "date",
+        "description": "The date by which the application will expire."
+      },
+      "file_name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Voting minute file name where this license appears."
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+beautifulsoup4>=4.14.3
+pandas>=2.3.3
+pikepdf>=10.2.0
+pymupdf>=1.26.7
+requests>=2.32.5

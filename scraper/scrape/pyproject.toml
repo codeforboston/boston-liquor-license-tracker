@@ -1,0 +1,61 @@
+[project]
+name = "licensing-board-scrape"
+version = "0.1.0"
+description = "Scraper for Boston Licensing Board hearings, notices, and minutes"
+requires-python = ">=3.13"
+readme = "README.md"
+
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "pandas>=2.3.3",
+    "pikepdf>=10.2.0",
+    "pymupdf>=1.26.7",
+    "requests>=2.32.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "pre-commit>=3.7.0",
+    "types-requests>=2.32.4.20260107",
+]
+
+# -----------------------------
+# Ruff (linting + import sorting)
+# -----------------------------
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # warnings
+    "I",   # import sorting
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+]
+ignore = [
+    "E501",  # line length (handled by ruff format)
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+
+# -----------------------------
+# Mypy (typing)
+# -----------------------------
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+pretty = true
+
+
