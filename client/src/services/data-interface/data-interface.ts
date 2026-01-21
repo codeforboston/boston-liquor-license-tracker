@@ -250,15 +250,6 @@ export function getAvailableLicensesByZipcode(
     }
   }
 
-  console.log({
-    MAX_AVAILABLE_PER_ZIP,
-    MAX_ALL_ALC_PER_ZIP,
-    MAX_BEER_WINE_PER_ZIP,
-    totalCount,
-    allAlcCount,
-    beerWineCount,
-  });
-
   return {
     totalAvailable: MAX_AVAILABLE_PER_ZIP - totalCount,
     allAlcoholAvailable: MAX_ALL_ALC_PER_ZIP - allAlcCount,

@@ -30,9 +30,17 @@ const initializeMap = (
     lat: 42.33759424383746,
   };
 
+  const borderColor = getComputedStyle(document.documentElement)
+    .getPropertyValue("--color-map-border-red")
+    .trim();
   const fillColor = getComputedStyle(document.documentElement)
     .getPropertyValue("--color-map-red")
     .trim();
+  const selectedColor = getComputedStyle(document.documentElement)
+    .getPropertyValue("--color-map-selected-yellow")
+    .trim();
+
+  console.log({ selectedColor });
 
   map.current = new maplibregl.Map({
     container: mapContainer.current || "",
@@ -63,7 +71,7 @@ const initializeMap = (
         "fill-color": [
           "case",
           ["boolean", ["feature-state", "clicked"], false],
-          "blue",
+          selectedColor,
           fillColor, // your default color
         ],
         "fill-opacity": [
@@ -80,7 +88,7 @@ const initializeMap = (
       source: "boston",
       layout: {},
       paint: {
-        "line-color": fillColor,
+        "line-color": borderColor,
         "line-width": 2,
       },
     });
