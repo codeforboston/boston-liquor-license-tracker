@@ -28,10 +28,10 @@ graph TD
     RawMinutes -->|"extract_hearings.py"| RefinedHearings
     RefinedHearings -->|"extract_license_chunks.py"| LicenseChunks
     LicenseChunks -->|"extract_to_json.py"| StructuredData
-    
+  
     LicenseChunks -.->|Audit| Viewer
     StructuredData -.->|Audit| Viewer
-    
+  
     subgraph "Training Preparation"
         LicenseChunks
         StructuredData
@@ -53,14 +53,42 @@ graph TD
 
 ---
 
-## 🚀 Usage
+## 🏃 Usage
+
+The application is designed to be run as a single script.
+
+This triggers the entire pipeline: extract_hearings -> Extracting License Chunks -> Extracting to JSON -> Building file index.
+
+# Activate the virtual Environment
+
+source .venv/bin/activate
+
+If you have `make` installed, you can also use the following commands:
+
+```bash
+# Sync all dependencies
+make dev
+
+# Run the application
+make run
+
+# Run linting and type checking
+make lint
+```
 
 ### 1. Run the Pipeline
 
 You can run the entire extraction process using the provided shell script:
 
 ```bash
-bash run_pipeline.sh
+# One time run to sync the vertual environment
+uv sync --extra dev
+
+# On the first run you need to load the data from the scrapers results
+./run_pipeline.sh --load
+
+# On subsequent runs you can skip the loading step
+./run_pipeline.sh 
 ```
 
 ### 2. Audit the Results

@@ -20,3 +20,5 @@ app.log
 *.pyc
 
 __pycache__/
+
+data/link_stats_log.csv

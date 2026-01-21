@@ -97,14 +97,14 @@ python -m app.main
 If you have `make` installed, you can also use the following commands:
 
 ```bash
+# Sync all dependencies
+make dev
+
 # Run the application
 make run
 
 # Run linting and type checking
 make lint
-
-# Sync all dependencies
-make dev
 ```
 
 ### Outputs

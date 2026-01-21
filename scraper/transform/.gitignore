@@ -22,3 +22,5 @@ app.log
 __pycache__/
 
 */notebooks/address_test.csv
+
+data/

@@ -15,7 +15,7 @@ for dir in license_json license_text_fix license_text transactional_hearings_txt
 done
 
 # --- Ensure voting_minutes_txt exists ---
-VOTING_DIR="voting_minutes_txt"
+VOTING_DIR="data/voting_minutes_txt"
 if [ ! -d "$VOTING_DIR" ]; then
     echo "Creating directory $VOTING_DIR..."
     mkdir -p "$VOTING_DIR"
@@ -25,7 +25,7 @@ fi
 
 # --- Optional: Load files if --load is passed ---
 if [[ "$1" == "--load" ]]; then
-    SRC_DIR="../Licensing-Board-Scrape/voting_minutes_txt"
+    SRC_DIR="../scrape/voting_minutes_txt"
     if [ -d "$SRC_DIR" ]; then
         echo "Preparing to copy files from $SRC_DIR to $VOTING_DIR..."
         # Ensure the destination is empty
