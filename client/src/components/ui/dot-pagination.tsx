@@ -1,6 +1,5 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { PaginationArrow } from './Pagination';
 import "./dot-pagination.css"
 
 type DotPaginationProps = {
@@ -46,16 +45,16 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCodes 
   const pageNumbers = [...Array(totalPages).keys()];
 
   return (
-    <div style={{overflow: "hidden"}} className='flex gap-[4px]'>
-      <PaginationArrow
-        isDisabled={false}
+    <div style={{overflow: "hidden"}} className='flex'>
+      <button
+        className={`min-w-[32px] mt-2 mb-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
         onClick={() => onPageChange((currentPage - 1).mod(totalPages))}
       >
         <ChevronLeftIcon sx={{
           fill: "var(--color-button-default-dark)"
         }} />
-      </PaginationArrow>
-      <div style={{overflow: "hidden", gap: "4px", display: "flex", whitespace: "nowrap"}}>
+      </button>
+      <div style={{overflow: "hidden", display: "flex"}}>
         {pageNumbers.map((page) => (
           <DotButton 
             id={page} 
@@ -66,14 +65,14 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCodes 
           />
         ))}
       </div>
-      <PaginationArrow
-        isDisabled={false}
+      <button
+        className={`min-w-[32px] mt-2 mb-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
         onClick={() => onPageChange((currentPage + 1).mod(totalPages))}
       >
         <ChevronRightIcon sx={{
           fill: "var(--color-button-default-dark)"
         }} />
-      </PaginationArrow>
+      </button>
     </div>
   )
 }
