@@ -35,7 +35,7 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
         className={
             `tooltip-on-hover border border-[2px] h-[20px] min-w-[20px] cursor-pointer rounded-[100px] 
             ${isSelected ? "border-[1px] border-background-dark bg-button-default-dark text-font-light" 
-            : "border-button-hovered-light hover:bg-button-hovered-light"}`}
+            : "border-button-hovered-light"}`}
           / >
     </div>
   );
