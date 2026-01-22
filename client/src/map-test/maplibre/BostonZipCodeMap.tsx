@@ -41,6 +41,8 @@ const initializeMap = (
     },
     center: [center.lng, center.lat],
     zoom: zoom,
+    // TODO: okay if we hide the MapLibre attribution button?
+    attributionControl: false
   });
 
   map.current.on("load", () => {
@@ -157,9 +159,8 @@ export const BostonZipCodeMap = () => {
 
   let indexToZipCode = {};
   uniqueZips.entries().forEach((i, z)  => { indexToZipCode[i] = z } );
-  console.log(indexToZipCode);
 
-  const [zipData, setZipData] = useState<MapZipCodeData>(uniqueZips[0]);
+  const [zipData, setZipData] = useState<MapZipCodeData>({zipCode: uniqueZips[0], data: undefined});
 
   // Initialize map
   useEffect(() => {
@@ -168,6 +169,11 @@ export const BostonZipCodeMap = () => {
     initializeMap(map, mapContainer);
     initializeMouseActions(map, hoverZipId, setZipData);
   }, []);
+
+  useEffect(() => {
+    const zipButton = document.getElementById(uniqueZips.indexOf(zipData.zipCode)); 
+    zipButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }, [zipData]);
 
 
   return (
