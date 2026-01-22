@@ -155,8 +155,9 @@ export const BostonZipCodeMap = () => {
   }).sort();
   const uniqueZips = [...new Set(zips)];
 
-  let indexToZipCodeParam = {};
-  uniqueZips.entries().forEach((i, z)  => { indexToZipCodeParam[i] = z } );
+  let indexToZipCode = {};
+  uniqueZips.entries().forEach((i, z)  => { indexToZipCode[i] = z } );
+  console.log(indexToZipCode);
 
   const [zipData, setZipData] = useState<MapZipCodeData>(uniqueZips[0]);
 
@@ -189,9 +190,9 @@ export const BostonZipCodeMap = () => {
             <DotPagination 
               currentPage={uniqueZips.indexOf(zipData.zipCode)} 
               totalPages={uniqueZips.length - 1} 
-              indexToZipCode={indexToZipCodeParam}
-              onPageChange={(newZip) => {
-                setZipData({ zipCode: uniqueZips[newZip], data: undefined });
+              indexToZipCodes={indexToZipCode}
+              onPageChange={(newZipIndex) => {
+                setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
               }} 
             />
           </div>

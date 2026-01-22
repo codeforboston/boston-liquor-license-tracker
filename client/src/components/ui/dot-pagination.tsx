@@ -5,19 +5,25 @@ import { PaginationArrow } from './Pagination';
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  indexToZipCode: {[key: int]: string};
+  indexToZipCodes: {[key: int]: string};
   onPageChange: (page: number) => void;
 }
 
-function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCode }: PaginationProps) {
+// TIL JavaScript does not have a real modulo operator
+// Shoutout about.com 
+Number.prototype.mod = function(n) {
+  return ((this%n)+n)%n;
+}
 
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCodes }: PaginationProps) {
+
+  const pageNumbers = [...Array(totalPages).keys()];
 
   return (
     <div className='flex gap-[4px]'>
       <PaginationArrow
         isDisabled={false}
-        onClick={() => onPageChange((currentPage - 1) % totalPages)}
+        onClick={() => onPageChange((currentPage - 1).mod(totalPages))}
       >
         <ChevronLeftIcon sx={{
           fill: "var(--color-button-default-dark)"
@@ -26,20 +32,20 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCode }
       <div className="justify-center overflow-y-scroll items-center gap-[4px]">
       {pageNumbers.map((page) => (
         <button
-          key={indexToZipCode[page - 1]}
+          key={indexToZipCodes[page]}
           onClick={() => onPageChange(page)}
           className={
             `border border-[2px] h-[32px] min-w-[32px] cursor-pointer rounded-[4px] 
             ${currentPage === page ? "border-[1px] border-background-dark bg-button-default-dark text-font-light" 
             : "border-button-hovered-light hover:bg-button-hovered-light"}`}
         >
-          {page}
+          {page + 1}
         </button>
       ))}
     </div>
       <PaginationArrow
         isDisabled={false}
-        onClick={() => onPageChange((currentPage + 1) % totalPages)}
+        onClick={() => onPageChange((currentPage + 1).mod(totalPages))}
       >
         <ChevronRightIcon sx={{
           fill: "var(--color-button-default-dark)"
