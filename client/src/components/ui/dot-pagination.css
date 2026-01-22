@@ -1,0 +1,13 @@
+.tooltip .tooltip-on-hover {
+	position:absolute;
+    margin-left:auto;
+    margin-right:auto;
+    left: 0; 
+    right: 0; 
+}
+
+.tooltip { visibility: hidden; }
+.tooltip:has(+ .tooltip-on-hover:hover) { 
+	visibility: visible; 
+}
+
