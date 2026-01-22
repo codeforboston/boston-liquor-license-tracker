@@ -158,7 +158,7 @@ export const BostonZipCodeMap = () => {
   const uniqueZips = [...new Set(zips)];
 
   let indexToZipCode = {};
-  uniqueZips.entries().forEach((i, z)  => { indexToZipCode[i] = z } );
+  uniqueZips.entries().forEach(([i, z])  => { indexToZipCode[i] = z } );
 
   const [zipData, setZipData] = useState<MapZipCodeData>({zipCode: uniqueZips[0], data: undefined});
 

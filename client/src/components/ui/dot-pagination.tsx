@@ -1,7 +1,7 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { PaginationArrow } from './Pagination';
-import { useRef } from 'react';
+import "./dot-pagination.css"
 
 type DotPaginationProps = {
   currentPage: number;
@@ -14,6 +14,7 @@ type DotButtonProps = {
   id: number;
   isSelected: boolean;
   onSelect: (number) => void;
+  tooltipLabel: string;
 }
 
 // TIL JavaScript does not have a real modulo operator
@@ -22,15 +23,17 @@ Number.prototype.mod = function(n) {
   return ((this%n)+n)%n;
 }
 
-function DotButton({id, isSelected, onSelect}: DotButtonProps) {
+function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   return (
-    <div>
+    <div style={{position: "relative", textAlign: "center"}}>
+      <p className="tooltip bg-button-hovered-light">
+        {tooltipLabel}
+      </p>
       <button
-        key={id}
         id={id}
         onClick={() => onSelect(id)}
         className={
-            `border border-[2px] h-[20px] min-w-[20px] cursor-pointer rounded-[100px] 
+            `tooltip-on-hover border border-[2px] h-[20px] min-w-[20px] cursor-pointer rounded-[100px] 
             ${isSelected ? "border-[1px] border-background-dark bg-button-default-dark text-font-light" 
             : "border-button-hovered-light hover:bg-button-hovered-light"}`}
           / >
@@ -54,7 +57,13 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCodes 
       </PaginationArrow>
       <div style={{overflow: "hidden", gap: "4px", display: "flex", whitespace: "nowrap"}}>
         {pageNumbers.map((page) => (
-          <DotButton id={page} isSelected={currentPage === page} onSelect={onPageChange} />
+          <DotButton 
+            id={page} 
+            key={page}
+            isSelected={currentPage === page} 
+            onSelect={onPageChange} 
+            tooltipLabel={indexToZipCodes[page]} 
+          />
         ))}
       </div>
       <PaginationArrow
