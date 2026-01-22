@@ -6,7 +6,7 @@
     right: 0; 
 }
 
-.tooltip { visibility: hidden; }
+:not(:hover, :focus, :active, :focus-visible, :focus-within) .tooltip { visibility: hidden; }
 .tooltip:has(+ .tooltip-on-hover:hover) { 
 	visibility: visible; 
 }
