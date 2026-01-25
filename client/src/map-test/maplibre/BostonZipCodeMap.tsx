@@ -218,7 +218,7 @@ export const BostonZipCodeMap = () => {
         {/* Zip details */}
         <div className="absolute flex flex-row justify-center items-center right-0 h-full">
           <div
-            className={`${mapStyles.mapCard} mr-8`}
+            className={`${mapStyles.mapCard} mr-8 overflow-scroll`}
             ref={detailsCard}
             id="zip-code-details-card"
           >

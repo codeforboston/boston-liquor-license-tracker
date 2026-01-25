@@ -73,6 +73,39 @@ const getZipCodeLicenseData = (
   return data;
 };
 
+type ZipDetailsTabContentProps = {
+  licensesAvailable: number;
+  licensesGranted: number;
+  totalLicenses: number;
+};
+
+const ZipDetailsTabContent = ({
+  licensesAvailable,
+  licensesGranted,
+  totalLicenses,
+}: ZipDetailsTabContentProps) => {
+  return (
+    <div className="max-w-2xl mx-auto">
+      <table className="w-full border-collapse">
+        <tbody>
+          <tr className="bg-gray-100 border border-gray-300">
+            <td className="text-left p-4 rounded-l">Licenses Available</td>
+            <td className="text-right p-4 rounded-r">{licensesAvailable}</td>
+          </tr>
+          <tr className="bg-white border border-gray-300">
+            <td className="text-left p-4 rounded-l">Licenses Granted</td>
+            <td className="text-right p-4 rounded-r">{licensesGranted}</td>
+          </tr>
+          <tr className="bg-gray-100 border border-gray-300">
+            <td className="text-left p-4 rounded-l">Total Licenses</td>
+            <td className="text-right p-4 rounded-r">{totalLicenses}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
 export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
   if (!zipCode || !licenses) {
     return <ZipDetailsError />;
@@ -85,10 +118,44 @@ export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
   const zipcodeLicenseData = getZipCodeLicenseData(licenses, zipCode);
   console.log({ zipcodeLicenseData });
 
+  const allLicensesData = zipcodeLicenseData[LicenseFilterValue.AllLicenses];
+  const beerAndWineData = zipcodeLicenseData[LicenseFilterValue.BeerAndWine];
+  const allAlcoholData = zipcodeLicenseData[LicenseFilterValue.AllAlcohol];
+
   const tabs = [
-    { id: "allLicenses", label: "All Licenses", content: <>All Licenses</> },
-    { id: "beerAndWine", label: "Beer & Wine", content: <>Beer and Wine</> },
-    { id: "allAlcohol", label: "All Alcohol", content: <>All alcohol</> },
+    {
+      id: "allLicenses",
+      label: "All Licenses",
+      content: (
+        <ZipDetailsTabContent
+          licensesAvailable={allLicensesData.available}
+          licensesGranted={allLicensesData.granted}
+          totalLicenses={allLicensesData.total}
+        />
+      ),
+    },
+    {
+      id: "beerAndWine",
+      label: "Beer & Wine",
+      content: (
+        <ZipDetailsTabContent
+          licensesAvailable={beerAndWineData.available}
+          licensesGranted={beerAndWineData.granted}
+          totalLicenses={beerAndWineData.total}
+        />
+      ),
+    },
+    {
+      id: "allAlcohol",
+      label: "All Alcohol",
+      content: (
+        <ZipDetailsTabContent
+          licensesAvailable={allAlcoholData.available}
+          licensesGranted={allAlcoholData.granted}
+          totalLicenses={allAlcoholData.total}
+        />
+      ),
+    },
   ];
 
   return (
@@ -97,12 +164,6 @@ export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
       <p className="my-[16px]">
         <FormattedMessage id="map.zipDetails.description" />
       </p>
-
-      <div className="flex items-center">
-        <div>Beer & Wine</div>
-        <div>All Alcohol</div>
-        <div>All Licenses</div>
-      </div>
 
       <Tabs tabs={tabs} defaultTab="allLicenses" />
     </div>
