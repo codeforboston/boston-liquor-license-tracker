@@ -171,7 +171,22 @@ export const BostonZipCodeMap = () => {
   }, []);
 
   useEffect(() => {
-    const zipButton = document.getElementById(uniqueZips.indexOf(zipData.zipCode)); 
+    const clickedId = uniqueZips.indexOf(zipData.zipCode);
+    // TODO make this nicer, only scroll if going to be at the edge of page
+    // either with computational (based on # of dots visible on screen size)
+    // or with getBoundingClientRect() and math
+    const idForScroll = (() => { switch (clickedId) {
+      case 0:
+        return 0;
+        break;
+      case (uniqueZips.length - 1):
+        return uniqueZips.length - 1;
+        break;
+      default:
+        return clickedId - 1;
+      }
+    })();
+    const zipButton = document.getElementById(idForScroll); 
     zipButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }, [zipData]);
 
