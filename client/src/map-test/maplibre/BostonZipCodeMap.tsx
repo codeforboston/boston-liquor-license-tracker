@@ -108,7 +108,7 @@ const initializeMouseActions = (
     console.log(coordinates);
     if (map.current) {
       const zipCode = e.features?.[0].properties.ZIP5;
-      //console.log(e.features?.[0].properties);
+      // console.log(e.features?.[0].properties);
       setZipData({ zipCode, data: undefined });
     }
   });
@@ -188,7 +188,7 @@ export const BostonZipCodeMap = () => {
     })();
     const zipButton = document.getElementById(idForScroll); 
     zipButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  }, [zipData]);
+  }, [zipData, uniqueZips]);
 
 
   return (
@@ -201,21 +201,23 @@ export const BostonZipCodeMap = () => {
         {/* Map canvas */}
         <div ref={mapContainer} className={mapStyles.map} />
         {/* Zip details */}
-        <div className="absolute flex flex-row justify-center items-center right-0 h-full">
+        <div className="absolute flex flex-row justify-center items-center right-0 mt-10">
           <div
             className={`${mapStyles.mapCard} mr-8`}
             ref={detailsCard}
             id="zip-details-card"
           >
             <ZipDetailsContent zipData={zipData}/>
-            <DotPagination 
+            <div>
+              <DotPagination
               currentPage={uniqueZips.indexOf(zipData.zipCode)} 
               totalPages={uniqueZips.length - 1} 
-              indexToZipCodes={indexToZipCode}
+              indexToLabel={indexToZipCode}
               onPageChange={(newZipIndex) => {
                 setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
               }} 
-            />
+              />
+            </div>
           </div>
         </div>
       </div>

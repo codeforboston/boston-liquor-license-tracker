@@ -40,28 +40,28 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   );
 }
 
-function DotPagination({ currentPage, totalPages, onPageChange, indexToZipCodes }: DotPaginationProps) {
+function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: DotPaginationProps) {
 
   const pageNumbers = [...Array(totalPages).keys()];
 
   return (
     <div style={{overflow: "hidden"}} className='flex'>
       <button
-        className={`min-w-[32px] mt-2 mb-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
+        className={`min-w-[32px] mt-2 mb-2 mr-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
         onClick={() => onPageChange((currentPage - 1).mod(totalPages))}
       >
         <ChevronLeftIcon sx={{
           fill: "var(--color-button-default-dark)"
         }} />
       </button>
-      <div style={{overflow: "hidden", display: "flex"}}>
+      <div style={{overflow: "hidden", display: "flex", paddingBottom: "16px"}}>
         {pageNumbers.map((page) => (
           <DotButton 
             id={page} 
             key={page}
             isSelected={currentPage === page} 
             onSelect={onPageChange} 
-            tooltipLabel={indexToZipCodes[page]} 
+            tooltipLabel={indexToLabel[page]} 
           />
         ))}
       </div>
