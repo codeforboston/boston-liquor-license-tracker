@@ -100,7 +100,7 @@ const initializeMap = (
 const initializeMouseActions = (
   map: RefObject<Map | null>,
   hoverZipId: RefObject<string | number | undefined>,
-  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>
+  setZipData: Dispatch<SetStateAction<MapZipCodeData>>
 ) => {
   if (!map.current) return;
 
@@ -158,8 +158,10 @@ export const BostonZipCodeMap = () => {
   }).sort();
   const uniqueZips = useMemo(() => [...new Set(zips)], [zips]);
 
-  const indexToZipCode = {};
-  uniqueZips.entries().forEach(([i, z])  => { indexToZipCode[i] = z } );
+  const indexToZipCode : {[key: number]: string} = {};
+  for (const [index, value] of uniqueZips.entries()) {
+    indexToZipCode[index] = value;
+  }
 
   const [zipData, setZipData] = useState<MapZipCodeData>({zipCode: uniqueZips[0], data: undefined});
 
@@ -187,8 +189,8 @@ export const BostonZipCodeMap = () => {
         return clickedId - 1;
       }
     })();
-    const zipButton = document.getElementById(idForScroll); 
-    zipButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    const zipButton = document.getElementById(idForScroll.toString()); 
+    zipButton?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }, [zipData, uniqueZips]);
 
 
@@ -211,12 +213,12 @@ export const BostonZipCodeMap = () => {
             <ZipDetailsContent zipData={zipData}/>
             <div>
               <DotPagination
-              currentPage={uniqueZips.indexOf(zipData.zipCode)} 
-              totalPages={uniqueZips.length} 
-              indexToLabel={indexToZipCode}
-              onPageChange={(newZipIndex) => {
-                setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
-              }} 
+                currentPage={uniqueZips.indexOf(zipData.zipCode)} 
+                totalPages={uniqueZips.length} 
+                indexToLabel={indexToZipCode}
+                onPageChange={(newZipIndex) => {
+                  setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
+                }} 
               />
             </div>
           </div>
