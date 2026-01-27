@@ -5,21 +5,21 @@ import "./dot-pagination.css"
 type DotPaginationProps = {
   currentPage: number;
   totalPages: number;
-  indexToZipCodes: {[key: int]: string};
+  indexToLabel: {[key: number]: string};
   onPageChange: (page: number) => void;
 }
 
 type DotButtonProps = {
   id: number;
   isSelected: boolean;
-  onSelect: (number) => void;
+  onSelect: (id: number) => void;
   tooltipLabel: string;
 }
 
 // TIL JavaScript does not have a real modulo operator
 // Shoutout about.com 
-Number.prototype.mod = function(n) {
-  return ((this%n)+n)%n;
+function mod(x: number, y: number) {
+  return ((x%y)+y)%y;
 }
 
 function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
@@ -29,7 +29,7 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
         {tooltipLabel}
       </p>
       <button
-        id={id}
+        id={id.toString()}
         onClick={() => onSelect(id)}
         className={
             `tooltip-on-hover border border-[2px] h-[20px] min-w-[20px] cursor-pointer rounded-[100px] 
@@ -48,7 +48,7 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
     <div style={{overflow: "hidden"}} className='flex'>
       <button
         className={`min-w-[32px] mt-2 mb-2 mr-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
-        onClick={() => onPageChange((currentPage - 1).mod(totalPages))}
+        onClick={() => onPageChange(mod(currentPage - 1, totalPages))}
       >
         <ChevronLeftIcon sx={{
           fill: "var(--color-button-default-dark)"
@@ -67,7 +67,7 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
       </div>
       <button
         className={`min-w-[32px] mt-2 mb-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
-        onClick={() => onPageChange((currentPage + 1).mod(totalPages))}
+        onClick={() => onPageChange(mod(currentPage + 1, totalPages))}
       >
         <ChevronRightIcon sx={{
           fill: "var(--color-button-default-dark)"
