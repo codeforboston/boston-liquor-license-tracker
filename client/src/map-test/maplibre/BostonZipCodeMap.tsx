@@ -3,6 +3,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import {
   useRef,
   useEffect,
+  useMemo,
   RefObject,
   useState,
   Dispatch,
@@ -155,9 +156,9 @@ export const BostonZipCodeMap = () => {
   const zips = BostonZipCodeGeoJSON.features.map((feature) => {
     return feature.properties.ZIP5;
   }).sort();
-  const uniqueZips = [...new Set(zips)];
+  const uniqueZips = useMemo(() => [...new Set(zips)], [zips]);
 
-  let indexToZipCode = {};
+  const indexToZipCode = {};
   uniqueZips.entries().forEach(([i, z])  => { indexToZipCode[i] = z } );
 
   const [zipData, setZipData] = useState<MapZipCodeData>({zipCode: uniqueZips[0], data: undefined});
@@ -211,7 +212,7 @@ export const BostonZipCodeMap = () => {
             <div>
               <DotPagination
               currentPage={uniqueZips.indexOf(zipData.zipCode)} 
-              totalPages={uniqueZips.length - 1} 
+              totalPages={uniqueZips.length} 
               indexToLabel={indexToZipCode}
               onPageChange={(newZipIndex) => {
                 setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
