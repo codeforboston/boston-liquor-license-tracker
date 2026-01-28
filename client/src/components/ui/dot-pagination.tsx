@@ -24,10 +24,10 @@ function mod(x: number, y: number) {
 
 function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   return (
-    <div style={{position: "relative", textAlign: "center"}}>
-      <p className="tooltip bg-button-hovered-light">
-        {tooltipLabel}
-      </p>
+    <div className="w-[14px] mr-[8px] flex flex-col" >
+        <p className="tooltip">
+          {tooltipLabel}
+        </p>
       <button
         id={id.toString()}
         onClick={() => onSelect(id)}
@@ -45,16 +45,17 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
   const pageNumbers = [...Array(totalPages).keys()];
 
   return (
-    <div className='flex'>
+    <div className='flex flex-row'>
       <button
-        className={`min-w-[32px] mt-2 mb-2 mr-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
+        className={'w-[32px] h-[32px] mr-2 mb-2 mt-2 flex-none border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light'}
         onClick={() => onPageChange(mod(currentPage - 1, totalPages))}
       >
         <ChevronLeftIcon sx={{
           fill: "var(--color-button-default-dark)"
         }} />
       </button>
-      <div style={{overflow: "hidden", display: "flex", paddingBottom: "16px"}}>
+      <div 
+        className={'flex grow'}>
         {pageNumbers.map((page) => (
           <DotButton 
             id={page} 
@@ -66,7 +67,7 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
         ))}
       </div>
       <button
-        className={`min-w-[32px] mt-2 mb-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
+        className={`w-[32px] h-[32px] mt-2 mb-2 ml-2 flex-none border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
         onClick={() => onPageChange(mod(currentPage + 1, totalPages))}
       >
         <ChevronRightIcon sx={{
