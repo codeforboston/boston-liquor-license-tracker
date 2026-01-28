@@ -94,6 +94,7 @@ jobs:
         with:
           repository: ${{ inputs.target-repository }}
           ref: ${{ inputs.target-ref }}
+          lfs: true
 
       - name: Setup python 
         uses: actions/setup-python@v5
@@ -116,6 +117,8 @@ jobs:
         working-directory: ./scripts
         run: npm ci 
       
+        # needs.check-pdf.outputs.pdf-file is just the filename,
+        # so we need to download the artifact
       - name: Download voting pdf
         uses: actions/download-artifact@v5
         with: 
@@ -136,6 +139,12 @@ jobs:
         working-directory: ./scripts 
         run: npm run run:update-last-processed -- ${{ needs.check-pdf.outputs.voting-date }}
 
+        # Move pdf to long-term storage for the PR
+      - name: Move PDF to data directory
+        run: |
+          mkdir -p ./client/src/data/voting-minutes
+          mv ./scripts/${{ needs.check-pdf.outputs.pdf-file }} ./client/src/data/voting-minutes/
+
       - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7
         with:
@@ -152,3 +161,4 @@ jobs:
           add-paths: |
             client/src/data/last_processed_date.json
             client/src/data/licenses.json
+            client/src/data/voting-minutes/${{ needs.check-pdf.outputs.pdf-file }}
