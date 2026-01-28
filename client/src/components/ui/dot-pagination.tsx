@@ -32,8 +32,8 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
         id={id.toString()}
         onClick={() => onSelect(id)}
         className={
-            `tooltip-on-hover border border-[2px] h-[20px] min-w-[20px] cursor-pointer rounded-[100px] 
-            ${isSelected ? "border-[1px] border-background-dark bg-button-default-dark text-font-light" 
+            `tooltip-on-hover border border-[2px] h-[16px] min-w-[16px] cursor-pointer rounded-[100px] 
+            ${isSelected ? "border-background-dark bg-button-default-dark text-font-light" 
             : "border-button-hovered-light"}`}
           / >
     </div>
@@ -45,7 +45,7 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
   const pageNumbers = [...Array(totalPages).keys()];
 
   return (
-    <div style={{overflow: "hidden"}} className='flex'>
+    <div className='flex'>
       <button
         className={`min-w-[32px] mt-2 mb-2 mr-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
         onClick={() => onPageChange(mod(currentPage - 1, totalPages))}

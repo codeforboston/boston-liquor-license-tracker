@@ -156,7 +156,7 @@ export const BostonZipCodeMap = () => {
   const zips = BostonZipCodeGeoJSON.features.map((feature) => {
     return feature.properties.ZIP5;
   }).sort();
-  const uniqueZips = useMemo(() => [...new Set(zips)], [zips]);
+  const uniqueZips = useMemo(() => [...new Set(zips)].slice(0,13), [zips]);
 
   const indexToZipCode : {[key: number]: string} = {};
   for (const [index, value] of uniqueZips.entries()) {
@@ -172,26 +172,6 @@ export const BostonZipCodeMap = () => {
     initializeMap(map, mapContainer);
     initializeMouseActions(map, hoverZipId, setZipData);
   }, []);
-
-  useEffect(() => {
-    const clickedId = uniqueZips.indexOf(zipData.zipCode);
-    // TODO make this nicer, only scroll if going to be at the edge of page
-    // either with computational (based on # of dots visible on screen size)
-    // or with getBoundingClientRect() and math
-    const idForScroll = (() => { switch (clickedId) {
-      case 0:
-        return 0;
-        break;
-      case (uniqueZips.length - 1):
-        return uniqueZips.length - 1;
-        break;
-      default:
-        return clickedId - 1;
-      }
-    })();
-    const zipButton = document.getElementById(idForScroll.toString()); 
-    zipButton?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  }, [zipData, uniqueZips]);
 
 
   return (
