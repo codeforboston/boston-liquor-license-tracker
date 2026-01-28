@@ -13,7 +13,7 @@ type PaginationArrowProps = {
   children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export function PaginationArrow({ isDisabled, onClick, children, ...props }: PaginationArrowProps) {
+function PaginationArrow({ isDisabled, onClick, children, ...props }: PaginationArrowProps) {
   return (
     <button
       disabled={isDisabled}

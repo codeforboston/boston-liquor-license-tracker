@@ -42,7 +42,6 @@ const initializeMap = (
     },
     center: [center.lng, center.lat],
     zoom: zoom,
-    // TODO: okay if we hide the MapLibre attribution button?
     attributionControl: false
   });
 
@@ -156,7 +155,8 @@ export const BostonZipCodeMap = () => {
   const zips = BostonZipCodeGeoJSON.features.map((feature) => {
     return feature.properties.ZIP5;
   }).sort();
-  const uniqueZips = useMemo(() => [...new Set(zips)].slice(0,13), [zips]);
+  // TODO which 13 do we want to use
+  const uniqueZips = useMemo(() => [...new Set(zips)].slice(0,10), [zips]);
 
   const indexToZipCode : {[key: number]: string} = {};
   for (const [index, value] of uniqueZips.entries()) {
@@ -190,7 +190,7 @@ export const BostonZipCodeMap = () => {
             ref={detailsCard}
             id="zip-details-card"
           >
-            <ZipDetailsContent zipData={zipData}/>
+            <ZipDetailsContent zipData={zipData} />
             <div>
               <DotPagination
                 currentPage={uniqueZips.indexOf(zipData.zipCode)} 
