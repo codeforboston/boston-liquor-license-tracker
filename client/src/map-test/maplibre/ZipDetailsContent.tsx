@@ -39,7 +39,7 @@ export const ZipDetailsEmpty = ({ zipCode }: { zipCode: string }) => {
     <div className="flex flex-col h-full w-full font-medium text-[18px]">
       <h2 className="mb-[8px]">{zipCode}</h2>
       <hr />
-      <div className="items-center text-center h-[stretch] content-center px-[32px]">
+      <div className="items-center text-center h-[stretch] content-center px-[32px] pt-2">
         <h3>Sorry! It appears we don't have data for this zip code</h3>
         <img
           className="w-[90px] justify-self-center m-[32px]"
