@@ -1,4 +1,5 @@
 import time
+import argparse
 from app import constants as const
 from app.utils.logger import setup_logging
 from app.link_filters.client_side_filter import ClientSideFilter
@@ -6,11 +7,19 @@ from app.link_filters.exclude_list_filter import ExcludeListFilter
 from app.link_filters.video_link_filter import VideoLinkFilter
 from app.services.downloader_service import DownloaderService
 from app.services.scraper_service import ScraperService
-from app.services.text_extractor_service import TextExtractorService
 from app.storage.json_store import JsonStore
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Licensing Board Scraper")
+    parser.add_argument(
+        "--download_dir",
+        type=str,
+        default=const.DOWNLOAD_DIR,
+        help=f"Directory to download PDFs to (default: {const.DOWNLOAD_DIR})"
+    )
+    args = parser.parse_args()
+
     logger = setup_logging(__name__)
     logger.info("Starting Licensing Board Scraper Application")
     start_time = time.perf_counter()
@@ -28,14 +37,9 @@ def main():
         scraper.run()
 
         # 2. Run Downloader
-        logger.info("Initializing Downloader Service...")
-        downloader = DownloaderService()
+        logger.info(f"Initializing Downloader Service with download_dir: {args.download_dir}")
+        downloader = DownloaderService(download_dir=args.download_dir)
         downloader.run()
-
-        # 3. Run Text Extractor
-        logger.info("Initializing Text Extractor Service...")
-        extractor = TextExtractorService()
-        extractor.run()
 
         logger.info("Application finished successfully.")
     finally:
