@@ -1,0 +1,16 @@
+
+
+# Ignore all files in the .venv directory
+.venv/
+
+
+# Ignore all files in the .DS_Store file
+.DS_Store
+
+log.txt
+
+
+*.pyc
+
+__pycache__/
+
