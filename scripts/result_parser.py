@@ -59,7 +59,12 @@ ADDR2_RE = re.compile(
     re.IGNORECASE,
 )
 
-LIC_RE = re.compile(r"^\s*(Common\s+Victualler.*?License)\s*$", re.IGNORECASE)
+LIC_FRAGMENTS = [
+    r"^\s*(Common\s+Victualler.*?License)\s*$",
+    r"^\s*(Club All-Alcoholic Beverages License)\s*$",
+    r"^\s*(General On-Premise All Alcoholic Beverages License)\s*$",
+]
+LIC_RE = re.compile(rf"{"|".join(LIC_FRAGMENTS)}", re.IGNORECASE)
 
 
 
