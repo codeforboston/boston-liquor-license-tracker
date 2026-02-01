@@ -5,6 +5,7 @@ from pathlib import Path
 import fitz
 from dataclasses import dataclass, field, asdict, is_dataclass
 from enum import Enum, auto
+from typing import Optional
 
 files = ["Voting Minutes 2-13-25.docx.pdf", "Voting Minutes 6-26-25.docx.pdf"]
 eligible_zipcodes = [
@@ -43,12 +44,27 @@ class ParsedLine:
     raw: dict
 
 
-DBA_RE = re.compile(r"^\s*doing\s+business\s+as:\s*(.+?)\s*$")
-ADDR1_RE = re.compile(r"\d+[A-Za-z]?(?:-\d+[A-Za-z]?)?\s+[A-Za-z]+(?:\s+[A-Za-z]+)*\s+(?:St|Ave|Blvd)\.?")
-ADDR2_RE = re.compile(r"(?m)^\s*([A-Za-z .'-]+,\s*[A-Z]{2}\s*\d{5}(?:-\d{4})?)\s*$")
-LIC_RE = re.compile(r"(?im)^\s*(Common\s+Victualler.*?License)\s*$")
+neighborhoods = [
+    'Allston', 'Boston', 'Brighton', 'Charlestown', 'Chestnut Hill', 'Dorchester', 
+    'East Boston', 'Hyde Park', 'Jamaica Plain', 'Mattapan', 'Mission Hill', 
+    'Quincy', 'Roslindale', 'Roxbury', 'South Boston', 'West Roxbury', 'Back Bay'
+]
 
-SECTION_TARGET = "The Board deferred deliberation on the following applications for new alcoholic beverages licenses"
+neigh_pattern = "|".join([re.escape(n) for n in neighborhoods])
+
+DBA_RE = re.compile(r"^\s*doing\s+business\s+as:\s*(.+?)\s*$", re.IGNORECASE)
+ADDR1_RE = re.compile(r"^\s*\d+[A-Za-z]?(?:-\d+[A-Za-z]?)?\s+[A-Za-z]+(?:\s+[A-Za-z]+)*\s+(?:St|Ave|Blvd)\.?", re.IGNORECASE)
+ADDR2_RE = re.compile(
+    rf"^\s*(?:{neigh_pattern}),?\s*MA\b.*$",
+    re.IGNORECASE,
+)
+
+LIC_RE = re.compile(r"^\s*(Common\s+Victualler.*?License)\s*$")
+
+
+
+
+SECTION_TARGET = "the board deferred deliberation on the following applications for new alcoholic beverages licenses"
 
 BUSINSESS_NAME_RE = re.compile(r"\b(llc|l\.l\.c\.|corp|corp\.|corporation|inc|inc\.|co|company|ltd|ltd\.|club)\b")
 
@@ -105,37 +121,38 @@ def is_section_ender_status(line, text) -> bool:
     text = text.lower()
     return SECTION_LINE_RE.search(text) and line.is_bold
 
-def something_that_looks_like_business_name(line, text) -> bool:
+def something_that_looks_like_business_name(text) -> bool:
     text = text.lower()
-    return BUSINSESS_NAME_RE.search(text) and line.is_bold
+    return BUSINSESS_NAME_RE.search(text)
 
 def parse(file_path: Path) -> dict[str, list[BusinessRecord]]:
     lines = list(get_itr_lines(file_path))
     return _parse_lines(lines)
 
-def _classify_line(line: ParsedLine) -> LineType:
+def _classify_line(line: ParsedLine) -> LineType|None :
     normalized = line.text.strip().lower()
     if SECTION_TARGET in normalized:
         return LineType.SECTION_TRIGGER
-    elif boston_zip_regex.match(normalized) and line.is_bold:
+    if boston_zip_regex.match(normalized) and line.is_bold:
         return LineType.ZIP_HEADER
-    elif something_that_looks_like_business_name(normalized) and line.is_bold:
+    if something_that_looks_like_business_name(normalized) and line.is_bold:
         return LineType.BUSINESS
-    elif DBA_RE.match(normalized) or 
+    if DBA_RE.match(normalized) or ADDR1_RE.match(normalized) or LIC_RE.match(normalized) or ADDR2_RE.match(normalized):
+        return LineType.DETAIL
+
+    return None
     
-    
+
 def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
     # structure: ZIP_RESULT[zip] = [ {business_name, status, status_block, ...}, ... ]
     reset_state()
     for line in lines:
-        LINE_TYPE = _classify_line(line)
+        line_type = _classify_line(line)
         text = line.text
-
+        if not line_type:
+            continue
         # 1) enter target section
-        if (
-            "The Board deferred deliberation on the following applications for new alcoholic beverages licenses"
-            in text
-        ):
+        if line_type==LineType.SECTION_TRIGGER:
             STATE["in_target_section"] = True
 
         if not STATE.get("in_target_section"):
@@ -143,7 +160,7 @@ def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
 
         # 2) if capturing status tail: keep appending until next business line
         if STATE.get("capturing_status_tail"):
-            if (STATE.get("current_zip") and line.is_bold and something_that_looks_like_business_name(line, text)) or (boston_zip_regex.match(text) and line.is_bold):
+            if (STATE.get("current_zip") and line.is_bold and something_that_looks_like_business_name(text)) or (boston_zip_regex.match(text) and line.is_bold):
                 # next business starts; stop tail capture and fall through to business handler
                 STATE["capturing_status_tail"] = False
             else:
@@ -153,7 +170,7 @@ def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
                 continue
 
         # 3) zip header
-        if boston_zip_regex.match(text) and line.is_bold:
+        if line_type==LineType.ZIP_HEADER and line.is_bold:
             STATE["current_restaurant"] = None
             STATE["current_zip"] = text
             ZIP_RESULT.setdefault(text, [])          # list of records per zip
@@ -165,7 +182,7 @@ def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
             continue
 
         # 4) business name line
-        if something_that_looks_like_business_name(line, text):
+        if line_type==LineType.BUSINESS:
             record = BusinessRecord(zip_code=STATE["current_zip"], business_name=text)
             ZIP_RESULT[STATE["current_zip"]].append(record)
             STATE["current_restaurant"] = text
@@ -175,27 +192,27 @@ def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
 
         if STATE["restaurant_start"] and STATE["current_restaurant"] and STATE["current_record"] and not line.is_bold:
             record = next((r for r in ZIP_RESULT[STATE["current_zip"]] if r.business_name == STATE["current_restaurant"]), None)
-            text = text.lower()
-            m = DBA_RE.search(text)
+            text_lower = text.lower()
+            m = DBA_RE.match(text)
 
             if m:
                 record.dba = m.group(1)
                 continue
 
             # Address line 2 (City, ST ZIP)
-            m = ADDR2_RE.search(text)
+            m = ADDR2_RE.match(text)
             if m:
-                record.addr2 = m.group(1)
+                record.addr2 = text
                 continue
 
             # Address line 1 (Street)
-            m = ADDR1_RE.search(text)
+            m = ADDR1_RE.match(text)
             if m:
-                record.addr1 = m.group(1)
+                record.addr1 = text
                 continue
 
             # License line
-            m = LIC_RE.search(text)
+            m = LIC_RE.match(text)
             if m:
                 record.license_type = m.group(1)
                 continue
