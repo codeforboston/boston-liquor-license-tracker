@@ -13,6 +13,8 @@ from result_parser import ADDR2_RE, ADDR1_RE, LIC_RE
     "line",
     [
         "1 Franklin Park Rd.",
+        "1011 William T. Morrissey Blvd.",
+        "33 North Square",
     ],
 )
 def test_addr1_regex_matches_city_zip(line):

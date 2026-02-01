@@ -1,12 +1,13 @@
-import os
-import fitz
 import json
-import sys
+import os
 import re
-from pathlib import Path
+import sys
 from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+import fitz
 from dateutil.relativedelta import relativedelta
-from typing import List, Dict, Optional, Any, Union
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,10 +15,10 @@ load_dotenv()
 LICENSES_JSON = os.getenv("LICENSES_JSON")
 LAST_PROCESSED_DATE_JSON = os.getenv("LAST_PROCESSED_DATE_JSON")
 
-def parse_entity(entity: str) -> Dict[str, Optional[str]]:
-    lines: List[str] = [line.strip() for line in entity.splitlines() if line.strip()]
-    result: Dict[str, Optional[str]] = {
-        "index": None, 
+def parse_entity(entity: str) -> dict[str, str | None]:
+    lines: list[str] = [line.strip() for line in entity.splitlines() if line.strip()]
+    result: dict[str, str | None] = {
+        "index": None,
         "entity_number": None,
         "business_name": None,
         "dba_name": None,
@@ -27,8 +28,8 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
         "status": None,
         "alcohol_type": None,
         "minutes_date": None,
-        "application_expiration_date": None, 
-        "file_name": None
+        "application_expiration_date": None,
+        "file_name": None,
     }
 
     if not lines:
@@ -39,7 +40,7 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
     result["file_name"] = lines[-1]
 
     if lines:
-        match: Optional[re.Match[str]] = re.match(r"^(\d+)\.?\s*(.+)", lines[0])
+        match: re.Match[str] | None = re.match(r"^(\d+)\.?\s*(.+)", lines[0])
         if match:
             result["entity_number"] = match.group(1)
             result["business_name"] = match.group(2).strip()
@@ -51,18 +52,18 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
         lower_line: str = line.lower()
 
         if "doing business as:" in lower_line:
-            dba_match: Optional[re.Match[str]] = re.search(r"doing business as:\s*(.+)", line, re.IGNORECASE)
+            dba_match: re.Match[str] | None = re.search(r"doing business as:\s*(.+)", line, re.IGNORECASE)
             if dba_match:
                 result["dba_name"] = dba_match.group(1).strip()
 
         if "license" in lower_line:
-            license_match: Optional[re.Match[str]] = re.search(r"license\s*#:\s*([\w\-]+)", line, re.IGNORECASE)
+            license_match: re.Match[str] | None = re.search(r"license\s*#:\s*([\w\-]+)", line, re.IGNORECASE)
             if license_match:
                 result["license_number"] = license_match.group(1).strip()
 
         if not result["address"] and re.search(r"\d{5}$", line):
             result["address"] = line.strip()
-            zip_match: Optional[re.Match[str]] = re.search(r"\b(\d{5})\b", line)
+            zip_match: re.Match[str] | None = re.search(r"\b(\d{5})\b", line)
             if zip_match:
                 result["zipcode"] = zip_match.group(1)
 
@@ -101,7 +102,7 @@ def extract_hearing_date(pdf_path: str) -> datetime:
     doc: fitz.Document = fitz.open(pdf_path)
     page: fitz.Page = doc[0]
     text: str = page.get_text()
-    match: Optional[re.Match[str]] = re.search(date_pattern, text)
+    match: re.Match[str] | None = re.search(date_pattern, text)
     if match:
         date_str: str = match.group()
         try:
@@ -110,12 +111,12 @@ def extract_hearing_date(pdf_path: str) -> datetime:
         except Exception as e:
             raise ValueError(f"Could not conver date string to iso format: {e}")
     else:
-        raise ValueError(f"Could not find date in the pdf: {e}")
+        raise ValueError("Could not find date in the pdf")
 
-def extract_entities_from_pdf(pdf_path: str) -> List[str]:
-    heading_regex: str = r'^\d+\.?\s+.*'
-    entities: List[str] = []
-    current_entity_lines: List[str] = []
+def extract_entities_from_pdf(pdf_path: str) -> list[str]:
+    heading_regex: str = r"^\d+\.?\s+.*"
+    entities: list[str] = []
+    current_entity_lines: list[str] = []
     in_target_section: bool = False
 
     try:
@@ -131,30 +132,30 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
         page: fitz.Page = doc.load_page(page_num)
 
         try:
-            page_dict: Dict[str, Any] = page.get_text("dict", flags=fitz.TEXT_PRESERVE_LIGATURES | fitz.TEXT_PRESERVE_WHITESPACE)
+            page_dict: dict[str, Any] = page.get_text("dict", flags=fitz.TEXT_PRESERVE_LIGATURES | fitz.TEXT_PRESERVE_WHITESPACE)
             for block in page_dict["blocks"]:
-                if block['type'] == 0:
-                    for line in block['lines']:
+                if block["type"] == 0:
+                    for line in block["lines"]:
                         stop_processing_line: bool = False
-                        for span in line['spans']:
-                            span_text: str = span['text'].strip()
+                        for span in line["spans"]:
+                            span_text: str = span["text"].strip()
                             if not span_text:
                                 continue
 
-                            if 'Transactional Hearing' in span_text:
+                            if "Transactional Hearing" in span_text:
                                 in_target_section = True
                                 continue
 
-                            if 'Non-Hearing Transactions' in span_text:
+                            if "Non-Hearing Transactions" in span_text:
                                 in_target_section = False
                                 stop_processing_line = True
                                 break
 
-                            heading_match: Optional[re.Match[str]] = re.match(heading_regex, span_text)
-                            if in_target_section and heading_match and span['flags'] == 20:
+                            heading_match: re.Match[str] | None = re.match(heading_regex, span_text)
+                            if in_target_section and heading_match and span["flags"] == 20:
                                 if current_entity_lines:
                                     current_entity_lines.append(file_name)
-                                    entities.append('\n'.join(current_entity_lines))
+                                    entities.append("\n".join(current_entity_lines))
                                     current_entity_lines = []
                                 current_entity_lines.append(span_text)
                             elif in_target_section:
@@ -168,31 +169,31 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
 
     if current_entity_lines:
         current_entity_lines.append(file_name)
-        entities.append('\n'.join(current_entity_lines))
+        entities.append("\n".join(current_entity_lines))
 
     doc.close()
     return entities
 
-def read_data() -> List[Dict[str, Optional[str]]]:
-    current_dir = Path(__file__).resolve().parent   # folder containing load_data.py  
+def read_data() -> list[dict[str, str | None]]:
+    current_dir = Path(__file__).resolve().parent   # folder containing load_data.py
     output_file: str = os.path.join(current_dir, "..", LICENSES_JSON)
     print(f"output file loc is {output_file}")
-    existing_data: List[Dict[str, Optional[str]]] = []
+    existing_data: list[dict[str, str | None]] = []
 
     if os.path.exists(output_file):
         try:
-            with open(output_file, "r") as f:
+            with open(output_file) as f:
                 content = f.read().strip()
                 if content:
                     print(f"content is {content}")
                     existing_data = json.loads(content)
         except Exception as e:
             raise RuntimeError(f"Failed to read existing data from {output_file}: {e}")
-    
+
     return existing_data
 
 
-def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
+def write_to_file(result: list[dict[str, str | None]]) -> None:
     """
     Appends new parsed entities to `data.json`, assigning incremental indices 
     only if the file is not empty (i.e., not a seeding run).
@@ -202,13 +203,13 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     """
     pdf_folder: str = os.getcwd()
     output_file: str = os.path.join(pdf_folder, "..", LICENSES_JSON)
-    existing_data: List[Dict[str, Optional[str]]] = []
+    existing_data: list[dict[str, str | None]] = []
 
     existing_data = read_data()
-    
+
 
     if existing_data:
-        last_entity_index = existing_data[len(existing_data)-1]['index']
+        last_entity_index = existing_data[len(existing_data)-1]["index"]
         for i, entity in enumerate(result, start=last_entity_index+1):
             entity["index"] = i
 
@@ -221,45 +222,45 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     except Exception as e:
         raise RuntimeError(f"Failed to write data to {output_file}: {e}")
 
-def process_pdf(file_name: str, option: str = "default") -> List[Dict[str, Optional[str]]]:
+def process_pdf(file_name: str, option: str = "default") -> list[dict[str, str | None]]:
     pdf_folder: str = os.getcwd()
     pdf_path: str = os.path.join(pdf_folder, file_name)
     if not os.path.isfile(pdf_path):
         print(f"Error: File does not exist: {file_name}")
         sys.exit(1)
-    date: Optional[datetime] = None
-    expiration_date: Optional[datetime] = None
+    date: datetime | None = None
+    expiration_date: datetime | None = None
     try:
         date = extract_hearing_date(pdf_path)
         expiration_date = date + relativedelta(years=1)
     except Exception as e:
         print(f"Could not get date {pdf_path} : {e}")
 
-    entities: List[str] = extract_entities_from_pdf(pdf_path)
-    final_result: List[Dict[str, Optional[str]]] = []
-    for entity_data in entities: 
+    entities: list[str] = extract_entities_from_pdf(pdf_path)
+    final_result: list[dict[str, str | None]] = []
+    for entity_data in entities:
         try:
-            result: Dict[str, Optional[str]] = parse_entity(entity_data)
+            result: dict[str, str | None] = parse_entity(entity_data)
         except Exception as e:
             print(f"WARNING: Failed to parse entity: {e}")
             continue
-        if result['alcohol_type'] in ('Wines and Malt Beverages', 'All Alcoholic Beverages'):
-            result['file_name'] = file_name
-            result['minutes_date'] = date.date().isoformat()
-            result['application_expiration_date'] = expiration_date.date().isoformat()
-            result['status'] = 'Deferred'
+        if result["alcohol_type"] in ("Wines and Malt Beverages", "All Alcoholic Beverages"):
+            result["file_name"] = file_name
+            result["minutes_date"] = date.date().isoformat()
+            result["application_expiration_date"] = expiration_date.date().isoformat()
+            result["status"] = "Deferred"
             final_result.append(result)
-            print('--------------------------')
+            print("--------------------------")
 
-    if(option == 'seeding'):
+    if(option == "seeding"):
         return final_result
 
     write_to_file(final_result)
-    return final_result 
+    return final_result
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print(f"Usage: argument should be extract_entity.py <pdf_filename>")
+        print("Usage: argument should be extract_entity.py <pdf_filename>")
         sys.exit(1)
     process_pdf(sys.argv[1])
 

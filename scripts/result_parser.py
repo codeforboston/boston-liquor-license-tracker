@@ -5,7 +5,6 @@ from pathlib import Path
 import fitz
 from dataclasses import dataclass, field, asdict, is_dataclass
 from enum import Enum, auto
-from typing import Optional
 
 files = ["Voting Minutes 2-13-25.docx.pdf", "Voting Minutes 6-26-25.docx.pdf"]
 eligible_zipcodes = [
@@ -16,15 +15,6 @@ eligible_zipcodes = [
 ]
 
 boston_zip_regex = re.compile(r"^(02118|02119|02121|02122|02124|02125|02126|02128|02129|02130|02131|02132|02136|Oak Square|All Others)$", re.IGNORECASE)
-
-STATE = {
-    "in_target_section" : False,
-    "current_zip": None,
-    "current_restaurant": None,
-    "restaurant_start": False,
-    "restaurant_end": False,
-    "capturing_status_tail": False,
-}
 
 @dataclass
 class BusinessRecord:
@@ -45,15 +35,15 @@ class ParsedLine:
 
 
 neighborhoods = [
-    'Allston', 'Boston', 'Brighton', 'Charlestown', 'Chestnut Hill', 'Dorchester', 
-    'East Boston', 'Hyde Park', 'Jamaica Plain', 'Mattapan', 'Mission Hill', 
-    'Quincy', 'Roslindale', 'Roxbury', 'South Boston', 'West Roxbury', 'Back Bay'
+    "Allston", "Boston", "Brighton", "Charlestown", "Chestnut Hill", "Dorchester",
+    "East Boston", "Hyde Park", "Jamaica Plain", "Mattapan", "Mission Hill",
+    "Quincy", "Roslindale", "Roxbury", "South Boston", "West Roxbury", "Back Bay",
 ]
 
 neigh_pattern = "|".join([re.escape(n) for n in neighborhoods])
 
 DBA_RE = re.compile(r"^\s*doing\s+business\s+as:\s*(.+?)\s*$", re.IGNORECASE)
-ADDR1_RE = re.compile(r"^\s*\d+[A-Za-z]?(?:-\d+[A-Za-z]?)?\s+[A-Za-z]+(?:\s+[A-Za-z]+)*\s+(?:St|Ave|Blvd)\.?", re.IGNORECASE)
+ADDR1_RE = re.compile(r"^\s*\d+.*\s+(St|Ave|Blvd|Rd|Square)\.?$", re.IGNORECASE)
 ADDR2_RE = re.compile(
     rf"^\s*(?:{neigh_pattern}),?\s*MA\b.*$",
     re.IGNORECASE,
@@ -64,9 +54,9 @@ LIC_FRAGMENTS = [
     r"^\s*(Club All-Alcoholic Beverages License)\s*$",
     r"^\s*(General On-Premise All Alcoholic Beverages License)\s*$",
 ]
-LIC_RE = re.compile(rf"{"|".join(LIC_FRAGMENTS)}", re.IGNORECASE)
+LIC_RE = re.compile(rf"(?:{'|'.join(LIC_FRAGMENTS)})", re.IGNORECASE)
 
-
+END_RE = re.compile(r"^\s*-+\s*$")
 
 
 SECTION_TARGET = "the board deferred deliberation on the following applications for new alcoholic beverages licenses"
@@ -85,19 +75,12 @@ SECTION_LINE_RE = re.compile(
     r")",
 )
 
-ZIP_RESULT = defaultdict(dict)
 
 def dataclass_default(obj):
     if is_dataclass(obj):
         return asdict(obj)
     raise TypeError
 
-def reset_state() -> None:
-    STATE["current_zip"] = None
-    STATE["current_restaurant"] = None
-    STATE["capturing_status_tail"] = False
-    STATE["restaurant_start"] = False
-    STATE["restaurant_end"] = False
 
 class LineType(Enum):
     SECTION_TRIGGER = auto()
@@ -105,195 +88,215 @@ class LineType(Enum):
     BUSINESS = auto()
     DETAIL = auto()
     STATUS = auto()
+    END = auto()
+
+class ResultParser:
+    def __init__(
+            self,
+            section_trigger: str,
+            zip_header_regex: re.Pattern,
+            section_line_regex: re.Pattern,
+            dba_regex: re.Pattern,
+            business_regex: re.Pattern,
+            addr1_regex: re.Pattern,
+            addr2_regex: re.Pattern,
+            license_regex: re.Pattern,
+    ) -> None:
+        self.section_trigger = section_trigger
+        self.zip_header_regex = zip_header_regex
+        self.section_line_regex = section_line_regex
+        self.dba_regex = dba_regex
+        self.business_regex = business_regex
+        self.addr1_regex = addr1_regex
+        self.addr2_regex = addr2_regex
+        self.license_regex = license_regex
+        self.reset_state()
 
 
-def main():
+    def reset_state(self) -> None:
+        self.current_zip = None
+        self.in_target_section = False
+        self.current_restaurant = None
+        self.capturing_status_tail = False
+        self.current_record: BusinessRecord | None = None
 
-    current_dir = Path.cwd()
-    file_loc = current_dir/files[0]
-    print(file_loc)
+    def parse(self, file_path: Path) -> dict[str, list[BusinessRecord]]:
+        lines = list(self.get_itr_lines(file_path))
+        return self._parse_lines(lines)
 
-    if not file_loc.exists():
-        return "file not found"
-
-    entites = parse(file_loc)
-    print(json.dumps(entites, indent=4, default=dataclass_default))
-
-    return None
-
-
-def is_section_ender_status(text) -> bool:
-    return SECTION_LINE_RE.search(text)
-
-def something_that_looks_like_business_name(text) -> bool:
-    text = text.lower()
-    return BUSINSESS_NAME_RE.search(text)
-
-def parse(file_path: Path) -> dict[str, list[BusinessRecord]]:
-    lines = list(get_itr_lines(file_path))
-    return _parse_lines(lines)
-
-def _classify_line(line: ParsedLine) -> LineType|None :
-    normalized = line.text.strip().lower()
-    if SECTION_TARGET in normalized:
-        return LineType.SECTION_TRIGGER
-    if boston_zip_regex.match(normalized) and line.is_bold:
-        return LineType.ZIP_HEADER
-    if something_that_looks_like_business_name(normalized) and line.is_bold:
-        return LineType.BUSINESS
-    if DBA_RE.match(normalized) or ADDR1_RE.match(normalized) or LIC_RE.match(normalized) or ADDR2_RE.match(normalized):
-        return LineType.DETAIL
-    if is_section_ender_status(normalized) and line.is_bold: 
-        return LineType.STATUS
-
-    return None
-    
-
-def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
+    def _parse_lines(self, lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
     # structure: ZIP_RESULT[zip] = [ {business_name, status, status_block, ...}, ... ]
-    reset_state()
-    for line in lines:
-        line_type = _classify_line(line)
-        text = line.text
-        if not line_type:
-            continue
-        # 1) enter target section
-        if line_type==LineType.SECTION_TRIGGER:
-            STATE["in_target_section"] = True
+        result: dict[str, list[BusinessRecord]] = defaultdict(list)
+        self.reset_state()
+        for line in lines:
+            line_type = self._classify_line(line)
+            text = line.text
+            text = text.replace("\u200b","")
+            if not line_type:
+                continue
+            # 1) enter target section
+            if line_type==LineType.SECTION_TRIGGER:
+                self.in_target_section = True
 
-        if not STATE.get("in_target_section"):
-            continue
-
-        # 2) if capturing status tail: keep appending until next business line
-        if STATE.get("capturing_status_tail"):
-            if (STATE.get("current_zip") and line.is_bold and something_that_looks_like_business_name(text)) or (boston_zip_regex.match(text) and line.is_bold):
-                # next business starts; stop tail capture and fall through to business handler
-                STATE["capturing_status_tail"] = False
-            else:
-                # still part of previous restaurant's status/explanation
-                if STATE.get("current_record") is not None:
-                    STATE["current_record"].status_line.append(text)
+            if not self.in_target_section:
                 continue
 
-        # 3) zip header
-        if line_type==LineType.ZIP_HEADER and line.is_bold:
-            STATE["current_restaurant"] = None
-            STATE["current_zip"] = text
-            ZIP_RESULT.setdefault(text, [])          # list of records per zip
-            STATE["current_record"] = None
-            continue
-
-        # ignore everything until a zip is set
-        if not STATE.get("current_zip"):
-            continue
-
-        # 4) business name line
-        if line_type==LineType.BUSINESS:
-            record = BusinessRecord(zip_code=STATE["current_zip"], business_name=text)
-            ZIP_RESULT[STATE["current_zip"]].append(record)
-            STATE["current_restaurant"] = text
-            STATE["current_record"] = record
-            STATE["restaurant_start"] = True
-            continue
-
-        if STATE["restaurant_start"] and STATE["current_restaurant"] and STATE["current_record"] and not line.is_bold:
-            record = next((r for r in ZIP_RESULT[STATE["current_zip"]] if r.business_name == STATE["current_restaurant"]), None)
-            text_lower = text.lower()
-            m = DBA_RE.match(text)
-
-            if m:
-                record.dba = m.group(1)
-                continue
-
-             # Address line 1 (Street)
-            m = ADDR1_RE.match(text)
-            if m:
-                record.addr1 = text
-                continue
-
-            # Address line 2 (City, ST ZIP)
-            m = ADDR2_RE.match(text)
-            if m:
-                record.addr2 = text
-                continue
-
-            # License line
-            m = LIC_RE.match(text)
-            if m:
-                record.license_type = text
-                continue
-
-        # 5) status line: start tail capture
-        if line_type == LineType.STATUS:
-            if STATE.get("current_record") is not None:
-                # STATE["current_record"]["status"] = text
-                STATE["current_record"].status_line.append(text)
-
-            STATE["restaurant_end"] = True
-            STATE["capturing_status_tail"] = True
-            continue
-
-
-    return ZIP_RESULT
-
-
-def get_itr_lines(file_loc: Path):
-    if fitz is None:
-        raise RuntimeError("fitz is required")
-
-    file_data: fitz.Doc = fitz.open(str(file_loc))
-    empty_pattern = re.compile(r"\u200b")
-
-    for page_num in range(file_data.page_count):
-        page: fitz.Page = file_data.load_page(page_num)
-        page_dict = page.get_text("dict")
-        blocks = page_dict.get("blocks", [])
-        for block in blocks:
-            if block.get("type") != 0:
-                continue
-            for line in block.get("lines", []):
-                spans = []
-                is_bold = False
-                text_parts = []
-                # if result_section_found:
-                    #I need to check for bold zipcodes
-                    # i need to process these lines
-                    # 1. if empty or just special character in line without text, avoid it
-                    # 2. remove empty or special spans from the text for the line
-                    # once we have the line, we can check for regex
-                for span in line.get("spans", []):
-                    raw_text = span.get("text", "").strip()
-                    if not raw_text or empty_pattern.match(raw_text):
-                        continue
-                    spans.append(span)
-                    text_parts.append(raw_text)
-                    flags = span.get("flags", 4)
-                    font_name = span.get("font", "").lower()
-                    if "bold" in font_name or flags == 20:
-                        is_bold = True
-
-                if not text_parts:
+            # 2) if capturing status tail: keep appending until next business line
+            if self.capturing_status_tail:
+                if (self.current_zip and line_type == LineType.BUSINESS) or (line_type == LineType.ZIP_HEADER):
+                    # next business starts; stop tail capture and fall through to business handler
+                    self.capturing_status_tail = False
+                else:
+                    # still part of previous restaurant's status/explanation
+                    if self.current_record is not None:
+                        self.current_record.status_line.append(text)
                     continue
 
-                normalized_text = "".join(text_parts)
-                yield ParsedLine(
-                    text=normalized_text,
-                    is_bold=is_bold,
-                    page_num=page_num,
-                    raw={"block": block, "line": line, "spans": spans},
-                )
+            if self.capturing_status_tail and line_type == LineType.END:
+                break
 
-                    #     if not (span["flags"] == 20 and "bold" in span["font"].lower()):
-                    #         continue
+            # 3) zip header
+            if line_type == LineType.ZIP_HEADER and line.is_bold:
+                self.current_zip = text
+                result.setdefault(text, [])          # list of records per zip
+                self.current_record = None
+                continue
 
-                    # text_line = text_line.strip()
-                    # if boston_zip_regex.match(text_line) and is_bold:
-                    #     print(f"found {text_line}")
+            # ignore everything until a zip is set
+            if not self.current_zip:
+                continue
 
-                # if "The Board deferred deliberation on the following applications for new alcoholic beverages licenses" in text:
-                #     result_section_found = True
+            # 4) business name line
+            if line_type == LineType.BUSINESS:
+                record = BusinessRecord(zip_code=self.current_zip, business_name=text)
+                result[self.current_zip].append(record)
+                self.current_restaurant = text
+                self.current_record = record
+                continue
+
+            if line_type == LineType.DETAIL and self.current_restaurant and self.current_record and not line.is_bold:
+                record = next((r for r in result[self.current_zip] if r.business_name == self.current_restaurant), None)
+                m = self.dba_regex.match(text)
+
+                if m:
+                    record.dba = m.group(1)
+                    continue
+
+                # Address line 1 (Street)
+                m = self.addr1_regex.match(text)
+                if m:
+                    record.addr1 = text
+                    continue
+
+                # Address line 2 (City, ST ZIP)
+                m = self.addr2_regex.match(text)
+                if m:
+                    record.addr2 = text
+                    continue
+
+                # License line
+                m = self.license_regex.match(text)
+                if m:
+                    record.license_type = text
+                    continue
+
+            # 5) status line: start tail capture
+            if line_type == LineType.STATUS:
+                if self.current_record is not None:
+                    # STATE["current_record"]["status"] = text
+                    self.current_record.status_line.append(text)
+                self.capturing_status_tail = True
+                continue
 
 
+        return result
 
 
-main()
+    def _is_section_ender_status(self, text) -> bool:
+            return SECTION_LINE_RE.search(text)
+
+    def _something_that_looks_like_business_name(self, text) -> bool:
+        text = text.lower()
+        return BUSINSESS_NAME_RE.search(text)
+
+    def _classify_line(self, line: ParsedLine) -> LineType|None :
+        normalized = line.text.strip().lower()
+        normalized = normalized.replace("\u200b", "")
+        if self.section_trigger in normalized:
+            return LineType.SECTION_TRIGGER
+        if boston_zip_regex.match(normalized) and line.is_bold:
+            return LineType.ZIP_HEADER
+        if self._something_that_looks_like_business_name(normalized) and line.is_bold:
+            return LineType.BUSINESS
+        if self.dba_regex.match(normalized) or self.addr1_regex.match(normalized) or self.addr2_regex.match(normalized) or self.license_regex.match(normalized):
+            return LineType.DETAIL
+        if self._is_section_ender_status(normalized) and line.is_bold:
+            return LineType.STATUS
+        return None
+
+    def get_itr_lines(self, file_loc: Path):
+        if fitz is None:
+            raise RuntimeError("fitz is required")
+
+        file_data: fitz.Doc = fitz.open(str(file_loc))
+        empty_pattern = re.compile(r"\u200b")
+
+        for page_num in range(file_data.page_count):
+            page: fitz.Page = file_data.load_page(page_num)
+            page_dict = page.get_text("dict")
+            blocks = page_dict.get("blocks", [])
+            for block in blocks:
+                if block.get("type") != 0:
+                    continue
+                for line in block.get("lines", []):
+                    spans = []
+                    is_bold = False
+                    text_parts = []
+                    # if result_section_found:
+                        #I need to check for bold zipcodes
+                        # i need to process these lines
+                        # 1. if empty or just special character in line without text, avoid it
+                        # 2. remove empty or special spans from the text for the line
+                        # once we have the line, we can check for regex
+                    for span in line.get("spans", []):
+                        raw_text = span.get("text", "").strip()
+                        if not raw_text or empty_pattern.match(raw_text):
+                            continue
+                        spans.append(span)
+                        text_parts.append(raw_text)
+                        flags = span.get("flags", 4)
+                        font_name = span.get("font", "").lower()
+                        if "bold" in font_name or flags == 20:
+                            is_bold = True
+
+                    if not text_parts:
+                        continue
+
+                    normalized_text = "".join(text_parts)
+                    yield ParsedLine(
+                        text=normalized_text,
+                        is_bold=is_bold,
+                        page_num=page_num,
+                        raw={"block": block, "line": line, "spans": spans},
+                    )
+
+def build_parser() -> ResultParser:
+    return ResultParser(
+        section_trigger=SECTION_TARGET,
+        zip_header_regex=boston_zip_regex,
+        section_line_regex=SECTION_LINE_RE,
+        business_regex=BUSINSESS_NAME_RE,
+        dba_regex=DBA_RE,
+        addr1_regex=ADDR1_RE,
+        addr2_regex=ADDR2_RE,
+        license_regex=LIC_RE,
+    )
+
+def main(file_path: str) -> None:
+    parser = build_parser()
+    result = parser.parse(Path(file_path))
+    print(json.dumps(result, indent=4, default=dataclass_default))
+
+path = Path(__file__).resolve().parent
+path = path /"Voting Minutes 7-31-25.docx.pdf"
+main(path)
