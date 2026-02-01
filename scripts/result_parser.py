@@ -15,7 +15,7 @@ eligible_zipcodes = [
     "02136",
 ]
 
-boston_zip_regex = re.compile(r"^(02118|02119|02121|02122|02124|02125|02126|02128|02129|02130|02131|02132|02136|Oak Square|All Others)$")
+boston_zip_regex = re.compile(r"^(02118|02119|02121|02122|02124|02125|02126|02128|02129|02130|02131|02132|02136|Oak Square|All Others)$", re.IGNORECASE)
 
 STATE = {
     "in_target_section" : False,
@@ -59,7 +59,7 @@ ADDR2_RE = re.compile(
     re.IGNORECASE,
 )
 
-LIC_RE = re.compile(r"^\s*(Common\s+Victualler.*?License)\s*$")
+LIC_RE = re.compile(r"^\s*(Common\s+Victualler.*?License)\s*$", re.IGNORECASE)
 
 
 
@@ -117,9 +117,8 @@ def main():
     return None
 
 
-def is_section_ender_status(line, text) -> bool:
-    text = text.lower()
-    return SECTION_LINE_RE.search(text) and line.is_bold
+def is_section_ender_status(text) -> bool:
+    return SECTION_LINE_RE.search(text)
 
 def something_that_looks_like_business_name(text) -> bool:
     text = text.lower()
@@ -139,6 +138,8 @@ def _classify_line(line: ParsedLine) -> LineType|None :
         return LineType.BUSINESS
     if DBA_RE.match(normalized) or ADDR1_RE.match(normalized) or LIC_RE.match(normalized) or ADDR2_RE.match(normalized):
         return LineType.DETAIL
+    if is_section_ender_status(normalized) and line.is_bold: 
+        return LineType.STATUS
 
     return None
     
@@ -199,26 +200,26 @@ def _parse_lines(lines: ParsedLine) -> dict[str, list[BusinessRecord]]:
                 record.dba = m.group(1)
                 continue
 
+             # Address line 1 (Street)
+            m = ADDR1_RE.match(text)
+            if m:
+                record.addr1 = text
+                continue
+
             # Address line 2 (City, ST ZIP)
             m = ADDR2_RE.match(text)
             if m:
                 record.addr2 = text
                 continue
 
-            # Address line 1 (Street)
-            m = ADDR1_RE.match(text)
-            if m:
-                record.addr1 = text
-                continue
-
             # License line
             m = LIC_RE.match(text)
             if m:
-                record.license_type = m.group(1)
+                record.license_type = text
                 continue
 
         # 5) status line: start tail capture
-        if line.is_bold and is_section_ender_status(line, text):
+        if line_type == LineType.STATUS:
             if STATE.get("current_record") is not None:
                 # STATE["current_record"]["status"] = text
                 STATE["current_record"].status_line.append(text)
