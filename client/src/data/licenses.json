@@ -1566,5 +1566,33 @@
         "minutes_date": "2026-01-08",
         "application_expiration_date": "2027-01-08",
         "file_name": "Voting%20Minutes%201-9-26.docx.pdf"
+    },
+    {
+        "index": 113,
+        "entity_number": "18",
+        "business_name": "MIA18M, Inc.",
+        "dba_name": "Pomona Cafe III",
+        "address": "18 Meridian St, East Boston, MA 02128",
+        "zipcode": "02128",
+        "license_number": "LB-616556",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-01-29",
+        "application_expiration_date": "2027-01-29",
+        "file_name": "Voting%20Minutes%201-29-26.docx.pdf"
+    },
+    {
+        "index": 114,
+        "entity_number": "19",
+        "business_name": "Pedro\u2019s on Wheels, LLC",
+        "dba_name": "Pedro\u2019s Kitchen",
+        "address": "85-91 Glenville Ave, Allston, MA 02134",
+        "zipcode": "02134",
+        "license_number": "LB-616554",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-01-29",
+        "application_expiration_date": "2027-01-29",
+        "file_name": "Voting%20Minutes%201-29-26.docx.pdf"
     }
 ]
