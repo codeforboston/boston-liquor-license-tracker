@@ -1,6 +1,7 @@
 import logging
 import os
 import re
+from datetime import datetime
 
 from dateutil import parser
 
@@ -8,6 +9,7 @@ from app import constants as const
 from app.pipeline.run_result import RunResult
 from app.state.kv_store import KVStore
 
+DEFAULT_DT = datetime(1900, 1, 1)
 logger = logging.getLogger(__name__)
 
 # Regex for the start of a license chunk: "1. ", "10. ", etc. at beginning of line
@@ -17,6 +19,8 @@ CHUNK_START_RE = re.compile(r"^\d+\.\s+.+")
 # Regex for identifying a license number pattern (case-insensitive, flexible spacing/colon)
 # Matches "License#", "license #", "LICENSE : #", etc.
 LICENSE_NUMBER_RE = re.compile(r"license\s*:?\s*#\s*:?", re.IGNORECASE)
+
+YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
 
 
 class LicenseTextExtractorStep:
@@ -53,61 +57,36 @@ class LicenseTextExtractorStep:
         return RunResult()
 
     def _get_hearing_date(self, first_line, pdf_file_path):
-        """
-        Extracts hearing date from the first line of the text.
-        Returns format "Date:YYYY-MM-DD" or "Date:null".
-        """
         if not first_line:
             return "Date:null"
 
-        # Try parsing the first line
+        first_line = first_line.replace(":", "")
+
         try:
-            # fuzzy=True allows extracting date from strings like "December 22nd transactional hearings"
-            dt = parser.parse(first_line, fuzzy=True)
-
-            # Check if year is reasonable (if dateutil uses current year as default,
-            # but the filename indicates a different year, we might need to adjust.
-            # However, many hearings have the year explicitly.)
-
-            # If the first line is very short and generic like "Transactional Hearing",
-            # parser.parse might return today's date or fail.
-            # Let's check if the raw line actually contains month names or numbers.
-            has_date_content = (
-                any(
-                    month in first_line.lower()
-                    for month in [
-                        "jan",
-                        "feb",
-                        "mar",
-                        "apr",
-                        "may",
-                        "jun",
-                        "jul",
-                        "aug",
-                        "sep",
-                        "oct",
-                        "nov",
-                        "dec",
-                    ]
-                )
-                or re.search(r"\d{1,2}/\d{1,2}", first_line)
-                or re.search(r"\d{4}", first_line)
+            dt = parser.parse(
+                first_line,
+                fuzzy=True,
+                default=DEFAULT_DT,
             )
 
-            if has_date_content:
-                return f"Date:{dt.strftime('%Y-%m-%d')}"
+            # 🚨 Reject inferred years
+            if dt.year == DEFAULT_DT.year:
+                raise ValueError("Year was inferred, not explicitly present")
+
+            return f"Date:{dt.strftime('%Y-%m-%d')}"
+
         except (ValueError, OverflowError):
+            logger.warning(
+                f"*********Could not parse date from first line: {first_line!r}"
+            )
             pass
 
-        # If first line parsing fails, try filename as fallback if it contains a date pattern
-        # voting_minutes_2020-04-23.txt
-        match = re.search(r"(\d{4}-\d{2}-\d{2})", pdf_file_path)
+        # Fallback: filename
+        match = re.search(r"(\d{4}-\d{2}-\d{2})", str(pdf_file_path))
         if match:
-            logger.warning(
-                "Could not parse date from first line, using data from filename."
-            )
             return f"Date:{match.group(1)}"
-
+        else:
+            logger.warning(f"Could not parse date from from filename {pdf_file_path}")
         return "Date:null"
 
     def _fix_header(self, text: str) -> str:

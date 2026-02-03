@@ -34,7 +34,6 @@ class DataAnalyzer:
             "attorney",
             "status",
             "status_detail",
-            "hours",
             "details",
         ]
 

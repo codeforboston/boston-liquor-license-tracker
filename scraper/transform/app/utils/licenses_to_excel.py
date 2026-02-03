@@ -71,7 +71,7 @@ def json_excel(json_path: str, excel_path: str):
         return True
 
     except Exception as e:
-        #logger.exception("An error occurred")
+        # logger.exception("An error occurred")
         logger.error(f"An error occurred: {e}")
         return False
 

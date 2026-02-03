@@ -2,25 +2,23 @@
 # the line numbers for the license applications.
 # which expect the entity number to be followed by a period.
 
+from app import constants as const
 from app.violation_plugins.base import Plugin
-
-PDF_FILE_PATH = "pdf_file_path"
-HEARING_SECTION = "hearing_section"
 
 
 class Violation_2021_09_30(Plugin):
     priority = 10
 
     def query(self, store):
-        pdf_file_path = store.get(PDF_FILE_PATH)
+        pdf_file_path = store.get(const.PDF_FILE_PATH)
         if "voting_minutes_2021-09-30" in pdf_file_path:
             return True
         return False
 
     def run(self, store):
-        pdf_text = store.get("pdf_text")
+        pdf_text = store.get(const.PDF_TEXT)
         fixed_text = self._fix_specific_lines(pdf_text)
-        store.set("pdf_text", fixed_text)
+        store.set(const.PDF_TEXT, fixed_text)
 
     def _fix_specific_lines(self, text: str) -> str:
         replacements = {

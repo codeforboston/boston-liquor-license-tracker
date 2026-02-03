@@ -4,7 +4,7 @@ import logging
 import os
 import sys
 
-from app.main import run_pipeline
+from app.pipeline.pipeline import run_pipeline
 from app.utils.logger import setup_logging
 
 
@@ -24,22 +24,21 @@ def main():
         default="all_licenses.json",
         help="Path to the output JSON file (default: all_licenses.json)",
     )
-    parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
 
     args = parser.parse_args()
-
-    if args.verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
 
     all_results = []
 
     if args.file:
+        logging.getLogger().setLevel(logging.DEBUG)
         logger.info(f"Processing single file: {args.file}")
         from app.state.kv_store import KVStore
 
         store = KVStore()
         results = run_pipeline(args.file, kv_store=store)
         all_results.extend(results)
+        logger.debug(f"Results: {results}")
+        logger.debug(f"All results: {store.dump()}")
 
     elif args.dir:
         if not os.path.exists(args.dir):
@@ -66,8 +65,8 @@ def main():
 
         # Generate stats report for directory runs
         if args.dir:
-            from app.licenses_to_excel import json_excel
-            from app.stats_report import process_data
+            from app.utils.licenses_to_excel import json_excel
+            from app.utils.stats_report import process_data
 
             report_path = process_data(all_results)
             logger.info(f"Stats report generated at: {report_path}")

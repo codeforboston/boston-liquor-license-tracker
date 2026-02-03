@@ -38,14 +38,50 @@ The `KVStore` is the single source of truth. It holds intermediate states (raw t
 
 ### ⚙ Pipeline Steps
 
-- **[PDFTextExtractorStep](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Licensing-Board-Json/app/pipeline/extract_pdf_text.py)**: Converts binary PDF data into clean, ASCII-normalized text using PyMuPDF.
-- **[HearingTextExtractorStep](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Licensing-Board-Json/app/pipeline/extract_hearing.py)**: Isolates the "Transactional Hearing" section.
-- **[LicenseTextExtractorStep](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Licensing-Board-Json/app/pipeline/extract_license_text.py)**: Segments the hearing section into individual license entries with intelligent multi-license chunk handling.
-- **[TextJsonExtractorStep](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Licensing-Board-Json/app/pipeline/extract_text_json.py)**: The final extraction engine using tuned regex for fields like DBA, manager, alcohol type, and status.
+- **[PDFTextExtractorStep](./app/pipeline/extract_pdf_text.py)**: Converts binary PDF data into clean, ASCII-normalized text using PyMuPDF.
+- **[HearingTextExtractorStep](./app/pipeline/extract_hearing.py)**: Isolates the "Transactional Hearing" section.
+- **[LicenseTextExtractorStep](./app/pipeline/extract_license_text.py)**: Segments the hearing section into individual license entries with intelligent multi-license chunk handling.
+- **[TextJsonExtractorStep](./app/pipeline/json_extractor.py)**: The final extraction engine. It orchestrates a specialized sub-pipeline of granular extractors.
+
+### ⛓ Extraction Pipeline (Chain of Responsibility)
+
+The `TextJsonExtractorStep` delegates the heavy lifting to a chain of specialized extractors. Each extractor is responsible for a specific subset of fields (e.g., DBA name, license number, address) and operates on a shared `ExtractionContext`.
+
+```mermaid
+graph TB
+    subgraph Chain_of_Responsibility
+        S1[" "] 
+        H[HeaderExtractor] --> LN[LicenseNumberExtractor]
+        LN --> DBA[DBAExtractor]
+        DBA --> CAT[CategoryExtractor]
+        CAT --> ADDR[AddressExtractor]
+    end
+
+    subgraph Blackboard
+        S2[" "]
+        CTX[ExtractionContext]
+    end
+
+    classDef spacer fill:none,stroke:none
+    class S1,S2 spacer
+
+    H --> CTX
+    LN --> CTX
+    DBA --> CTX
+    CAT --> CTX
+    ADDR --> CTX
+
+```
+
+This granular approach offers several benefits:
+
+- **Isolation**: Changes to how addresses are parsed don't affect manager/attorney extraction, etc.
+- **State Sharing**: Extractors use `anchors` in the context to mark locations in the text, allowing following extractors to resume from where the previous one left off.
+- **Reliability**: A failure in one extractor doesn't halt the entire pipeline for a record.
 
 ### 🔌 Invariant Plugin System
 
-The [InvariantPluginStep](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Licensing-Board-Json/app/pipeline/invariant_plugins.py) dynamically loads and runs date-specific fixes at three critical stages:
+The [InvariantPluginStep](./app/pipeline/invariant_plugins.py) dynamically loads and runs date-specific fixes at three critical stages:
 
 1. **`POST_TEXT`**: Fixes OCR or numbering issues in the raw extracted text.
 2. **`POST_HEARING`**: Cleans up specific structural anomalies in the hearing section.
@@ -53,7 +89,7 @@ The [InvariantPluginStep](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Lic
 
 ### 📊 Statistics & Quality Reporting
 
-The project includes a built-in analysis engine (**[app/stats_report.py](file:///Users/dan/Code/Vibe_Coding/Code_For_Boston/Licensing-Board-Json/app/stats_report.py)**) that tracks extraction quality across the entire dataset.
+The project includes a built-in analysis engine (**[app/utils/stats_report.py](./app/utils/stats_report.py)**) that tracks extraction quality across the entire dataset.
 
 - **Field Completeness**: Measures how many records successfully extracted each of the 13 core fields.
 - **Distribution Analysis**: Tracks categorical trends for hearing `status` and `alcohol_types`.
@@ -79,7 +115,12 @@ uv run python -m app.cli --file voting_minutes_pdfs/specific_file.pdf
 **Using Makefile:**
 
 ```bash
+# Run the whole directory
+# Assumes --dir ../scrape/voting_minutes_pdfs
 make run
+
+# Run a single file
+make run1 PDF=voting_minutes_2025-04-17.pdf
 ```
 
 ## 📊 Manual Validation & Data Exploration
@@ -95,7 +136,7 @@ The tool will generate or update `licenses.xlsx` (based on `all_licenses.json`) 
 
 ## 💡 Benefits
 
-- **Performance**: High-speed regex processing (sub-second per document).
-- **No LLM Costs**: Zero API fees and fully deterministic results.
+- **Performance**: Strong regex processing (sub-second per document).
+- **No External Dependencies**: Zero API calls and fully deterministic results.
 - **Auditable**: Detailed state dumps allow for precise debugging of the extraction logic.
 - **Extensible**: Add "violation plugins" by simply dropping a new Python file into the appropriate stage directory.

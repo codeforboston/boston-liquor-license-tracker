@@ -1,26 +1,25 @@
-import re
-
 # This module targets the May 1, 2025 voting minutes PDF and removes a multi-line
 # policy statement about deferring new license applications. The removal is necessary
 # because the statement is not a license-specific action and would otherwise be
 # incorrectly parsed as a license-level violation.
+
+import re
+
+from app import constants as const
 from app.violation_plugins.base import Plugin
 
-PDF_FILE_PATH = "pdf_file_path"
-HEARING_SECTION = "hearing_section"
 
-
-class Violation_2020_09_10(Plugin):
+class Violation_2025_05_01(Plugin):
     priority = 10
 
     def query(self, store):
-        pdf_file_path = store.get(PDF_FILE_PATH)
+        pdf_file_path = store.get(const.PDF_FILE_PATH)
         if "voting_minutes_2025-05-01" in pdf_file_path:
             return True
         return False
 
     def run(self, store):
-        pdf_text = store.get("pdf_text")
+        pdf_text = store.get(const.PDF_TEXT)
         delete_phrases = {
             "THE BOARD WILL DEFER DELIBERATION ON ALL NEW ALCOHOLIC BEVERAGES",
             "LICENSE APPLICATIONS UNTIL ALL APPLICATIONS RECEIVED BY MAY 23 HAVE",
