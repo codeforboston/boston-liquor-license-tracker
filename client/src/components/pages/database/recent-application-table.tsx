@@ -49,7 +49,7 @@ const formatData = (
     const subrows = applicants.map((applicant) => {
       return [
         applicant.business_name,
-        applicant.dba_name ?? "N/A",
+        applicant.dba_name ?? "None Provided",
         applicant.address,
         applicant.license_number,
         applicant.alcohol_type,
@@ -92,11 +92,11 @@ const RecentApplicationTable = () => {
   }, []);
   const recentApplicationHeaders = [
     "Zipcode/Business Name",
-    "Dba",
+    "Doing Business As",
     "Street Address",
     "License Number",
     "Licenses Type",
-    "App. Date",
+    "Application Date",
     "Status",
   ];
 

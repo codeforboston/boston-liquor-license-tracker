@@ -22,6 +22,7 @@ We are looking for product managers, GIS and data visualization experts, visual 
 
 - [Project Goals](#project-goals)
 - [Tech Stack](#tech-stack)
+- [Local Setup](#local-setup)
 
 ### Project Goals
 
@@ -29,9 +30,25 @@ We are looking for product managers, GIS and data visualization experts, visual 
 - Align data schema with City of Boston standards where possible (See https://data.boston.gov/)
 
 ### Tech Stack
-See [Client Page](https://github.com/MattClarke131/boston-liquor-license-tracker/tree/main/client) 
+See [Client Page](https://github.com/codeforboston/boston-liquor-license-tracker/tree/main/client) 
 
-### Running the React client:
+
+# Local Setup
+
+## Install Git Large File Storage
+
+Our repo uses Git LFS for managing large files. GitHub Actions workflows will automatically be able to utilize git-lfs, but contributors will need to install and initialize git-lfs on their local system.
+
+- First install locally (with Homebrew, or see the [official documentation](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage))
+```bash 
+brew install git-lfs
+```
+- Then give git access to git-lfs
+```bash 
+git lfs install
+```
+
+## Running the React client:
 
 ```bash
 cd client
@@ -40,7 +57,7 @@ npm start # start app
 ```
 The app will be running at [http://localhost:5173](http://localhost:5173)
 
-### Running tests
+## Running tests
 
 ```bash
 npm run install:python # installs pytest
