@@ -156,7 +156,7 @@ export const BostonZipCodeMap = () => {
     return feature.properties.ZIP5;
   }).sort();
   // TODO which 13 do we want to use
-  const uniqueZips = useMemo(() => [...new Set(zips)].slice(0,10), [zips]);
+  const uniqueZips = useMemo(() => [...new Set(zips)].slice(0,13), [zips]);
 
   const indexToZipCode : {[key: number]: string} = {};
   for (const [index, value] of uniqueZips.entries()) {

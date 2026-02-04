@@ -24,7 +24,7 @@ function mod(x: number, y: number) {
 
 function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   return (
-    <div className="min-w-[1px]">
+    <div>
         <p className="tooltip">
           .
           {/*{tooltipLabel}*/}
@@ -33,7 +33,7 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
         id={id.toString()}
         onClick={() => onSelect(id)}
         className={
-            `tooltip-on-hover border border-[2px] h-[16px] min-w-[16px] cursor-pointer rounded-[100px] 
+            `tooltip-on-hover border border-[2px] min-h-[12px] min-w-[12px] cursor-pointer rounded-[100px]
             ${isSelected ? "border-background-dark bg-button-default-dark text-font-light" 
             : "border-button-hovered-light"}`}
           / >
