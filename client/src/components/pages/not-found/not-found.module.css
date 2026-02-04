@@ -4,7 +4,6 @@
   /* Account for header and footer space */
   flex-shrink: 0;
   background: var(--color-background-dark);
-  /* background-image: url("@/assets/images/beer-tap.png"); */
   background-image: url("@/assets/images/beer-tap-high-res.jpg");
   background-repeat: no-repeat;
   background-position: center center;
