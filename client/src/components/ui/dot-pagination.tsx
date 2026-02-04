@@ -49,9 +49,9 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
   console.log(indexToLabel);
 
   return (
-    <div className='flex justify-stretch'>
+    <div className="flex justify-stretch">
       <button
-      className={'w-[32px] h-[32px] mr-2 mb-2 mt-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light'}
+      className="w-[32px] h-[32px] mr-2 mb-2 mt-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
       onClick={() => onPageChange(mod(currentPage - 1, totalPages))}
       >
         <ChevronLeftIcon sx={{
@@ -59,7 +59,7 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
         }} />
       </button>
       <div 
-        className={'flex flex-grow justify-between'}>
+        className="flex flex-grow justify-between">
         {pageNumbers.map((page) => (
           <DotButton 
             id={page} 
@@ -73,7 +73,7 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
         ))}
       </div>
       <button
-        className={`w-[32px] h-[32px] mt-2 mb-2 ml-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light`}
+        className="w-[32px] h-[32px] mt-2 mb-2 ml-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
         onClick={() => onPageChange(mod(currentPage + 1, totalPages))}
       >
         <ChevronRightIcon sx={{
