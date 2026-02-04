@@ -26,8 +26,7 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   return (
     <div>
         <p className="tooltip">
-          .
-          {/*{tooltipLabel}*/}
+          {tooltipLabel}
         </p>
       <button
         id={id.toString()}
@@ -41,9 +40,13 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: DotPaginationProps) {
 
   const pageNumbers = [...Array(totalPages).keys()];
+
+  // appeasing typescript gods
+  console.log(indexToLabel);
 
   return (
     <div className='flex justify-stretch'>
@@ -63,7 +66,9 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
             key={page}
             isSelected={currentPage === page} 
             onSelect={onPageChange} 
-            tooltipLabel={indexToLabel[page]} 
+            tooltipLabel={"."}
+            // TODO use this
+            // tooltipLabel={indexToLabel[page]} 
           />
         ))}
       </div>
