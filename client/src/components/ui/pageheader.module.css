@@ -5,6 +5,8 @@
   padding-block-end: 2rem;
 
   .headerTitle {
+    font-size: 3rem;
+    font-weight: 600;
     padding-block-start: 1rem;
     padding-block-end: 1rem;
   }
@@ -38,7 +40,7 @@
   }
 
   .headerTitle {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 600;
     padding-block-start: 2rem;
     padding-block-end: 1rem;
@@ -62,6 +64,7 @@
       padding-block-start: 32px;
       padding-block-end: 12px;
     }
+
     .headerText {
       padding-block-end: 24px;
     }
