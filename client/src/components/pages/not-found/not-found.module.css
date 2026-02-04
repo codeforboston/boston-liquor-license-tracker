@@ -17,11 +17,10 @@
 .notFoundContent {
   padding: 2rem;
   text-align: left;
-  background: color-mix(
-    in srgb,
-    var(--color-background-dark) 80%,
-    transparent
-  ); /* Semi-transparent overlay for readability */
+  background: color-mix(in srgb,
+      var(--color-background-dark) 80%,
+      transparent);
+  /* Semi-transparent overlay for readability */
   border-radius: 8px;
   z-index: 1;
   color: var(--color-font-light);
