@@ -14,14 +14,15 @@ export const Route = createRootRoute({
 
 export function RootComponent() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <HeadContent />
       <Header />
-      <main className="min-h-screen">
-        <Outlet/>
+      {/* <main className="min-h-screen"> */}
+      <main className="flex-1">
+        <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
