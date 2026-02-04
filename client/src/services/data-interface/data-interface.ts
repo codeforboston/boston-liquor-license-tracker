@@ -1,3 +1,4 @@
+import { ApplicationStatusType } from './data-interface';
 // The data interface relies on these constants below to calculate available licenses based off filtering options.
 
 // Does NOT include the 3 Oak Square all alcohol licenses,
@@ -57,6 +58,16 @@ export const eligibleBostonZipcodes: Set<EligibleBostonZipcode> = new Set([
   "02131",
   "02132",
   "02136",
+]);
+export type ApplicationStatusType =
+  | "Granted"
+  | "Expired"
+  | "Deferred";
+
+export const ApplicationStatusTypes: Set<ApplicationStatusType> = new Set([
+  "Granted",
+  "Expired",
+  "Deferred"
 ]);
 
 type ValidationResult =
@@ -324,4 +335,32 @@ export function getApplicantsByZipcode(
   }
 
   return applicants;
+}
+
+
+export function getApplicantsByApplicationStatus(
+  applicationStatusList: Set<ApplicationStatusType>,
+  data: BusinessLicense[]
+) {
+  if (applicationStatusList.size === 0) {
+    return data
+  }
+
+  const applicants = [];
+  for (const license of data) {
+    if (applicationStatusList.has(license.status as ApplicationStatusType)) {
+      applicants.push(license);
+    }
+  }
+
+  return applicants;
+}
+
+
+export function getApplicantPage(
+  pageIndex: number,
+  data: BusinessLicense[]
+) {
+  const pageSize = 20;
+  return data.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
 }
