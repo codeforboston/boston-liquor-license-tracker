@@ -1,0 +1,57 @@
+name: Test Git LFS PDF Upload
+
+on:
+  workflow_dispatch:  # Manually trigger from Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  test-lfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Create a test PDF
+        run: |
+          # Create a simple test PDF (about 1KB)
+          echo "%PDF-1.4
+          1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj
+          2 0 obj<</Type/Pages/Count 1/Kids[3 0 R]>>endobj
+          3 0 obj<</Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources<<>>>>endobj
+          xref
+          0 4
+          0000000000 65535 f
+          0000000009 00000 n
+          0000000052 00000 n
+          0000000101 00000 n
+          trailer<</Size 4/Root 1 0 R>>
+          startxref
+          190
+          %%EOF" > test-lfs-upload.pdf
+
+      - name: Move PDF to data directory
+        run: |
+          mkdir -p ./data/voting-minutes
+          mv test-lfs-upload.pdf ./data/voting-minutes/
+
+      - name: Create Pull Request with PDF
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "[TEST] Git LFS PDF Upload Test"
+          body: |
+            Testing Git LFS integration for PDF files.
+            
+            To verify LFS is working:
+            1. Check that the PR shows the PDF added
+            2. After merging, run: `git lfs ls-files`
+            3. You should see the PDF listed as an LFS file
+          branch: test-lfs-pdf-upload
+          delete-branch: true
+          commit-message: "[TEST] Add test PDF via Git LFS"
+          add-paths: |
+            data/voting-minutes/test-lfs-upload.pdf
