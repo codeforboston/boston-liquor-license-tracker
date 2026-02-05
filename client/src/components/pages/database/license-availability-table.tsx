@@ -1,10 +1,7 @@
 import styles from "./license-availability-table.module.css";
 import licenseData from "../../../data/licenses.json";
-import {
-  eligibleBostonZipcodes,
-} from "@/services/data-interface/data-interface";
 import CustomTable from "@components/ui/table";
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   validateBusinessLicense,
   getAvailableLicensesByZipcode,
@@ -18,7 +15,9 @@ import {
 } from "@/services/data-interface/data-interface";
 import { RowWithSubRows } from "@components/ui/table";
 import FilterDropdown from "../../ui/filter-dropdown";
+import ZipCodeFilter from "./zip-code-filter";
 import { Selection } from "react-aria-components";
+import { FormattedMessage } from "react-intl";
 
 const getRowData = (
   zipcode: EligibleBostonZipcode, 
@@ -131,8 +130,6 @@ const LicenseAvailabilityTable = () => {
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
     new Set()
   );
-  const [selectedDropdownOptions, setSelectedDropdownOptions] =
-    useState<Selection>(new Set());
   const [selectedLicDropdownOptions, setSelectedLicDropdownOptions] =
     useState<Selection>(new Set());
   const [licenseFilter, setLicenseFilter] = useState<
@@ -149,7 +146,6 @@ const LicenseAvailabilityTable = () => {
     }
 
     setData(tmp);
-    setZipcodeList(eligibleBostonZipcodes);
   }, []);
 
   const availabilityHeaders = [
@@ -161,37 +157,6 @@ const LicenseAvailabilityTable = () => {
   ];
 
   const formattedData = formatData(data, zipcodeList, licenseFilter);
-
-  const dropdownZipOptions = useMemo(
-    () =>
-      [...eligibleBostonZipcodes].map((zip, index) => ({
-        id: `react-aria-${index + 1}`,
-        name: String(zip),
-      })),
-    []
-  );
-
-  const onZipSelectionChange = useCallback(
-    (keys: Selection) => {
-      setSelectedDropdownOptions(new Set(keys as Set<string>));
-
-      const selectedOptions = dropdownZipOptions.filter((option) =>
-        (keys as Set<string>).has(option.id.toString())
-      );
-
-      // Get zipcodes from selected options
-      const zipcodes = selectedOptions.map(
-        (option) => option.name as EligibleBostonZipcode // assuming option.name is the zipcode
-      );
-
-      if (zipcodes.length) {
-        setZipcodeList(new Set(zipcodes));
-      } else {
-        setZipcodeList(eligibleBostonZipcodes);
-      }
-    },
-    [dropdownZipOptions]
-  );
 
   const onLicenseTypeSelectionChange = useCallback(
     (keys: Selection) => {
@@ -217,20 +182,19 @@ const LicenseAvailabilityTable = () => {
 
   return (
     <section className={styles.licenseAvailabilityTable}>
-      <FilterDropdown
-        title="Zipcode"
-        label="Zipcode dropdown selection"
-        options={dropdownZipOptions}
-        selected={selectedDropdownOptions}
-        onSelectionChange={onZipSelectionChange}
-      />
-      <FilterDropdown
-        title="License Type"
-        label="License Type dropdown selection"
-        options={licenseTypeOptions}
-        selected={selectedLicDropdownOptions}
-        onSelectionChange={onLicenseTypeSelectionChange}
-      />
+      <h4 className={styles.filterDescriptor}>
+        <FormattedMessage id="database.filter.descriptor"/>
+      </h4>
+      <div className={styles.filters}>
+        <ZipCodeFilter setZipcodeList={setZipcodeList} />
+        <FilterDropdown
+          titleId="database.filter.licenseType"
+          label="License Type dropdown selection"
+          options={licenseTypeOptions}
+          selected={selectedLicDropdownOptions}
+          onSelectionChange={onLicenseTypeSelectionChange}
+        />
+      </div>
       <CustomTable
         ariaLabel="Licenses by Zipcode"
         tableData={formattedData}

@@ -7,7 +7,7 @@ const SubHeader = () => {
       <h2 className={styles.heading}>
         <FormattedMessage id="database.subheader.title"/>
      </h2>
-      <p className={styles.description}>       
+      <p className={styles.description}>
         <FormattedMessage  id="database.subheader.description"/>
       </p>
     </section>
