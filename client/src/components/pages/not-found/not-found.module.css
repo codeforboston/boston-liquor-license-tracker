@@ -4,7 +4,7 @@
   /* Account for header and footer space */
   flex-shrink: 0;
   background: var(--color-background-dark);
-  background-image: url("@/assets/images/beer-tap.png");
+  background-image: url("@/assets/images/beer-tap-high-res.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -17,11 +17,10 @@
 .notFoundContent {
   padding: 2rem;
   text-align: left;
-  background: color-mix(
-    in srgb,
-    var(--color-background-dark) 80%,
-    transparent
-  ); /* Semi-transparent overlay for readability */
+  background: color-mix(in srgb,
+      var(--color-background-dark) 80%,
+      transparent);
+  /* Semi-transparent overlay for readability */
   border-radius: 8px;
   z-index: 1;
   color: var(--color-font-light);
