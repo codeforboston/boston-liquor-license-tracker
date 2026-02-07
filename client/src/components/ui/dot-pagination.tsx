@@ -5,7 +5,6 @@ import "./dot-pagination.css"
 type DotPaginationProps = {
   currentPage: number;
   totalPages: number;
-  indexToLabel: {[key: number]: string};
   onPageChange: (page: number) => void;
 }
 
@@ -25,9 +24,11 @@ function mod(x: number, y: number) {
 function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   return (
     <div>
+      {tooltipLabel && (
         <p className="tooltip">
           {tooltipLabel}
         </p>
+      )} 
       <button
         id={id.toString()}
         onClick={() => onSelect(id)}
@@ -40,13 +41,9 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: DotPaginationProps) {
+function DotPagination({ currentPage, totalPages, onPageChange }: DotPaginationProps) {
 
   const pageNumbers = [...Array(totalPages).keys()];
-
-  // appeasing typescript gods
-  console.log(indexToLabel);
 
   return (
     <div className="flex justify-stretch">
@@ -59,16 +56,14 @@ function DotPagination({ currentPage, totalPages, onPageChange, indexToLabel }: 
         }} />
       </button>
       <div 
-        className="flex flex-grow justify-between">
+        className="flex flex-grow justify-between items-center">
         {pageNumbers.map((page) => (
           <DotButton 
             id={page} 
             key={page}
             isSelected={currentPage === page} 
             onSelect={onPageChange} 
-            tooltipLabel={"."}
-            // TODO use this
-            // tooltipLabel={indexToLabel[page]} 
+            tooltipLabel={""}
           />
         ))}
       </div>

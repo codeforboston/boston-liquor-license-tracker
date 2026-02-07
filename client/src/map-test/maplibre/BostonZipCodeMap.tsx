@@ -192,10 +192,10 @@ export const BostonZipCodeMap = () => {
           >
             <ZipDetailsContent zipData={zipData} />
             <div>
+              {/* TODO(#369): pass in indexToZipCode for the tooltip data */}
               <DotPagination
                 currentPage={uniqueZips.indexOf(zipData.zipCode)} 
                 totalPages={uniqueZips.length} 
-                indexToLabel={indexToZipCode}
                 onPageChange={(newZipIndex) => {
                   setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
                 }} 
