@@ -3,6 +3,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import {
   useRef,
   useEffect,
+  useMemo,
   RefObject,
   useState,
   Dispatch,
@@ -15,6 +16,7 @@ import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
 import { MapZipCodeData } from "./types";
+import DotPagination from "../../components/ui/dot-pagination";
 
 const initializeMap = (
   map: RefObject<Map | null>,
@@ -40,6 +42,7 @@ const initializeMap = (
     },
     center: [center.lng, center.lat],
     zoom: zoom,
+    attributionControl: false
   });
 
   map.current.on("load", () => {
@@ -96,7 +99,7 @@ const initializeMap = (
 const initializeMouseActions = (
   map: RefObject<Map | null>,
   hoverZipId: RefObject<string | number | undefined>,
-  setZipData: Dispatch<SetStateAction<MapZipCodeData | undefined>>
+  setZipData: Dispatch<SetStateAction<MapZipCodeData>>
 ) => {
   if (!map.current) return;
 
@@ -151,11 +154,16 @@ export const BostonZipCodeMap = () => {
 
   const zips = BostonZipCodeGeoJSON.features.map((feature) => {
     return feature.properties.ZIP5;
-  });
-  const uniqueZips = new Set(zips);
-  console.log({ uniqueZips });
+  }).sort();
+  // TODO which 13 do we want to use
+  const uniqueZips = useMemo(() => [...new Set(zips)].slice(0,13), [zips]);
 
-  const [zipData, setZipData] = useState<MapZipCodeData>();
+  const indexToZipCode : {[key: number]: string} = {};
+  for (const [index, value] of uniqueZips.entries()) {
+    indexToZipCode[index] = value;
+  }
+
+  const [zipData, setZipData] = useState<MapZipCodeData>({zipCode: uniqueZips[0], data: undefined});
 
   // Initialize map
   useEffect(() => {
@@ -164,6 +172,7 @@ export const BostonZipCodeMap = () => {
     initializeMap(map, mapContainer);
     initializeMouseActions(map, hoverZipId, setZipData);
   }, []);
+
 
   return (
     <main>
@@ -175,13 +184,23 @@ export const BostonZipCodeMap = () => {
         {/* Map canvas */}
         <div ref={mapContainer} className={mapStyles.map} />
         {/* Zip details */}
-        <div className="absolute flex flex-row justify-center items-center right-0 h-full">
+        <div className="absolute flex flex-row justify-center items-center right-0 mt-10">
           <div
             className={`${mapStyles.mapCard} mr-8`}
             ref={detailsCard}
             id="zip-details-card"
           >
             <ZipDetailsContent zipData={zipData} />
+            <div>
+              {/* TODO(#369): pass in indexToZipCode for the tooltip data */}
+              <DotPagination
+                currentPage={uniqueZips.indexOf(zipData.zipCode)} 
+                totalPages={uniqueZips.length} 
+                onPageChange={(newZipIndex) => {
+                  setZipData(prevZipData => { return { ...prevZipData, zipCode: uniqueZips[newZipIndex] }; });
+                }} 
+              />
+            </div>
           </div>
         </div>
       </div>
