@@ -17,6 +17,7 @@ import { FormattedMessage } from "react-intl";
 import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
 import { Selection } from "react-aria-components";
+import DotPagination from "@/components/ui/dot-pagination";
 
 // Cell formatter function - only formats status column in sub-rows
 const statusCellFormatter = (
@@ -186,7 +187,14 @@ const RecentApplicationTable = () => {
           headers={recentApplicationHeaders}
           cellFormatter={statusCellFormatter}
         />
+        
         <div className={tableStyles.pagination}>
+          <DotPagination
+            currentPage={pageIndex - 1}
+            totalPages={pageCount}
+            onPageChange={(newPage) => setPageIndex(newPage + 1)}
+            pageButtonStyling={"h-[32px] w-[32px] rounded-[4px]"}
+          />
         </div>
       </section>
   );
