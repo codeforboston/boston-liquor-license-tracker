@@ -11,12 +11,12 @@ import {
 } from "react";
 import { FormattedMessage } from "react-intl";
 import { PageHeader } from "@/components/ui/pageheader";
-import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
+import * as BostonZipCodeGeoJSON from "../../../data/boston-zip-codes.json";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
 import { MapZipCodeData } from "./types";
-import DotPagination from "../../components/ui/dot-pagination";
+import DotPagination from "../../ui/dot-pagination";
 
 const initializeMap = (
   map: RefObject<Map | null>,

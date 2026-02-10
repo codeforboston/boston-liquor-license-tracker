@@ -8,7 +8,7 @@
 }
 
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
-  background-image: url('../../assets/icons/plus.svg');
+  background-image: url('../../../assets/icons/plus.svg');
   margin-bottom: 4px;
 }
 
