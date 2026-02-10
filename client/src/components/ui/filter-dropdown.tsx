@@ -2,12 +2,13 @@ import { useState } from 'react'
 import {Button, Popover, Selection, MenuTrigger, Menu, MenuItem} from 'react-aria-components';
 import { ExpandMore, ExpandLess, CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
 import { MenuItemProps } from '@mui/material/MenuItem';
+import { FormattedMessage } from 'react-intl';
 export interface DropdownOption { 
   id: string
   name: string
 }
 interface FilterDropdownProps {
-  title: string
+  titleId: string
   label: string
   options: DropdownOption[]
   selected: Selection 
@@ -38,7 +39,7 @@ const DropdownOption = (props: MenuItemProps & {option: DropdownOption}) => {
 }
 
 
-const FilterDropdown = ({ title, label, options, selected, onSelectionChange  }: FilterDropdownProps) => {
+const FilterDropdown = ({ titleId, label, options, selected, onSelectionChange  }: FilterDropdownProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
 
@@ -50,7 +51,7 @@ const FilterDropdown = ({ title, label, options, selected, onSelectionChange  }:
             className={`inline-flex items-center bg-clip-padding gap-x-2 px-[16px] py-[8px] bg-ui-gray ${menuOpen ? "rounded-t-[8px]" : "rounded-[8px]" } cursor-default outline-none `}
           >
 
-            <p>{title}</p>
+            <FormattedMessage id={titleId} />
             <span className='bg-background-dark w-[.5px] h-[24px]'/>
             <span aria-hidden="true">
               {menuOpen ? 

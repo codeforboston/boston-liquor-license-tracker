@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
   padding: 1rem 4rem;
   /* reduced right padding for small screens */
   gap: 8px;
@@ -19,11 +18,16 @@
 .description {
   color:var(--color-font-dark);
   margin: 0;
+  max-width: 840px;
 }
 
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
   .subheader {
     padding: 24px;
+  }
+
+  .description {
+    width: 100%;
   }
 }
