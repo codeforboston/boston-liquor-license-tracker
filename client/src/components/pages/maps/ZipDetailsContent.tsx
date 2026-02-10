@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MapZipCodeData } from "./types";
-import dataError from "../../assets/icons/data-error.svg";
-import clipboards from "../../assets/icons/clipboards-question-mark.svg";
+import dataError from "../../../assets/icons/data-error.svg";
+import clipboards from "../../../assets/icons/clipboards-question-mark.svg";
 
 export const ZipDetailsContent = ({
   zipData,
