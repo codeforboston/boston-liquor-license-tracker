@@ -1,0 +1,51 @@
+name: Run Licensing Board Scraper
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Runs at midnight every Monday
+    
+  workflow_dispatch: # Allows manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    env:
+      SCRAPER_DIR: ./scraper/scrape   # App Directory
+      PDFS_DIR: ./voting_minutes_pdfs  # PDF Output Directory
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Sync dependencies (from uv.lock)
+        working-directory: ${{ env.SCRAPER_DIR }}
+        run: uv sync --frozen
+
+      - name: Run Scraper
+        working-directory: ${{ env.SCRAPER_DIR }}
+        run: uv run python -m app.main --download_dir ${{ env.PDFS_DIR }}
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ${{ env.SCRAPER_DIR }}/data/url_exclude_list.json
+          git add ${{ env.SCRAPER_DIR }}/data/link_stats_log.csv
+          git add ${{ env.SCRAPER_DIR }}/data/hearing_video_links.json
+          git add ${{ env.SCRAPER_DIR }}/data/voting_minutes_links.json
+          git add ${{ env.SCRAPER_DIR }}/voting_minutes_pdfs/
+          git add ${{ env.SCRAPER_DIR }}/log/app.log
+          git diff --quiet && git diff --staged --quiet || (
+            git commit -m "[SCRAPER] Update scraped data and PDFs" && git push
+          )

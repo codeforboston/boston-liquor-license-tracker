@@ -17,9 +17,10 @@ logger = logging.getLogger(__name__)
 class DownloaderService:
     """Orchestrates the downloading of voting minute PDFs."""
 
-    def __init__(self):
+    def __init__(self, download_dir: Path | str | None = None):
         self.storage = JsonStore()
-        self.pdf_repo = PdfStore(const.DOWNLOAD_DIR)
+        self.download_dir = Path(download_dir) if download_dir else const.DOWNLOAD_DIR
+        self.pdf_repo = PdfStore(self.download_dir)
         # We use the exclude filter here primarily to ADD bad URLs
         self.exclude_filter = ExcludeListFilter(const.URL_EXCLUDE_LIST_FILE)
 
@@ -46,7 +47,7 @@ class DownloaderService:
             if content:
                 self.pdf_repo.save_pdf(content, date_str)
 
-        self._copy_exception_pdfs(const.EXCEPTION_PDFS, const.DOWNLOAD_DIR)
+        self._copy_exception_pdfs(const.EXCEPTION_PDFS, self.download_dir)
     
         logger.info("Download process completed.")
 
