@@ -3,3 +3,5 @@ __pycache__/
 *.pdf
 node_modules/
 *.js
+.pytest_cache
+.ruff_cache
