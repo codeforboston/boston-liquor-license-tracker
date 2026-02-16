@@ -20,8 +20,8 @@
     "run:get-voting-minutes": "node getVotingMinutes.js",
     "build:update-last-processed": "tsc $npm_package_config_tscflags updateLastProcessedDate.ts",
     "run:update-last-processed": "node updateLastProcessedDate.js",
-    "build:next-meeting-date": "tsc $npm_package_config_tscflags next-meeting-date.ts",
-    "run:next-meeting-date": "node next-meeting-date.js"
+    "build:next-meeting-date": "tsc $npm_package_config_tscflags nextMeetingDate.ts",
+    "run:next-meeting-date": "node nextMeetingDate.js"
   },
   "keywords": [],
   "author": "",
