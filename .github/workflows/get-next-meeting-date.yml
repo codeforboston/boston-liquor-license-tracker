@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: "codeforboston/boston-liquor-license-tracker"
-          ref: "jj/move-scripts"
+          ref: "main"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -31,10 +31,6 @@ jobs:
       - name: Install script dependencies
         working-directory: ./scripts
         run: npm install
-
-      - name: Debug file structure
-        working-directory: ./scripts
-        run: ls -R
 
       - name: Compile and run next meeting date script
         working-directory: ./scripts
