@@ -32,6 +32,10 @@ jobs:
         working-directory: ./scripts
         run: npm install
 
+      - name: Debug file structure
+        working-directory: ./scripts
+        run: ls -R
+
       - name: Compile next meeting date script
         working-directory: ./scripts
         run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext next-meeting-date.ts
