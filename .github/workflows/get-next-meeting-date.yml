@@ -36,13 +36,11 @@ jobs:
         working-directory: ./scripts
         run: ls -R
 
-      - name: Compile next meeting date script
+      - name: Compile and run next meeting date script
         working-directory: ./scripts
-        run: npx tsc -t es2022 -m nodenext --moduleResolution nodenext next-meeting-date.ts
-
-      - name: Run next meeting date script
-        working-directory: ./scripts
-        run: node next-meeting-date.js
+        run: |
+          npm run build:next-meeting-date
+          npm run run:next-meeting-date
 
       - name: Create pull request to merge in new next meeting date
         uses: peter-evans/create-pull-request@v7
