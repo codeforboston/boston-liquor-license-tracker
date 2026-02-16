@@ -1594,5 +1594,47 @@
         "minutes_date": "2026-01-29",
         "application_expiration_date": "2027-01-29",
         "file_name": "Voting%20Minutes%201-29-26.docx.pdf"
+    },
+    {
+        "index": 115,
+        "entity_number": "29",
+        "business_name": "Siraj Corporation",
+        "dba_name": "El Centro",
+        "address": "474 Shawmut Ave, Roxbury, MA 02118",
+        "zipcode": "02118",
+        "license_number": "LB-618294",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-02-12",
+        "application_expiration_date": "2027-02-12",
+        "file_name": "Voting%20Minutes%202-12-26.docx%20%281%29.pdf"
+    },
+    {
+        "index": 116,
+        "entity_number": "31",
+        "business_name": "The Mendes Table, LLC",
+        "dba_name": "Agosto and Baby Sister",
+        "address": "1673-1679 Washington St, Roxbury, MA 02118",
+        "zipcode": "02118",
+        "license_number": "LB-618289",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-02-12",
+        "application_expiration_date": "2027-02-12",
+        "file_name": "Voting%20Minutes%202-12-26.docx%20%281%29.pdf"
+    },
+    {
+        "index": 117,
+        "entity_number": "32",
+        "business_name": "378-380 Centre, LLC",
+        "dba_name": "Behan Caffe",
+        "address": "380 Centre St, Jamaica Plain, MA 02130",
+        "zipcode": "02130",
+        "license_number": "LB-617278",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-02-12",
+        "application_expiration_date": "2027-02-12",
+        "file_name": "Voting%20Minutes%202-12-26.docx%20%281%29.pdf"
     }
 ]
