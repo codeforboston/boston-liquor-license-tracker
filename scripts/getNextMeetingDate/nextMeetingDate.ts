@@ -3,7 +3,10 @@ import axios from "axios";
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const outputPath = resolve(process.cwd(), "../client/src/data/next-meeting-date.json");
+const outputPath = resolve(
+  process.cwd(),
+  "../../client/src/data/next-meeting-date.json",
+);
 
 async function scrapeNextMeetingDate(url: string): Promise<Date | null> {
   try {
