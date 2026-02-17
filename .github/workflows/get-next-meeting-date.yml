@@ -26,14 +26,14 @@ jobs:
         with:
           node-version: lts/*
           cache: "npm"
-          cache-dependency-path: scripts/package-lock.json
+          cache-dependency-path: scripts/getNextMeetingDate/package-lock.json
 
       - name: Install script dependencies
-        working-directory: ./scripts
+        working-directory: ./scripts/getNextMeetingDate
         run: npm install
 
       - name: Compile and run next meeting date script
-        working-directory: ./scripts
+        working-directory: ./scripts/getNextMeetingDate
         run: |
           npm run build:next-meeting-date
           npm run run:next-meeting-date
