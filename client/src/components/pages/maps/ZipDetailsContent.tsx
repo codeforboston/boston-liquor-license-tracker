@@ -6,8 +6,8 @@ import {
   getAvailableLicensesByZipcode,
   isEligibleBostonZipCode,
 } from "@/services/data-interface/data-interface";
-import dataError from "../../assets/icons/data-error.svg";
-import clipboards from "../../assets/icons/clipboards-question-mark.svg";
+import dataError from "../../../assets/icons/data-error.svg";
+import clipboards from "../../../assets/icons/clipboards-question-mark.svg";
 import { FormattedMessage, useIntl } from "react-intl";
 import Tabs from "@/components/ui/tabs";
 
