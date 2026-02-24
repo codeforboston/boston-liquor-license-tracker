@@ -73,9 +73,19 @@
   "database.recentApplications.expired": "Expired",
   "database.recentApplications.deferred": "Deferred",
   "database.recentApplications.totalApplicants": "Total Applicants:",
-  "database.subheader.description": "Select a Zip Code below to see the available licenses in each area. Use the filters to narrow or expand your search to meet your exact business needs.",
-  "database.subheader.title": "License Availability Lookup:",
+
+  "database.subheader.description": "In 2024 a new law increased access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
+  "database.subheader.title": "2024 Cohort Licenses",
   "database.table.legend": "Table Legend",
+
+  "database.filter.descriptor": "Filter By:",
+  "database.filter.zipCode": "Zip Code",
+  "database.filter.licenseType": "License Type",
+  "database.filter.applicationStatus": "Application Status",
+
+  "database.licenseAvailabilityTable.header": "Recent License Applications by Zip Code: ",
+  "database.licenseAvailabilityTable.legend": "Table Legend",
+
   "home.aboutUs.title": "Who We Are:",
   "home.aboutUs.weAre.part1": "We are a collection of restaurant owners, bartenders, chefs, and patrons; <b>Just Like You</b>. We understand how hard it is navigating the red tape of liquor licenses in Boston especially as a newcomer.",
   "home.aboutUs.weAre.part2": "From tracking availability, understanding the application process, to the potential hidden costs of obtaining one: there is a lot to keep track of. We’ve made it our mission to demystify the process, and help you get your business off the ground as painlessly as possible.",
