@@ -231,11 +231,12 @@ export const BostonZipCodeMap = () => {
             <div>
               {/* TODO(#369): pass in indexToZipCode for the tooltip data */}
               <DotPagination
-                currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0} 
-                totalPages={uniqueZips.length} 
+                currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0}
+                totalPages={uniqueZips.length}
                 onPageChange={(newZipIndex) => {
                   setSelectedZip(uniqueZips[newZipIndex]);
-                }} 
+                }}
+                pageButtonStyling={"min-h-[12px] min-w-[12px]  rounded-[100px]"}
               />
             </div>
           </div>
