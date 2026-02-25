@@ -54,16 +54,18 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
             dba_match: Optional[re.Match[str]] = re.search(r"doing business as:\s*(.+)", line, re.IGNORECASE)
             if dba_match:
                 result["dba_name"] = dba_match.group(1).strip()
+                continue
 
         if "license" in lower_line:
             license_match: Optional[re.Match[str]] = re.search(r"license\s*#:\s*([\w\-]+)", line, re.IGNORECASE)
             if license_match:
                 result["license_number"] = license_match.group(1).strip()
+                continue
 
-        if not result["address"] and re.search(r"\d{5}$", line):
-            result["address"] = line.strip()
-            zip_match: Optional[re.Match[str]] = re.search(r"\b(\d{5})\b", line)
+        if not result["address"]:
+            zip_match: Optional[re.Match[str]] = re.search(r",\s*MA\s*(\d{5})?$", line)
             if zip_match:
+                result["address"] = line.strip()
                 result["zipcode"] = zip_match.group(1)
 
     if (
