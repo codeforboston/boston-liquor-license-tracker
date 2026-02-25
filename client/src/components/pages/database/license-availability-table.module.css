@@ -13,10 +13,6 @@
   margin-bottom: 24px;
 }
 
-.tbody {
-	box-shadow: 0px 0px 0px 1px var(--color-border-gray);
-}
-
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
   .licenseAvailabilityTable {

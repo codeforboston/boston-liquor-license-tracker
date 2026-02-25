@@ -53,7 +53,7 @@ const ZipCodeFilter = ({ setZipcodeList }: ZipCodeFilterProps) => {
   
   return (
     <FilterDropdown
-        titleId="database.filter.zipCode"
+        titleId="database.availableLicenses.filterBy"
         label="Zipcode dropdown selection"
         options={dropdownZipOptions}
         selected={selectedDropdownOptions}

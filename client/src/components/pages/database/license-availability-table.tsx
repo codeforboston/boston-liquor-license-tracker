@@ -183,12 +183,12 @@ const LicenseAvailabilityTable = () => {
   return (
     <section className={styles.licenseAvailabilityTable}>
       <h4 className={styles.filterDescriptor}>
-        <FormattedMessage id="database.filter.descriptor"/>
+        <FormattedMessage id="database.availableLicenses.filterBy"/>
       </h4>
       <div className={`${styles.filters} gap-[16px]`}>
         <ZipCodeFilter setZipcodeList={setZipcodeList} />
         <FilterDropdown
-          titleId="database.filter.licenseType"
+          titleId="database.availableLicenses.licenseType"
           label="License Type dropdown selection"
           options={licenseTypeOptions}
           selected={selectedLicDropdownOptions}

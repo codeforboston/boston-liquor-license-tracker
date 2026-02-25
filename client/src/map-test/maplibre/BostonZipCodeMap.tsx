@@ -236,7 +236,7 @@ export const BostonZipCodeMap = () => {
                 onPageChange={(newZipIndex) => {
                   setSelectedZip(uniqueZips[newZipIndex]);
                 }}
-                pageButtonStyling={"min-h-[12px] min-w-[12px]  rounded-[100px]"}
+                pageButtonStyling={"min-h-[12px] min-w-[12px] rounded-[100px]"}
               />
             </div>
           </div>
