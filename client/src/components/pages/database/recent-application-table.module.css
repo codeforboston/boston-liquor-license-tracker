@@ -4,11 +4,14 @@
   overflow-x: scroll;
 }
 
+.heading {
+  max-width: 840px;
+}
+
 .filters {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
   margin-top: 8px;
   margin-bottom: 24px;
 }
@@ -21,7 +24,6 @@
 
 .tableLegend {
   display: flex;
-  gap: 10px;
   align-items: center;
 }
 
