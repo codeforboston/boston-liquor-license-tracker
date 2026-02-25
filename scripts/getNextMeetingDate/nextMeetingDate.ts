@@ -1,6 +1,12 @@
 import * as cheerio from "cheerio";
 import axios from "axios";
 import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+const outputPath = resolve(
+  process.cwd(),
+  "../../client/src/data/next-meeting-date.json",
+);
 
 async function scrapeNextMeetingDate(url: string): Promise<Date | null> {
   try {
@@ -51,7 +57,7 @@ if (
     nextMeetingDate: nextMeetingDate.toISOString(),
   };
   const meetingDateString = JSON.stringify(meetingDateObject);
-  writeFileSync("../data/next-meeting-date.json", meetingDateString);
+  writeFileSync(outputPath, meetingDateString);
 } else {
   console.error("Invalid next meeting date:", nextMeetingDate);
   throw new Error("Failed to scrape a valid next meeting date.");
