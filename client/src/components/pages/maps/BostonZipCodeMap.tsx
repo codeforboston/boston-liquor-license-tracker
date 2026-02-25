@@ -16,12 +16,12 @@ import {
   eligibleBostonZipcodes,
   validateBusinessLicense,
 } from "@/services/data-interface/data-interface";
-import * as BostonZipCodeGeoJSON from "../../data/boston-zip-codes.json";
-import licenseData from "../../data/licenses.json";
+import * as BostonZipCodeGeoJSON from "../../../data/boston-zip-codes.json";
+import licenseData from "../../../data/licenses.json";
+import DotPagination from "../../../components/ui/dot-pagination";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
-import DotPagination from "../../components/ui/dot-pagination";
 
 const initializeMap = (
   map: RefObject<Map | null>,

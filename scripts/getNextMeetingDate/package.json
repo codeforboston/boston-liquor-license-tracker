@@ -1,0 +1,24 @@
+{
+  "name": "next-meeting-date",
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^1.13.5",
+    "cheerio": "^1.2.0"
+  },
+  "config": {
+    "tscflags": "-t es2022 -m nodenext --moduleResolution nodenext"
+  },
+  "scripts": {
+    "build:next-meeting-date": "tsc $npm_package_config_tscflags nextMeetingDate.ts",
+    "run:next-meeting-date": "node nextMeetingDate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "typescript": "^5.9.2"
+  }
+}
