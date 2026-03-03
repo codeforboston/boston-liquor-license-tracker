@@ -354,3 +354,100 @@ scraper/transform/app/
     └── integration/
         └── test_transform_pipeline.py
 ```
+
+## Automation Plan
+
+The recommendations below address the gap between the conventions above and the current project automation. They are listed in priority order.
+
+### 1. Add `pytest` to dev dependencies
+
+Neither `scraper/scrape/pyproject.toml` nor `scraper/transform/pyproject.toml` lists `pytest` or `pytest-mock` in dev dependencies. Add them:
+
+```toml
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.14",
+    # ...existing deps...
+]
+```
+
+### 2. Add pytest and pyright config to each `pyproject.toml`
+
+Both existing `pyproject.toml` files are missing the `[tool.pytest.ini_options]` section (BDD naming, `filterwarnings = ["error"]`, `norecursedirs`, etc.). They also use **mypy** instead of **pyright** for type checking. Align with the conventions above by either:
+
+- Replacing mypy with pyright strict mode (as specified above), or
+- Keeping mypy and updating this document to reflect that choice
+
+### 3. Add `make test` targets to the Makefiles
+
+Both `scraper/scrape/Makefile` and `scraper/transform/Makefile` have `lint` and `run` but no `test` target. Add:
+
+```makefile
+PYTEST := $(VENV)/bin/pytest
+
+test: check-venv
+	$(PYTEST) app/__tests__/ -v
+
+test-unit: check-venv
+	$(PYTEST) app/__tests__/unit/ -v
+
+test-integration: check-venv
+	$(PYTEST) app/__tests__/integration/ -v
+```
+
+### 4. Create a GitHub Actions workflow for Python tests
+
+There is a `test-client.yml` workflow for the Vitest/Node side but nothing for Python. Create `.github/workflows/test-python.yml` that:
+
+- Triggers on `pull_request` to `main` (matching `test-client.yml`)
+- Uses a **matrix strategy** for the Python packages (`scraper/scrape`, `scraper/transform`) so they run in parallel
+- Uses `actions/setup-python@v5` with Python 3.13
+- Installs via `uv sync --extra dev`
+- Runs three steps: `ruff check .`, `pyright` (or `mypy`), and `pytest`
+- Uses **path filters** so the workflow only runs when relevant Python files change
+
+```yaml
+name: Test Python
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scraper/**'
+      - 'scripts/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - { dir: scraper/scrape, name: scrape }
+          - { dir: scraper/transform, name: transform }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install uv
+      - run: uv sync --extra dev
+        working-directory: ./${{ matrix.package.dir }}
+      - name: Ruff check
+        run: .venv/bin/ruff check .
+        working-directory: ./${{ matrix.package.dir }}
+      - name: Type check
+        run: .venv/bin/pyright app/
+        working-directory: ./${{ matrix.package.dir }}
+      - name: Run tests
+        run: .venv/bin/pytest app/__tests__/ -v
+        working-directory: ./${{ matrix.package.dir }}
+```
+
+### 5. Add Python linting to the reviewdog workflow
+
+The existing `lint.yml` runs ESLint and Stylelint via reviewdog for inline PR comments. Add [`reviewdog/action-ruff`](https://github.com/reviewdog/action-ruff) to get the same inline annotation experience for Python files.
+
+### 6. Create a `scripts/` pyproject.toml
+
+The test structure above shows `scripts/__tests__/` but `scripts/` has no `pyproject.toml` and no Python package management. A minimal `pyproject.toml` with pytest config and dependencies is needed before tests can be discovered and run there.
