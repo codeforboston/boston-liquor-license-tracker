@@ -18,8 +18,8 @@ lint: check-venv
 	$(MYPY) app/
 
 run: check-venv
-	$(PYTHON) -m app.cli --dir ../scrape/voting_minutes_pdfs --output licenses.json
+	$(PYTHON) -m app.cli --dir ../scrape/data/voting_minutes_pdfs --output licenses.json
 
 run1: check-venv
 	@test -n "$(PDF)" || (echo "❌ PDF is required: make run1 PDF=voting_minutes_2025-04-17.pdf" && exit 1)
-	$(PYTHON) -m app.cli --file ../scrape/voting_minutes_pdfs/$(PDF) --output licenses.json
+	$(PYTHON) -m app.cli --file ../scrape/data/voting_minutes_pdfs/$(PDF) --output licenses.json

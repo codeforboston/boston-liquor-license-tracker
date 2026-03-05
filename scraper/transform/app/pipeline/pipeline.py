@@ -61,7 +61,8 @@ def run_pipeline(pdf_file_path: str, kv_store: KVStore | None = None):
             HearingTextExtractorStep(store),
             InvariantPluginStep(store, "POST_HEARING"),
             LicenseTextExtractorStep(store),
-            InvariantPluginStep(store, "POST_LICENSE"),
+            # POST_LICENSE does not yet exist
+            # InvariantPluginStep(store, "POST_LICENSE"),
             TextJsonExtractorStep(store),
         ],
     )

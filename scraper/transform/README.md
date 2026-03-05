@@ -116,7 +116,7 @@ uv run python -m app.cli --file voting_minutes_pdfs/specific_file.pdf
 
 ```bash
 # Run the whole directory
-# Assumes --dir ../scrape/voting_minutes_pdfs
+# Assumes --dir ../scrape/data/voting_minutes_pdfs
 make run
 
 # Run a single file
