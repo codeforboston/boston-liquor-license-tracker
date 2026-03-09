@@ -1678,5 +1678,61 @@
         "minutes_date": "2026-02-12",
         "application_expiration_date": "2027-02-12",
         "file_name": "Voting%20Minutes%202-12-26.docx%20%281%29.pdf"
+    },
+    {
+        "index": 121,
+        "entity_number": "19",
+        "business_name": "Angela\u2019s Cafe II, Inc.",
+        "dba_name": "Angela\u2019s Cafe",
+        "address": "1012 Bennington St, East Boston, MA 02128",
+        "zipcode": "02128",
+        "license_number": "LB-619535",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-03-05",
+        "application_expiration_date": "2027-03-05",
+        "file_name": "Voting%20Minutes%203-5-26.pdf"
+    },
+    {
+        "index": 122,
+        "entity_number": "21",
+        "business_name": "Tejeda Brothers Investment, LLC",
+        "dba_name": "Miami Restaurant",
+        "address": "381 Centre St, Jamaica Plain, MA 02130",
+        "zipcode": "02130",
+        "license_number": "LB-619536",
+        "status": "Deferred",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-03-05",
+        "application_expiration_date": "2027-03-05",
+        "file_name": "Voting%20Minutes%203-5-26.pdf"
+    },
+    {
+        "index": 123,
+        "entity_number": "24",
+        "business_name": "Ethiopian Cafe, Inc.",
+        "dba_name": "Ethiopian Cafe",
+        "address": "377 Centre St, Jamaica Plain, MA 02130",
+        "zipcode": "02130",
+        "license_number": "LB-619539",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-03-05",
+        "application_expiration_date": "2027-03-05",
+        "file_name": "Voting%20Minutes%203-5-26.pdf"
+    },
+    {
+        "index": 124,
+        "entity_number": "25",
+        "business_name": "Safari African Restaurant, Inc.",
+        "dba_name": "Safari African Restaurant",
+        "address": "950 American Legion Hwy, Hyde Park, MA 02136",
+        "zipcode": "02136",
+        "license_number": "LB-615310",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-03-05",
+        "application_expiration_date": "2027-03-05",
+        "file_name": "Voting%20Minutes%203-5-26.pdf"
     }
 ]
