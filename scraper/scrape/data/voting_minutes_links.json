@@ -1,5 +1,10 @@
 [
     {
+        "href": "/departments/elections/how-add-your-name-annual-census",
+        "body": "Complete the census",
+        "date": "yyyy-mm-dd"
+    },
+    {
         "href": "/sites/default/files/file/2026/01/Voting%20Minutes%201-9-26.docx.pdf",
         "body": "Voting Minutes: Thursday, January 8",
         "date": "2026-01-08"
@@ -8,6 +13,16 @@
         "href": "/sites/default/files/file/2026/01/Voting%20Minutes%201-29-26.docx.pdf",
         "body": "Voting Minutes: Thursday, January 29",
         "date": "2026-01-29"
+    },
+    {
+        "href": "/sites/default/files/file/2026/02/Voting%20Minutes%202-12-26.docx%20%281%29.pdf",
+        "body": "Voting Minutes: Thursday, February 12",
+        "date": "2026-02-12"
+    },
+    {
+        "href": "/sites/default/files/file/2026/03/Voting%20Minutes%203-5-26.pdf",
+        "body": "Voting Minutes: Thursday, March 5",
+        "date": "2026-03-05"
     },
     {
         "href": "/sites/default/files/file/2025/01/Voting%20Minutes%201-9-25.docx_0.pdf",
