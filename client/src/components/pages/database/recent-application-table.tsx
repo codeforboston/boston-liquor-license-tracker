@@ -8,6 +8,7 @@ import {
   ApplicationStatusTypes,
   validateBusinessLicense,
   getApplicantsByApplicationStatus,
+  getApplicantPage,
 } from "../../../services/data-interface/data-interface";
 import { RowWithSubRows } from "@components/ui/table";
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -16,6 +17,7 @@ import { FormattedMessage } from "react-intl";
 import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
 import { Selection } from "react-aria-components";
+import DotPagination from "@/components/ui/dot-pagination";
 
 // Cell formatter function - only formats status column in sub-rows
 const statusCellFormatter = (
@@ -48,11 +50,13 @@ const statusCellFormatter = (
 const formatData = (
   data: BusinessLicense[],
   zipcodeList: Set<EligibleBostonZipcode>,
-  applicationStatusList: Set<ApplicationStatusType>
+  applicationStatusList: Set<ApplicationStatusType>,
+  pageIndex: number
 ) => {
   const zips = [...zipcodeList];
   const formattedData = zips.map((zipcode) => {
-    let applicants = getApplicantsByZipcode(zipcode, data);
+    let applicants = getApplicantPage(pageIndex, data);
+    applicants = getApplicantsByZipcode(zipcode, applicants);
     applicants = getApplicantsByApplicationStatus(applicationStatusList, applicants);
     const subrows = applicants.map((applicant) => {
       return [
@@ -89,6 +93,8 @@ const RecentApplicationTable = () => {
     new Set()
   );
   const [data, setData] = useState<BusinessLicense[]>([]);
+
+  const [pageIndex, setPageIndex] = useState<number>(1);
 
   useEffect(() => {
     const tmp = [];
@@ -146,7 +152,9 @@ const RecentApplicationTable = () => {
     [dropdownStatusOptions]
   );
 
-  const formattedData = formatData(data, zipcodeList, statusFilter);
+  const pageCount = Math.ceil(data.length / 20);
+
+  const formattedData = formatData(data, zipcodeList, statusFilter, pageIndex);
 
   if (formattedData == null) {
     return null;
@@ -179,6 +187,24 @@ const RecentApplicationTable = () => {
         headers={recentApplicationHeaders}
         cellFormatter={statusCellFormatter}
       />
+        
+        <div className={tableStyles.pagination}>
+          <DotPagination
+            currentPage={pageIndex - 1}
+            totalPages={pageCount}
+            onPageChange={(newPage) => setPageIndex(newPage + 1)}
+            pageButtonStyling={"h-[32px] w-[32px] rounded-[4px]"}
+          />
+        </div>
+        
+        <div className={tableStyles.pagination}>
+          <DotPagination
+            currentPage={pageIndex - 1}
+            totalPages={pageCount}
+            onPageChange={(newPage) => setPageIndex(newPage + 1)}
+            pageButtonStyling={"h-[32px] w-[32px] rounded-[4px]"}
+          />
+        </div>
     </section>
   );
 };

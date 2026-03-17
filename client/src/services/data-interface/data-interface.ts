@@ -353,3 +353,11 @@ export function getApplicantsByApplicationStatus(
 
   return applicants;
 }
+
+export function getApplicantPage(
+  pageIndex: number,
+  data: BusinessLicense[]
+) {
+  const pageSize = 20;
+  return data.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+}
