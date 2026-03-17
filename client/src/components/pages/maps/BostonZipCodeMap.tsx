@@ -42,6 +42,9 @@ const initializeMap = (
   const selectedColor = getComputedStyle(document.documentElement)
     .getPropertyValue("--color-map-selected")
     .trim();
+  const noDataColor = getComputedStyle(document.documentElement)
+    .getPropertyValue("--color-map-no-data")
+    .trim();
 
   map.current = new maplibregl.Map({
     container: mapContainer.current || "",
@@ -71,9 +74,13 @@ const initializeMap = (
       paint: {
         "fill-color": [
           "case",
+          // change color of selected zip code area if clicked
           ["boolean", ["feature-state", "clicked"], false],
           selectedColor,
+          // determines zip code area color: if zip code is eligible, use fillColor, otherwise use noDataColor
+          ["in", ["get", "ZIP5"], ["literal", Array.from(eligibleBostonZipcodes)]],
           fillColor,
+          noDataColor,
         ],
         "fill-opacity": [
           "case",
@@ -124,9 +131,9 @@ const initializeMouseActions = (
 
   map.current.on("click", "boston", (e) => {
     const feature = e.features?.[0];
+    const zipCode = feature?.properties.ZIP5;
 
-    if (map.current && feature) {
-      const zipCode = feature.properties.ZIP5;
+    if (map.current && feature && eligibleBostonZipcodes.has(zipCode)) {
       setSelectedZip(zipCode);
       if (clickedFeatureId?.current) {
         map.current.setFeatureState(
@@ -144,7 +151,8 @@ const initializeMouseActions = (
 
   map.current.on("mousemove", "boston", (e) => {
     const features = e.features;
-    if (features && features.length > 0 && map.current) {
+    const zipCode = features?.[0]?.properties.ZIP5;
+    if (features && features.length > 0 && map.current && eligibleBostonZipcodes.has(zipCode)) {
       // Change the cursor style as a UI indicator.
       map.current.getCanvas().style.cursor = "pointer";
 
