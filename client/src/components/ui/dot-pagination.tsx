@@ -6,6 +6,7 @@ type DotPaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  pageButtonStyling: string;
 }
 
 type DotButtonProps = {
@@ -13,15 +14,19 @@ type DotButtonProps = {
   isSelected: boolean;
   onSelect: (id: number) => void;
   tooltipLabel: string;
+  pageButtonStyling: string;
 }
 
 // TIL JavaScript does not have a real modulo operator
-// Shoutout about.com 
+// Shoutout about.com
 function mod(x: number, y: number) {
   return ((x%y)+y)%y;
 }
 
-function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
+function DotButton({id, isSelected, onSelect, tooltipLabel, pageButtonStyling}: DotButtonProps) {
+  const highlightStyles = isSelected ? "border-background-dark bg-button-default-dark text-font-light" 
+                                     : "border-button-hovered-light";
+  const styling = `tooltip-on-hover border border-[1px] cursor-pointer ${highlightStyles} ${pageButtonStyling}`;
   return (
     <div>
       {tooltipLabel && (
@@ -32,49 +37,49 @@ function DotButton({id, isSelected, onSelect, tooltipLabel}: DotButtonProps) {
       <button
         id={id.toString()}
         onClick={() => onSelect(id)}
-        className={
-            `tooltip-on-hover border border-[2px] min-h-[12px] min-w-[12px] cursor-pointer rounded-[100px]
-            ${isSelected ? "border-background-dark bg-button-default-dark text-font-light" 
-            : "border-button-hovered-light"}`}
-          / >
+        className={styling}
+      >
+        {id + 1}
+      </button>
     </div>
   );
 }
 
-function DotPagination({ currentPage, totalPages, onPageChange }: DotPaginationProps) {
+function DotPagination({ currentPage, totalPages, onPageChange, pageButtonStyling }: DotPaginationProps) {
 
   const pageNumbers = [...Array(totalPages).keys()];
 
   return (
-    <div className="flex justify-stretch">
-      <button
-      className="w-[32px] h-[32px] mr-2 mb-2 mt-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
-      onClick={() => onPageChange(mod(currentPage - 1, totalPages))}
-      >
-        <ChevronLeftIcon sx={{
-          fill: "var(--color-button-default-dark)"
-        }} />
-      </button>
-      <div 
-        className="flex flex-grow justify-between items-center">
-        {pageNumbers.map((page) => (
-          <DotButton 
-            id={page} 
-            key={page}
-            isSelected={currentPage === page} 
-            onSelect={onPageChange} 
-            tooltipLabel={""}
-          />
-        ))}
-      </div>
-      <button
-        className="w-[32px] h-[32px] mt-2 mb-2 ml-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
-        onClick={() => onPageChange(mod(currentPage + 1, totalPages))}
-      >
-        <ChevronRightIcon sx={{
-          fill: "var(--color-button-default-dark)"
-        }} />
-      </button>
+        <div className="flex justify-stretch">
+        <button
+        className="w-[32px] h-[32px] mr-2 mb-2 mt-2 border-[1px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
+        onClick={() => onPageChange(mod(currentPage - 1, totalPages))}
+        >
+            <ChevronLeftIcon sx={{
+            fill: "var(--color-button-default-dark)"
+            }} />
+        </button>
+        <div
+            className="flex items-center gap-[10px]">
+            {pageNumbers.map((page) => (
+            <DotButton 
+                id={page} 
+                key={page}
+                isSelected={currentPage === page} 
+                onSelect={onPageChange} 
+                tooltipLabel={""}
+                pageButtonStyling={pageButtonStyling}
+            />
+            ))}
+        </div>
+        <button
+            className="w-[32px] h-[32px] mt-2 mb-2 ml-2 border-[1px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
+            onClick={() => onPageChange(mod(currentPage + 1, totalPages))}
+        >
+            <ChevronRightIcon sx={{
+            fill: "var(--color-button-default-dark)"
+            }} />
+        </button>
     </div>
   )
 }
