@@ -84,8 +84,6 @@
   "database.recentApplications.deferred": "Diferida",
   "database.recentApplications.totalApplicants": "Total de Solicitantes:",
 
-  "database.subheader.description": "Select a Zip Code below to see the available licenses in each area. Use the filters to narrow or expand your search to meet your exact business needs.",
-  "database.subheader.title": "License Availability Lookup:",
   "database.table.legend": "Table Legend",
 
 
