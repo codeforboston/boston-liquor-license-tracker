@@ -58,6 +58,16 @@ export const eligibleBostonZipcodes: Set<EligibleBostonZipcode> = new Set([
   "02132",
   "02136",
 ]);
+export type ApplicationStatusType =
+  | "Granted"
+  | "Expired"
+  | "Deferred";
+
+export const ApplicationStatusTypes: Set<ApplicationStatusType> = new Set([
+  "Granted",
+  "Expired",
+  "Deferred"
+]);
 
 type ValidationResult =
   | { valid: true; data: BusinessLicense }
@@ -319,6 +329,24 @@ export function getApplicantsByZipcode(
 
   for (const license of data) {
     if (license.zipcode === zipcode) {
+      applicants.push(license);
+    }
+  }
+
+  return applicants;
+}
+
+export function getApplicantsByApplicationStatus(
+  applicationStatusList: Set<ApplicationStatusType>,
+  data: BusinessLicense[]
+) {
+  if (applicationStatusList.size === 0) {
+    return data
+  }
+
+  const applicants = [];
+  for (const license of data) {
+    if (applicationStatusList.has(license.status as ApplicationStatusType)) {
       applicants.push(license);
     }
   }
