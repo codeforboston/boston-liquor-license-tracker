@@ -4,6 +4,38 @@
   overflow-x: scroll;
 }
 
+.heading {
+  max-width: 840px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.legendContainer {
+  display: flex;
+  justify-content: right;
+  flex-grow: 1;
+}
+
+.tableLegend {
+  display: flex;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.infoIcon {
+  background-image: url('/src/assets/icons/info.svg');
+}
+
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
   .licenseAvailabilityTable {
