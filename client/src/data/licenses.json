@@ -1734,5 +1734,33 @@
         "minutes_date": "2026-03-05",
         "application_expiration_date": "2027-03-05",
         "file_name": "Voting%20Minutes%203-5-26.pdf"
+    },
+    {
+        "index": 125,
+        "entity_number": "36",
+        "business_name": "Dan Food Service Corp.",
+        "dba_name": "Gachi Sushi and Noodles",
+        "address": "500 Terminal Rd, East Boston, MA 02128",
+        "zipcode": "02128",
+        "license_number": "LB-621292",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-03-26",
+        "application_expiration_date": "2027-03-26",
+        "file_name": "Voting%20Minutes%203-26-26.docx.pdf"
+    },
+    {
+        "index": 126,
+        "entity_number": "38",
+        "business_name": "Uptown Social LLC",
+        "dba_name": "Uptown Social",
+        "address": "604 Columbus Ave, Roxbury, MA 02118",
+        "zipcode": "02118",
+        "license_number": "LB-621425",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-03-26",
+        "application_expiration_date": "2027-03-26",
+        "file_name": "Voting%20Minutes%203-26-26.docx.pdf"
     }
 ]
