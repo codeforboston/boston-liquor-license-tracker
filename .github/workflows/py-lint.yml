@@ -1,0 +1,47 @@
+name: Python lint
+
+on:
+  # pull_request_target:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  python-lint:
+    name: Python Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Checkout the PR code, not the base branch
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+      - name: Get all changed py files
+        id: changed-py-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: '**/*.py'
+      - name: Install lint dependencies
+        if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
+        run: pip install ruff mypy types-requests types-python-dateutil
+      - name: Run ruff
+        if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
+        env: 
+          ALL_CHANGED_PY_FILES: ${{ steps.changed-py-files.outputs.all_changed_files }}
+        run: |
+          TOTAL_EXIT=0
+          for file in ${ALL_CHANGED_PY_FILES}; do
+            ruff format --check ${file}
+            TOTAL_EXIT=$((TOTAL_EXIT + $?))
+            ruff check --output-format github ${file}
+            TOTAL_EXIT=$((TOTAL_EXIT + $?))
+          done
+          exit $TOTAL_EXIT
+      - name: Run mypy
+        if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
+        working-directory: scraper/scrape
+        run: mypy --output github-actions app/
