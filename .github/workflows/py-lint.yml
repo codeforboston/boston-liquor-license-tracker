@@ -43,5 +43,7 @@ jobs:
           exit $TOTAL_EXIT
       - name: Run mypy
         if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
-        working-directory: scraper/scrape
-        run: mypy app/
+        working-directory: scraper
+        run: |
+          mypy scrape/app/
+          mypy transform/app/
