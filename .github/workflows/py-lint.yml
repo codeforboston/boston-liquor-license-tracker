@@ -1,7 +1,12 @@
 name: Python lint
 
 on:
+<<<<<<< HEAD
   pull_request_target:
+=======
+  # pull_request_target:
+  pull_request:
+>>>>>>> f11db30 (add action)
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -40,6 +45,7 @@ jobs:
             TOTAL_EXIT=$((TOTAL_EXIT + $?))
           done
           exit $TOTAL_EXIT
+<<<<<<< HEAD
       # Unlike ruff, mypy depends on the pyproject.toml in each module so it can't run on just the changed files
       - name: Run mypy scrape
         if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
@@ -50,3 +56,9 @@ jobs:
         working-directory: scraper/transform
         run: mypy app/
         
+=======
+      - name: Run mypy
+        if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
+        working-directory: scraper/scrape
+        run: mypy --output github-actions app/
+>>>>>>> f11db30 (add action)
