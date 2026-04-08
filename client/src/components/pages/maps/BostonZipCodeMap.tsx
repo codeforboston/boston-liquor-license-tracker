@@ -23,28 +23,53 @@ import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
 import { ZipDetailsContent } from "./ZipDetailsContent";
 
+/* Map Styles */
+
+// Fill color if eligible zip code
+const activeFillColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-active-fill")
+  .trim();
+const activeBorderColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-active-border")
+  .trim();
+
+// Fill color if hovered
+const hoverFillColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-hover-fill")
+  .trim();
+const hoverBorderColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-hover-border")
+  .trim();
+
+// Fill color if selected
+const pressedFillColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-pressed-fill")
+  .trim();
+const pressedBorderColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-pressed-border")
+  .trim();
+
+// Fill color if not eligible zip code
+const inactiveFillColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-inactive-fill")
+  .trim();
+const inactiveBorderColor = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-map-inactive-border")
+  .trim();
+
+const borderWidth = 2;
+/* End Map Styles */
+
+/* Map Initialization */
 const initializeMap = (
   map: RefObject<Map | null>,
   mapContainer: RefObject<HTMLDivElement | null>
 ) => {
   const zoom = 11;
   const center = {
-    lng: -71.00884880372365,
-    lat: 42.33759424383746,
+    lng: -71.00957168341347,
+    lat: 42.29991918352738,
   };
-
-  const borderColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-map-border-red")
-    .trim();
-  const fillColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-map-red")
-    .trim();
-  const selectedColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-map-selected")
-    .trim();
-  const noDataColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-map-no-data")
-    .trim();
 
   map.current = new maplibregl.Map({
     container: mapContainer.current || "",
@@ -55,6 +80,9 @@ const initializeMap = (
       glyphs: "https://fonts.undpgeohub.org/fonts/{fontstack}/{range}.pbf",
     },
     center: [center.lng, center.lat],
+    dragRotate: false,
+    minZoom: 11,
+    maxZoom: 13.7,
     zoom: zoom,
     attributionControl: false
   });
@@ -66,6 +94,7 @@ const initializeMap = (
       type: "geojson",
       data: BostonZipCodeGeoJSON as GeoJSON.FeatureCollection,
     });
+    // Fill layer
     map.current.addLayer({
       id: "boston",
       type: "fill",
@@ -76,31 +105,43 @@ const initializeMap = (
           "case",
           // change color of selected zip code area if clicked
           ["boolean", ["feature-state", "clicked"], false],
-          selectedColor,
-          // determines zip code area color: if zip code is eligible, use fillColor, otherwise use noDataColor
-          ["in", ["get", "ZIP5"], ["literal", Array.from(eligibleBostonZipcodes)]],
-          fillColor,
-          noDataColor,
-        ],
-        "fill-opacity": [
-          "case",
-          ["boolean", ["feature-state", "clicked"], false],
-          1, // Full opacity when clicked
+          pressedFillColor,
           ["boolean", ["feature-state", "hover"], false],
-          1, // Full opacity when hovered
-          0.5, // Default opacity
+          hoverFillColor,
+          // determines zip code area color: if zip code is eligible, use activeFillColor, otherwise use inactiveFillColor
+          ["in", ["get", "ZIP5"], ["literal", Array.from(eligibleBostonZipcodes)]],
+          activeFillColor,
+          inactiveFillColor,
         ],
       },
     });
+    // Inactive outline layer - rendered first
     map.current.addLayer({
-      id: "boston-outline",
+      id: "boston-outline-inactive",
       type: "line",
       source: "boston",
-      layout: {},
       paint: {
-        "line-color": borderColor,
-        "line-width": 2,
+        "line-color": inactiveBorderColor,
+        "line-width": borderWidth,
       },
+      filter: ["!", ["in", ["get", "ZIP5"], ["literal", Array.from(eligibleBostonZipcodes)]]],
+    });
+    // Active outline layer - rendered second (on top)
+    map.current.addLayer({
+      id: "boston-outline-active",
+      type: "line",
+      source: "boston",
+      paint: {
+        "line-color": ["case",
+          ["boolean", ["feature-state", "clicked"], false],
+          pressedBorderColor,
+          ["boolean", ["feature-state", "hover"], false],
+          hoverBorderColor,
+          activeBorderColor,
+        ],
+        "line-width": borderWidth,
+      },
+      filter: ["in", ["get", "ZIP5"], ["literal", Array.from(eligibleBostonZipcodes)]],
     });
     map.current.addLayer({
       id: "symbols",
@@ -132,7 +173,7 @@ const initializeMouseActions = (
   map.current.on("click", "boston", (e) => {
     const feature = e.features?.[0];
     const zipCode = feature?.properties.ZIP5;
-
+    
     if (map.current && feature && eligibleBostonZipcodes.has(zipCode)) {
       setSelectedZip(zipCode);
       if (clickedFeatureId?.current) {
@@ -203,7 +244,7 @@ export const BostonZipCodeMap = () => {
 
   const uniqueZips = Array.from(eligibleBostonZipcodes);
 
-  const indexToZipCode : {[key: number]: string} = {};
+  const indexToZipCode: { [key: number]: string } = {};
   for (const [index, value] of uniqueZips.entries()) {
     indexToZipCode[index] = value;
   }
@@ -239,11 +280,11 @@ export const BostonZipCodeMap = () => {
             <div>
               {/* TODO(#369): pass in indexToZipCode for the tooltip data */}
               <DotPagination
-                currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0} 
-                totalPages={uniqueZips.length} 
+                currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0}
+                totalPages={uniqueZips.length}
                 onPageChange={(newZipIndex) => {
                   setSelectedZip(uniqueZips[newZipIndex]);
-                }} 
+                }}
               />
             </div>
           </div>
