@@ -2,7 +2,7 @@ name: Python lint
 
 on:
   # pull_request_target:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 jobs:
