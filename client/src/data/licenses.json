@@ -1762,5 +1762,19 @@
         "minutes_date": "2026-03-26",
         "application_expiration_date": "2027-03-26",
         "file_name": "Voting%20Minutes%203-26-26.docx.pdf"
+    },
+    {
+        "index": 127,
+        "entity_number": "26",
+        "business_name": "Dorchester Beer Holdings LLC",
+        "dba_name": "Dorchester Brewing Company",
+        "address": "1250 Massachusetts Ave, Boston, MA 02125",
+        "zipcode": "02125",
+        "license_number": "LB-622335",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-04-09",
+        "application_expiration_date": "2027-04-09",
+        "file_name": "Voting%20Minutes%204-9-26.docx.pdf"
     }
 ]
