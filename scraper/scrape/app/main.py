@@ -1,13 +1,14 @@
-import time
 import argparse
+import time
+
 from app import constants as const
-from app.utils.logger import setup_logging
 from app.link_filters.client_side_filter import ClientSideFilter
 from app.link_filters.exclude_list_filter import ExcludeListFilter
 from app.link_filters.video_link_filter import VideoLinkFilter
 from app.services.downloader_service import DownloaderService
 from app.services.scraper_service import ScraperService
 from app.storage.json_store import JsonStore
+from app.utils.logger import setup_logging
 
 
 def main():
@@ -16,7 +17,7 @@ def main():
         "--download_dir",
         type=str,
         default=const.DOWNLOAD_DIR,
-        help=f"Directory to download PDFs to (default: {const.DOWNLOAD_DIR})"
+        help=f"Directory to download PDFs to (default: {const.DOWNLOAD_DIR})",
     )
     args = parser.parse_args()
 
@@ -37,7 +38,9 @@ def main():
         scraper.run()
 
         # 2. Run Downloader
-        logger.info(f"Initializing Downloader Service with download_dir: {args.download_dir}")
+        logger.info(
+            f"Initializing Downloader Service with download_dir: {args.download_dir}"
+        )
         downloader = DownloaderService(download_dir=args.download_dir)
         downloader.run()
 
@@ -45,11 +48,8 @@ def main():
     finally:
         elapsed = time.perf_counter() - start_time
         minutes, seconds = divmod(elapsed, 60)
-        logger.info(
-            "Total runtime: %d minutes %.2f seconds",
-            int(minutes),
-            seconds
-        )
+        logger.info("Total runtime: %d minutes %.2f seconds", int(minutes), seconds)
+
 
 if __name__ == "__main__":
     main()
