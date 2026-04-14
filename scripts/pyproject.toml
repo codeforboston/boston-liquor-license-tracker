@@ -1,0 +1,15 @@
+[project]
+name = "scripts"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+python_classes = ["Test", "Describe"]
+python_functions = ["test_", "it_", "its_", "they_", "and_", "but_"]
+norecursedirs = [".git", "node_modules", "archive"]
+filterwarnings = ["error"]
