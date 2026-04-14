@@ -3,6 +3,7 @@ name: Lint comments
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    paths: ['client/**']
 
 jobs:
   eslint:
