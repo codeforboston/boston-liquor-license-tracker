@@ -13,42 +13,118 @@ from pathlib import Path
 #   - Neighborhoods
 
 
-STREET_SUFFIX_ABBR = ['Aly', 'Ave', 'Blvd', 'Cir', 'Cirt', 'Cres', 'Ct', 'Ctr', 'Cwy',
-                    'Dm', 'Dr', 'Drwy', 'Ext', 'Gdn', 'Gdns', 'Grn', 'Hwy', 'Ln',
-                    'Mall', 'Park', 'Path', 'Pkwy', 'Pl', 'Plz', 'Rd', 'Row',
-                    'Sq', 'St', 'Ter', 'Vw', 'Way', 'Whf']
+STREET_SUFFIX_ABBR = [
+    "Aly",
+    "Ave",
+    "Blvd",
+    "Cir",
+    "Cirt",
+    "Cres",
+    "Ct",
+    "Ctr",
+    "Cwy",
+    "Dm",
+    "Dr",
+    "Drwy",
+    "Ext",
+    "Gdn",
+    "Gdns",
+    "Grn",
+    "Hwy",
+    "Ln",
+    "Mall",
+    "Park",
+    "Path",
+    "Pkwy",
+    "Pl",
+    "Plz",
+    "Rd",
+    "Row",
+    "Sq",
+    "St",
+    "Ter",
+    "Vw",
+    "Way",
+    "Whf",
+]
 
-STREET_SUFFIX_FULL = ['Alley', 'Avenue', 'Boulevard', 'Center', 'Circle', 'Circuit',
-                    'Court', 'Crescent', 'Crossway', 'Dam', 'Drive', 'Driveway',
-                    'Extension', 'Garden', 'Gardens', 'Green', 'Highway', 'Lane',
-                    'Mall', 'Park', 'Parkway', 'Path', 'Place', 'Plaza', 'Road',
-                    'Row', 'Square', 'Street', 'Terrace', 'View', 'Way', 'Wharf']
+STREET_SUFFIX_FULL = [
+    "Alley",
+    "Avenue",
+    "Boulevard",
+    "Center",
+    "Circle",
+    "Circuit",
+    "Court",
+    "Crescent",
+    "Crossway",
+    "Dam",
+    "Drive",
+    "Driveway",
+    "Extension",
+    "Garden",
+    "Gardens",
+    "Green",
+    "Highway",
+    "Lane",
+    "Mall",
+    "Park",
+    "Parkway",
+    "Path",
+    "Place",
+    "Plaza",
+    "Road",
+    "Row",
+    "Square",
+    "Street",
+    "Terrace",
+    "View",
+    "Way",
+    "Wharf",
+]
+
 
 class BostonAddressParser:
     def __init__(self):
-        self.neighborhoods= ['Allston', 'Boston', 'Brighton', 'Charlestown', 'Chestnut Hill', 'Dorchester', 'East Boston', 'Hyde Park', 
-        'Jamaica Plain', 'Mattapan', 'Mission Hill', 'Quincy', 'Roslindale', 'Roxbury', 'South Boston', 'West Roxbury', 'Back Bay']
+        self.neighborhoods = [
+            "Allston",
+            "Boston",
+            "Brighton",
+            "Charlestown",
+            "Chestnut Hill",
+            "Dorchester",
+            "East Boston",
+            "Hyde Park",
+            "Jamaica Plain",
+            "Mattapan",
+            "Mission Hill",
+            "Quincy",
+            "Roslindale",
+            "Roxbury",
+            "South Boston",
+            "West Roxbury",
+            "Back Bay",
+        ]
 
-    def parse_address(self,address):
+    def parse_address(self, address):
         normalized_address = {}
-        normalized_address['street_number'] = self.extract_street_number(address)
-        normalized_address['full_street_name'] = self.extract_full_street_name(address)
-        normalized_address['neighborhood'] = self.extract_neighborhood(address)
-        normalized_address['state'] = self.extract_state(address)
-        normalized_address['zipcode'] = self.extract_zipcode(address)
+        normalized_address["street_number"] = self.extract_street_number(address)
+        normalized_address["full_street_name"] = self.extract_full_street_name(address)
+        normalized_address["neighborhood"] = self.extract_neighborhood(address)
+        normalized_address["state"] = self.extract_state(address)
+        normalized_address["zipcode"] = self.extract_zipcode(address)
         return normalized_address
 
-    
-    def extract_state(self,address: str):
+    def extract_state(self, address: str):
         if not isinstance(address, str):
             return None
 
         match = re.search(r"\b([A-Za-z]{2})\b,?(?:\s+\d{5})?$", address.strip())
         if match:
             return match.group(1).upper()
-        return None    
+        return None
 
-    def extract_zipcode(self,address: str):
+    def extract_zipcode(self, address: str):
         if not isinstance(address, str):
             return None
 
@@ -61,12 +137,17 @@ class BostonAddressParser:
             # Check if it’s 5 digits or 5+4 digits
             if clean_token.isdigit() and len(clean_token) == 5:
                 return clean_token
-            elif len(clean_token) == 10 and clean_token[:5].isdigit() and clean_token[5] == '-' and clean_token[6:].isdigit():
+            elif (
+                len(clean_token) == 10
+                and clean_token[:5].isdigit()
+                and clean_token[5] == "-"
+                and clean_token[6:].isdigit()
+            ):
                 return clean_token
 
         return None
 
-    def extract_neighborhood(self,address: str):
+    def extract_neighborhood(self, address: str):
         neighborhoods_sorted = sorted(self.neighborhoods, key=len, reverse=True)
         if not isinstance(address, str):
             return None
@@ -80,18 +161,18 @@ class BostonAddressParser:
             neighborhood_lower = neighborhood.lower()
             idx = addr_lower.rfind(neighborhood_lower)
             if idx > farthest_idx:
-                #print(f"Found {neighborhood} at index {idx}")
+                # print(f"Found {neighborhood} at index {idx}")
                 farthest_idx = idx
-                if selected_neighborhood and 'Boston' in selected_neighborhood:
-                    pass # If we already have a Boston neighborhood, don't change it
-                elif selected_neighborhood and 'Roxbury' in selected_neighborhood:
-                    pass # If we already have a Roxbury neighborhood, don't change it
+                if selected_neighborhood and "Boston" in selected_neighborhood:
+                    pass  # If we already have a Boston neighborhood, don't change it
+                elif selected_neighborhood and "Roxbury" in selected_neighborhood:
+                    pass  # If we already have a Roxbury neighborhood, don't change it
                 else:
                     selected_neighborhood = neighborhood
 
         return selected_neighborhood
 
-    def extract_full_street_name(self,address: str):
+    def extract_full_street_name(self, address: str):
         if not isinstance(address, str):
             return None
 
@@ -107,8 +188,10 @@ class BostonAddressParser:
             start_idx = 0
         else:
             tokens = street_number.split()
-            street_number = tokens[len(tokens)-1]
-            start_idx = addr_lower.find(street_number.lower()+' ')+len(street_number)
+            street_number = tokens[len(tokens) - 1]
+            start_idx = addr_lower.find(street_number.lower() + " ") + len(
+                street_number
+            )
 
         town_lower = town.lower()
 
@@ -127,7 +210,7 @@ class BostonAddressParser:
 
         return street
 
-    def extract_street_number(self,address: str):
+    def extract_street_number(self, address: str):
         if not isinstance(address, str):
             return None
 
@@ -159,11 +242,14 @@ class BostonAddressParser:
         street_number = " ".join(number_parts)
         return street_number.strip()
 
-    def normalize_street_suffix(self,street_name: str) -> str:
+    def normalize_street_suffix(self, street_name: str) -> str:
         # Build lookup maps (case-insensitive)
-        FULL_TO_ABBR = {f.lower(): a for f, a in zip(STREET_SUFFIX_FULL, STREET_SUFFIX_ABBR, strict=True)}
+        FULL_TO_ABBR = {
+            f.lower(): a
+            for f, a in zip(STREET_SUFFIX_FULL, STREET_SUFFIX_ABBR, strict=True)
+        }
         ABBR_SET = {a.lower(): a for a in STREET_SUFFIX_ABBR}
-        
+
         if not isinstance(street_name, str):
             return street_name
 
@@ -193,6 +279,7 @@ class BostonAddressParser:
 ####################################################################
 # THIS CODE IS NOT USED IN THE PARSER, IT IS JUST FOR TESTING
 ####################################################################
+
 
 def main():
     print(os.getcwd())
@@ -232,8 +319,6 @@ def main():
             "attorney": rec.get("attorney", ""),
             "manager": rec.get("manager", ""),
             "file_name": rec.get("file_name", ""),
-            
-
         }
 
         rows.append(row)

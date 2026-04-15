@@ -12,9 +12,8 @@ NOTE: This script is intended for initial data ingestion only. For future update
 obtained by scraping from the webstie directly through a scheduled github action.
 """
 
-
-import sys 
-import os 
+import sys
+import os
 from dotenv import load_dotenv
 import json
 
@@ -23,9 +22,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from extract_entity import process_pdf, read_data
 
 
-class ArchiveFunctions: 
-
-
+class ArchiveFunctions:
     def __init__(self):
         load_dotenv()
         self.current_loc = os.getcwd()
@@ -33,45 +30,47 @@ class ArchiveFunctions:
 
     def seed_with_local_files(self):
 
-        pdf_file = [f for f in os.listdir(self.current_loc) if f.endswith('.pdf')]
+        pdf_file = [f for f in os.listdir(self.current_loc) if f.endswith(".pdf")]
         print(f"pdf files are {pdf_file}")
         final_result = []
         for pdf in pdf_file:
             try:
-                result = process_pdf(pdf, 'seeding')
+                result = process_pdf(pdf, "seeding")
                 final_result.extend(result)
             except Exception as e:
                 print(f"Error in file {pdf} : {e}")
 
-
-       
         data_stored = read_data()
 
-        resultant_data = data_stored + final_result  
-        resultant_data = sorted(resultant_data, key=lambda x: (x["minutes_date"], x["entity_number"]))
+        resultant_data = data_stored + final_result
+        resultant_data = sorted(
+            resultant_data, key=lambda x: (x["minutes_date"], x["entity_number"])
+        )
 
-        for i, entity in enumerate(resultant_data, start=1): 
+        for i, entity in enumerate(resultant_data, start=1):
             entity["index"] = i
-        
 
-        output_file: str = os.path.join(self.current_loc, "..", "..", self.LICENSES_JSON)
+        output_file: str = os.path.join(
+            self.current_loc, "..", "..", self.LICENSES_JSON
+        )
         try:
             with open(output_file, "w") as f:
                 json.dump(resultant_data, f, indent=4)
         except Exception as e:
             raise RuntimeError(f"Failed to write data to {output_file}: {e}")
 
-    
     def reindex_dataset(self):
         # Path to the JSON file
         output_file = os.path.join(self.current_loc, "..", "..", self.LICENSES_JSON)
-        
+
         # Load JSON data
         with open(output_file, "r") as f:
             data = json.load(f)
 
         # Sort by minutes_date, then entity_number
-        sorted_data = sorted(data, key=lambda x: (x["minutes_date"], x["entity_number"]))
+        sorted_data = sorted(
+            data, key=lambda x: (x["minutes_date"], x["entity_number"])
+        )
 
         # Reassign sequential indexes
         for i, item in enumerate(sorted_data, start=1):
@@ -80,6 +79,7 @@ class ArchiveFunctions:
         # Write back to file
         with open(output_file, "w") as f:
             json.dump(sorted_data, f, indent=4)
+
 
 if __name__ == "__main__":
     import sys
@@ -100,5 +100,3 @@ if __name__ == "__main__":
     else:
         print(f"Unknown command: {command}")
         print("Usage: python your_script.py [seed|reindex]")
-
-    

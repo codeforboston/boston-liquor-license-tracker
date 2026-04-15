@@ -36,7 +36,9 @@ class DescribeExtractStreetNumber:
 
         assert result is None
 
-    def but_it_returns_none_for_an_empty_string(self, parser: BostonAddressParser) -> None:
+    def but_it_returns_none_for_an_empty_string(
+        self, parser: BostonAddressParser
+    ) -> None:
         result = parser.extract_street_number("")
 
         assert result is None
@@ -45,7 +47,9 @@ class DescribeExtractStreetNumber:
 class DescribeExtractState:
     """Tests for BostonAddressParser.extract_state."""
 
-    def it_extracts_the_state_from_a_standard_address(self, parser: BostonAddressParser) -> None:
+    def it_extracts_the_state_from_a_standard_address(
+        self, parser: BostonAddressParser
+    ) -> None:
         result = parser.extract_state("123 Main St, Boston, MA 02118")
 
         assert result == "MA"
@@ -74,7 +78,9 @@ class DescribeExtractZipcode:
 
         assert result == "02118-1234"
 
-    def but_it_returns_none_when_no_zip_is_present(self, parser: BostonAddressParser) -> None:
+    def but_it_returns_none_when_no_zip_is_present(
+        self, parser: BostonAddressParser
+    ) -> None:
         result = parser.extract_zipcode("123 Main St, Boston, MA")
 
         assert result is None
@@ -93,7 +99,9 @@ class DescribeNormalizeStreetSuffix:
 
         assert result == "Washington St"
 
-    def and_it_preserves_an_already_abbreviated_suffix(self, parser: BostonAddressParser) -> None:
+    def and_it_preserves_an_already_abbreviated_suffix(
+        self, parser: BostonAddressParser
+    ) -> None:
         result = parser.normalize_street_suffix("Washington St")
 
         assert result == "Washington St"
