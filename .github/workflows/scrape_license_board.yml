@@ -38,6 +38,7 @@ jobs:
         run: uv run python -m app.main --download_dir ${{ env.PDFS_DIR }}
 
       - name: Create pull request to merge in new scraped data and PDFs
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           title: "[SCRAPER] Update scraped data and PDFs"
@@ -57,4 +58,10 @@ jobs:
             ${{ env.SCRAPER_DIR }}/data/hearing_video_links.json
             ${{ env.SCRAPER_DIR }}/data/voting_minutes_links.json
             ${{ env.SCRAPER_DIR }}/log/app.log
+
+      - name: Auto-merge pull request
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

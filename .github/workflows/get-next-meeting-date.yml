@@ -39,6 +39,7 @@ jobs:
           npm run run:next-meeting-date
 
       - name: Create pull request to merge in new next meeting date
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           title: "[SCRIPT] Update next meeting date"
@@ -52,3 +53,9 @@ jobs:
           committer: Github Actions <hello@codeforboston.org>
           author: Github Actions <hello@codeforboston.org>
           add-paths: client/src/data/*.json
+
+      - name: Auto-merge pull request
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
