@@ -123,12 +123,16 @@ def main() -> None:
         # Resolve relative to repo root (one level up from scripts/)
         licenses_path = str(Path(__file__).resolve().parent.parent / LICENSES_JSON)
     else:
-        print("ERROR: No licenses path provided. Set LICENSES_JSON env var or use --licenses")
+        print(
+            "ERROR: No licenses path provided. Set LICENSES_JSON env var or use --licenses"
+        )
         sys.exit(1)
 
     count = merge_licenses(args.input, licenses_path)
     if count == 0:
-        print("WARNING: No new licenses were added — check that alcohol_type is populated")
+        print(
+            "WARNING: No new licenses were added — check that alcohol_type is populated"
+        )
 
 
 if __name__ == "__main__":
