@@ -12,10 +12,11 @@ NOTE: This script is intended for initial data ingestion only. For future update
 obtained by scraping from the webstie directly through a scheduled github action.
 """
 
-import sys
-import os
-from dotenv import load_dotenv
 import json
+import os
+import sys
+
+from dotenv import load_dotenv
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -29,7 +30,6 @@ class ArchiveFunctions:
         self.LICENSES_JSON = os.getenv("LICENSES_JSON")
 
     def seed_with_local_files(self):
-
         pdf_file = [f for f in os.listdir(self.current_loc) if f.endswith(".pdf")]
         print(f"pdf files are {pdf_file}")
         final_result = []
@@ -57,14 +57,14 @@ class ArchiveFunctions:
             with open(output_file, "w") as f:
                 json.dump(resultant_data, f, indent=4)
         except Exception as e:
-            raise RuntimeError(f"Failed to write data to {output_file}: {e}")
+            raise RuntimeError(f"Failed to write data to {output_file}: {e}") from e
 
     def reindex_dataset(self):
         # Path to the JSON file
         output_file = os.path.join(self.current_loc, "..", "..", self.LICENSES_JSON)
 
         # Load JSON data
-        with open(output_file, "r") as f:
+        with open(output_file) as f:
             data = json.load(f)
 
         # Sort by minutes_date, then entity_number
