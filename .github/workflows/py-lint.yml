@@ -3,6 +3,9 @@ name: Python lint
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'scraper/**/*.py'
+      - 'scripts/**/*.py'
 
 jobs:
   python-lint:
