@@ -1,12 +1,13 @@
-import os
-import fitz
 import json
-import sys
+import os
 import re
-from pathlib import Path
+import sys
 from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+import fitz
 from dateutil.relativedelta import relativedelta
-from typing import List, Dict, Optional, Any
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,9 +16,9 @@ LICENSES_JSON = os.getenv("LICENSES_JSON")
 LAST_PROCESSED_DATE_JSON = os.getenv("LAST_PROCESSED_DATE_JSON")
 
 
-def parse_entity(entity: str) -> Dict[str, Optional[str]]:
-    lines: List[str] = [line.strip() for line in entity.splitlines() if line.strip()]
-    result: Dict[str, Optional[str]] = {
+def parse_entity(entity: str) -> dict[str, str | None]:
+    lines: list[str] = [line.strip() for line in entity.splitlines() if line.strip()]
+    result: dict[str, str | None] = {
         "index": None,
         "entity_number": None,
         "business_name": None,
@@ -40,7 +41,7 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
     result["file_name"] = lines[-1]
 
     if lines:
-        match: Optional[re.Match[str]] = re.match(r"^(\d+)\.?\s*(.+)", lines[0])
+        match: re.Match[str] | None = re.match(r"^(\d+)\.?\s*(.+)", lines[0])
         if match:
             result["entity_number"] = match.group(1)
             result["business_name"] = match.group(2).strip()
@@ -54,7 +55,7 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
         lower_line: str = line.lower()
 
         if "doing business as:" in lower_line:
-            dba_match: Optional[re.Match[str]] = re.search(
+            dba_match: re.Match[str] | None = re.search(
                 r"doing business as:\s*(.+)", line, re.IGNORECASE
             )
             if dba_match:
@@ -62,7 +63,7 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
                 continue
 
         if "license" in lower_line:
-            license_match: Optional[re.Match[str]] = re.search(
+            license_match: re.Match[str] | None = re.search(
                 r"license\s*#:\s*([\w\-]+)", line, re.IGNORECASE
             )
             if license_match:
@@ -70,7 +71,7 @@ def parse_entity(entity: str) -> Dict[str, Optional[str]]:
                 continue
 
         if not result["address"]:
-            zip_match: Optional[re.Match[str]] = re.search(r",\s*MA\s*(\d{5})?$", line)
+            zip_match: re.Match[str] | None = re.search(r",\s*MA\s*(\d{5})?$", line)
             if zip_match:
                 result["address"] = line.strip()
                 result["zipcode"] = zip_match.group(1)
@@ -118,22 +119,22 @@ def extract_hearing_date(pdf_path: str) -> datetime:
     doc: fitz.Document = fitz.open(pdf_path)
     page: fitz.Page = doc[0]
     text: str = page.get_text()
-    match: Optional[re.Match[str]] = re.search(date_pattern, text)
+    match: re.Match[str] | None = re.search(date_pattern, text)
     if match:
         date_str: str = match.group()
         try:
             date_obj: datetime = datetime.strptime(date_str, "%B %d, %Y")
             return date_obj
         except Exception as e:
-            raise ValueError(f"Could not conver date string to iso format: {e}")
+            raise ValueError(f"Could not conver date string to iso format: {e}")  # noqa: B904
     else:
         raise ValueError("Could not find date in the pdf")
 
 
-def extract_entities_from_pdf(pdf_path: str) -> List[str]:
+def extract_entities_from_pdf(pdf_path: str) -> list[str]:
     heading_regex: str = r"^\d+\.?\s+.*"
-    entities: List[str] = []
-    current_entity_lines: List[str] = []
+    entities: list[str] = []
+    current_entity_lines: list[str] = []
     in_target_section: bool = False
 
     try:
@@ -149,7 +150,7 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
         page: fitz.Page = doc.load_page(page_num)
 
         try:
-            page_dict: Dict[str, Any] = page.get_text(
+            page_dict: dict[str, Any] = page.get_text(
                 "dict",
                 flags=fitz.TEXT_PRESERVE_LIGATURES | fitz.TEXT_PRESERVE_WHITESPACE,
             )
@@ -171,7 +172,7 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
                                 stop_processing_line = True
                                 break
 
-                            heading_match: Optional[re.Match[str]] = re.match(
+                            heading_match: re.Match[str] | None = re.match(
                                 heading_regex, span_text
                             )
                             if (
@@ -201,26 +202,26 @@ def extract_entities_from_pdf(pdf_path: str) -> List[str]:
     return entities
 
 
-def read_data() -> List[Dict[str, Optional[str]]]:
+def read_data() -> list[dict[str, str | None]]:
     current_dir = Path(__file__).resolve().parent  # folder containing load_data.py
     output_file: str = os.path.join(current_dir, "..", LICENSES_JSON)
     print(f"output file loc is {output_file}")
-    existing_data: List[Dict[str, Optional[str]]] = []
+    existing_data: list[dict[str, str | None]] = []
 
     if os.path.exists(output_file):
         try:
-            with open(output_file, "r") as f:
+            with open(output_file) as f:
                 content = f.read().strip()
                 if content:
                     print(f"content is {content}")
                     existing_data = json.loads(content)
         except Exception as e:
-            raise RuntimeError(f"Failed to read existing data from {output_file}: {e}")
+            raise RuntimeError(f"Failed to read existing data from {output_file}: {e}")  # noqa: B904
 
     return existing_data
 
 
-def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
+def write_to_file(result: list[dict[str, str | None]]) -> None:
     """
     Appends new parsed entities to `data.json`, assigning incremental indices
     only if the file is not empty (i.e., not a seeding run).
@@ -230,7 +231,7 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
     """
     pdf_folder: str = os.getcwd()
     output_file: str = os.path.join(pdf_folder, "..", LICENSES_JSON)
-    existing_data: List[Dict[str, Optional[str]]] = []
+    existing_data: list[dict[str, str | None]] = []
 
     existing_data = read_data()
 
@@ -245,30 +246,28 @@ def write_to_file(result: List[Dict[str, Optional[str]]]) -> None:
         with open(output_file, "w") as f:
             json.dump(existing_data, f, indent=4)
     except Exception as e:
-        raise RuntimeError(f"Failed to write data to {output_file}: {e}")
+        raise RuntimeError(f"Failed to write data to {output_file}: {e}")  # noqa: B904
 
 
-def process_pdf(
-    file_name: str, option: str = "default"
-) -> List[Dict[str, Optional[str]]]:
+def process_pdf(file_name: str, option: str = "default") -> list[dict[str, str | None]]:
     pdf_folder: str = os.getcwd()
     pdf_path: str = os.path.join(pdf_folder, file_name)
     if not os.path.isfile(pdf_path):
         print(f"Error: File does not exist: {file_name}")
         sys.exit(1)
-    date: Optional[datetime] = None
-    expiration_date: Optional[datetime] = None
+    date: datetime | None = None
+    expiration_date: datetime | None = None
     try:
         date = extract_hearing_date(pdf_path)
         expiration_date = date + relativedelta(years=1)
     except Exception as e:
         print(f"Could not get date {pdf_path} : {e}")
 
-    entities: List[str] = extract_entities_from_pdf(pdf_path)
-    final_result: List[Dict[str, Optional[str]]] = []
+    entities: list[str] = extract_entities_from_pdf(pdf_path)
+    final_result: list[dict[str, str | None]] = []
     for entity_data in entities:
         try:
-            result: Dict[str, Optional[str]] = parse_entity(entity_data)
+            result: dict[str, str | None] = parse_entity(entity_data)
         except Exception as e:
             print(f"WARNING: Failed to parse entity: {e}")
             continue
