@@ -108,14 +108,15 @@ def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
         new_status = map_status(record.get("status"))
 
         if ln and ln in existing_by_license:
-            # Update status on existing record if it changed
+            # Only advance status forward (Deferred -> Granted), never backwards.
+            # A Granted record seen again as Deferred in an older PDF should not be reverted.
             idx = existing_by_license[ln]
             old_status = existing[idx]["status"]
-            if old_status != new_status:
-                existing[idx]["status"] = new_status
+            if old_status == "Deferred" and new_status == "Granted":
+                existing[idx]["status"] = "Granted"
                 print(
                     f"Updated {ln} ({existing[idx]['business_name']}): "
-                    f"{old_status} -> {new_status}"
+                    f"Deferred -> Granted"
                 )
                 updated += 1
         else:
