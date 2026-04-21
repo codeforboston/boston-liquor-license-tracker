@@ -3,6 +3,9 @@ name: Python lint
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'scraper/**/*.py'
+      - 'scripts/**/*.py'
 
 jobs:
   python-lint:
@@ -49,4 +52,3 @@ jobs:
         if: ${{steps.changed-py-files.outputs.any_changed == 'true'}}
         working-directory: scraper/transform
         run: mypy app/
-        
