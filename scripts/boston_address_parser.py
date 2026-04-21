@@ -1,7 +1,7 @@
-import json
 import csv
-import re
+import json
 import os
+import re
 from pathlib import Path
 
 # Canonical source: Boston's SAM (Street Address Management) dataset
@@ -290,7 +290,7 @@ def main():
     parser = BostonAddressParser()
 
     # Load JSON (expects a list of dicts)
-    with open(input_json, "r", encoding="utf-8") as f:
+    with open(input_json, encoding="utf-8") as f:
         records = json.load(f)
 
     rows = []
