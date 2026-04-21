@@ -63,3 +63,17 @@ The app will be running at [http://localhost:5173](http://localhost:5173)
 npm run install:python # installs pytest
 npm test               # runs both react and python tests
 ```
+
+## Python linting (pre-commit)
+
+Python files are linted with [ruff](https://docs.astral.sh/ruff/) via a pre-commit hook. After cloning, activate it once:
+
+```bash
+pip install pre-commit
+# or
+uv tool install pre-commit
+# then...
+pre-commit install
+```
+
+From then on, ruff will check and auto-format any staged `.py` files before each commit. This matches the linting checks run in CI.
