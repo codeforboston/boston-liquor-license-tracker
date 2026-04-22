@@ -116,7 +116,7 @@ class BoardVotedExtractorStep:
     def _parse_entries(
         self, section_text: str, minutes_date: str | None, file_name: str
     ) -> list:
-        results = []
+        results: list[dict] = []
         matches = list(VOTED_LINE_RE.finditer(section_text))
         if not matches:
             return results

@@ -4,7 +4,6 @@ Merges transform pipeline JSON output into licenses.json.
 Maps from the scraper/transform pipeline's output format to the licenses.json
 schema, filters to applicant entries only, deduplicates by license_number,
 updates status on existing records, and appends new ones.
-schema, filters to applicant entries only, and appends with sequential indexes.
 """
 
 import argparse
@@ -13,7 +12,6 @@ import os
 import sys
 from datetime import date
 from pathlib import Path
-from typing import Optional
 
 from dateutil.relativedelta import relativedelta
 from dotenv import load_dotenv
@@ -45,22 +43,20 @@ ALCOHOL_TYPE_MAP = {
     "All Alcoholic Beverages": "All Alcoholic Beverages",
     "Wines and Malt Beverages": "Wines and Malt Beverages",
 }
-VALID_STATUSES = {"Deferred", "Granted"}
 
 
-def map_status(status: Optional[str]) -> str:
+def map_status(status: str | None) -> str:
     if status and status.lower() == "granted":
         return "Granted"
     return "Deferred"
 
 
-def compute_expiration(minutes_date: Optional[str]) -> Optional[str]:
+def compute_expiration(minutes_date: str | None) -> str | None:
     if not minutes_date:
         return None
     try:
         d = date.fromisoformat(minutes_date)
         return (d + relativedelta(years=2)).isoformat()
-        return (d + relativedelta(years=1)).isoformat()
     except ValueError:
         return None
 
@@ -84,12 +80,12 @@ def dedup_existing(existing: list) -> tuple:
 
 
 def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
-    with open(transform_json_path, "r", encoding="utf-8") as f:
+    with open(transform_json_path, encoding="utf-8") as f:
         new_records: list[dict] = json.load(f)
 
     existing: list[dict] = []
     if os.path.exists(licenses_json_path):
-        with open(licenses_json_path, "r", encoding="utf-8") as f:
+        with open(licenses_json_path, encoding="utf-8") as f:
             content = f.read().strip()
             if content:
                 existing = json.loads(content)
@@ -111,8 +107,6 @@ def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
     added = 0
     updated = 0
     skipped = 0
-
-    last_index: int = existing[-1]["index"] if existing else 0
 
     for record in new_records:
         raw_alcohol_type = record.get("alcohol_type")
@@ -238,7 +232,6 @@ def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
     return added + updated
 
 
-
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Merge transform pipeline JSON output into licenses.json"
@@ -266,9 +259,6 @@ def main() -> None:
     count = merge_licenses(args.input, licenses_path)
     if count == 0:
         print("WARNING: No records were added or updated")
-        print(
-            "WARNING: No new licenses were added — check that alcohol_type is populated"
-        )
 
 
 if __name__ == "__main__":
