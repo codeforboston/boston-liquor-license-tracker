@@ -21,7 +21,6 @@ class CategoryExtractor:
                     kw in line_lower
                     for kw in [
                         "all alcoholic",
-                        "common victualler",
                         "all alcohol",
                         "allalcohol",
                     ]
