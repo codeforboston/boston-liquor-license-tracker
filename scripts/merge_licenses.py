@@ -236,41 +236,7 @@ def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
     print(f"Updated {updated} existing records")
     print(f"Added {added} new licenses. Total: {len(records)}")
     return added + updated
-        # Only include new applications, not modifications to existing licenses.
-        # New applicants have "applied" in their details; modifications say "Holder of ... petitioned".
-        details = record.get("details") or ""
-        if "applied" not in details.lower():
-            skipped += 1
-            continue
 
-        minutes_date = record.get("minutes_date")
-        entry = {
-            "index": None,  # assigned below
-            "entity_number": record.get("entity_number") or "",
-            "business_name": record.get("business_name") or "",
-            "dba_name": record.get("dba_name"),
-            "address": record.get("address") or "",
-            "zipcode": record.get("zipcode") or "",
-            "license_number": record.get("license_number") or "",
-            "status": map_status(record.get("status")),
-            "alcohol_type": alcohol_type,
-            "minutes_date": minutes_date or "",
-            "application_expiration_date": compute_expiration(minutes_date),
-            "file_name": record.get("file_name") or "",
-        }
-        new_entries.append(entry)
-
-    for i, entry in enumerate(new_entries, start=last_index + 1):
-        entry["index"] = i
-
-    existing.extend(new_entries)
-
-    with open(licenses_json_path, "w", encoding="utf-8") as f:
-        json.dump(existing, f, indent=4)
-
-    print(f"Skipped {skipped} records (non-applicant alcohol type)")
-    print(f"Added {len(new_entries)} new licenses. Total: {len(existing)}")
-    return len(new_entries)
 
 
 def main() -> None:
