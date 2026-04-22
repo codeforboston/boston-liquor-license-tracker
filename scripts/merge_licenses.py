@@ -84,14 +84,11 @@ def dedup_existing(existing: list) -> tuple:
 
 
 def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
-    with open(transform_json_path, encoding="utf-8") as f:
-def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
     with open(transform_json_path, "r", encoding="utf-8") as f:
         new_records: list[dict] = json.load(f)
 
     existing: list[dict] = []
     if os.path.exists(licenses_json_path):
-        with open(licenses_json_path, encoding="utf-8") as f:
         with open(licenses_json_path, "r", encoding="utf-8") as f:
             content = f.read().strip()
             if content:
@@ -117,8 +114,6 @@ def merge_licenses(transform_json_path: str, licenses_json_path: str) -> int:
 
     last_index: int = existing[-1]["index"] if existing else 0
 
-    new_entries = []
-    skipped = 0
     for record in new_records:
         raw_alcohol_type = record.get("alcohol_type")
         alcohol_type = ALCOHOL_TYPE_MAP.get(raw_alcohol_type or "")
