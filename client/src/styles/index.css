@@ -111,10 +111,14 @@ colors will be named as they are used */
   --color-license-deferred-yellow: var(--color-yellow-3);
 
   /* Map */
-  --color-map-red: var(--color-red-1);
-  --color-map-border-red: var(--color-red-4);
-  --color-map-selected: var(--color-red-4);
-  --color-map-no-data: var(--color-gray-light-4);
+  --color-map-active-fill: #F38C8C;
+  --color-map-active-border: var(--color-red-1);
+  --color-map-hover-fill: #F5A3A3;
+  --color-map-hover-border: var(--color-red-2);
+  --color-map-pressed-fill: #EC4646;
+  --color-map-pressed-border: var(--color-red-4);
+  --color-map-inactive-fill: var(--color-gray-light-1);
+  --color-map-inactive-border: var(--color-gray-light-2);
 }
 
 /********************/

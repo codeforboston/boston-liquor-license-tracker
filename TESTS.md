@@ -57,6 +57,8 @@ select = [
 
 Run with: `ruff check .` and `ruff format .`
 
+A pre-commit hook runs ruff automatically on staged `.py` files before each commit (see `.pre-commit-config.yaml`). Activate it once after cloning: `pip install pre-commit && pre-commit install`.
+
 #### Pyright (Strict Type Checking)
 
 All Python files should include type annotations. Use pyright in strict mode to enforce this at the project level via `pyproject.toml`:
@@ -444,7 +446,11 @@ jobs:
         working-directory: ./${{ matrix.package.dir }}
 ```
 
-### 5. Add Python linting to the reviewdog workflow
+### 5. ✅ Add pre-commit hook for Python linting
+
+A `.pre-commit-config.yaml` at the repo root runs `ruff check --fix` and `ruff format` on staged `.py` files before each commit. All three Python packages (`scraper/scrape`, `scraper/transform`, `scripts/`) are covered — ruff picks up each package's `pyproject.toml` automatically. Activate with `uv tool install pre-commit && pre-commit install`.
+
+### 6. Add Python linting to the reviewdog workflow
 
 The existing `lint.yml` runs ESLint and Stylelint via reviewdog for inline PR comments. Add [`reviewdog/action-ruff`](https://github.com/reviewdog/action-ruff) to get the same inline annotation experience for Python files.
 

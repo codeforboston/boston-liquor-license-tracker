@@ -2,6 +2,7 @@
 Simple tests for the scripts directory.
 """
 
+
 def test_hello_world():
     """Basic hello world test to verify testing works."""
     assert "hello" == "hello"
