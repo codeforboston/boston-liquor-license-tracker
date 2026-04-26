@@ -38,66 +38,66 @@ const getRowData = (
   if (!licenseType) {
     rowData = [
       zipcode,
+      String(MAX_AVAILABLE_PER_ZIP),
       String(totalAvailable),
       String(totalApplicantsTotal),
       String(openApplicationsTotal),
       String(MAX_AVAILABLE_PER_ZIP - totalAvailable),
-      String(MAX_AVAILABLE_PER_ZIP),
     ]
     subRowData = [
       [
         "All Alcohol Licenses",
+        String(MAX_ALL_ALC_PER_ZIP),
         String(allAlcoholAvailable),
         String(totalApplicantsAllAlc),
         String(openApplicationsAllAlc),
         String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
-        String(MAX_ALL_ALC_PER_ZIP),
       ],
       [
         "Beer & Wine Licenses",
+        String(MAX_BEER_WINE_PER_ZIP),
         String(beerWineAvailable),
         String(totalApplicantsBeerWine),
         String(openApplicationsBeerWine),
         String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
-        String(MAX_BEER_WINE_PER_ZIP),
       ],
     ]
   } else if (licenseType === "All Alcoholic Beverages") {
     rowData = [
       zipcode,
+      String(MAX_ALL_ALC_PER_ZIP),
       String(allAlcoholAvailable),
       String(totalApplicantsAllAlc),
       String(openApplicationsAllAlc),
       String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
-      String(MAX_ALL_ALC_PER_ZIP),
     ]
     subRowData = [
       [
         "All Alcohol Licenses",
+        String(MAX_ALL_ALC_PER_ZIP),
         String(allAlcoholAvailable),
         String(totalApplicantsAllAlc),
         String(openApplicationsAllAlc),
         String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
-        String(MAX_ALL_ALC_PER_ZIP),
       ]
     ]
   } else if (licenseType === "Wines and Malt Beverages") {
     rowData = [
       zipcode,
+      String(MAX_BEER_WINE_PER_ZIP),
       String(beerWineAvailable),
       String(totalApplicantsBeerWine),
       String(openApplicationsBeerWine),
       String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
-      String(MAX_BEER_WINE_PER_ZIP),
     ]
     subRowData = [
       [
         "Beer & Wine Licenses",
+        String(MAX_BEER_WINE_PER_ZIP),
         String(beerWineAvailable),
         String(totalApplicantsBeerWine),
         String(openApplicationsBeerWine),
         String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
-        String(MAX_BEER_WINE_PER_ZIP),
       ],
     ]
   } else {
@@ -173,11 +173,11 @@ const LicenseAvailabilityTable = () => {
 
   const availabilityHeaders = [
     "Zipcode",
+    "Total Licenses",
     "Licenses Available",
     "Total Applicants",
     "Open Applications",
     "Licenses Granted",
-    "Total Licenses",
   ];
 
   const formattedData = formatData(data, zipcodeList, licenseFilter);
