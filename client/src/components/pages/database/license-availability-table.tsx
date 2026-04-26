@@ -20,11 +20,14 @@ import { Selection } from "react-aria-components";
 import { FormattedMessage } from "react-intl";
 
 const getRowData = (
-  zipcode: EligibleBostonZipcode, 
-  licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null, 
-  totalAvailable: number, 
-  allAlcoholAvailable: number, 
-  beerWineAvailable: number
+  zipcode: EligibleBostonZipcode,
+  licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null,
+  totalAvailable: number,
+  allAlcoholAvailable: number,
+  beerWineAvailable: number,
+  recentApplicantsTotal: number,
+  recentApplicantsAllAlc: number,
+  recentApplicantsBeerWine: number,
 ) => {
   let rowData;
   let subRowData;
@@ -33,7 +36,7 @@ const getRowData = (
     rowData = [
       zipcode,
       String(totalAvailable),
-      "-",
+      String(recentApplicantsTotal),
       String(MAX_AVAILABLE_PER_ZIP - totalAvailable),
       String(MAX_AVAILABLE_PER_ZIP),
     ]
@@ -41,23 +44,23 @@ const getRowData = (
       [
         "All Alcohol Licenses",
         String(allAlcoholAvailable),
-        "-",
+        String(recentApplicantsAllAlc),
         String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
         String(MAX_ALL_ALC_PER_ZIP),
       ],
       [
         "Beer & Wine Licenses",
         String(beerWineAvailable),
-        "-",
+        String(recentApplicantsBeerWine),
         String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
         String(MAX_BEER_WINE_PER_ZIP),
       ],
     ]
   } else if (licenseType === "All Alcoholic Beverages") {
-    rowData = [  
+    rowData = [
       zipcode,
       String(allAlcoholAvailable),
-      "-",
+      String(recentApplicantsAllAlc),
       String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
       String(MAX_ALL_ALC_PER_ZIP),
     ]
@@ -65,7 +68,7 @@ const getRowData = (
       [
         "All Alcohol Licenses",
         String(allAlcoholAvailable),
-        "-",
+        String(recentApplicantsAllAlc),
         String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
         String(MAX_ALL_ALC_PER_ZIP),
       ]
@@ -74,7 +77,7 @@ const getRowData = (
     rowData = [
       zipcode,
       String(beerWineAvailable),
-      "-",
+      String(recentApplicantsBeerWine),
       String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
       String(MAX_BEER_WINE_PER_ZIP),
     ]
@@ -82,7 +85,7 @@ const getRowData = (
       [
         "Beer & Wine Licenses",
         String(beerWineAvailable),
-        "-",
+        String(recentApplicantsBeerWine),
         String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
         String(MAX_BEER_WINE_PER_ZIP),
       ],
@@ -94,7 +97,7 @@ const getRowData = (
   const tableData = {rowData: rowData, subRowData: subRowData}
 
   return tableData;
-} 
+}
 
 const formatData = (
   data: BusinessLicense[],
@@ -102,12 +105,18 @@ const formatData = (
   licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null
 ) => {
   const zips = [...zipcodeList];
+  const grantedData = data.filter((l) => l.status === "Granted");
   const d = zips.map((zipcode) => {
 
     const { totalAvailable, allAlcoholAvailable, beerWineAvailable } =
-      getAvailableLicensesByZipcode(data, zipcode);
+      getAvailableLicensesByZipcode(grantedData, zipcode);
 
-    const {rowData, subRowData} = getRowData(zipcode, licenseType, totalAvailable, allAlcoholAvailable, beerWineAvailable)
+    const deferred = data.filter((l) => l.zipcode === zipcode && l.status === "Deferred");
+    const recentApplicantsTotal = deferred.length;
+    const recentApplicantsAllAlc = deferred.filter((l) => l.alcohol_type === "All Alcoholic Beverages").length;
+    const recentApplicantsBeerWine = deferred.filter((l) => l.alcohol_type === "Wines and Malt Beverages").length;
+
+    const {rowData, subRowData} = getRowData(zipcode, licenseType, totalAvailable, allAlcoholAvailable, beerWineAvailable, recentApplicantsTotal, recentApplicantsAllAlc, recentApplicantsBeerWine)
 
     const entry = {
       rowData: rowData,
@@ -140,7 +149,7 @@ const LicenseAvailabilityTable = () => {
     const tmp = [];
     for (const license of licenseData) {
       const validated = validateBusinessLicense(license);
-      if (validated.valid === true && license.status === "Granted") {
+      if (validated.valid === true) {
         tmp.push(validated.data);
       }
     }
