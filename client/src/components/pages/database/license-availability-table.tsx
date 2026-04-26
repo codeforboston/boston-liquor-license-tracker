@@ -160,7 +160,8 @@ const LicenseAvailabilityTable = () => {
   const availabilityHeaders = [
     "Zipcode",
     "Licenses Available",
-    "Recent Applicants",
+    "Total Applicants",
+    "Open Applications",
     "Licenses Granted",
     "Total Licenses",
   ];
