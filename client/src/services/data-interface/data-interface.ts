@@ -23,7 +23,7 @@ export interface BusinessLicense {
   status: string | null;
   alcohol_type: string;
   minutes_date: string;
-  application_expiration_date: string;
+  application_expiration_date: string | null;
   file_name: string;
 }
 
@@ -131,8 +131,8 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
     errors.minutes_date = "Must be a string";
   }
 
-  if (typeof obj.application_expiration_date !== "string") {
-    errors.application_expiration_date = "Must be a string";
+  if (obj.application_expiration_date !== null && typeof obj.application_expiration_date !== "string") {
+    errors.application_expiration_date = "Must be a string or null";
   }
 
   if (typeof obj.file_name !== "string") {
@@ -154,7 +154,7 @@ export function validateBusinessLicense(license: unknown): ValidationResult {
     status: obj.status === null ? null : String(obj.status),
     alcohol_type: String(obj.alcohol_type),
     minutes_date: String(obj.minutes_date),
-    application_expiration_date: String(obj.application_expiration_date),
+    application_expiration_date: obj.application_expiration_date === null ? null : String(obj.application_expiration_date),
     file_name: String(obj.file_name),
   };
 
