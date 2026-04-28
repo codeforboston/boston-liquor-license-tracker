@@ -19,7 +19,7 @@ const VimeoPlayer: React.FC<VimeoPlayerProps> = ({
     const embedUrl = `https://player.vimeo.com/video/${videoId}${hash ? `?h=${hash}` : ''}`;
 
   return (
-    <div className="vimeo-player-container">
+    <div className="vimeo-player-container" style={{ height: '100%' }}>
       <iframe
         src={embedUrl}
         width={width}

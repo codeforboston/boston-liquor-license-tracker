@@ -17,14 +17,13 @@ const CaseStudy = () => {
           <p><FormattedMessage id="home.caseStudy.part3" /></p>
         </div>
 
-        <div className={`${caseStudyStyles.dottedThickBorder} flex justify-center h-auto overflow-hidden mx-auto max-w-[640px] box-border`}
-          >
-          <div className="scale-110 w-full">
-            <VimeoPlayer 
+        <div className={`${caseStudyStyles.dottedThickBorder} relative aspect-square w-full mx-auto max-w-[500px] box-border`}>
+          <div className="absolute inset-0">
+            <VimeoPlayer
               videoId="882676233"
               hash="2f05014c6a"
               width="100%"
-              height="290"
+              height="100%"
               title={videoTitle}
             />
           </div>
