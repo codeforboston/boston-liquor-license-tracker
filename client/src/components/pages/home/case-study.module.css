@@ -6,7 +6,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 32px 32px 64px 32px;
-    max-width: 100vw;
+    max-width: 100%;
 
     .studyIntro {
       display: flex;

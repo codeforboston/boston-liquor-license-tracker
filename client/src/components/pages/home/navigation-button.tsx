@@ -13,7 +13,7 @@ const NavigationButton = ({ to, messageId }: NavigationButtonProps) => {
       justify-center
       items-center
       text-center
-      w-full md:w-[400px]
+      w-full md:flex-1 md:max-w-[400px]
       min-h-[34px] md:min-h-[62px]
       px-[24px] py-[8px] md:py-[12px]
       rounded-[8px]
