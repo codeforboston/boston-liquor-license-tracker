@@ -63,7 +63,8 @@ const borderWidth = 2;
 /* Map Initialization */
 const initializeMap = (
   map: RefObject<Map | null>,
-  mapContainer: RefObject<HTMLDivElement | null>
+  mapContainer: RefObject<HTMLDivElement | null>,
+  onMapLoad?: () => void
 ) => {
   const zoom = 11;
   const center = {
@@ -93,6 +94,9 @@ const initializeMap = (
     map.current.addSource("boston", {
       type: "geojson",
       data: BostonZipCodeGeoJSON as GeoJSON.FeatureCollection,
+      // Use zipcode as the feature id so feature-state updates work
+      // both for map clicks and for programmatic changes (pagination).
+      promoteId: "ZIP5",
     });
     // Fill layer
     map.current.addLayer({
@@ -152,6 +156,8 @@ const initializeMap = (
         "text-font": ["Open Sans Regular"],
       },
     });
+
+    onMapLoad?.();
   });
   map.current.addControl(
     new maplibregl.NavigationControl({
@@ -183,10 +189,10 @@ const initializeMouseActions = (
         );
       }
       map.current.setFeatureState(
-        { source: "boston", id: feature.id },
+        { source: "boston", id: zipCode },
         { clicked: true }
       );
-      clickedFeatureId.current = feature.id;
+      clickedFeatureId.current = zipCode;
     }
   });
 
@@ -205,9 +211,9 @@ const initializeMouseActions = (
         );
       }
 
-      hoverZipId.current = features[0].id;
+      hoverZipId.current = zipCode;
       map.current.setFeatureState(
-        { source: "boston", id: features[0].id },
+        { source: "boston", id: zipCode },
         { hover: true }
       );
     }
@@ -240,7 +246,8 @@ export const BostonZipCodeMap = () => {
   const map = useRef<Map | null>(null);
   const detailsCard = useRef(null);
   const hoverZipId = useRef<string | number | undefined>("");
-  const clickedFeatureId = useRef(null);
+  const clickedFeatureId = useRef<EligibleBostonZipcode | null>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   const uniqueZips = Array.from(eligibleBostonZipcodes);
 
@@ -256,9 +263,28 @@ export const BostonZipCodeMap = () => {
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
 
-    initializeMap(map, mapContainer);
+    initializeMap(map, mapContainer, () => setIsMapLoaded(true));
     initializeMouseActions(map, hoverZipId, setSelectedZip, clickedFeatureId);
   }, []);
+
+  // Keep map highlight in sync when zipcode changes via pagination.
+  useEffect(() => {
+    if (!map.current || !isMapLoaded) return;
+    if (!selectedZip) return;
+
+    if (clickedFeatureId.current) {
+      map.current.setFeatureState(
+        { source: "boston", id: clickedFeatureId.current },
+        { clicked: false }
+      );
+    }
+
+    map.current.setFeatureState(
+      { source: "boston", id: selectedZip },
+      { clicked: true }
+    );
+    clickedFeatureId.current = selectedZip;
+  }, [isMapLoaded, selectedZip]);
 
   return (
     <main>
