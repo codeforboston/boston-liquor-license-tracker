@@ -11,10 +11,10 @@ const Hero = () => {
     >
       <img
         src={logo}
-        className="w-3xs md:w-4xl lg:w-5xl"
+        className="w-full max-w-[852px]"
         alt={intl.formatMessage({ id: "header.logo-altText" })}
       />
-      <h2 className={styles.homepageDisplay}>
+      <h2 className={`${styles.homepageDisplay} max-w-[840px]`}>
         <FormattedMessage
           id="home.hero.heading"
         />

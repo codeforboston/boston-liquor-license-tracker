@@ -304,13 +304,13 @@ export const BostonZipCodeMap = () => {
           >
             <ZipDetailsContent licenses={licenses} zipCode={selectedZip} />
             <div>
-              {/* TODO(#369): pass in indexToZipCode for the tooltip data */}
               <DotPagination
                 currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0}
                 totalPages={uniqueZips.length}
                 onPageChange={(newZipIndex) => {
                   setSelectedZip(uniqueZips[newZipIndex]);
                 }}
+                labels={uniqueZips}
               />
             </div>
           </div>

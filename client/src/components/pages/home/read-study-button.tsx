@@ -20,6 +20,7 @@ const ReadStudyButton = ({ to, messageId }: ReadStudyButtonProps) => {
       hover:text-button-active-dark
       active:text-button-hovered-dark
       font-bold
+      text-2xl
       px-8
       py-4
       rounded-lg shadow-md

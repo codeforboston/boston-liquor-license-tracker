@@ -5,9 +5,9 @@ const Navigation = () => {
     <nav 
       className={`
         navigation
-        flex flex-wrap 
+        flex flex-wrap md:flex-nowrap
         flex-col md:flex-row
-        justify-center items-stretch md:items-start
+        justify-center items-stretch
         py-[16px] px-[24px]
         md:py-[48px] md:px-[64px]  
         gap-[16px] md:gap-[56px] last:mb-0
