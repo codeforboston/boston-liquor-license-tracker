@@ -2,6 +2,7 @@ import logging
 from typing import Any
 
 from app import constants as const
+from app.pipeline.extract_board_voted import BoardVotedExtractorStep
 from app.pipeline.extract_hearing import HearingTextExtractorStep
 from app.pipeline.extract_license_text import LicenseTextExtractorStep
 from app.pipeline.extract_pdf_text import PDFTextExtractorStep
@@ -59,25 +60,21 @@ def run_pipeline(pdf_file_path: str, kv_store: KVStore | None = None):
         [
             # Extracts all text from the downloaded PDF
             PDFTextExtractorStep(store),
-
             # Runs fixes from ../violation_plugins/post_text/ on the extracted PDF text
             InvariantPluginStep(store, "POST_TEXT"),
-            
             # Extracts hearings from the PDF text
             HearingTextExtractorStep(store),
-
             # Runs fixes from ../violation_plugins/post_hearing/ after hearing text extraction
             InvariantPluginStep(store, "POST_HEARING"),
-            
             # Extracts license-related text from the hearing text
             LicenseTextExtractorStep(store),
-            
             # Runs fixes from ../violation_plugins/post_license/ after license text extraction
             # TODO: uncomment this line when post_license plugins are implemented
             # InvariantPluginStep(store, "POST_LICENSE"),
-            
             # Extracts structured JSON data from the hearing and license text and stores it in the KVStore.
             TextJsonExtractorStep(store),
+            # Appends Granted records from the "Board voted to approve" section (does not stop pipeline).
+            BoardVotedExtractorStep(store),
         ],
     )
 

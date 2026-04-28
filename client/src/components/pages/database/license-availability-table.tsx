@@ -20,11 +20,17 @@ import { Selection } from "react-aria-components";
 import { FormattedMessage } from "react-intl";
 
 const getRowData = (
-  zipcode: EligibleBostonZipcode, 
-  licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null, 
-  totalAvailable: number, 
-  allAlcoholAvailable: number, 
-  beerWineAvailable: number
+  zipcode: EligibleBostonZipcode,
+  licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null,
+  totalAvailable: number,
+  allAlcoholAvailable: number,
+  beerWineAvailable: number,
+  totalApplicantsTotal: number,
+  totalApplicantsAllAlc: number,
+  totalApplicantsBeerWine: number,
+  openApplicationsTotal: number,
+  openApplicationsAllAlc: number,
+  openApplicationsBeerWine: number,
 ) => {
   let rowData;
   let subRowData;
@@ -32,59 +38,66 @@ const getRowData = (
   if (!licenseType) {
     rowData = [
       zipcode,
-      String(totalAvailable),
-      "-",
-      String(MAX_AVAILABLE_PER_ZIP - totalAvailable),
       String(MAX_AVAILABLE_PER_ZIP),
+      String(totalAvailable),
+      String(totalApplicantsTotal),
+      String(openApplicationsTotal),
+      String(MAX_AVAILABLE_PER_ZIP - totalAvailable),
     ]
     subRowData = [
       [
         "All Alcohol Licenses",
-        String(allAlcoholAvailable),
-        "-",
-        String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
         String(MAX_ALL_ALC_PER_ZIP),
+        String(allAlcoholAvailable),
+        String(totalApplicantsAllAlc),
+        String(openApplicationsAllAlc),
+        String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
       ],
       [
         "Beer & Wine Licenses",
-        String(beerWineAvailable),
-        "-",
-        String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
         String(MAX_BEER_WINE_PER_ZIP),
+        String(beerWineAvailable),
+        String(totalApplicantsBeerWine),
+        String(openApplicationsBeerWine),
+        String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
       ],
     ]
   } else if (licenseType === "All Alcoholic Beverages") {
-    rowData = [  
+    rowData = [
       zipcode,
-      String(allAlcoholAvailable),
-      "-",
-      String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
       String(MAX_ALL_ALC_PER_ZIP),
+      String(allAlcoholAvailable),
+      String(totalApplicantsAllAlc),
+      String(openApplicationsAllAlc),
+      String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
     ]
     subRowData = [
       [
         "All Alcohol Licenses",
-        String(allAlcoholAvailable),
-        "-",
-        String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
         String(MAX_ALL_ALC_PER_ZIP),
+        String(allAlcoholAvailable),
+        String(totalApplicantsAllAlc),
+        String(openApplicationsAllAlc),
+        String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
       ]
     ]
   } else if (licenseType === "Wines and Malt Beverages") {
     rowData = [
       zipcode,
-      String(beerWineAvailable),
-      "-",
-      String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
       String(MAX_BEER_WINE_PER_ZIP),
+      String(beerWineAvailable),
+      String(totalApplicantsBeerWine),
+      String(openApplicationsBeerWine),
+      String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
     ]
     subRowData = [
       [
         "Beer & Wine Licenses",
-        String(beerWineAvailable),
-        "-",
-        String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
         String(MAX_BEER_WINE_PER_ZIP),
+        String(beerWineAvailable),
+        String(totalApplicantsBeerWine),
+        String(openApplicationsBeerWine),
+        String(MAX_BEER_WINE_PER_ZIP - beerWineAvailable),
       ],
     ]
   } else {
@@ -94,7 +107,7 @@ const getRowData = (
   const tableData = {rowData: rowData, subRowData: subRowData}
 
   return tableData;
-} 
+}
 
 const formatData = (
   data: BusinessLicense[],
@@ -102,12 +115,22 @@ const formatData = (
   licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null
 ) => {
   const zips = [...zipcodeList];
+  const grantedData = data.filter((l) => l.status === "Granted");
   const d = zips.map((zipcode) => {
 
     const { totalAvailable, allAlcoholAvailable, beerWineAvailable } =
-      getAvailableLicensesByZipcode(data, zipcode);
+      getAvailableLicensesByZipcode(grantedData, zipcode);
 
-    const {rowData, subRowData} = getRowData(zipcode, licenseType, totalAvailable, allAlcoholAvailable, beerWineAvailable)
+    const byZip = data.filter((l) => l.zipcode === zipcode);
+    const deferred = byZip.filter((l) => l.status === "Deferred");
+    const openApplicationsTotal = deferred.length;
+    const openApplicationsAllAlc = deferred.filter((l) => l.alcohol_type === "All Alcoholic Beverages").length;
+    const openApplicationsBeerWine = deferred.filter((l) => l.alcohol_type === "Wines and Malt Beverages").length;
+    const totalApplicantsTotal = byZip.length;
+    const totalApplicantsAllAlc = byZip.filter((l) => l.alcohol_type === "All Alcoholic Beverages").length;
+    const totalApplicantsBeerWine = byZip.filter((l) => l.alcohol_type === "Wines and Malt Beverages").length;
+
+    const {rowData, subRowData} = getRowData(zipcode, licenseType, totalAvailable, allAlcoholAvailable, beerWineAvailable, totalApplicantsTotal, totalApplicantsAllAlc, totalApplicantsBeerWine, openApplicationsTotal, openApplicationsAllAlc, openApplicationsBeerWine)
 
     const entry = {
       rowData: rowData,
@@ -140,7 +163,7 @@ const LicenseAvailabilityTable = () => {
     const tmp = [];
     for (const license of licenseData) {
       const validated = validateBusinessLicense(license);
-      if (validated.valid === true && license.status === "Granted") {
+      if (validated.valid === true) {
         tmp.push(validated.data);
       }
     }
@@ -150,10 +173,11 @@ const LicenseAvailabilityTable = () => {
 
   const availabilityHeaders = [
     "Zipcode",
-    "Licenses Available",
-    "Recent Applicants",
-    "Licenses Granted",
     "Total Licenses",
+    "Licenses Available",
+    "Total Applicants",
+    "Open Applications",
+    "Licenses Granted",
   ];
 
   const formattedData = formatData(data, zipcodeList, licenseFilter);

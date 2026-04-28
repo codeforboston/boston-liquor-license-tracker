@@ -70,14 +70,23 @@
         "description": "Voting minute date in which the license appears as an applicant."
       },
       "application_expiration_date": {
-        "type": "string",
+        "type": ["string", "null"],
         "format": "date",
-        "description": "The date by which the application will expire."
+        "description": "The date by which the application will expire. Null once the license is Granted."
       },
       "file_name": {
         "type": "string",
         "minLength": 1,
         "description": "Voting minute file name where this license appears."
+      },
+      "granted_date": {
+        "type": ["string", "null"],
+        "format": "date",
+        "description": "Date the board voted to grant the license. Null while Deferred."
+      },
+      "granted_file": {
+        "type": ["string", "null"],
+        "description": "Voting minute file name in which the license was granted. Null while Deferred."
       }
     }
   }
