@@ -35,7 +35,7 @@ const CaseStudy = () => {
           justify-center
           "
           >
-          <ReadStudyButton to={"/coming-soon"} messageId={"home.caseStudy.button.read"}/>
+          <ReadStudyButton to={"https://www.getoffsite.com/our-work/license-to-succeed"} messageId={"home.caseStudy.button.read"}/>
         </div>
       </div>
   );
