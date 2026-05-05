@@ -8,6 +8,19 @@
   gap: 16px;
   padding: 32px 32px 64px 32px;
   box-sizing: border-box;
+
+  p {
+    max-width: 75%;
+    transition: max-width 0.4s ease;
+  }
+}
+
+@media (max-width: 1250px) {
+  .aboutUs {
+    p {
+      max-width: 100%;
+    }
+  }
 }
 
 /* 🌐 Mobile Styling */
