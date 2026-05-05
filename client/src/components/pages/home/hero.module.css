@@ -1,15 +1,17 @@
 .hero {
   background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%),
-    url("../../../assets/images/hero-backdrop.jpg") lightgray
-      0px -613.65px / 100% 408.885% no-repeat;
-
-  background-position: center;
-  background-size: cover;
+    linear-gradient(90deg, #000 40%, rgba(0, 0, 0, 0.2) 63.46%,
+        rgba(0, 0, 0, 0.00) 100%),
+      url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") lightgray right center / 65% auto no-repeat;
   color: var(--color-font-light);
   padding: 120px 64px;
 }
 
+/* @media (max-width: 1250px) {
+  .hero {
+    padding: 72px 48px;
+  }
+} */
 /* 🌐 Mobile Styling */
 @media (max-width: 768px) {
   .hero {
