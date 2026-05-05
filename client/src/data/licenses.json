@@ -1342,5 +1342,37 @@
         "file_name": "voting_minutes_2026-04-09.pdf",
         "granted_date": "2026-04-08",
         "granted_file": "voting_minutes_2026-04-09.pdf"
+    },
+    {
+        "index": 85,
+        "entity_number": "26",
+        "business_name": "F&H, Inc.",
+        "dba_name": "Mi Pueblito Restaurant",
+        "address": "333 Border St, East Boston, MA 02128",
+        "zipcode": "02128",
+        "license_number": "LB-623669",
+        "status": "Granted",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-04-29",
+        "application_expiration_date": null,
+        "file_name": "Voting%20Agenda%204-30-26.pdf",
+        "granted_date": "2026-04-29",
+        "granted_file": "Voting%20Agenda%204-30-26.pdf"
+    },
+    {
+        "index": 86,
+        "entity_number": "32",
+        "business_name": "Superstar Cuisine, LLC",
+        "dba_name": "Superstar Cuisine",
+        "address": "1158 River St, Hyde Park, MA 02136",
+        "zipcode": "02136",
+        "license_number": "LB-623682",
+        "status": "Granted",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-04-29",
+        "application_expiration_date": null,
+        "file_name": "Voting%20Agenda%204-30-26.pdf",
+        "granted_date": "2026-04-29",
+        "granted_file": "Voting%20Agenda%204-30-26.pdf"
     }
 ]
