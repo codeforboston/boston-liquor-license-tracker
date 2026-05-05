@@ -1,11 +1,15 @@
 .hero {
+  display: grid;
+    grid-template-columns: 75% 25%;
+    align-items: start;
   background:
-    linear-gradient(90deg, #000 40%, rgba(0, 0, 0, 0.2) 63.46%,
+    linear-gradient(90deg, #000 40%, rgba(0,
+          0, 0, 0.2) 63.46%,
         rgba(0, 0, 0, 0.00) 100%),
-      url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") lightgray right center / 65% auto no-repeat;
-  color: var(--color-font-light);
-  padding: 120px 64px;
-}
+    url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") lightgray right center / 65% auto no-repeat;
+      color: var(--color-font-light);
+      padding: 120px 64px;
+    }
 
 /* @media (max-width: 1250px) {
   .hero {
@@ -15,6 +19,7 @@
 /* 🌐 Mobile Styling */
 @media (max-width: 768px) {
   .hero {
+    grid-template-columns: 1fr;
     padding: 48px 24px;
   }
   .homepageDisplay {

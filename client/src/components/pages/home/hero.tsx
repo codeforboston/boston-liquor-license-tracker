@@ -6,9 +6,10 @@ const Hero = () => {
   const intl = useIntl();
   return (
     <div
-      className={`${styles.hero} flex flex-col md:items-start md:justify-start w-full gap-[8px] md:gap-[24px]`}
+      className={`${styles.hero} md:items-start md:justify-start w-full`}
       title={intl.formatMessage({ id: "home.hero.title" })}
     >
+      <div>
       <img
         src={logo}
         className="w-full max-w-[852px]"
@@ -36,6 +37,8 @@ const Hero = () => {
           }}
         />
       </p>
+      </div>
+      <div/> {/* spacer */}
     </div>
   );
 };
