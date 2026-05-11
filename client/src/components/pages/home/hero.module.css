@@ -9,6 +9,15 @@
       color: var(--color-font-light);
       padding: 120px 64px;
 }
+/* 🖥️ Medium screens: switch to height-driven image sizing to fill hero vertically */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .hero {
+    background:
+      linear-gradient(90deg, #000 50%, rgba(0, 0, 0, 0.2) 80%,
+        rgba(0, 0, 0, 0.00) 100%),
+      url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") rgb(0, 0, 0) right -150px center / auto 100% no-repeat;
+  }
+}
 /* 🌐 Mobile Styling */
 @media (max-width: 768px) {
   .hero {
