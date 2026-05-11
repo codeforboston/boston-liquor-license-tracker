@@ -3,7 +3,7 @@
     grid-template-columns: 70% 30%;
     align-items: start;
   background:
-    linear-gradient(90deg, #000 50%, rgba(0, 0, 0, 0.2) 63.46%,
+    linear-gradient(90deg, var(--color-hero-background) 50%, rgba(0, 0, 0, 0.2) 63.46%,
         rgba(0, 0, 0, 0.00) 100%),
     url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") rgb(0, 0, 0) 135% center / 65% auto no-repeat;
       color: var(--color-font-light);
@@ -13,7 +13,7 @@
 @media (min-width: 769px) and (max-width: 1280px) {
   .hero {
     background:
-      linear-gradient(90deg, #000 50%, rgba(0, 0, 0, 0.2) 80%,
+      linear-gradient(90deg, var(--color-hero-background) 50%, rgba(0, 0, 0, 0.2) 80%,
         rgba(0, 0, 0, 0.00) 100%),
       url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") rgb(0, 0, 0) right -150px center / auto 100% no-repeat;
   }
