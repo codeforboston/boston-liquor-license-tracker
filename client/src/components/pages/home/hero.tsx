@@ -9,10 +9,10 @@ const Hero = () => {
       className={`${styles.hero} md:items-start md:justify-start w-full`}
       title={intl.formatMessage({ id: "home.hero.title" })}
     >
-      <div>
+      <div className={styles.heroInner}>
       <img
         src={logo}
-        className="w-full max-w-[852px]"
+        className="w-full max-w-[80%] md:max-w-[852px]"
         alt={intl.formatMessage({ id: "header.logo-altText" })}
       />
       <h2 className={`${styles.homepageDisplay} max-w-[840px]`}>
@@ -25,8 +25,8 @@ const Hero = () => {
           id="home.hero.photoCredit"
           values={{
             photographerLink: (
-              <a href="https://unsplash.com/@quinguyen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-                QUI NGUYEN
+              <a href="https://unsplash.com/@louishansel?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+                Louis Hansel
               </a>
             ),
             platformLink: (
