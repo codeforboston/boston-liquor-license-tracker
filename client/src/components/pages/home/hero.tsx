@@ -20,7 +20,7 @@ const Hero = () => {
           id="home.hero.heading"
         />
       </h2>
-      <p>
+      <p className={styles.photoCredit}>
         <FormattedMessage
           id="home.hero.photoCredit"
           values={{

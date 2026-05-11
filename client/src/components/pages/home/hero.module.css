@@ -25,10 +25,13 @@
     padding: 48px 24px;
   }
 .heroInner {
-  max-width: 75%;
+  max-width: 90%;
 }
   .homepageDisplay {
     font-size: 14px;
     max-width: 80%;
   }
+.photoCredit {
+  font-size: 8px;
+}
 }
