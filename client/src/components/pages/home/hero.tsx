@@ -6,12 +6,13 @@ const Hero = () => {
   const intl = useIntl();
   return (
     <div
-      className={`${styles.hero} flex flex-col md:items-start md:justify-start w-full gap-[8px] md:gap-[24px]`}
+      className={`${styles.hero} md:items-start md:justify-start w-full`}
       title={intl.formatMessage({ id: "home.hero.title" })}
     >
+      <div className={`${styles.heroInner} flex flex-col gap-[8px] md:gap-[24px]`}>
       <img
         src={logo}
-        className="w-full max-w-[852px]"
+        className="w-full max-w-[80%] md:max-w-[852px]"
         alt={intl.formatMessage({ id: "header.logo-altText" })}
       />
       <h2 className={`${styles.homepageDisplay} max-w-[840px]`}>
@@ -19,13 +20,13 @@ const Hero = () => {
           id="home.hero.heading"
         />
       </h2>
-      <p>
+      <p className={styles.photoCredit}>
         <FormattedMessage
           id="home.hero.photoCredit"
           values={{
             photographerLink: (
-              <a href="https://unsplash.com/@quinguyen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-                QUI NGUYEN
+              <a href="https://unsplash.com/@louishansel?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+                Louis Hansel
               </a>
             ),
             platformLink: (
@@ -36,6 +37,8 @@ const Hero = () => {
           }}
         />
       </p>
+      </div>
+      <div/> {/* spacer */}
     </div>
   );
 };

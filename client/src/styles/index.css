@@ -43,6 +43,9 @@
   /* Greens */
   --color-green-1: #168500;  /* pure, medium-dark */
 
+  /* Black */
+  --color-black: #000000;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -109,6 +112,9 @@ colors will be named as they are used */
   --color-license-accepted-green: var(--color-green-1);
   --color-license-expired-red: var(--color-red-3);
   --color-license-deferred-yellow: var(--color-yellow-3);
+
+  /* Hero */
+  --color-hero-background: var(--color-black);
 
   /* Map */
   --color-map-active-fill: #F38C8C;

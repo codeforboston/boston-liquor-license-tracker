@@ -1,21 +1,37 @@
 .hero {
+  display: grid;
+    grid-template-columns: 70% 30%;
+    align-items: start;
   background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%),
-    url("../../../assets/images/hero-backdrop.jpg") lightgray
-      0px -613.65px / 100% 408.885% no-repeat;
-
-  background-position: center;
-  background-size: cover;
-  color: var(--color-font-light);
-  padding: 120px 64px;
+    linear-gradient(90deg, var(--color-hero-background) 50%, rgba(0, 0, 0, 0.2) 63.46%,
+        rgba(0, 0, 0, 0.00) 100%),
+    url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") rgb(0, 0, 0) 135% center / 65% auto no-repeat;
+      color: var(--color-font-light);
+      padding: 120px 64px;
 }
-
+/* 🖥️ Medium screens: switch to height-driven image sizing to fill hero vertically */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .hero {
+    background:
+      linear-gradient(90deg, var(--color-hero-background) 50%, rgba(0, 0, 0, 0.2) 80%,
+        rgba(0, 0, 0, 0.00) 100%),
+      url("../../../assets/images/louis-hansel-yLUvnCFI500-unsplash.jpg") rgb(0, 0, 0) right -150px center / auto 100% no-repeat;
+  }
+}
 /* 🌐 Mobile Styling */
 @media (max-width: 768px) {
   .hero {
+    grid-template-columns: 1fr;
     padding: 48px 24px;
   }
+.heroInner {
+  max-width: 90%;
+}
   .homepageDisplay {
     font-size: 14px;
+    max-width: 80%;
   }
+.photoCredit {
+  font-size: 8px;
+}
 }
