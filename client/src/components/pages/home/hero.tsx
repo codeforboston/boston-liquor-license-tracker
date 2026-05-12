@@ -9,7 +9,7 @@ const Hero = () => {
       className={`${styles.hero} md:items-start md:justify-start w-full`}
       title={intl.formatMessage({ id: "home.hero.title" })}
     >
-      <div className={styles.heroInner}>
+      <div className={`${styles.heroInner} flex flex-col gap-[8px] md:gap-[24px]`}>
       <img
         src={logo}
         className="w-full max-w-[80%] md:max-w-[852px]"
