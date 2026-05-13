@@ -4,7 +4,7 @@ import ExtraWorkCard from "./extra-work-card";
 
 const ExtraWork = () => {
   return (
-    <div className="extra-work px-[24px] lg:px-[32px] py-[24px] lg:py-[32px]">
+    <div className="extra-work px-[24px] lg:px-[64px] py-[24px] lg:py-[32px]">
       <h2 className="text-center lg:text-start">
         <FormattedMessage id="home.extraWork.title" />
       </h2>
