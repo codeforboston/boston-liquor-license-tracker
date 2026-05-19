@@ -15,7 +15,7 @@ import licenseData from "../../../data/licenses.json";
 import { FormattedMessage } from "react-intl";
 import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
-import { Selection } from "react-aria-components";
+import { Selection, Button, DialogTrigger, Modal, Dialog } from "react-aria-components";
 
 // Cell formatter function - only formats status column in sub-rows
 const statusCellFormatter = (
@@ -85,7 +85,6 @@ const formatData = (
 };
 
 const RecentApplicationTable = () => {
-  const [isLegendOpen, setIsLegendOpen] = useState(false)
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
     new Set()
   );
@@ -168,13 +167,24 @@ const RecentApplicationTable = () => {
             onSelectionChange={onStatusSelectionChange}
           />
           <div className={tableStyles.legendContainer}>
-            <button 
-              className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}
-              onClick={() => setIsLegendOpen(true)}
-            >
-              <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
-              <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
-            </button>
+            <DialogTrigger>
+              <Button 
+                className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}
+              >
+                <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
+                <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
+              </Button>
+              <Modal>
+                <Dialog aria-label="Status legend">
+                  {({ close }) => (
+                    <>
+                    <p>Dialog content</p>
+                    <Button onPress={close}>Close</Button>
+                    </>
+                  )}
+                </Dialog>
+              </Modal>
+            </DialogTrigger>
           </div>
         </div>
       <CustomTable
@@ -183,13 +193,6 @@ const RecentApplicationTable = () => {
         headers={recentApplicationHeaders}
         cellFormatter={statusCellFormatter}
       />
-      {isLegendOpen && (
-        <div>
-          <button onClick={() => setIsLegendOpen(false)}>
-            Close
-          </button>
-        </div>
-      )}
     </section>
   );
 };
