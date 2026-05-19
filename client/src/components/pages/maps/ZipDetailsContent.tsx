@@ -9,6 +9,7 @@ import {
 import dataError from "../../../assets/icons/data-error.svg";
 import clipboards from "../../../assets/icons/clipboards-question-mark.svg";
 import { FormattedMessage, useIntl } from "react-intl";
+import { Link } from "@tanstack/react-router";
 import Tabs from "@/components/ui/tabs";
 
 type ZipDetailsProps = {
@@ -170,13 +171,13 @@ export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
         <FormattedMessage id="map.zipDetails.zipCodeLicenseInfo" />
       </h3>
       <Tabs tabs={tabs} defaultTab="allLicenses" />
-      {/* TODO: Link to the appropriate section */}
-      <a
+      <Link
+        to="/database"
+        search={{ zip: zipCode, section: "license-availability", expand: true }}
         className="underline text-right m-2"
-        href="/boston-liquor-license-tracker/#/database"
       >
         <FormattedMessage id="map.zipDetails.detailedView" />
-      </a>
+      </Link>
 
       <h3 className="my-4">
         <FormattedMessage id="map.zipDetails.applicationsInZipCode" />
@@ -189,13 +190,13 @@ export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
           {zipcodeLicenseData.applicants.length}
         </span>
       </div>
-      {/* TODO: Link to the appropriate section */}
-      <a
+      <Link
+        to="/database"
+        search={{ zip: zipCode, section: "recent-applications", expand: true }}
         className="underline text-right m-2"
-        href="/boston-liquor-license-tracker/#/database"
       >
         <FormattedMessage id="map.zipDetails.seeAllApplications" />
-      </a>
+      </Link>
     </div>
   );
 };
