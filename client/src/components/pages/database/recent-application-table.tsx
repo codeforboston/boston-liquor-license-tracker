@@ -85,6 +85,7 @@ const formatData = (
 };
 
 const RecentApplicationTable = () => {
+  const [isLegendOpen, setIsLegendOpen] = useState(false)
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
     new Set()
   );
@@ -167,10 +168,13 @@ const RecentApplicationTable = () => {
             onSelectionChange={onStatusSelectionChange}
           />
           <div className={tableStyles.legendContainer}>
-            <div className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}>
+            <button 
+              className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}
+              onClick={() => setIsLegendOpen(true)}
+            >
               <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
               <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
-            </div>
+            </button>
           </div>
         </div>
       <CustomTable
@@ -179,6 +183,13 @@ const RecentApplicationTable = () => {
         headers={recentApplicationHeaders}
         cellFormatter={statusCellFormatter}
       />
+      {isLegendOpen && (
+        <div>
+          <button onClick={() => setIsLegendOpen(false)}>
+            Close
+          </button>
+        </div>
+      )}
     </section>
   );
 };
