@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Database from "@/components/pages/database/database";
 
-export const DATABASE_SECTIONS = [
+const DATABASE_SECTIONS = [
   "license-availability",
   "recent-applications",
 ] as const;
 
-export type DatabaseSection = (typeof DATABASE_SECTIONS)[number];
+type DatabaseSection = (typeof DATABASE_SECTIONS)[number];
 
-export type DatabaseSearch = {
+type DatabaseSearch = {
   zip?: string;
   section?: DatabaseSection;
   expand?: boolean;
