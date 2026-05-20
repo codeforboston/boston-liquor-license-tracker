@@ -17,6 +17,15 @@ import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
 import { Selection, Button, DialogTrigger, Modal, Dialog } from "react-aria-components";
 
+const statusStyles: Record<ApplicationStatusType, string> = {
+  Granted:
+    "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]",
+  Expired:
+    "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]",
+  Deferred:
+    "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]",
+}
+
 // Cell formatter function - only formats status column in sub-rows
 const statusCellFormatter = (
   cell: string,
@@ -26,18 +35,10 @@ const statusCellFormatter = (
 ): CellFormat => {
   // Only format the last column (Status - index 6) in sub-rows
   if (isSubRow && cellIndex === 6) {
-    const statusStyles: Record<string, string> = {
-      Granted:
-        "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]",
-      Expired:
-        "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]",
-      Deferred:
-        "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]",
-    };
-
+    const statusClass = statusStyles[cell as ApplicationStatusType] || "";
     return {
       content: cell,
-      className: statusStyles[cell] || "",
+      className: statusClass,
     };
   }
 
@@ -175,11 +176,22 @@ const RecentApplicationTable = () => {
                 <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
               </Button>
               <Modal>
-                <Dialog aria-label="Status legend">
+                <Dialog aria-labelledby="legend-header">
                   {({ close }) => (
                     <>
-                    <p>Dialog content</p>
-                    <Button onPress={close}>Close</Button>
+                    <div>
+                      <h3 id="legend-header">Recent Application Legend</h3>
+                      <Button onPress={close}>Close</Button>
+                    </div>
+                    <ul>
+                      {[...ApplicationStatusTypes].map((appStatus) => (
+                        <li key={appStatus}>
+                          <div className={statusStyles[appStatus]}>{appStatus}</div>
+                          <FormattedMessage id={`database.recentApplications.${appStatus.toLowerCase()}.description`}/>
+                        </li>
+                      ))
+                      }
+                    </ul>
                     </>
                   )}
                 </Dialog>
