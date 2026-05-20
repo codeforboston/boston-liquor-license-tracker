@@ -22,9 +22,70 @@
   flex-grow: 1;
 }
 
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .tableLegend {
   display: flex;
   align-items: center;
+}
+.tableLegendModal {
+  padding: 24px 32px;
+  width: 668px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #FDFDFD;
+  box-shadow: 8px 8px 16px 0 rgba(0, 0, 0, .5);
+}
+
+.legendHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.legendList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legendItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 96px;
+}
+
+.legendItemBadge {
+  width: 96px;
+  text-align: center;
+}
+
+.legendItemDescription {
+  max-width: 540px;
+}
+
+.legendCloseButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid var(--color-background-dark, #ccc);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .pagination {

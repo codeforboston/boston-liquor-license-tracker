@@ -175,19 +175,21 @@ const RecentApplicationTable = () => {
                 <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
                 <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
               </Button>
-              <Modal>
-                <Dialog aria-labelledby="legend-header">
+              <Modal className={tableStyles.modalOverlay}>
+                <Dialog aria-labelledby="legend-header" className={tableStyles.tableLegendModal}>
                   {({ close }) => (
                     <>
-                    <div>
-                      <h3 id="legend-header">Recent Application Legend</h3>
-                      <Button onPress={close}>Close</Button>
+                    <div className={tableStyles.legendHeader}>
+                      <h2 id="legend-header">Recent Application Legend</h2>
+                      <Button onPress={close} className={tableStyles.legendCloseButton}>✕</Button>
                     </div>
-                    <ul>
+                    <ul className={tableStyles.legendList}>
                       {[...ApplicationStatusTypes].map((appStatus) => (
-                        <li key={appStatus}>
-                          <div className={statusStyles[appStatus]}>{appStatus}</div>
-                          <FormattedMessage id={`database.recentApplications.${appStatus.toLowerCase()}.description`}/>
+                        <li key={appStatus} className={tableStyles.legendItem}>
+                          <div className={`${statusStyles[appStatus]} ${tableStyles.legendItemBadge}`}>{appStatus}</div>
+                          <p className={tableStyles.legendItemDescription}>
+                            <FormattedMessage id={`database.recentApplications.${appStatus.toLowerCase()}.description`}/>
+                          </p>
                         </li>
                       ))
                       }
