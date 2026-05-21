@@ -84,10 +84,11 @@
   width: 32px;
   height: 32px;
   border-radius: 4px;
-  border: 1px solid var(--color-background-dark, #ccc);
+  border: 1px solid var(--color-border-gray);
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
+  font-weight: 700;
 }
 
 .pagination {
