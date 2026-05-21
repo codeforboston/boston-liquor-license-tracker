@@ -15,7 +15,7 @@ import licenseData from "../../../data/licenses.json";
 import { FormattedMessage } from "react-intl";
 import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
-import { Selection, Button, DialogTrigger, Modal, Dialog } from "react-aria-components";
+import { Selection, Button, DialogTrigger, ModalOverlay, Modal, Dialog } from "react-aria-components";
 
 const statusStyles: Record<ApplicationStatusType, string> = {
   Granted:
@@ -175,8 +175,9 @@ const RecentApplicationTable = () => {
                 <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
                 <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
               </Button>
-              <Modal className={tableStyles.modalOverlay}>
-                <Dialog aria-labelledby="legend-header" className={tableStyles.tableLegendModal}>
+              <ModalOverlay isDismissable className={tableStyles.modalOverlay}>
+              <Modal className={tableStyles.tableLegendModal}>
+                <Dialog aria-labelledby="legend-header">
                   {({ close }) => (
                     <>
                     <div className={tableStyles.legendHeader}>
@@ -198,6 +199,7 @@ const RecentApplicationTable = () => {
                   )}
                 </Dialog>
               </Modal>
+              </ModalOverlay>
             </DialogTrigger>
           </div>
         </div>

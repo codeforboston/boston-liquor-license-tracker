@@ -30,13 +30,14 @@
   justify-content: center;
   align-items: center;
 }
+
 .tableLegend {
   display: flex;
   align-items: center;
 }
 .tableLegendModal {
   padding: 24px 32px;
-  width: 668px;
+  width: min(668px, 90vw);
   flex-shrink: 0;
   border-radius: 16px;
   background: #FDFDFD;
@@ -73,6 +74,7 @@
 
 .legendItemDescription {
   max-width: 540px;
+  margin: 0;
 }
 
 .legendCloseButton {
@@ -101,5 +103,25 @@
 @media (max-width: 768px) {
   .licenseAvailabilityTable {
     padding: 24px;
+  }
+
+  .modalOverlay {
+    align-items: flex-end;
+  }
+
+  .tableLegendModal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    padding: 24px 20px 32px;
+    box-shadow: 0 -4px 24px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .legendItem {
+    padding-right: 0;
+  }
+
+  .legendItemDescription {
+    max-width: 100%;
   }
 }
