@@ -21,10 +21,11 @@ export interface CustomTableProps {
   headers: string[]
   tableData: RowWithSubRows[]
   cellFormatter?: (cell: string, rowIndex: number, cellIndex: number, isSubRow: boolean) => CellFormat
+  defaultSubRowsExpanded?: boolean
 }
 
-const StyledRow = ({rowData, subRowData, cellFormatter}: RowWithSubRows & { cellFormatter?: CustomTableProps['cellFormatter'] }) => {
-  const [subRowsVisible, setSubRowsVisible] = useState<boolean>(false)
+const StyledRow = ({rowData, subRowData, cellFormatter, defaultSubRowsExpanded}: RowWithSubRows & { cellFormatter?: CustomTableProps['cellFormatter']; defaultSubRowsExpanded?: boolean }) => {
+  const [subRowsVisible, setSubRowsVisible] = useState(defaultSubRowsExpanded ?? false)
 
   return (
     <>
@@ -81,7 +82,7 @@ const StyledSubRow = ({subRowData, cellFormatter}: SubRowProps & { cellFormatter
   )
 }
 
-const CustomTable = ({ariaLabel, tableData, headers, cellFormatter}: CustomTableProps) => {
+const CustomTable = ({ariaLabel, tableData, headers, cellFormatter, defaultSubRowsExpanded}: CustomTableProps) => {
   return (
     <Table aria-label={ariaLabel} className={styles.customTable}>
       <TableHeader className={styles.tableHeader}>
@@ -102,6 +103,7 @@ const CustomTable = ({ariaLabel, tableData, headers, cellFormatter}: CustomTable
             rowData={row.rowData} 
             subRowData={row.subRowData}
             cellFormatter={cellFormatter}
+            defaultSubRowsExpanded={defaultSubRowsExpanded}
           />
         ))}
       </TableBody>

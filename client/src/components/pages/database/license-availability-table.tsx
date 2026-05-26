@@ -2,11 +2,13 @@ import styles from "./license-availability-table.module.css";
 import licenseData from "../../../data/licenses.json";
 import CustomTable from "@components/ui/table";
 import { useState, useEffect, useCallback } from "react";
+import { useSearch } from "@tanstack/react-router";
 import {
   validateBusinessLicense,
   getAvailableLicensesByZipcode,
   BusinessLicense,
   EligibleBostonZipcode,
+  isEligibleBostonZipCode,
 } from "@/services/data-interface/data-interface";
 import {
   MAX_ALL_ALC_PER_ZIP,
@@ -149,6 +151,11 @@ const licenseTypeOptions = [
 ];
 
 const LicenseAvailabilityTable = () => {
+  const { zip, section, expand } = useSearch({ from: "/database" });
+  const isDeepLinked = section === "license-availability";
+  const initialZip =
+    isDeepLinked && zip && isEligibleBostonZipCode(zip) ? zip : undefined;
+
   const [data, setData] = useState<BusinessLicense[]>([]);
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
     new Set()
@@ -170,6 +177,22 @@ const LicenseAvailabilityTable = () => {
 
     setData(tmp);
   }, []);
+
+  useEffect(() => {
+    if (!isDeepLinked) return;
+
+    const scrollToSection = () => {
+      document
+        .getElementById("license-availability")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    const frameId = requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToSection);
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [isDeepLinked]);
 
   const availabilityHeaders = [
     "Zipcode",
@@ -205,12 +228,18 @@ const LicenseAvailabilityTable = () => {
   }
 
   return (
-    <section className={styles.licenseAvailabilityTable}>
+    <section
+      id="license-availability"
+      className={styles.licenseAvailabilityTable}
+    >
       <h4 className={styles.filterDescriptor}>
         <FormattedMessage id="database.availableLicenses.filterBy"/>
       </h4>
       <div className={`${styles.filters} gap-[16px]`}>
-        <ZipCodeFilter setZipcodeList={setZipcodeList} />
+        <ZipCodeFilter
+          setZipcodeList={setZipcodeList}
+          initialZip={initialZip}
+        />
         <FilterDropdown
           titleId="database.availableLicenses.licenseType"
           label="License Type dropdown selection"
@@ -223,6 +252,7 @@ const LicenseAvailabilityTable = () => {
         ariaLabel="Licenses by Zipcode"
         tableData={formattedData}
         headers={availabilityHeaders}
+        defaultSubRowsExpanded={isDeepLinked && expand}
       />
     </section>
   );

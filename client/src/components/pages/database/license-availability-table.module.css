@@ -3,6 +3,8 @@
   padding: 2rem 4rem;
   overflow-x: scroll;
   border-radius: 4px;
+  /* Offset sticky site header when scrolling into view via deep link */
+  scroll-margin-top: 6rem;
 }
 
 .filters {
@@ -17,5 +19,6 @@
 @media (max-width: 768px) {
   .licenseAvailabilityTable {
     padding: 24px;
+    scroll-margin-top: 3.5rem;
   }
 }

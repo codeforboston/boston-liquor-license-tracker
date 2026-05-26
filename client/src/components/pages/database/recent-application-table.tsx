@@ -11,8 +11,10 @@ import {
 } from "../../../services/data-interface/data-interface";
 import { RowWithSubRows } from "@components/ui/table";
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { useSearch } from "@tanstack/react-router";
 import licenseData from "../../../data/licenses.json";
 import { FormattedMessage } from "react-intl";
+import { isEligibleBostonZipCode } from "../../../services/data-interface/data-interface";
 import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
 import { Selection } from "react-aria-components";
@@ -85,6 +87,11 @@ const formatData = (
 };
 
 const RecentApplicationTable = () => {
+  const { zip, section, expand } = useSearch({ from: "/database" });
+  const isDeepLinked = section === "recent-applications";
+  const initialZip =
+    isDeepLinked && zip && isEligibleBostonZipCode(zip) ? zip : undefined;
+
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
     new Set()
   );
@@ -101,6 +108,23 @@ const RecentApplicationTable = () => {
 
     setData(tmp);
   }, []);
+
+  useEffect(() => {
+    if (!isDeepLinked) return;
+
+    const scrollToSection = () => {
+      document
+        .getElementById("recent-applications")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    // Defer until after layout from navigation and filter init
+    const frameId = requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToSection);
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [isDeepLinked]);
   const recentApplicationHeaders = [
     "Zipcode/Business Name",
     "Doing Business As",
@@ -153,12 +177,18 @@ const RecentApplicationTable = () => {
   }
 
   return (
-    <section className={tableStyles.licenseAvailabilityTable}>
+    <section
+      id="recent-applications"
+      className={tableStyles.licenseAvailabilityTable}
+    >
         <h2>
           <FormattedMessage id="database.recentApplications.title" />
         </h2>
         <div className={`${tableStyles.filters} gap-[16px]`}>
-          <ZipCodeFilter setZipcodeList={setZipcodeList} />
+          <ZipCodeFilter
+            setZipcodeList={setZipcodeList}
+            initialZip={initialZip}
+          />
           <FilterDropdown
             titleId="database.recentApplications.applicationStatus"
             label="Application Status dropdown selection"
@@ -178,6 +208,7 @@ const RecentApplicationTable = () => {
         tableData={formattedData}
         headers={recentApplicationHeaders}
         cellFormatter={statusCellFormatter}
+        defaultSubRowsExpanded={isDeepLinked && expand}
       />
     </section>
   );

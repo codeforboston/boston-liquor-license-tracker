@@ -9,16 +9,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface ZipCodeFilterProps {
   setZipcodeList: (zipCodes: Set<EligibleBostonZipcode>) => void
+  initialZip?: EligibleBostonZipcode
 }
 
 
-const ZipCodeFilter = ({ setZipcodeList }: ZipCodeFilterProps) => {
+const ZipCodeFilter = ({ setZipcodeList, initialZip }: ZipCodeFilterProps) => {
   const [selectedDropdownOptions, setSelectedDropdownOptions] =
     useState<Selection>(new Set());
-
-    useEffect(() => {
-      setZipcodeList(eligibleBostonZipcodes);
-    }, [setZipcodeList]);
 
   const dropdownZipOptions = useMemo(
     () =>
@@ -29,6 +26,18 @@ const ZipCodeFilter = ({ setZipcodeList }: ZipCodeFilterProps) => {
     []
   );
 
+  useEffect(() => {
+    if (initialZip) {
+      const option = dropdownZipOptions.find((o) => o.name === initialZip);
+      if (option) {
+        setSelectedDropdownOptions(new Set([option.id]));
+        setZipcodeList(new Set([initialZip]));
+      }
+    } else {
+      setZipcodeList(eligibleBostonZipcodes);
+    }
+  }, [initialZip, setZipcodeList, dropdownZipOptions]);
+
   const onZipSelectionChange = useCallback(
     (keys: Selection) => {
       setSelectedDropdownOptions(new Set(keys as Set<string>));
@@ -37,9 +46,8 @@ const ZipCodeFilter = ({ setZipcodeList }: ZipCodeFilterProps) => {
         (keys as Set<string>).has(option.id.toString())
       );
 
-      // Get zipcodes from selected options
       const zipcodes = selectedOptions.map(
-        (option) => option.name as EligibleBostonZipcode // assuming option.name is the zipcode
+        (option) => option.name as EligibleBostonZipcode
       );
 
       if (zipcodes.length) {
