@@ -24,9 +24,73 @@
   flex-grow: 1;
 }
 
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .tableLegend {
   display: flex;
   align-items: center;
+}
+.tableLegendModal {
+  padding: 24px 32px;
+  width: min(668px, 90vw);
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: var(--color-white-1);
+  box-shadow: 8px 8px 16px 0 rgba(0, 0, 0, .5);
+}
+
+.legendHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.legendList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legendItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 96px;
+}
+
+.legendItemBadge {
+  width: 96px;
+  text-align: center;
+}
+
+.legendItemDescription {
+  max-width: 540px;
+  margin: 0;
+}
+
+.legendCloseButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-gray);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-weight: 700;
 }
 
 .pagination {
@@ -43,5 +107,25 @@
   .licenseAvailabilityTable {
     padding: 24px;
     scroll-margin-top: 3.5rem;
+  }
+
+  .modalOverlay {
+    align-items: flex-end;
+  }
+
+  .tableLegendModal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    padding: 24px 20px 32px;
+    box-shadow: 0 -4px 24px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .legendItem {
+    padding-right: 0;
+  }
+
+  .legendItemDescription {
+    max-width: 100%;
   }
 }

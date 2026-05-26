@@ -17,7 +17,16 @@ import { FormattedMessage } from "react-intl";
 import { isEligibleBostonZipCode } from "../../../services/data-interface/data-interface";
 import FilterDropdown from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
-import { Selection } from "react-aria-components";
+import { Selection, Button, DialogTrigger, ModalOverlay, Modal, Dialog } from "react-aria-components";
+
+const statusStyles: Record<ApplicationStatusType, string> = {
+  Granted:
+    "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]",
+  Expired:
+    "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]",
+  Deferred:
+    "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]",
+}
 
 // Cell formatter function - only formats status column in sub-rows
 const statusCellFormatter = (
@@ -28,18 +37,10 @@ const statusCellFormatter = (
 ): CellFormat => {
   // Only format the last column (Status - index 6) in sub-rows
   if (isSubRow && cellIndex === 6) {
-    const statusStyles: Record<string, string> = {
-      Granted:
-        "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]",
-      Expired:
-        "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]",
-      Deferred:
-        "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]",
-    };
-
+    const statusClass = statusStyles[cell as ApplicationStatusType] || "";
     return {
       content: cell,
-      className: statusStyles[cell] || "",
+      className: statusClass,
     };
   }
 
@@ -197,10 +198,39 @@ const RecentApplicationTable = () => {
             onSelectionChange={onStatusSelectionChange}
           />
           <div className={tableStyles.legendContainer}>
-            <div className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}>
-              <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
-              <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
-            </div>
+            <DialogTrigger>
+              <Button 
+                className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}
+              >
+                <div><FormattedMessage id="database.recentApplications.tableLegend"/></div>
+                <div className={`${tableStyles.infoIcon} w-[24px] h-[24px]`}></div>
+              </Button>
+              <ModalOverlay isDismissable className={tableStyles.modalOverlay}>
+              <Modal className={tableStyles.tableLegendModal}>
+                <Dialog aria-labelledby="legend-header">
+                  {({ close }) => (
+                    <>
+                    <div className={tableStyles.legendHeader}>
+                      <h2 id="legend-header">Recent Application Legend</h2>
+                      <Button onPress={close} className={tableStyles.legendCloseButton}>✕</Button>
+                    </div>
+                    <ul className={tableStyles.legendList}>
+                      {[...ApplicationStatusTypes].map((appStatus) => (
+                        <li key={appStatus} className={tableStyles.legendItem}>
+                          <div className={`${statusStyles[appStatus]} ${tableStyles.legendItemBadge}`}>{appStatus}</div>
+                          <p className={tableStyles.legendItemDescription}>
+                            <FormattedMessage id={`database.recentApplications.${appStatus.toLowerCase()}.description`}/>
+                          </p>
+                        </li>
+                      ))
+                      }
+                    </ul>
+                    </>
+                  )}
+                </Dialog>
+              </Modal>
+              </ModalOverlay>
+            </DialogTrigger>
           </div>
         </div>
       <CustomTable

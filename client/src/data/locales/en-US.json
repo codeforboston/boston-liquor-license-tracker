@@ -72,6 +72,9 @@
   "database.recentApplications.granted": "Granted",
   "database.recentApplications.expired": "Expired",
   "database.recentApplications.deferred": "Deferred",
+  "database.recentApplications.granted.description": "Licenses that have been granted by the City of Boston from an application. These licenses can be used by their operators.",
+  "database.recentApplications.expired.description": "Applications that have passed the amount of time for the City of Boston to consider them. Applicants will have to reapply.",
+  "database.recentApplications.deferred.description": "License Applications that have yet to be considered by the Licensing Board. (This applies to applications before the next meeting)",
   "database.recentApplications.totalApplicants": "Total Applicants:",
 
   "home.aboutUs.title": "Who We Are:",
