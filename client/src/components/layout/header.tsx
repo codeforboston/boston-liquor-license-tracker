@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${styles.siteHeader} bg-button-default-dark shadow-md sticky top-0 left-0 w-full z-50`}
+      className={`${styles.siteHeader} bg-button-default-dark sticky top-0 left-0 w-full z-50`}
     >
       <section className="flex">
         <Link
