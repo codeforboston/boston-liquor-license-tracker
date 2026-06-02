@@ -96,7 +96,7 @@ const Footer = () => {
             </li>
           </ul>
         </section>
-      </nav>       
+      </nav>
 
       <section className={styles.footerBottom}>
         <p className={styles.footerNote}>
