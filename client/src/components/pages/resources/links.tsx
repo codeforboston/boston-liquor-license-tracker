@@ -1,53 +1,76 @@
 import { FormattedMessage } from "react-intl";
+import styles from "./resources.module.css";
+
+type ResourceLinkItem = {
+  titleId: string;
+  descriptionId: string;
+  noteId?: string;
+  buttonId: string;
+  href: string;
+};
+
+const applicationLinks: ResourceLinkItem[] = [
+  {
+    titleId: "resources.links.alcoholLicensePetitionFormTitle",
+    descriptionId: "resources.links.alcoholLicensePetitionFormDescription",
+    noteId: "resources.links.alcoholLicensePetitionFormNote",
+    buttonId: "resources.links.alcoholLicensePetitionFormButton",
+    href: "https://www.boston.gov/departments/licensing-board/apply-liquor-license",
+  },
+  {
+    titleId: "resources.links.abccApplicationTitle",
+    descriptionId: "resources.links.abccApplicationDescription",
+    buttonId: "resources.links.abccApplicationButton",
+    href: "https://www.mass.gov/orgs/alcoholic-beverages-control-commission",
+  },
+];
 
 const Links = () => {
   return (
-    <div>
-      <div>
-        <h2>
+    <section
+      aria-labelledby="application-links-heading"
+      className={styles.linksSection}
+    >
+      <header className={styles.sectionHeader}>
+        <h2 id="application-links-heading" className={styles.sectionTitle}>
           <FormattedMessage id="resources.links.title" />
         </h2>
-        <p>
+        <p className={styles.sectionDescription}>
           <FormattedMessage id="resources.links.description" />
         </p>
-      </div>
+      </header>
 
-      {/* Alcohol License Petition Form */}
-      <div>
-        <h3>
-          <FormattedMessage id="resources.links.alcoholLicensePetitionFormTitle" />
-        </h3>
+      <ol className={styles.linkList}>
+        {applicationLinks.map((linkItem) => (
+          <li key={linkItem.titleId} className={styles.linkListItem}>
+            <article className={styles.linkItem}>
+              <h3 className={styles.linkTitle}>
+                <FormattedMessage id={linkItem.titleId} />
+              </h3>
 
-        <p>
-          <FormattedMessage id="resources.links.alcoholLicensePetitionFormDescription" />
-        </p>
+              <p className={styles.linkDescription}>
+                <FormattedMessage id={linkItem.descriptionId} />
+              </p>
 
-        <p>
-          <FormattedMessage id="resources.links.alcoholLicensePetitionFormNote" />
-        </p>
+              {linkItem.noteId ? (
+                <p className={styles.linkNote}>
+                  <FormattedMessage id={linkItem.noteId} />
+                </p>
+              ) : null}
 
-        <button
-          onClick={() =>
-            alert("Redirecting to the Alcohol License Petition Form...")
-          }
-        >
-          <FormattedMessage id="resources.links.alcoholLicensePetitionFormButton" />
-        </button>
-      </div>
-
-      {/* ABCC Application */}
-      <div>
-        <h3>
-          <FormattedMessage id="resources.links.abccApplicationTitle" />
-        </h3>
-        <p>
-          <FormattedMessage id="resources.links.abccApplicationDescription" />
-        </p>
-        <button onClick={() => alert("Redirecting to the ABCC Application...")}>
-          <FormattedMessage id="resources.links.abccApplicationButton" />
-        </button>
-      </div>
-    </div>
+              <a
+                className={styles.resourceButton}
+                href={linkItem.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FormattedMessage id={linkItem.buttonId} />
+              </a>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 };
 

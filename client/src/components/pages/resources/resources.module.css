@@ -1,0 +1,104 @@
+.resourcesPage {
+  background-color: var(--color-ui-gray);
+  padding: 32px 64px 64px;
+}
+
+.pageHeader {
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+
+.pageTitle {
+  margin: 0 0 12px;
+}
+
+.pageDescription {
+  margin: 0;
+  max-width: 720px;
+}
+
+.linksSection {
+  max-width: 760px;
+}
+
+.sectionHeader {
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px;
+}
+
+.sectionDescription {
+  margin: 0;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.linkListItem {
+  margin: 0;
+}
+
+.linkItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.linkTitle {
+  margin: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.linkDescription {
+  margin: 0;
+}
+
+.linkNote {
+  margin: 0;
+  font-style: italic;
+}
+
+.resourceButton {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 8px;
+  border-radius: 4px;
+  background-color: var(--color-background-dark);
+  color: var(--color-font-light);
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.resourceButton:hover {
+  background-color: var(--color-button-hovered-dark);
+  color: var(--color-font-links-hover);
+}
+
+.resourceButton:active {
+  background-color: var(--color-button-active-dark);
+  color: var(--color-font-links-active);
+}
+
+@media (max-width: 768px) {
+  .resourcesPage {
+    padding: 24px;
+  }
+
+  .pageHeader {
+    margin-bottom: 32px;
+  }
+
+  .linkList {
+    gap: 24px;
+  }
+}
