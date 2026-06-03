@@ -1,3 +1,4 @@
+import Links from "./links";
 import "./resources.module.css";
 import { useIntl } from "react-intl";
 
@@ -9,6 +10,7 @@ const Resources = () => {
       <title>{title}</title>
       <h1>Resources</h1>
       <p>This is the Resources page.</p>
+      <Links />
     </main>
   );
 };
