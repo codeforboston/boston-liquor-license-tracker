@@ -1390,5 +1390,37 @@
         "file_name": "5-7-26%20Minutes_0.pdf",
         "granted_date": "2026-05-06",
         "granted_file": "5-7-26%20Minutes_0.pdf"
+    },
+    {
+        "index": 88,
+        "entity_number": "39",
+        "business_name": "Kolo Dorchester Inc",
+        "dba_name": "Yeanie's Burger & Social",
+        "address": "39 Savin Hill Ave, Dorchester, MA 02125",
+        "zipcode": "02125",
+        "license_number": "LB-626534",
+        "status": "Granted",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-06-03",
+        "application_expiration_date": null,
+        "file_name": "Voting%20Minutes%206-4-26.docx.pdf",
+        "granted_date": "2026-06-03",
+        "granted_file": "Voting%20Minutes%206-4-26.docx.pdf"
+    },
+    {
+        "index": 89,
+        "entity_number": "42",
+        "business_name": "The Draft Society, LLC",
+        "dba_name": null,
+        "address": "104-106 Meridian St, East Boston, MA 02128",
+        "zipcode": "02128",
+        "license_number": "LB-626539",
+        "status": "Deferred",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-06-03",
+        "application_expiration_date": "2028-06-03",
+        "file_name": "Voting%20Minutes%206-4-26.docx.pdf",
+        "granted_date": null,
+        "granted_file": null
     }
 ]
