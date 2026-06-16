@@ -10,17 +10,17 @@ const Resources = () => {
     <main className={`${styles.resources} flex flex-col gap-[24px]`}>
       <title>{title}</title>
       <div className="flex flex-col gap-[8px]">
-        <h1>
+        <h2>
           <FormattedMessage id="resources.title" />
-        </h1>
+        </h2>
         <p>
           <FormattedMessage id="resources.text"/>
         </p>
       </div>
       <div className="flex flex-col gap-[8px]">
-        <h2>
+        <h3>
           <FormattedMessage id="resources.cityGuides.title" />
-        </h2>
+        </h3>
         <p>
           <FormattedMessage id="resources.cityGuides.text"/>
         </p>
@@ -38,9 +38,9 @@ const Resources = () => {
         />
       </div>
       <div className="flex flex-col gap-[8px]">
-        <h2>
+        <h3>
           <FormattedMessage id="resources.offsiteGuide.title" />
-        </h2>
+        </h3>
         <p>
           <FormattedMessage id="resources.offsiteGuide.text"/>
         </p>
@@ -53,9 +53,9 @@ const Resources = () => {
         />
       </div>
       <div className="flex flex-col gap-[8px]">
-        <h2>
+        <h3>
           <FormattedMessage id="resources.toast.title" />
-        </h2>
+        </h3>
         <p>
           <FormattedMessage id="resources.toast.text"/>
         </p>
