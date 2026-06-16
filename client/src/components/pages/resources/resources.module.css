@@ -1,119 +1,58 @@
-.resourcesPage {
-  background-color: var(--color-ui-gray);
-  padding: 32px 64px 64px;
-}
+.resources {
+  background-color: var(--color-background-light);
+  padding: 2rem 4rem;
 
-.pageHeader {
-  max-width: 760px;
-  margin-bottom: 48px;
-}
-
-.pageTitle {
-  margin: 0 0 12px;
-}
-
-.pageDescription {
-  margin: 0;
-  max-width: 720px;
-}
-
-.linksSection {
-  max-width: 860px;
-}
-
-.sectionHeader {
-  margin-bottom: 28px;
-}
-
-.sectionTitle {
-  margin: 0 0 10px;
-}
-
-.sectionDescription {
-  margin: 0;
-  max-width: 820px;
-}
-
-.linkList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.linkListItem {
-  margin: 0;
-}
-
-.linkItem {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.linkTitle {
-  margin: 0;
-}
-
-.linkDescription {
-  margin: 0;
-  max-width: 820px;
-}
-
-.linkNote {
-  margin: 4px 0 0;
-  max-width: 820px;
-  font-style: italic;
+  p {
+    max-width: 840px;
+  }
 }
 
 .resourceButton {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  width: fit-content;
-  margin-top: 10px;
-  border-radius: 4px;
-  background-color: var(--color-background-dark);
-  color: var(--color-font-light);
-  padding: 10px 16px;
-  text-decoration: none;
-  line-height: 1;
-}
+  text-align: center;
+  min-height: 34px;
+  white-space: nowrap;
+  padding: 8px 24px;
+  border-radius: 8px;
+  background-color: var(--color-button-default-dark);
+  color: var(--color-button-default-light);
+  font-size: 12px;
+  font-weight: 500;
+  gap: 12px;
+  cursor: pointer;
 
-.buttonIcon {
-  width: 14px;
-  height: 14px;
-}
-
-.resourceButton:hover {
-  background-color: var(--color-button-hovered-dark);
-  color: var(--color-font-links-hover);
-}
-
-.resourceButton:active {
-  background-color: var(--color-button-active-dark);
-  color: var(--color-font-links-active);
-}
-
-@media (max-width: 768px) {
-  .resourcesPage {
-    padding: 24px;
+  svg {
+    width: 12px;
+    height: 12px;
   }
 
-  .pageHeader {
-    margin-bottom: 32px;
+  &:hover {
+    background-color: var(--color-button-hovered-dark);
+    color: var(--color-button-hovered-light);
   }
 
-  .linkList {
-    gap: 24px;
+  &:active {
+    background-color: var(--color-button-active-dark);
+    color: var(--color-button-active-light);
   }
+}
 
-  .linksSection,
-  .sectionDescription,
-  .linkDescription,
-  .linkNote {
-    max-width: none;
+/* 📱 Desktop Styling */
+@media (min-width: 768px) {
+  .resourceButton {
+    width: fit-content;
+    min-width: 280px;
+    max-height: 36px;
+    padding: 4px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
