@@ -1,4 +1,5 @@
 import { FormattedMessage } from "react-intl";
+import ResourceButton from "./resource-button";
 import styles from "./resources.module.css";
 
 type ResourceLinkItem = {
@@ -58,14 +59,11 @@ const Links = () => {
                 </p>
               ) : null}
 
-              <a
-                className={styles.resourceButton}
+              <ResourceButton
+                labelId={linkItem.buttonId}
                 href={linkItem.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FormattedMessage id={linkItem.buttonId} />
-              </a>
+                icon="link"
+              />
             </article>
           </li>
         ))}
