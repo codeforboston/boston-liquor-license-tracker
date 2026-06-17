@@ -1,6 +1,5 @@
 import { FormattedMessage } from "react-intl";
 import ResourceButton from "./resource-button";
-import styles from "./resources.module.css";
 
 type ResourceLinkItem = {
   titleId: string;
@@ -30,31 +29,31 @@ const Links = () => {
   return (
     <section
       aria-labelledby="application-links-heading"
-      className={styles.linksSection}
+      className="flex flex-col gap-[24px]"
     >
-      <header className={styles.sectionHeader}>
-        <h2 id="application-links-heading" className={styles.sectionTitle}>
+      <header className="flex flex-col gap-[8px]">
+        <h2 id="application-links-heading">
           <FormattedMessage id="resources.links.title" />
         </h2>
-        <p className={styles.sectionDescription}>
+        <p>
           <FormattedMessage id="resources.links.description" />
         </p>
       </header>
 
-      <ol className={styles.linkList}>
+      <ol className="flex flex-col gap-[24px]">
         {applicationLinks.map((linkItem) => (
-          <li key={linkItem.titleId} className={styles.linkListItem}>
-            <article className={styles.linkItem}>
-              <h3 className={styles.linkTitle}>
+          <li key={linkItem.titleId} className="flex flex-col gap-[24px]">
+            <article className="flex flex-col gap-[8px]">
+              <h3>
                 <FormattedMessage id={linkItem.titleId} />
               </h3>
 
-              <p className={styles.linkDescription}>
+              <p>
                 <FormattedMessage id={linkItem.descriptionId} />
               </p>
 
               {linkItem.noteId ? (
-                <p className={styles.linkNote}>
+                <p>
                   <FormattedMessage id={linkItem.noteId} />
                 </p>
               ) : null}
