@@ -2,10 +2,12 @@ import ResourceButton from "./resource-button";
 import styles from "./resources.module.css";
 import { useIntl } from "react-intl";
 import { FormattedMessage } from "react-intl";
+import Links from "./links";
 
 const Resources = () => {
   const intl = useIntl();
   const title = `${intl.formatMessage({ id: "resources.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
+
   return (
     <main className={`${styles.resources} flex flex-col gap-[24px]`}>
       <title>{title}</title>
@@ -14,7 +16,7 @@ const Resources = () => {
           <FormattedMessage id="resources.title" />
         </h2>
         <p>
-          <FormattedMessage id="resources.text"/>
+          <FormattedMessage id="resources.text" />
         </p>
       </div>
       <div className="flex flex-col gap-[8px]">
@@ -22,7 +24,7 @@ const Resources = () => {
           <FormattedMessage id="resources.cityGuides.title" />
         </h3>
         <p>
-          <FormattedMessage id="resources.cityGuides.text"/>
+          <FormattedMessage id="resources.cityGuides.text" />
         </p>
       </div>
       <div className="flex flex-col gap-[16px]">
@@ -42,7 +44,7 @@ const Resources = () => {
           <FormattedMessage id="resources.offsiteGuide.title" />
         </h3>
         <p>
-          <FormattedMessage id="resources.offsiteGuide.text"/>
+          <FormattedMessage id="resources.offsiteGuide.text" />
         </p>
       </div>
       <div className="flex flex-col gap-[16px]">
@@ -57,7 +59,7 @@ const Resources = () => {
           <FormattedMessage id="resources.toast.title" />
         </h3>
         <p>
-          <FormattedMessage id="resources.toast.text"/>
+          <FormattedMessage id="resources.toast.text" />
         </p>
       </div>
       <div className="flex flex-col gap-[16px]">
@@ -67,6 +69,7 @@ const Resources = () => {
           icon="link"
         />
       </div>
+      <Links />
     </main>
   );
 };
