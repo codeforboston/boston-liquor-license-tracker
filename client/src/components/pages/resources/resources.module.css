@@ -1,61 +1,3 @@
-.resources {
-  background-color: var(--color-background-light);
-  padding: 2rem 4rem;
-
-  p {
-    max-width: 840px;
-  }
-}
-
-.resourceButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 34px;
-  white-space: nowrap;
-  padding: 8px 24px;
-  border-radius: 8px;
-  background-color: var(--color-button-default-dark);
-  color: var(--color-button-default-light);
-  font-size: 12px;
-  font-weight: 500;
-  gap: 12px;
-  cursor: pointer;
-
-  svg {
-    width: 12px;
-    height: 12px;
-  }
-
-  &:hover {
-    background-color: var(--color-button-hovered-dark);
-    color: var(--color-button-hovered-light);
-  }
-
-  &:active {
-    background-color: var(--color-button-active-dark);
-    color: var(--color-button-active-light);
-  }
-}
-
-/* 📱 Desktop Styling */
-@media (min-width: 768px) {
-  .resourceButton {
-    width: fit-content;
-    min-width: 280px;
-    max-height: 36px;
-    padding: 4px 24px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-}
 .agencyCard {
   display: flex;
   flex-direction: row;
@@ -72,4 +14,66 @@
   border: 1px solid var(--color-border-gray);
   padding: 4px;
   background-color: var(--color-white-1);
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordionSummary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  max-width: 350px;
+  padding: 8px 24px 8px 0;
+  border-bottom: 2px solid var(--color-gray-light-4);
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+}
+
+.accordionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.accordionChevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .accordionSummary .accordionChevron {
+  transform: rotate(90deg);
+}
+
+.accordionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.definitionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.definitionTerm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.definitionLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-font-dark);
+}
+
+.definitionLink svg {
+  width: 16px;
+  height: 16px;
 }

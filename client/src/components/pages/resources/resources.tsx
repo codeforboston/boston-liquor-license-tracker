@@ -6,6 +6,8 @@ import onsLogo from "@/assets/images/ons-logo.svg";
 import styles from "./resources.module.css";
 import { useIntl } from "react-intl";
 import { FormattedMessage } from "react-intl";
+import Accordion from "./accordion";
+import DefinitionItem from "./definition-item";
 
 const Resources = () => {
   const intl = useIntl();
@@ -20,6 +22,30 @@ const Resources = () => {
         <p>
           <FormattedMessage id="resources.text"/>
         </p>
+      </div>
+      <div className="flex flex-col gap-[8px]">
+        <h3>
+          <FormattedMessage id="resources.basicResources.title" />
+        </h3>
+        <p>
+          <FormattedMessage id="resources.basicResources.text" />
+        </p>
+        <Accordion titleId="resources.basicResources.glossary.title">
+          <DefinitionItem termId="resources.basicResources.glossary.restricted.term" descriptionId="resources.basicResources.glossary.restricted.text" />
+          <DefinitionItem termId="resources.basicResources.glossary.transferable.term" descriptionId="resources.basicResources.glossary.transferable.text" />
+          <DefinitionItem termId="resources.basicResources.glossary.onPremise.term" descriptionId="resources.basicResources.glossary.onPremise.text" />
+          <DefinitionItem termId="resources.basicResources.glossary.offPremise.term" descriptionId="resources.basicResources.glossary.offPremise.text" />
+          <DefinitionItem termId="resources.basicResources.glossary.wineMalt.term" descriptionId="resources.basicResources.glossary.wineMalt.text" />
+          <DefinitionItem termId="resources.basicResources.glossary.cordials.term" descriptionId="resources.basicResources.glossary.cordials.text" />
+          <DefinitionItem termId="resources.basicResources.glossary.allAlcohol.term" descriptionId="resources.basicResources.glossary.allAlcohol.text" />
+        </Accordion>
+        <Accordion titleId="resources.basicResources.otherLicenses.title">
+          <DefinitionItem termId="resources.basicResources.otherLicenses.law2006.term" descriptionId="resources.basicResources.otherLicenses.law2006.text" href="https://malegislature.gov/Laws/SessionLaws/Acts/2006/Chapter383" linkLabelId="resources.basicResources.otherLicenses.law2006.link" />
+          <DefinitionItem termId="resources.basicResources.otherLicenses.law2012.term" descriptionId="resources.basicResources.otherLicenses.law2012.text" href="https://malegislature.gov/Laws/SessionLaws/Acts/2012/Chapter87" linkLabelId="resources.basicResources.otherLicenses.law2012.link" />
+          <DefinitionItem termId="resources.basicResources.otherLicenses.law2014.term" descriptionId="resources.basicResources.otherLicenses.law2014.text" href="https://malegislature.gov/Laws/SessionLaws/Acts/2014/Chapter287" linkLabelId="resources.basicResources.otherLicenses.law2014.link" />
+          <DefinitionItem termId="resources.basicResources.otherLicenses.law2024.term" descriptionId="resources.basicResources.otherLicenses.law2024.text" href="https://malegislature.gov/Bills/193/H5039" linkLabelId="resources.basicResources.otherLicenses.law2024.link" />
+          <DefinitionItem termId="resources.basicResources.otherLicenses.unrestricted.term" descriptionId="resources.basicResources.otherLicenses.unrestricted.text" />
+        </Accordion>
       </div>
       <div className="flex flex-col gap-[8px]">
         <h3>
