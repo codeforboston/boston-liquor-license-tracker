@@ -2678,3 +2678,175 @@
 2026-06-22 01:08:19,530 - INFO - Download process completed.
 2026-06-22 01:08:19,530 - INFO - Application finished successfully.
 2026-06-22 01:08:19,530 - INFO - Total runtime: 0 minutes 39.31 seconds
+2026-06-29 01:02:34,175 - INFO - Starting Licensing Board Scraper Application
+2026-06-29 01:02:34,175 - INFO - Initializing Scraper Service...
+2026-06-29 01:02:34,176 - INFO - Fetching https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members...
+2026-06-29 01:02:35,482 - INFO - Parsing links...
+2026-06-29 01:02:35,539 - INFO - Saving 431 video links to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/hearing_video_links.json...
+2026-06-29 01:02:35,541 - INFO - Saved data to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/hearing_video_links.json
+2026-06-29 01:02:35,541 - INFO - Extracting dates...
+2026-06-29 01:02:35,543 - INFO - Saving 150 minutes links...
+2026-06-29 01:02:35,544 - INFO - Saved data to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/voting_minutes_links.json
+2026-06-29 01:02:35,544 - INFO - Link stats:
+2026-06-29 01:02:35,544 - INFO - total_links: 641
+2026-06-29 01:02:35,544 - INFO - client_side_links: 15
+2026-06-29 01:02:35,544 - INFO - excluded_links: 45
+2026-06-29 01:02:35,544 - INFO - video_links: 431
+2026-06-29 01:02:35,544 - INFO - minutes_links: 150
+2026-06-29 01:02:35,544 - INFO - Stats logged to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/link_stats_log.csv
+2026-06-29 01:02:35,544 - INFO - Scraping completed.
+2026-06-29 01:02:35,544 - INFO - Initializing Downloader Service with download_dir: ./data/voting_minutes_pdfs
+2026-06-29 01:02:35,544 - INFO - Starting download process...
+2026-06-29 01:02:35,623 - INFO - Saved voting_minutes_2026-01-08_v15.pdf
+2026-06-29 01:02:35,689 - INFO - Saved voting_minutes_2026-01-29_v15.pdf
+2026-06-29 01:02:35,781 - INFO - Saved voting_minutes_2026-02-12_v15.pdf
+2026-06-29 01:02:35,890 - INFO - Saved voting_minutes_2026-03-05_v15.pdf
+2026-06-29 01:02:35,986 - INFO - Saved voting_minutes_2026-03-26_v13.pdf
+2026-06-29 01:02:36,062 - INFO - Saved voting_minutes_2026-04-09_v11.pdf
+2026-06-29 01:02:36,157 - INFO - Saved voting_minutes_2026-04-30_v8.pdf
+2026-06-29 01:02:36,231 - INFO - Saved voting_minutes_2026-05-07_v7.pdf
+2026-06-29 01:02:36,329 - INFO - Saved voting_minutes_2026-05-21_v5.pdf
+2026-06-29 01:02:36,403 - INFO - Saved voting_minutes_2026-06-04_v4.pdf
+2026-06-29 01:02:36,485 - INFO - Saved voting_minutes_2026-06-25.pdf
+2026-06-29 01:02:36,585 - INFO - Saved voting_minutes_2025-01-09_v15.pdf
+2026-06-29 01:02:36,668 - INFO - Saved voting_minutes_2025-01-16_v15.pdf
+2026-06-29 01:02:36,755 - INFO - Saved voting_minutes_2025-01-23_v15.pdf
+2026-06-29 01:02:36,838 - INFO - Saved voting_minutes_2025-02-13_v15.pdf
+2026-06-29 01:02:36,999 - INFO - Saved voting_minutes_2025-02-27_v15.pdf
+2026-06-29 01:02:37,076 - INFO - Saved voting_minutes_2025-03-06_v15.pdf
+2026-06-29 01:02:37,147 - INFO - Saved voting_minutes_2025-03-27_v15.pdf
+2026-06-29 01:02:37,457 - INFO - Saved voting_minutes_2025-04-03_v15.pdf
+2026-06-29 01:02:37,559 - INFO - Saved voting_minutes_2025-04-17_v15.pdf
+2026-06-29 01:02:37,657 - INFO - Saved voting_minutes_2025-05-01_v15.pdf
+2026-06-29 01:02:37,914 - INFO - Saved voting_minutes_2025-05-15_v15.pdf
+2026-06-29 01:02:38,011 - INFO - Saved voting_minutes_2025-05-29_v15.pdf
+2026-06-29 01:02:38,177 - INFO - Saved voting_minutes_2025-06-05_v15.pdf
+2026-06-29 01:02:38,268 - INFO - Saved voting_minutes_2025-06-26_v15.pdf
+2026-06-29 01:02:38,332 - INFO - Saved voting_minutes_2025-07-17_v15.pdf
+2026-06-29 01:02:38,461 - INFO - Saved voting_minutes_2025-07-31_v15.pdf
+2026-06-29 01:02:38,552 - INFO - Saved voting_minutes_2025-08-07_v15.pdf
+2026-06-29 01:02:38,681 - INFO - Saved voting_minutes_2025-08-28_v15.pdf
+2026-06-29 01:02:38,767 - INFO - Saved voting_minutes_2025-09-18_v15.pdf
+2026-06-29 01:02:38,835 - INFO - Saved voting_minutes_2025-10-23_v15.pdf
+2026-06-29 01:02:40,237 - INFO - Saved voting_minutes_yyyy-11-06_v9.pdf
+2026-06-29 01:02:41,650 - INFO - Saved voting_minutes_yyyy-11-20_v9.pdf
+2026-06-29 01:02:41,734 - INFO - Saved voting_minutes_2025-12-04_v15.pdf
+2026-06-29 01:02:41,952 - INFO - Saved voting_minutes_2025-12-18_v15.pdf
+2026-06-29 01:02:42,021 - INFO - Saved voting_minutes_2024-01-04_v15.pdf
+2026-06-29 01:02:42,085 - INFO - Saved voting_minutes_2024-02-01_v15.pdf
+2026-06-29 01:02:42,155 - INFO - Saved voting_minutes_2024-02-08_v15.pdf
+2026-06-29 01:02:42,240 - INFO - Saved voting_minutes_2024-02-29_v15.pdf
+2026-06-29 01:02:42,316 - INFO - Saved voting_minutes_2024-03-07_v15.pdf
+2026-06-29 01:02:42,386 - INFO - Saved voting_minutes_2024-03-28_v15.pdf
+2026-06-29 01:02:42,460 - INFO - Saved voting_minutes_2024-04-04_v15.pdf
+2026-06-29 01:02:42,587 - INFO - Saved voting_minutes_2024-04-25_v15.pdf
+2026-06-29 01:02:42,667 - INFO - Saved voting_minutes_2024-05-01_v15.pdf
+2026-06-29 01:02:42,732 - INFO - Saved voting_minutes_2024-05-23_v15.pdf
+2026-06-29 01:02:42,809 - INFO - Saved voting_minutes_2024-06-06_v15.pdf
+2026-06-29 01:02:42,888 - INFO - Saved voting_minutes_2024-06-26_v15.pdf
+2026-06-29 01:02:42,975 - INFO - Saved voting_minutes_2024-07-11_v15.pdf
+2026-06-29 01:02:43,039 - INFO - Saved voting_minutes_2024-08-01_v15.pdf
+2026-06-29 01:02:43,102 - INFO - Saved voting_minutes_2024-08-08_v15.pdf
+2026-06-29 01:02:43,205 - INFO - Saved voting_minutes_2024-08-22_v15.pdf
+2026-06-29 01:02:43,265 - INFO - Saved voting_minutes_2024-09-12_v15.pdf
+2026-06-29 01:02:43,345 - INFO - Saved voting_minutes_2024-09-26_v15.pdf
+2026-06-29 01:02:43,409 - INFO - Saved voting_minutes_2024-10-17_v15.pdf
+2026-06-29 01:02:43,485 - INFO - Saved voting_minutes_2024-10-31_v15.pdf
+2026-06-29 01:02:43,565 - INFO - Saved voting_minutes_2024-11-14_v15.pdf
+2026-06-29 01:02:43,637 - INFO - Saved voting_minutes_2024-11-21_v15.pdf
+2026-06-29 01:02:43,754 - INFO - Saved voting_minutes_2024-12-12_v15.pdf
+2026-06-29 01:02:43,844 - INFO - Saved voting_minutes_2023-01-05_v15.pdf
+2026-06-29 01:02:43,926 - INFO - Saved voting_minutes_2023-01-25_v15.pdf
+2026-06-29 01:02:44,013 - INFO - Saved voting_minutes_2023-02-02_v15.pdf
+2026-06-29 01:02:44,109 - INFO - Saved voting_minutes_2023-02-16_v15.pdf
+2026-06-29 01:02:44,179 - INFO - Saved voting_minutes_2023-03-08_v15.pdf
+2026-06-29 01:02:44,266 - INFO - Saved voting_minutes_2023-03-30_v15.pdf
+2026-06-29 01:02:44,343 - INFO - Saved voting_minutes_2023-04-06_v15.pdf
+2026-06-29 01:02:44,428 - INFO - Saved voting_minutes_2023-04-27_v15.pdf
+2026-06-29 01:02:44,501 - INFO - Saved voting_minutes_2023-05-04_v15.pdf
+2026-06-29 01:02:44,576 - INFO - Saved voting_minutes_2023-05-25_v15.pdf
+2026-06-29 01:02:44,647 - INFO - Saved voting_minutes_2023-06-08_v15.pdf
+2026-06-29 01:02:44,726 - INFO - Saved voting_minutes_2023-06-29_v15.pdf
+2026-06-29 01:02:44,825 - INFO - Saved voting_minutes_2023-07-20_v15.pdf
+2026-06-29 01:02:44,900 - INFO - Saved voting_minutes_2023-08-17_v15.pdf
+2026-06-29 01:02:44,976 - INFO - Saved voting_minutes_2023-09-14_v15.pdf
+2026-06-29 01:02:45,049 - INFO - Saved voting_minutes_2023-09-28_v15.pdf
+2026-06-29 01:02:45,115 - INFO - Saved voting_minutes_2023-10-04_v15.pdf
+2026-06-29 01:02:45,189 - INFO - Saved voting_minutes_2023-10-26_v15.pdf
+2026-06-29 01:02:45,257 - INFO - Saved voting_minutes_2023-11-02_v15.pdf
+2026-06-29 01:02:45,314 - INFO - Saved voting_minutes_2023-11-16_v15.pdf
+2026-06-29 01:02:45,454 - INFO - Saved voting_minutes_2023-12-14_v15.pdf
+2026-06-29 01:02:45,531 - INFO - Saved voting_minutes_2022-01-06_v15.pdf
+2026-06-29 01:02:45,625 - INFO - Saved voting_minutes_2022-01-20_v15.pdf
+2026-06-29 01:02:45,693 - INFO - Saved voting_minutes_2022-01-27_v15.pdf
+2026-06-29 01:02:45,764 - INFO - Saved voting_minutes_2022-02-03_v15.pdf
+2026-06-29 01:02:45,829 - INFO - Saved voting_minutes_2022-02-17_v15.pdf
+2026-06-29 01:02:45,888 - INFO - Saved voting_minutes_2022-03-03_v15.pdf
+2026-06-29 01:02:45,955 - INFO - Saved voting_minutes_2022-03-24_v15.pdf
+2026-06-29 01:02:46,036 - INFO - Saved voting_minutes_2022-04-07_v15.pdf
+2026-06-29 01:02:46,114 - INFO - Saved voting_minutes_2022-04-28_v15.pdf
+2026-06-29 01:02:46,191 - INFO - Saved voting_minutes_2022-05-05_v15.pdf
+2026-06-29 01:02:46,338 - INFO - Saved voting_minutes_2022-05-26_v15.pdf
+2026-06-29 01:02:46,450 - INFO - Saved voting_minutes_2022-06-08_v15.pdf
+2026-06-29 01:02:46,531 - INFO - Saved voting_minutes_2022-06-30_v15.pdf
+2026-06-29 01:02:46,609 - INFO - Saved voting_minutes_2022-07-14_v15.pdf
+2026-06-29 01:02:46,680 - INFO - Saved voting_minutes_2022-07-28_v15.pdf
+2026-06-29 01:02:46,751 - INFO - Saved voting_minutes_2022-08-04_v15.pdf
+2026-06-29 01:02:46,816 - INFO - Saved voting_minutes_2022-08-25_v15.pdf
+2026-06-29 01:02:46,880 - INFO - Saved voting_minutes_2022-09-15_v15.pdf
+2026-06-29 01:02:46,944 - INFO - Saved voting_minutes_2022-09-29_v15.pdf
+2026-06-29 01:02:47,020 - INFO - Saved voting_minutes_2022-10-06_v15.pdf
+2026-06-29 01:02:47,083 - INFO - Saved voting_minutes_2022-10-26_v15.pdf
+2026-06-29 01:02:47,145 - INFO - Saved voting_minutes_2022-11-03_v15.pdf
+2026-06-29 01:02:47,276 - INFO - Saved voting_minutes_2022-11-17_v15.pdf
+2026-06-29 01:02:47,361 - INFO - Saved voting_minutes_2022-12-15_v15.pdf
+2026-06-29 01:02:47,439 - INFO - Saved voting_minutes_2021-01-21_v15.pdf
+2026-06-29 01:02:47,509 - INFO - Saved voting_minutes_2021-01-28_v15.pdf
+2026-06-29 01:02:47,615 - INFO - Saved voting_minutes_2021-02-04_v15.pdf
+2026-06-29 01:02:47,684 - INFO - Saved voting_minutes_2021-02-25_v15.pdf
+2026-06-29 01:02:47,762 - INFO - Saved voting_minutes_2021-03-04_v15.pdf
+2026-06-29 01:02:47,828 - INFO - Saved voting_minutes_2021-04-01_v15.pdf
+2026-06-29 01:02:47,891 - INFO - Saved voting_minutes_yyyy-mm-dd_v15.pdf
+2026-06-29 01:02:47,960 - INFO - Saved voting_minutes_2021-04-08_v15.pdf
+2026-06-29 01:02:48,022 - INFO - Duplicate content - matches voting_minutes_yyyy-mm-dd_v15.pdf
+2026-06-29 01:02:48,078 - INFO - Saved voting_minutes_2021-04-20_v15.pdf
+2026-06-29 01:02:48,136 - INFO - Saved voting_minutes_2021-04-29_v15.pdf
+2026-06-29 01:02:48,227 - INFO - Saved voting_minutes_2021-05-06_v15.pdf
+2026-06-29 01:02:48,308 - INFO - Saved voting_minutes_2021-05-27_v15.pdf
+2026-06-29 01:02:48,390 - INFO - Saved voting_minutes_2021-06-03_v15.pdf
+2026-06-29 01:02:48,459 - INFO - Saved voting_minutes_2021-06-24_v15.pdf
+2026-06-29 01:02:48,567 - INFO - Saved voting_minutes_2021-07-01_v15.pdf
+2026-06-29 01:02:48,640 - INFO - Saved voting_minutes_2021-07-29_v15.pdf
+2026-06-29 01:02:48,706 - INFO - Saved voting_minutes_2021-08-09_v15.pdf
+2026-06-29 01:02:48,774 - INFO - Saved voting_minutes_2021-08-26_v15.pdf
+2026-06-29 01:02:48,865 - INFO - Saved voting_minutes_2021-09-02_v15.pdf
+2026-06-29 01:02:48,967 - INFO - Saved voting_minutes_2021-09-30_v15.pdf
+2026-06-29 01:02:49,046 - INFO - Saved voting_minutes_2021-10-07_v15.pdf
+2026-06-29 01:02:49,105 - INFO - Saved voting_minutes_2021-10-28_v15.pdf
+2026-06-29 01:02:49,176 - INFO - Saved voting_minutes_2021-11-04_v15.pdf
+2026-06-29 01:02:49,230 - INFO - Saved voting_minutes_2021-11-18_v15.pdf
+2026-06-29 01:02:49,296 - INFO - Saved voting_minutes_2021-12-02_v15.pdf
+2026-06-29 01:02:49,358 - INFO - Saved voting_minutes_2021-12-16_v15.pdf
+2026-06-29 01:02:49,438 - INFO - Saved voting_minutes_2020-12-23_v15.pdf
+2026-06-29 01:02:49,496 - INFO - Saved voting_minutes_2020-12-03_v15.pdf
+2026-06-29 01:02:49,605 - INFO - Saved voting_minutes_2020-11-05_v15.pdf
+2026-06-29 01:02:49,674 - INFO - Saved voting_minutes_2020-10-29_v15.pdf
+2026-06-29 01:02:49,772 - INFO - Saved voting_minutes_2020-10-08_v15.pdf
+2026-06-29 01:02:49,844 - INFO - Saved voting_minutes_2020-10-01_v15.pdf
+2026-06-29 01:02:49,912 - INFO - Saved voting_minutes_2020-09-17_v15.pdf
+2026-06-29 01:02:49,974 - INFO - Saved voting_minutes_2020-09-10_v15.pdf
+2026-06-29 01:02:50,058 - INFO - Duplicate content - matches voting_minutes_2020-09-10_v15.pdf
+2026-06-29 01:02:50,117 - INFO - Saved voting_minutes_2020-08-20_v15.pdf
+2026-06-29 01:02:50,173 - INFO - Saved voting_minutes_2020-08-13_v15.pdf
+2026-06-29 01:02:50,271 - INFO - Saved voting_minutes_2020-07-30_v15.pdf
+2026-06-29 01:02:50,359 - INFO - Saved voting_minutes_2020-07-16_v15.pdf
+2026-06-29 01:02:50,447 - INFO - Saved voting_minutes_2020-06-04_v15.pdf
+2026-06-29 01:02:50,531 - INFO - Saved voting_minutes_2020-05-28_v15.pdf
+2026-06-29 01:02:50,627 - INFO - Saved voting_minutes_2020-05-21_v15.pdf
+2026-06-29 01:02:50,685 - INFO - Saved voting_minutes_2020-05-14_v15.pdf
+2026-06-29 01:02:50,748 - INFO - Saved voting_minutes_2020-05-07_v15.pdf
+2026-06-29 01:02:51,075 - INFO - Saved voting_minutes_2020-04-23_v15.pdf
+2026-06-29 01:02:51,138 - INFO - Saved voting_minutes_2020-04-30_v15.pdf
+2026-06-29 01:02:51,139 - INFO - Download process completed.
+2026-06-29 01:02:51,139 - INFO - Application finished successfully.
+2026-06-29 01:02:51,139 - INFO - Total runtime: 0 minutes 16.96 seconds
