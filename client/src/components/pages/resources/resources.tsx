@@ -24,9 +24,9 @@ const Resources = () => {
         </p>
       </div>
       <div className="flex flex-col gap-[8px]">
-        <h3>
+        <h2>
           <FormattedMessage id="resources.basicResources.title" />
-        </h3>
+        </h2>
         <p>
           <FormattedMessage id="resources.basicResources.text" />
         </p>
@@ -98,9 +98,9 @@ const Resources = () => {
         />
       </div>
       <div className="flex flex-col gap-[8px]">
-        <h3>
+        <h2>
           <FormattedMessage id="resources.agencies.title" />
-        </h3>
+        </h2>
         <p>
           <FormattedMessage id="resources.agencies.text" />
         </p>
