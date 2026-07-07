@@ -39,12 +39,12 @@ const Resources = () => {
           <DefinitionItem termId="resources.basicResources.glossary.cordials.term" descriptionId="resources.basicResources.glossary.cordials.text" />
           <DefinitionItem termId="resources.basicResources.glossary.allAlcohol.term" descriptionId="resources.basicResources.glossary.allAlcohol.text" />
         </Accordion>
-        <Accordion titleId="resources.basicResources.otherLicenses.title">
-          <DefinitionItem termId="resources.basicResources.otherLicenses.law2006.term" descriptionId="resources.basicResources.otherLicenses.law2006.text" href="https://malegislature.gov/Laws/SessionLaws/Acts/2006/Chapter383" linkLabelId="resources.basicResources.otherLicenses.law2006.link" />
-          <DefinitionItem termId="resources.basicResources.otherLicenses.law2012.term" descriptionId="resources.basicResources.otherLicenses.law2012.text" href="https://malegislature.gov/Laws/SessionLaws/Acts/2012/Chapter87" linkLabelId="resources.basicResources.otherLicenses.law2012.link" />
-          <DefinitionItem termId="resources.basicResources.otherLicenses.law2014.term" descriptionId="resources.basicResources.otherLicenses.law2014.text" href="https://malegislature.gov/Laws/SessionLaws/Acts/2014/Chapter287" linkLabelId="resources.basicResources.otherLicenses.law2014.link" />
-          <DefinitionItem termId="resources.basicResources.otherLicenses.law2024.term" descriptionId="resources.basicResources.otherLicenses.law2024.text" href="https://malegislature.gov/Bills/193/H5039" linkLabelId="resources.basicResources.otherLicenses.law2024.link" />
-          <DefinitionItem termId="resources.basicResources.otherLicenses.unrestricted.term" descriptionId="resources.basicResources.otherLicenses.unrestricted.text" />
+        <Accordion titleId="resources.basicresources.otherlicense.title">
+          <DefinitionItem termId="resources.basicresources.otherlicense.2006.title" descriptionId="resources.basicresources.otherlicense.2006.description" href="https://malegislature.gov/Laws/SessionLaws/Acts/2006/Chapter383" linkLabelId="resources.basicResources.otherLicenses.law2006.link" />
+          <DefinitionItem termId="resources.basicresources.otherlicense.2012.title" descriptionId="resources.basicresources.otherlicense.2012.description" href="https://malegislature.gov/Laws/SessionLaws/Acts/2012/Chapter87" linkLabelId="resources.basicResources.otherLicenses.law2012.link" />
+          <DefinitionItem termId="resources.basicresources.otherlicense.2014.title" descriptionId="resources.basicresources.otherlicense.2014.description" href="https://malegislature.gov/Laws/SessionLaws/Acts/2014/Chapter287" linkLabelId="resources.basicResources.otherLicenses.law2014.link" />
+          <DefinitionItem termId="resources.basicresources.otherlicense.2024.title" descriptionId="resources.basicresources.otherlicense.2024.description" href="https://malegislature.gov/Bills/193/H5039" linkLabelId="resources.basicResources.otherLicenses.law2024.link" />
+          <DefinitionItem termId="resources.basicresources.otherlicense.unrestrict.title" descriptionId="resources.basicresources.otherlicense.unrestrict.description" />
         </Accordion>
       </div>
       <div className="flex flex-col gap-[8px]">
