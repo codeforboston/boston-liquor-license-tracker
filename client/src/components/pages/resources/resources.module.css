@@ -56,6 +56,7 @@
     }
   }
 }
+
 .agencyCard {
   display: flex;
   flex-direction: row;
@@ -65,11 +66,73 @@
 
 .agencyLogo {
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
+  width: 93px;
+  height: 93px;
   object-fit: contain;
   border-radius: 9999px;
   border: 1px solid var(--color-border-gray);
   padding: 4px;
   background-color: var(--color-white-1);
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordionSummary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  max-width: 350px;
+  padding: 8px 24px 8px 0;
+  border-bottom: 2px solid var(--color-gray-light-4);
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+}
+
+.accordionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.accordionChevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .accordionSummary .accordionChevron {
+  transform: rotate(90deg);
+}
+
+.accordionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.definitionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.definitionTerm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.definitionLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-font-dark);
+}
+
+.definitionLink svg {
+  width: 16px;
+  height: 16px;
 }
