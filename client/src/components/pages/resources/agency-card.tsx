@@ -34,9 +34,9 @@ const AgencyCard = ({
         alt={intl.formatMessage({ id: logoAltId })}
       />
       <div className="flex flex-col gap-[8px]">
-        <h4>
+        <h3>
           <FormattedMessage id={titleId} />
-        </h4>
+        </h3>
         <p>
           <FormattedMessage id={descriptionId} />
         </p>
