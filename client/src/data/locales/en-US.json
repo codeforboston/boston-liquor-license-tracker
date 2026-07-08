@@ -144,5 +144,14 @@
   "resources.agencies.ons.title": "Office of Neighborhood Services",
   "resources.agencies.ons.text": "The City of Boston's neighborhood support agency, which focuses on providing support and assistance to the neighborhoods of Boston. For the Liquor Licensing process they are responsible for connecting potential businesses with members of the community in preparation for being granted a Liquor License.",
   "resources.agencies.ons.website": "Office of Neighborhood Services Webpage",
-  "resources.agencies.ons.logoAlt": "Office of Neighborhood Services logo"
+  "resources.agencies.ons.logoAlt": "Office of Neighborhood Services logo",
+  "resources.applicationlinks.title": "Links to Application Pages",
+"resources.applicationlinks.description": "Below are links to the City of Boston's application form for prospective Licensees. As well as a link to the ABCC's application form.",
+"resources.applicationlinks.petitionform.title": "Alcohol License Petition Form",
+"resources.applicationlinks.petitionform.description": "The main form prospective Licensee's will need to fill out when applying for a license from the city of Boston. This form takes all the information you have and submits it to the Boston License Board. It is recommended to look through the resources above before submitting.\n\nNote: You will need to download and fill out all the completed application documents and fees before you submit the applications at the link below.",
+"resources.applicationlinks.petitionform.link": "Alcohol License Petition Form",
+ "resources.applicationlinks.abccapplication.title": "ABCC Application",
+ "resources.applicationlinks.abccapplication.description": "The state's application process and form(s), prospective Licensee's will need to fill out several of these forms and submit them alongside the application above.\n\nNote: Most of this process will be undertaken by the Boston Licensing Board, use this link as a reference not an application.",
+ "resources.applicationlinks.abccapplication.link": "ABCC Application Information"
+
 }

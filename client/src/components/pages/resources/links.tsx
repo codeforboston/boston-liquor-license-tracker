@@ -47,15 +47,17 @@ const Links = () => {
                 <FormattedMessage id={linkItem.titleId} />
               </h3>
 
-              <p>
+              <p className="whitespace-pre-line">
                 <FormattedMessage id={linkItem.descriptionId} />
               </p>
 
-              <ResourceButton
-                labelId={linkItem.buttonId}
-                href={linkItem.href}
-                icon="link"
-              />
+              <div className="mt-[8px]">
+                <ResourceButton
+                  labelId={linkItem.buttonId}
+                  href={linkItem.href}
+                  icon="link"
+                />
+              </div>
             </article>
           </li>
         ))}
