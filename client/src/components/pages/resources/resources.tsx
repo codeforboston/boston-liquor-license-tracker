@@ -6,15 +6,18 @@ import onsLogo from "@/assets/images/ons-logo.svg";
 import styles from "./resources.module.css";
 import { useIntl } from "react-intl";
 import { FormattedMessage } from "react-intl";
+import Links from "./links";
 import Accordion from "./accordion";
 import DefinitionItem from "./definition-item";
 
 const Resources = () => {
   const intl = useIntl();
   const title = `${intl.formatMessage({ id: "resources.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
+
   return (
-    <main className={`${styles.resources} flex flex-col gap-[24px]`}>
+    <main className={`${styles.resources} flex flex-col gap-[32px]`}>
       <title>{title}</title>
+
       <div className="flex flex-col gap-[8px]">
         <h2>
           <FormattedMessage id="resources.basicResources.title" />
@@ -23,20 +26,64 @@ const Resources = () => {
           <FormattedMessage id="resources.basicResources.text" />
         </p>
         <Accordion titleId="resources.basicResources.glossary.title">
-          <DefinitionItem termId="resources.basicResources.glossary.restricted.term" descriptionId="resources.basicResources.glossary.restricted.text" />
-          <DefinitionItem termId="resources.basicResources.glossary.transferable.term" descriptionId="resources.basicResources.glossary.transferable.text" />
-          <DefinitionItem termId="resources.basicResources.glossary.onPremise.term" descriptionId="resources.basicResources.glossary.onPremise.text" />
-          <DefinitionItem termId="resources.basicResources.glossary.offPremise.term" descriptionId="resources.basicResources.glossary.offPremise.text" />
-          <DefinitionItem termId="resources.basicResources.glossary.wineMalt.term" descriptionId="resources.basicResources.glossary.wineMalt.text" />
-          <DefinitionItem termId="resources.basicResources.glossary.cordials.term" descriptionId="resources.basicResources.glossary.cordials.text" />
-          <DefinitionItem termId="resources.basicResources.glossary.allAlcohol.term" descriptionId="resources.basicResources.glossary.allAlcohol.text" />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.restricted.term"
+            descriptionId="resources.basicResources.glossary.restricted.text"
+          />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.transferable.term"
+            descriptionId="resources.basicResources.glossary.transferable.text"
+          />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.onPremise.term"
+            descriptionId="resources.basicResources.glossary.onPremise.text"
+          />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.offPremise.term"
+            descriptionId="resources.basicResources.glossary.offPremise.text"
+          />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.wineMalt.term"
+            descriptionId="resources.basicResources.glossary.wineMalt.text"
+          />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.cordials.term"
+            descriptionId="resources.basicResources.glossary.cordials.text"
+          />
+          <DefinitionItem
+            termId="resources.basicResources.glossary.allAlcohol.term"
+            descriptionId="resources.basicResources.glossary.allAlcohol.text"
+          />
         </Accordion>
         <Accordion titleId="resources.basicresources.otherlicense.title">
-          <DefinitionItem termId="resources.basicresources.otherlicense.2006.title" descriptionId="resources.basicresources.otherlicense.2006.description" href="https://malegislature.gov/Laws/SessionLaws/Acts/2006/Chapter383" linkLabelId="resources.basicResources.otherLicenses.law2006.link" />
-          <DefinitionItem termId="resources.basicresources.otherlicense.2012.title" descriptionId="resources.basicresources.otherlicense.2012.description" href="https://malegislature.gov/Laws/SessionLaws/Acts/2012/Chapter87" linkLabelId="resources.basicResources.otherLicenses.law2012.link" />
-          <DefinitionItem termId="resources.basicresources.otherlicense.2014.title" descriptionId="resources.basicresources.otherlicense.2014.description" href="https://malegislature.gov/Laws/SessionLaws/Acts/2014/Chapter287" linkLabelId="resources.basicResources.otherLicenses.law2014.link" />
-          <DefinitionItem termId="resources.basicresources.otherlicense.2024.title" descriptionId="resources.basicresources.otherlicense.2024.description" href="https://malegislature.gov/Bills/193/H5039" linkLabelId="resources.basicResources.otherLicenses.law2024.link" />
-          <DefinitionItem termId="resources.basicresources.otherlicense.unrestrict.title" descriptionId="resources.basicresources.otherlicense.unrestrict.description" />
+          <DefinitionItem
+            termId="resources.basicresources.otherlicense.2006.title"
+            descriptionId="resources.basicresources.otherlicense.2006.description"
+            href="https://malegislature.gov/Laws/SessionLaws/Acts/2006/Chapter383"
+            linkLabelId="resources.basicResources.otherLicenses.law2006.link"
+          />
+          <DefinitionItem
+            termId="resources.basicresources.otherlicense.2012.title"
+            descriptionId="resources.basicresources.otherlicense.2012.description"
+            href="https://malegislature.gov/Laws/SessionLaws/Acts/2012/Chapter87"
+            linkLabelId="resources.basicResources.otherLicenses.law2012.link"
+          />
+          <DefinitionItem
+            termId="resources.basicresources.otherlicense.2014.title"
+            descriptionId="resources.basicresources.otherlicense.2014.description"
+            href="https://malegislature.gov/Laws/SessionLaws/Acts/2014/Chapter287"
+            linkLabelId="resources.basicResources.otherLicenses.law2014.link"
+          />
+          <DefinitionItem
+            termId="resources.basicresources.otherlicense.2024.title"
+            descriptionId="resources.basicresources.otherlicense.2024.description"
+            href="https://malegislature.gov/Bills/193/H5039"
+            linkLabelId="resources.basicResources.otherLicenses.law2024.link"
+          />
+          <DefinitionItem
+            termId="resources.basicresources.otherlicense.unrestrict.title"
+            descriptionId="resources.basicresources.otherlicense.unrestrict.description"
+          />
         </Accordion>
       </div>
       <div className="flex flex-col gap-[8px]">
@@ -78,7 +125,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.title" />
         </h2>
         <p>
-          <FormattedMessage id="resources.applicationguides.description"/>
+          <FormattedMessage id="resources.applicationguides.description" />
         </p>
       </div>
       <div className="flex flex-col gap-[8px]">
@@ -86,7 +133,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.cityGuides.title" />
         </h3>
         <p>
-          <FormattedMessage id="resources.applicationguides.cityGuides.description"/>
+          <FormattedMessage id="resources.applicationguides.cityGuides.description" />
         </p>
       </div>
       <div className="flex flex-col gap-[16px]">
@@ -106,7 +153,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.offsiteGuide.title" />
         </h3>
         <p>
-          <FormattedMessage id="resources.applicationguides.offsiteGuide.description"/>
+          <FormattedMessage id="resources.applicationguides.offsiteGuide.description" />
         </p>
       </div>
       <div className="flex flex-col gap-[16px]">
@@ -121,7 +168,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.toast.title" />
         </h3>
         <p>
-          <FormattedMessage id="resources.applicationguides.toast.text"/>
+          <FormattedMessage id="resources.applicationguides.toast.text" />
         </p>
       </div>
       <div className="flex flex-col gap-[16px]">
@@ -131,6 +178,7 @@ const Resources = () => {
           icon="link"
         />
       </div>
+      <Links />
     </main>
   );
 };
