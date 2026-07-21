@@ -1518,5 +1518,21 @@
         "file_name": "Voting%20Minutes%206-25-26.docx.pdf",
         "granted_date": "2026-06-24",
         "granted_file": "Voting%20Minutes%206-25-26.docx.pdf"
+    },
+    {
+        "index": 96,
+        "entity_number": "32",
+        "business_name": "Abuelas Table, Inc.",
+        "dba_name": null,
+        "address": "416 Centre St, Jamaica Plain, MA 02130",
+        "zipcode": "02130",
+        "license_number": "LB-629704",
+        "status": "Granted",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-07-15",
+        "application_expiration_date": null,
+        "file_name": "Voting%20Minutes%207-16-26.docx.pdf",
+        "granted_date": "2026-07-15",
+        "granted_file": "Voting%20Minutes%207-16-26.docx.pdf"
     }
 ]
