@@ -5,7 +5,6 @@ import fs from 'fs/promises';
 import path from 'path'
 import { fileURLToPath } from "url";
 import {LAST_PROCESSED_DATE_JSON, BOSTON_URL} from "./paths.js"
-import { writeFile } from 'fs';
 
 interface EntityType{
    href: string | null, 
@@ -55,7 +54,6 @@ async function main(){
 }
 
 async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<string> {
-  try{
    const regex = /Voting Minutes:\s+\w+,\s+([A-Za-z]+)\s+(\d{1,2})/;
    const currentDate = new Date()
    const currentYear = currentDate.getFullYear()
@@ -75,7 +73,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
       throw Error(`Could not find the section with the year ${currentYear}`)
     }
 
-    let entity = {} as EntityType
+    const entity = {} as EntityType
     // NOTE: Updated selector from `ul li a` to `a[href*=".pdf"]` because the webpage
     // DOM structure changed and no longer uses list-based markup. Selecting by `href`
     // makes the scraper resilient to layout changes and focuses on the actual document links.
@@ -131,7 +129,7 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
     } 
 
     if (!fileName) {
-      let elems = downloadUrlString.split("/")
+      const elems = downloadUrlString.split("/")
       fileName = elems.pop()
     }
     
@@ -142,15 +140,8 @@ async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<stri
       throw Error("could not get the file name")
     }
 
-
     return fileName
-
-  }catch(err){
-     throw err
-  }
-
 }
-
 
 /**
  * Determines the most recent past meeting date that has already occurred.
@@ -210,7 +201,7 @@ async function getLatestDate(url: string): Promise<Date| null> {
       }
       const nextDateToProcess = new Date(Math.min(...unprocessedDates.map(d => d.getTime())))
       return nextDateToProcess
-    } catch(err){
+    } catch{
        console.log('Last processed date file is not found')
        const maxPastDate = new Date(Math.max(...pastDates.map(date => date.getTime())))
        return maxPastDate;
@@ -224,14 +215,10 @@ async function getLatestDate(url: string): Promise<Date| null> {
 
 async function getWrittenLatestDate(){
   const dateFilePath = path.join(__dirname, '..', LAST_PROCESSED_DATE_JSON)
-  try{
-      const data = await fs.readFile(dateFilePath, 'utf-8')
-      const parsed = JSON.parse(data)
-      const lastestDate = new Date(parsed.date)
-      return lastestDate
-  }catch(err: any){
-     throw err
-  }
+  const data = await fs.readFile(dateFilePath, 'utf-8')
+  const parsed = JSON.parse(data)
+  const lastestDate = new Date(parsed.date)
+  return lastestDate
 }
 
 
