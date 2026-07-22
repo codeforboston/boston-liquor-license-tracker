@@ -18,6 +18,21 @@
   .headerChildren {
     padding-block-end: 0;
   }
+
+  .collapsibleWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .collapseToggle {
+    display: none;
+    align-self: center;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
 }
 
 /* Card Mode Styling */
@@ -84,6 +99,22 @@
 
     .headerChildren {
       padding-block-end: 2rem;
+    }
+  }
+
+  .pageheader.collapsible {
+    .collapseToggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collapsibleContent:not(.expanded) {
+      display: none;
+    }
+
+    &.collapsed {
+      padding-block-end: 0.5rem;
     }
   }
 }

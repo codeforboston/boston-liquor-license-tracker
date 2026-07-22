@@ -163,13 +163,15 @@ export const ZipDetailsContent = ({ licenses, zipCode }: ZipDetailsProps) => {
   return (
     <div className="flex flex-col h-full w-full">
       <ZipCodeDetailsHeader zipCode={zipCode} showSubtitle />
-      <p className="mt-4">
-        <FormattedMessage id="map.zipDetails.description" />
-      </p>
+      <div className="hidden md:block">
+        <p>
+          <FormattedMessage id="map.zipDetails.description" />
+        </p>
 
-      <h3 className="my-4">
-        <FormattedMessage id="map.zipDetails.zipCodeLicenseInfo" />
-      </h3>
+        <h3 className="my-4">
+          <FormattedMessage id="map.zipDetails.zipCodeLicenseInfo" />
+        </h3>
+      </div>
       <Tabs tabs={tabs} defaultTab="allLicenses" />
       <Link
         to="/database"
@@ -248,6 +250,6 @@ const ZipCodeDetailsHeader = ({
         </p>
       )}
     </div>
-    <hr className="border-t-2" />
+    <hr className="border-t-2 mb-[12px]" />
   </>
 );
