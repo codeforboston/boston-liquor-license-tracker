@@ -13,7 +13,7 @@
   align-items: center;
   text-align: center;
   min-height: 34px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   padding: 8px 24px;
   border-radius: 8px;
   background-color: var(--color-button-default-dark);
@@ -48,6 +48,7 @@
     padding: 4px 24px;
     font-size: 16px;
     font-weight: 500;
+    white-space: nowrap;
     line-height: 1;
 
     svg {
