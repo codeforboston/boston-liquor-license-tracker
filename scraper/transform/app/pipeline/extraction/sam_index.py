@@ -28,7 +28,9 @@ SAM_FIELDS = [
 _index: dict[tuple[str, str, str], tuple[str | None, str | None]] | None = None
 
 
-def _key(street_number: str, full_street_name: str, zipcode: str) -> tuple[str, str, str]:
+def _key(
+    street_number: str, full_street_name: str, zipcode: str
+) -> tuple[str, str, str]:
     return (
         (street_number or "").strip(),
         (full_street_name or "").strip().upper(),
