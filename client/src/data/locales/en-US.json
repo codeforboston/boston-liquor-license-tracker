@@ -1,6 +1,7 @@
 {
   "header.logo-altText": "License to Succeed Logo",
   "header.language": "Language",
+  
   "footer.abcc": "Alcoholic Beverages Control Commission",
   "footer.analyzeBoston": "Analyze Boston",
   "footer.application": "Boston License Application",
@@ -19,15 +20,11 @@
   "footer.offsite": "Offsite Hospitality",
   "footer.resources": "Important Resources",
   "footer.siteMap": "Site Map",
+  
   "shared.backToHomeButton": "BACK TO HOME",
   "shared.database.capitalized": "LICENSE DATABASE",
   "shared.map.capitalized": "MAP [BETA]",
   "shared.resources.capitalized": "LICENSING RESOURCES",
-  "comingSoon.backgroundImageAlt": "Rack of wine glasses hanging waiting to be used",
-  "comingSoon.description": "We are currently working hard to get this page finished to best fit your needs. Please Check back soon for exciting things!",
-  "comingSoon.pageTitle": "Coming Soon",
-  "comingSoon.title": "Pardon Our Dust!",
-
 
   "database.availableLicenses.description": "In 2024 a new law increased access to liquor licenses in several parts of Boston. Through this law the city will be issuing 5 new on premise liquor licenses to 13 of Boston’s Zip Codes each year for the next 3 years.",
   "database.availableLicenses.title": "2024 Cohort Licenses",
@@ -54,7 +51,6 @@
   "database.licenseTerminology.transferable.description": "The majority of Boston’s liquor licenses, they are usable throughout the city and can be transferred between business and ownership, with approval by the City and State.",
   "database.licenseTerminology.nonTransferable.title": "Non Transferable:",
   "database.licenseTerminology.nonTransferable.description": "Created by special legislations, including the 2024 law, These licenses are beholden to the limitations of their respective legislation. They are non-transferable, meaning that should a business close or ownership change, they revert back to the City.",
-
 
   "database.pageTitle": "License Database",
   "database.recentApplications.title": "Recent License Applications By Zip Code:",
@@ -94,6 +90,7 @@
   "home.navigation.map": "MAP",
   "home.pageTitle": "License to Succeed",
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
+  
   "map.header.text": "Hover over any Zip Code and get instant information about available licenses, what types of licenses are available, recent applications, and updates on assigned licenses.",
   "map.header.title": "License Availability Map [BETA]",
   "pageHeader.collapseDescription": "Hide page description",
@@ -116,10 +113,7 @@
   "map.zipDetails.recentApplicants": "Recent Applicants:",
   "map.zipDetails.seeAllApplications": "See All Applications >",
   "map.error.refreshPage": "Refresh Page",
-  "notFound.beerPourImageAlt": "Bartender pouring a beer from a tap",
-  "notFound.heading": "This page isn't on tap at the moment",
-  "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
-  "notFound.pageTitle": "Page Not Found",
+  
   "resources.pageTitle": "Licensing Resources",
   "resources.header.description": "Information on how to apply for a license, what is needed, the application process, and general timelines for what happens after an application is submitted for a license. Along with descriptions of the other types of license types around the city of Boston.",
   "resources.title": "Application Resources and Guides",
@@ -181,6 +175,15 @@
   "resources.basicResources.otherLicenses.law2014.link": "Session Law - Acts of 2014 Chapter 287",
   "resources.basicResources.otherLicenses.law2024.link": "Bill H.5039",
 
+  "comingSoon.backgroundImageAlt": "Rack of wine glasses hanging waiting to be used",
+  "comingSoon.description": "We are currently working hard to get this page finished to best fit your needs. Please Check back soon for exciting things!",
+  "comingSoon.pageTitle": "Coming Soon",
+  "comingSoon.title": "Pardon Our Dust!",
+
+  "notFound.beerPourImageAlt": "Bartender pouring a beer from a tap",
+  "notFound.heading": "This page isn't on tap at the moment",
+  "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
+  "notFound.pageTitle": "Page Not Found",
   "resources.agencies.title": "Agencies Involved in the Application Process",
   "resources.agencies.text": "The application process for obtaining a Liquor License in Boston requires any prospective licensee to contact several different agencies and offices to obtain a license. Here are some quick links to the most important agencies and how they affect the application process.",
   "resources.agencies.blb.title": "Boston Licensing Board",
