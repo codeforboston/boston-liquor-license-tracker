@@ -96,6 +96,8 @@
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
   "map.header.text": "Hover over any Zip Code and get instant information about available licenses, what types of licenses are available, recent applications, and updates on assigned licenses.",
   "map.header.title": "License Availability Map [BETA]",
+  "pageHeader.collapseDescription": "Hide page description",
+  "pageHeader.expandDescription": "Show page description",
   "map.pageTitle": "Map",
   "map.empty.noData": "Sorry! It appears we don't have data for this zip code",
   "map.empty.tryLater": "Check back later or try another Zip Code",
