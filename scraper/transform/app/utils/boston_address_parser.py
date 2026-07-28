@@ -265,6 +265,10 @@ class BostonAddressParser:
         }
         ABBR_SET = {a.lower(): a for a in STREET_SUFFIX_ABBR}
 
+        # Nonstandard suffix spellings seen in the source data that aren't in
+        # SAM's canonical list, mapped to the canonical abbreviation.
+        SUFFIX_ALIASES = {"av": "Ave"}
+
         if not isinstance(street_name, str):
             return street_name
 
@@ -287,7 +291,12 @@ class BostonAddressParser:
             parts[-1] = FULL_TO_ABBR[last]
             return " ".join(parts)
 
-        # Case 3: no suffix detected → return cleaned name
+        # Case 3: nonstandard abbreviation → canonical abbreviation
+        if last in SUFFIX_ALIASES:
+            parts[-1] = SUFFIX_ALIASES[last]
+            return " ".join(parts)
+
+        # Case 4: no suffix detected → return cleaned name
         return s
 
 
