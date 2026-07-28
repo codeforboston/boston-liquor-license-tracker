@@ -29,7 +29,7 @@ _index: dict[tuple[str, str, str], tuple[str | None, str | None]] | None = None
 
 
 def _key(
-    street_number: str, full_street_name: str, zipcode: str
+    street_number: str | None, full_street_name: str | None, zipcode: str | None
 ) -> tuple[str, str, str]:
     return (
         (street_number or "").strip(),
