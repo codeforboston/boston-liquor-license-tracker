@@ -26,7 +26,7 @@ async function main() {
         keyword: "sequentialIndexes",
         type: "array",
         errors: true,
-        validate: function (schema: boolean, data: any[]) {
+        validate: function (schema: boolean, data: { index: number }[]) {   
             if (!schema) return true; 
             for (let i = 0; i < data.length; i++) {
                 if (data[i].index !== i + 1) {

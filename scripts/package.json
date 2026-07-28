@@ -14,6 +14,7 @@
     "tscflags": "-t es2022 -m nodenext --moduleResolution nodenext"
   },
   "scripts": {
+    "lint": "eslint .",
     "build:validate-license": "npx tsc $npm_package_config_tscflags validateLicenseData.ts",
     "run:validate-license": "node validateLicenseData.js",
     "build:get-voting-minutes": "tsc $npm_package_config_tscflags getVotingMinutes.ts",
@@ -26,7 +27,11 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.1.0",
-    "typescript": "^5.9.2"
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.64.0"
   }
 }

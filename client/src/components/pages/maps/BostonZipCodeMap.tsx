@@ -60,17 +60,58 @@ const inactiveBorderColor = getComputedStyle(document.documentElement)
 const borderWidth = 2;
 /* End Map Styles */
 
+const MOBILE_BREAKPOINT = 768;
+const DESKTOP_CENTER: [number, number] = [
+  -71.00957168341347,
+  42.29991918352738,
+];
+const MOBILE_CENTER: [number, number] = [
+  -71.0755331435287, 
+  42.21785639815536
+];
+const DESKTOP_MIN_ZOOM = 11;
+const MOBILE_MIN_ZOOM = 10.1;
+const DESKTOP_INITIAL_ZOOM = 11;
+const MOBILE_INITIAL_ZOOM = 10.1;
+
+const isMobileViewport = () => window.innerWidth <= MOBILE_BREAKPOINT;
+
+const getViewportCenter = () =>
+  isMobileViewport() ? MOBILE_CENTER : DESKTOP_CENTER;
+
+const getViewportZoomSettings = () => {
+  const mobile = isMobileViewport();
+  return {
+    minZoom: mobile ? MOBILE_MIN_ZOOM : DESKTOP_MIN_ZOOM,
+    zoom: mobile ? MOBILE_INITIAL_ZOOM : DESKTOP_INITIAL_ZOOM,
+  };
+};
+
+const applyViewportZoomConstraints = (mapInstance: Map) => {
+  const mobile = isMobileViewport();
+  mapInstance.setMinZoom(mobile ? MOBILE_MIN_ZOOM : DESKTOP_MIN_ZOOM);
+
+  if (!mobile && mapInstance.getZoom() < DESKTOP_MIN_ZOOM) {
+    mapInstance.setZoom(DESKTOP_MIN_ZOOM);
+  }
+};
+
+const applyViewportCenter = (mapInstance: Map) => {
+  const mobile = isMobileViewport();
+  mapInstance.jumpTo({
+    center: getViewportCenter(),
+    zoom: mobile ? MOBILE_INITIAL_ZOOM : DESKTOP_INITIAL_ZOOM,
+  });
+};
+
 /* Map Initialization */
 const initializeMap = (
   map: RefObject<Map | null>,
   mapContainer: RefObject<HTMLDivElement | null>,
   onMapLoad?: () => void
 ) => {
-  const zoom = 11;
-  const center = {
-    lng: -71.00957168341347,
-    lat: 42.29991918352738,
-  };
+  const { minZoom, zoom } = getViewportZoomSettings();
+  const center = getViewportCenter();
 
   map.current = new maplibregl.Map({
     container: mapContainer.current || "",
@@ -80,11 +121,11 @@ const initializeMap = (
       layers: [],
       glyphs: "https://fonts.undpgeohub.org/fonts/{fontstack}/{range}.pbf",
     },
-    center: [center.lng, center.lat],
+    center,
     dragRotate: false,
-    minZoom: 11,
+    minZoom,
     maxZoom: 13.7,
-    zoom: zoom,
+    zoom,
     attributionControl: false
   });
 
@@ -179,7 +220,7 @@ const initializeMouseActions = (
   map.current.on("click", "boston", (e) => {
     const feature = e.features?.[0];
     const zipCode = feature?.properties.ZIP5;
-    
+
     if (map.current && feature && eligibleBostonZipcodes.has(zipCode)) {
       setSelectedZip(zipCode);
       if (clickedFeatureId?.current) {
@@ -242,9 +283,8 @@ const getValidatedLicenseData = (): BusinessLicense[] => {
 };
 
 export const BostonZipCodeMap = () => {
-  const mapContainer = useRef(null);
+  const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<Map | null>(null);
-  const detailsCard = useRef(null);
   const hoverZipId = useRef<string | number | undefined>("");
   const clickedFeatureId = useRef<EligibleBostonZipcode | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -286,9 +326,37 @@ export const BostonZipCodeMap = () => {
     clickedFeatureId.current = selectedZip;
   }, [isMapLoaded, selectedZip]);
 
+  // Recalculate map dimensions when the viewport changes.
+  useEffect(() => {
+    if (!map.current || !isMapLoaded) return;
+
+    const mapInstance = map.current;
+    let wasMobile = isMobileViewport();
+
+    // Handle viewport resize
+    const handleResize = () => {
+      mapInstance.resize();
+      applyViewportZoomConstraints(mapInstance);
+
+      const mobile = isMobileViewport();
+      if (mobile !== wasMobile) {
+        applyViewportCenter(mapInstance);
+      }
+      wasMobile = mobile;
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMapLoaded]);
+
   return (
-    <main>
+    <main className={mapStyles.mapPage}>
       <PageHeader
+        collapsibleOnMobile
         headerTitle={<FormattedMessage id="map.header.title" />}
         headerText={<FormattedMessage id="map.header.text" />}
       />
@@ -296,14 +364,13 @@ export const BostonZipCodeMap = () => {
         {/* Map canvas */}
         <div ref={mapContainer} className={mapStyles.map} />
         {/* Zip details */}
-        <div className="absolute flex flex-row justify-center items-center right-0 top-8 right-8">
+        <div className={mapStyles.mapCardWrapper}>
           <div
-            className={`${mapStyles.mapCard}`}
-            ref={detailsCard}
+            className={mapStyles.mapCard}
             id="zip-code-details-card"
           >
             <ZipDetailsContent licenses={licenses} zipCode={selectedZip} />
-            <div>
+            <div className="hidden md:block">
               <DotPagination
                 currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0}
                 totalPages={uniqueZips.length}
