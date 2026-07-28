@@ -81,4 +81,6 @@ class TextJsonExtractorStep:
             "details": None,
             "entity_number": self._entity_number(store_key),
             "file_name": self._sourceFileName(store_key),
+            "sam_address_id": None,
+            "building_id": None,
         }

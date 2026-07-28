@@ -8,6 +8,7 @@ from .header import HeaderExtractor
 from .license_number import LicenseNumberExtractor
 from .people import PeopleExtractor
 from .status import StatusExtractor
+from .sam_address_id import SamAddressIdExtractor
 
 EXTRACTORS: list[Extractor] = sorted(
     [
@@ -17,6 +18,7 @@ EXTRACTORS: list[Extractor] = sorted(
         CategoryExtractor(),        # alcohol_type
         AddressExtractor(),         # address
         AddressDetailsExtractor(),  # street_number, street_name, city, state, zipcode
+        SamAddressIdExtractor(),    # sam_address_id, building_id (SAM validation)
         PeopleExtractor(),          # manager, attorney
         StatusExtractor(),          # status
         DetailsExtractor(),         # status_detail
