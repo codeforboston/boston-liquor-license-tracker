@@ -8,13 +8,9 @@ const __dirname = path.dirname(__filename);
 const dateFilePath = path.join(__dirname, "..", LAST_PROCESSED_DATE_JSON);
 
 async function writeOrUpdateLastProcessedDate(lastProcessedDate: string) {
-  try{
   const data = { date: lastProcessedDate };
   await fs.writeFile(dateFilePath, JSON.stringify(data) );
   console.log(`Updated last processed date to: ${lastProcessedDate}`);
-  }catch(err){
-    throw err
-  }
 }
 
 const dateArg = process.argv[2];

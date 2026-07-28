@@ -7,12 +7,14 @@ import onsLogo from "@/assets/images/ons-logo.svg";
 import styles from "./resources.module.css";
 import { useIntl } from "react-intl";
 import { FormattedMessage } from "react-intl";
+import Links from "./links";
 import Accordion from "./accordion";
 import DefinitionItem from "./definition-item";
 
 const Resources = () => {
   const intl = useIntl();
   const title = `${intl.formatMessage({ id: "resources.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
+
   return (
     <main>
       <title>{title}</title>

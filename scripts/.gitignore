@@ -3,3 +3,4 @@ __pycache__/
 *.pdf
 node_modules/
 *.js
+!eslint.config.js
