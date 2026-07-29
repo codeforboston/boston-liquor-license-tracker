@@ -108,10 +108,17 @@ class BostonAddressParser:
 
     def parse_address(self, address):
         normalized_address = {}
-        normalized_address["street_number"] = self.extract_street_number(address)
+        normalized_address["street_number"] = self._normalize_street_number(
+            self.extract_street_number(address)
+        )
         normalized_address["full_street_name"] = self.extract_full_street_name(address)
         normalized_address["neighborhood"] = self.extract_neighborhood(address)
-        normalized_address["state"] = self.extract_state(address)
+        # Default to "MA" only for real address strings; keep None for
+        # non-string input, consistent with the other extractors.
+        state = self.extract_state(address)
+        if state is None and isinstance(address, str):
+            state = "MA"
+        normalized_address["state"] = state
         normalized_address["zipcode"] = self.extract_zipcode(address)
         return normalized_address
 
@@ -242,6 +249,14 @@ class BostonAddressParser:
         street_number = " ".join(number_parts)
         return street_number.strip()
 
+    def _normalize_street_number(self, sn):
+        if not sn:
+            return sn
+        # Collapse spaces around an internal hyphen: "268 - 270" -> "268-270"
+        s = re.sub(r"\s*-\s*", "-", sn.strip())
+        # Uppercase any letter suffix: "605a" -> "605A"
+        return s.upper()
+
     def normalize_street_suffix(self, street_name: str) -> str:
         # Build lookup maps (case-insensitive)
         FULL_TO_ABBR = {
@@ -249,6 +264,10 @@ class BostonAddressParser:
             for f, a in zip(STREET_SUFFIX_FULL, STREET_SUFFIX_ABBR, strict=True)
         }
         ABBR_SET = {a.lower(): a for a in STREET_SUFFIX_ABBR}
+
+        # Nonstandard suffix spellings seen in the source data that aren't in
+        # SAM's canonical list, mapped to the canonical abbreviation.
+        SUFFIX_ALIASES = {"av": "Ave"}
 
         if not isinstance(street_name, str):
             return street_name
@@ -272,7 +291,12 @@ class BostonAddressParser:
             parts[-1] = FULL_TO_ABBR[last]
             return " ".join(parts)
 
-        # Case 3: no suffix detected → return cleaned name
+        # Case 3: nonstandard abbreviation → canonical abbreviation
+        if last in SUFFIX_ALIASES:
+            parts[-1] = SUFFIX_ALIASES[last]
+            return " ".join(parts)
+
+        # Case 4: no suffix detected → return cleaned name
         return s
 
 

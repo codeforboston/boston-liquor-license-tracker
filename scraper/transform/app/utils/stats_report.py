@@ -29,6 +29,8 @@ class DataAnalyzer:
             "dba_name",
             "address",
             "zipcode",
+            "sam_address_id",
+            "building_id",
             "alcohol_type",
             "manager",
             "attorney",

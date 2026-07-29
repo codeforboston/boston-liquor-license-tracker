@@ -6,3 +6,8 @@
 # All our scripts are in TS, so ignore compiled JS files
 client/src/scripts/*.js
 
+
+all_licenses.json
+all_licenses.xlsx
+check_sam.py
+sam_stats.py

@@ -68,6 +68,8 @@ Internal fields extracted from voting minutes PDFs during the transform pipeline
 | `city` | string \| None | `AddressDetailsExtractor` | Neighborhood/city parsed from address |
 | `state` | string \| None | `AddressDetailsExtractor` | State (typically `MA`) |
 | `zipcode` | string \| None | `AddressDetailsExtractor` | 5-digit ZIP code parsed from address |
+| `sam_address_id` | string \| None | `SamAddressIdExtractor` | Canonical `SAM_ADDRESS_ID` from Boston's Live SAM dataset (ArcGIS), via exact match on street number + street name + ZIP. `None` when no match |
+| `building_id` | string \| None | `SamAddressIdExtractor` | SAM `BUILDING_ID` for the matched address. `None` when no match |
 | `alcohol_type` | string \| None | `CategoryExtractor` | Detected from keywords: `all alcoholic`, `common victualler`, `malt`, `wine` |
 | `manager` | string \| None | `PeopleExtractor` | Regex: `Manager\s*:\s*(.*)` or `([^,\.\n]+?)\s*,\s*Manager\.` |
 | `attorney` | string \| None | `PeopleExtractor` | Regex: `Attorney\s*:\s*(.*)` |
