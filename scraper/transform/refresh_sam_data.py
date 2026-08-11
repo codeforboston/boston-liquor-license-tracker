@@ -1,17 +1,17 @@
-"""Download a local snapshot of Boston's Live SAM address data.
+"""Refresh the local SAM snapshot from the API.
 
-This is the ONLY component that touches the network. The extraction pipeline
-reads the snapshot locally and never makes external calls. SAM addresses
-change infrequently, so this is run out-of-band to refresh the snapshot:
+This is the ONLY component that touches the network. The pipeline itself just
+reads the committed snapshot (see app.pipeline.extraction.sam_index), so
+extraction stays offline and deterministic. This is run out-of-band to
+refresh the snapshot (manually, or by the scheduled refresh Action):
 
     uv run python refresh_sam_data.py
-
-It writes to `data/sam_addresses.csv` (see `sam_index.SAM_DATA_PATH`).
 
 Source: https://data.boston.gov/dataset/live-street-address-management-sam-addresses
 """
 
 import csv
+import logging
 import time
 
 import requests
@@ -25,6 +25,8 @@ SAM_QUERY_URL = (
 PAGE_SIZE = 2000  # SAM's maxRecordCount
 REQUEST_TIMEOUT = 60
 
+logger = logging.getLogger(__name__)
+
 
 def fetch_all() -> list[dict]:
     """Page through the whole SAM layer and return the attribute rows."""
@@ -36,8 +38,8 @@ def fetch_all() -> list[dict]:
             "outFields": ",".join(SAM_FIELDS),
             "returnGeometry": "false",
             "orderByFields": "OBJECTID",  # stable ordering for pagination
-            "resultOffset": offset,
-            "resultRecordCount": PAGE_SIZE,
+            "resultOffset": str(offset),
+            "resultRecordCount": str(PAGE_SIZE),
             "f": "json",
         }
         resp = requests.get(SAM_QUERY_URL, params=params, timeout=REQUEST_TIMEOUT)
@@ -45,23 +47,17 @@ def fetch_all() -> list[dict]:
         payload = resp.json()
         if "error" in payload:
             raise RuntimeError(f"SAM API error: {payload['error']}")
-
         features = payload.get("features") or []
         rows.extend(f.get("attributes", {}) for f in features)
-        print(f"  fetched {len(rows)} rows...", flush=True)
-
+        logger.info("fetched %d rows...", len(rows))
         if len(features) < PAGE_SIZE:
             break
         offset += PAGE_SIZE
         time.sleep(0.2)  # be polite to the endpoint
-
     return rows
 
 
-def main() -> None:
-    print(f"Downloading SAM addresses from:\n  {SAM_QUERY_URL}")
-    rows = fetch_all()
-
+def write_snapshot(rows: list[dict]) -> None:
     SAM_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(SAM_DATA_PATH, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=SAM_FIELDS, extrasaction="ignore")
@@ -69,6 +65,12 @@ def main() -> None:
         for row in rows:
             writer.writerow({field: row.get(field) for field in SAM_FIELDS})
 
+
+def main() -> None:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    logger.info("Downloading SAM addresses from %s", SAM_QUERY_URL)
+    rows = fetch_all()
+    write_snapshot(rows)
     print(f"Wrote {len(rows)} rows to {SAM_DATA_PATH}")
 
 
