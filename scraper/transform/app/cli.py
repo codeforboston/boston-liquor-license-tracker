@@ -6,6 +6,7 @@ import sys
 
 from app.pipeline.pipeline import run_pipeline
 from app.utils.logger import setup_logging
+from app.utils.pdf_selection import select_latest_versions
 
 
 def main():
@@ -49,6 +50,7 @@ def main():
             sys.exit(1)
 
         files = [f for f in os.listdir(args.dir) if f.endswith(".pdf")]
+        files = select_latest_versions(files)
         logger.info(f"Found {len(files)} PDF files in {args.dir}")
 
         for index, filename in enumerate(files, 1):
