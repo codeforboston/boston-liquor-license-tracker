@@ -51,7 +51,7 @@ const Links = () => {
                 <FormattedMessage id={linkItem.descriptionId} />
               </p>
 
-              <div className="mt-[16px]">
+              <div className="mt-[12px] md:mt-[16px]">
                 <ResourceButton
                   labelId={linkItem.buttonId}
                   href={linkItem.href}

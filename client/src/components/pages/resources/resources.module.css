@@ -184,6 +184,11 @@ details[open] > .accordionSummary .accordionChevron {
     align-self: center;
   }
 
+  /* Body copy sits 12px above its buttons, but the page stack is 24px. */
+  .buttonGroup {
+    margin-block-start: -12px;
+  }
+
   .accordionSummary {
     /* The divider runs the full content width on mobile. */
     max-width: none;
