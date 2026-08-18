@@ -12,20 +12,24 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: fit-content;
+  min-width: 280px;
   min-height: 34px;
-  /* white-space: nowrap; */
-  padding: 8px 24px;
+  max-height: 36px;
+  padding: 4px 24px;
   border-radius: 8px;
   background-color: var(--color-button-default-dark);
   color: var(--color-button-default-light);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
   gap: 12px;
   cursor: pointer;
 
   svg {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
   }
 
   &:hover {
@@ -36,25 +40,6 @@
   &:active {
     background-color: var(--color-button-active-dark);
     color: var(--color-button-active-light);
-  }
-}
-
-/* 📱 Desktop Styling */
-@media (min-width: 768px) {
-  .resourceButton {
-    width: fit-content;
-    min-width: 280px;
-    max-height: 36px;
-    padding: 4px 24px;
-    font-size: 16px;
-    font-weight: 500;
-    white-space: nowrap;
-    line-height: 1;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
   }
 }
 
@@ -136,4 +121,26 @@ details[open] > .accordionSummary .accordionChevron {
 .definitionLink svg {
   width: 16px;
   height: 16px;
+}
+
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
+
+  .resourceButton {
+    /* Buttons hug their label on mobile (mockup widths vary: 241/289/337px).
+       min-width is dropped so long labels can wrap instead of forcing the page
+       to scroll horizontally on 320px-wide viewports. */
+    min-width: 0;
+    max-width: 100%;
+    max-height: none;
+    padding: 8px 24px;
+    font-size: 12px;
+    line-height: normal;
+    white-space: normal;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
 }
