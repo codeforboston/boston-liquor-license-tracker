@@ -146,4 +146,32 @@ details[open] > .accordionSummary .accordionChevron {
       height: 12px;
     }
   }
+
+  .accordionSummary {
+    /* The divider runs the full content width on mobile. */
+    max-width: none;
+    padding-inline-end: 0;
+  }
+
+  .accordionChevron {
+    width: 32px;
+    height: 32px;
+  }
+
+  .accordionContent {
+    padding-block-start: 24px;
+  }
+
+  .definitionItem {
+    gap: 8px;
+  }
+
+  .definitionTerm {
+    gap: 4px;
+  }
+
+  .definitionLink svg {
+    width: 20px;
+    height: 20px;
+  }
 }
