@@ -125,6 +125,9 @@ details[open] > .accordionSummary .accordionChevron {
 
 /* 📱 Mobile Styling */
 @media (max-width: 768px) {
+  .resources {
+    padding-inline: 24px;
+  }
 
   .resourceButton {
     /* Buttons hug their label on mobile (mockup widths vary: 241/289/337px).
