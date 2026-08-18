@@ -60,7 +60,7 @@ const Resources = () => {
             <FormattedMessage id="resources.cityGuides.text" />
           </p>
         </div>
-        <div className="flex flex-col gap-[16px]">
+        <div className={`${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`}>
           <ResourceButton
             labelId="resources.blbGuideButton.website"
             href="https://www.boston.gov/departments/licensing-board/apply-alcoholic-beverages-retail-license"
@@ -80,7 +80,7 @@ const Resources = () => {
             <FormattedMessage id="resources.offsiteGuide.text" />
           </p>
         </div>
-        <div className="flex flex-col gap-[16px]">
+        <div className={`${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`}>
           <ResourceButton
             labelId="resources.offsiteGuide.website"
             href="https://docs.google.com/document/d/1lgNSyEYcxv2vo_5Oln4ZFy7RuHcDAOcsbsMSA-3FD9A/edit?usp=sharing"
@@ -95,7 +95,7 @@ const Resources = () => {
             <FormattedMessage id="resources.toast.text" />
           </p>
         </div>
-        <div className="flex flex-col gap-[16px]">
+        <div className={`${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`}>
           <ResourceButton
             labelId="resources.toast.website"
             href="https://pos.toasttab.com/blog/on-the-line/how-to-get-a-liquor-license-in-massachusetts?srsltid=AfmBOopAp9ZVROi0VflQVOoNoVkEuouXLzdwWoKQTQztr6FSF2Vy6Zef"
@@ -152,7 +152,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.cityGuides.description" />
         </p>
       </div>
-      <div className="flex flex-col gap-[16px]">
+      <div className={`${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`}>
         <ResourceButton
           labelId="resources.applicationguides.blbGuideButton.website"
           href="https://www.boston.gov/departments/licensing-board/apply-alcoholic-beverages-retail-license"
@@ -172,7 +172,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.offsiteGuide.description" />
         </p>
       </div>
-      <div className="flex flex-col gap-[16px]">
+      <div className={`${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`}>
         <ResourceButton
           labelId="resources.applicationguides.offsiteGuide.website"
           href="https://docs.google.com/document/d/1lgNSyEYcxv2vo_5Oln4ZFy7RuHcDAOcsbsMSA-3FD9A/edit?usp=sharing"
@@ -187,7 +187,7 @@ const Resources = () => {
           <FormattedMessage id="resources.applicationguides.toast.text" />
         </p>
       </div>
-      <div className="flex flex-col gap-[16px]">
+      <div className={`${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`}>
         <ResourceButton
           labelId="resources.applicationguides.toast.website"
           href="https://pos.toasttab.com/blog/on-the-line/how-to-get-a-liquor-license-in-massachusetts?srsltid=AfmBOopAp9ZVROi0VflQVOoNoVkEuouXLzdwWoKQTQztr6FSF2Vy6Zef"
