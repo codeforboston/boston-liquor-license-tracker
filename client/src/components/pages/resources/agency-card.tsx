@@ -33,15 +33,13 @@ const AgencyCard = ({
         src={logoSrc}
         alt={intl.formatMessage({ id: logoAltId })}
       />
-      <div className="flex flex-col gap-[8px]">
-        <h3>
-          <FormattedMessage id={titleId} />
-        </h3>
-        <p>
-          <FormattedMessage id={descriptionId} />
-        </p>
-        <ResourceButton labelId={buttonLabelId} href={href} icon="link" />
-      </div>
+      <h3 className={styles.agencyTitle}>
+        <FormattedMessage id={titleId} />
+      </h3>
+      <p className={styles.agencyDescription}>
+        <FormattedMessage id={descriptionId} />
+      </p>
+      <ResourceButton labelId={buttonLabelId} href={href} icon="link" />
     </article>
   );
 };

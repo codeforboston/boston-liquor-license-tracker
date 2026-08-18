@@ -44,14 +44,31 @@
 }
 
 .agencyCard {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 93px 1fr;
+  grid-template-areas:
+    "logo title"
+    "logo desc"
+    "logo button";
+  column-gap: 16px;
+  row-gap: 8px;
+  align-content: start;
+
+  .agencyTitle {
+    grid-area: title;
+  }
+
+  .agencyDescription {
+    grid-area: desc;
+  }
+
+  .resourceButton {
+    grid-area: button;
+  }
 }
 
 .agencyLogo {
-  flex-shrink: 0;
+  grid-area: logo;
   width: 93px;
   height: 93px;
   object-fit: contain;
@@ -145,6 +162,26 @@ details[open] > .accordionSummary .accordionChevron {
       width: 12px;
       height: 12px;
     }
+  }
+
+  .agencyCard {
+    /* Title spans the full width above, logo sits beside the description,
+       and the link button spans the full width below. */
+    grid-template-areas:
+      "title title"
+      "logo desc"
+      "button button";
+
+    /* row-gap covers the 8px title-to-text step; the button needs 12px. */
+    .resourceButton {
+      margin-block-start: 4px;
+    }
+  }
+
+  .agencyLogo {
+    /* Keeps the logo an equal distance from the agency title and its link
+       button as the descriptions reflow to different heights. */
+    align-self: center;
   }
 
   .accordionSummary {
