@@ -12,20 +12,24 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: fit-content;
+  min-width: 280px;
   min-height: 34px;
-  /* white-space: nowrap; */
-  padding: 8px 24px;
+  max-height: 36px;
+  padding: 4px 24px;
   border-radius: 8px;
   background-color: var(--color-button-default-dark);
   color: var(--color-button-default-light);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
   gap: 12px;
   cursor: pointer;
 
   svg {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
   }
 
   &:hover {
@@ -39,34 +43,32 @@
   }
 }
 
-/* 📱 Desktop Styling */
-@media (min-width: 768px) {
-  .resourceButton {
-    width: fit-content;
-    min-width: 280px;
-    max-height: 36px;
-    padding: 4px 24px;
-    font-size: 16px;
-    font-weight: 500;
-    white-space: nowrap;
-    line-height: 1;
+.agencyCard {
+  display: grid;
+  grid-template-columns: 93px 1fr;
+  grid-template-areas:
+    "logo title"
+    "logo desc"
+    "logo button";
+  column-gap: 16px;
+  row-gap: 8px;
+  align-content: start;
 
-    svg {
-      width: 16px;
-      height: 16px;
-    }
+  .agencyTitle {
+    grid-area: title;
+  }
+
+  .agencyDescription {
+    grid-area: desc;
+  }
+
+  .resourceButton {
+    grid-area: button;
   }
 }
 
-.agencyCard {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 16px;
-}
-
 .agencyLogo {
-  flex-shrink: 0;
+  grid-area: logo;
   width: 93px;
   height: 93px;
   object-fit: contain;
@@ -136,4 +138,82 @@ details[open] > .accordionSummary .accordionChevron {
 .definitionLink svg {
   width: 16px;
   height: 16px;
+}
+
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
+  .resources {
+    padding-inline: 24px;
+  }
+
+  .resourceButton {
+    /* Buttons hug their label on mobile (mockup widths vary: 241/289/337px).
+       min-width is dropped so long labels can wrap instead of forcing the page
+       to scroll horizontally on 320px-wide viewports. */
+    min-width: 0;
+    max-width: 100%;
+    max-height: none;
+    padding: 8px 24px;
+    font-size: 12px;
+    line-height: normal;
+    white-space: normal;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .agencyCard {
+    /* Title spans the full width above, logo sits beside the description,
+       and the link button spans the full width below. */
+    grid-template-areas:
+      "title title"
+      "logo desc"
+      "button button";
+
+    /* row-gap covers the 8px title-to-text step; the button needs 12px. */
+    .resourceButton {
+      margin-block-start: 4px;
+    }
+  }
+
+  .agencyLogo {
+    /* Keeps the logo an equal distance from the agency title and its link
+       button as the descriptions reflow to different heights. */
+    align-self: center;
+  }
+
+  /* Body copy sits 12px above its buttons, but the page stack is 24px. */
+  .buttonGroup {
+    margin-block-start: -12px;
+  }
+
+  .accordionSummary {
+    /* The divider runs the full content width on mobile. */
+    max-width: none;
+    padding-inline-end: 0;
+  }
+
+  .accordionChevron {
+    width: 32px;
+    height: 32px;
+  }
+
+  .accordionContent {
+    padding-block-start: 24px;
+  }
+
+  .definitionItem {
+    gap: 8px;
+  }
+
+  .definitionTerm {
+    gap: 4px;
+  }
+
+  .definitionLink svg {
+    width: 20px;
+    height: 20px;
+  }
 }
