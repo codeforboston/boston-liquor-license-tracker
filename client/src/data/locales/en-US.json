@@ -32,7 +32,7 @@
   "database.availableLicenses.licenseType": "License Type",
   "database.availableLicenses.allAlcohol": "All Alcohol Licenses",
   "database.availableLicenses.wineBeerLicenses": "Wine & Malt Licenses",
-  "database.availableLicenses.zipCode": "Zip Code,"
+  "database.availableLicenses.zipCode": "Zip Code",
   "database.availableLicenses.totalLicenses": "Total Licenses",
   "database.availableLicenses.licensesAvailable": "Licenses Available",
   "database.availableLicenses.totalApplicants": "Total Applicants",
