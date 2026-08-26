@@ -1,21 +1,5 @@
 [
     {
-        "index": 1,
-        "entity_number": "19",
-        "business_name": "18 Meridian Food Services Inc.",
-        "dba_name": "Pomona III",
-        "address": "18-20 Meridian St, East Boston, MA 02128",
-        "zipcode": "02128",
-        "license_number": "LB-549183",
-        "status": "Granted",
-        "alcohol_type": "Wines and Malt Beverages",
-        "minutes_date": "2024-01-31",
-        "application_expiration_date": null,
-        "file_name": "voting_minutes_2024-02-01.pdf",
-        "granted_date": "2024-01-31",
-        "granted_file": "voting_minutes_2024-02-01.pdf"
-    },
-    {
         "index": 2,
         "entity_number": "20",
         "business_name": "Twentieth Century Bowling Alleys Inc.",
