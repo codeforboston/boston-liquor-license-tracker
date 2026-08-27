@@ -23,6 +23,9 @@ jobs:
         with:
           lfs: true
 
+      - name: Materialize LFS objects
+        run: git lfs checkout
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
