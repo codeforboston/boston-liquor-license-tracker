@@ -115,6 +115,11 @@
   "map.zipDetails.recentApplicants": "Recent Applicants:",
   "map.zipDetails.seeAllApplications": "See All Applications >",
   "map.error.refreshPage": "Refresh Page",
+  "map.zipNav.label": "Zip code navigation",
+  "map.zipNav.previous": "Previous zip code",
+  "map.zipNav.next": "Next zip code",
+  "map.zipNav.position": "{current} of {total}",
+  "map.zipNav.announcement": "Showing zip code {zipCode}",
   
   "resources.pageTitle": "Licensing Resources",
   "resources.header.description": "Information on how to apply for a license, what is needed, the application process, and general timelines for what happens after an application is submitted for a license. Along with descriptions of the other types of license types around the city of Boston.",

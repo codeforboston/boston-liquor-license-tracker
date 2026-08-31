@@ -5,11 +5,13 @@ import {
   useEffect,
   RefObject,
   useState,
+  useCallback,
   Dispatch,
   SetStateAction,
 } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { PageHeader } from "@/components/ui/pageheader";
+import { mod } from "@/lib/utils";
 import {
   BusinessLicense,
   EligibleBostonZipcode,
@@ -21,6 +23,8 @@ import licenseData from "../../../data/licenses.json";
 import DotPagination from "../../../components/ui/dot-pagination";
 import mapStyles from "./BostonZipCodeMap.module.css";
 import "./mapStyleOverrides.css";
+import { MobileZipNav } from "./MobileZipNav";
+import { useZipSwipe } from "./useZipSwipe";
 import { ZipDetailsContent } from "./ZipDetailsContent";
 
 /* Map Styles */
@@ -283,6 +287,7 @@ const getValidatedLicenseData = (): BusinessLicense[] => {
 };
 
 export const BostonZipCodeMap = () => {
+  const intl = useIntl();
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<Map | null>(null);
   const hoverZipId = useRef<string | number | undefined>("");
@@ -298,6 +303,30 @@ export const BostonZipCodeMap = () => {
 
   const licenses = getValidatedLicenseData();
   const [selectedZip, setSelectedZip] = useState<EligibleBostonZipcode>(uniqueZips[0]);
+
+  const selectedZipIndex = uniqueZips.indexOf(selectedZip);
+
+  // Shared by the dot pagination, the mobile buttons, and swipe. Wraps at both
+  // ends so there is never a dead control.
+  const goToZipOffset = useCallback(
+    (offset: number) => {
+      setSelectedZip((current) => {
+        const currentIndex = uniqueZips.indexOf(current);
+        return uniqueZips[mod(currentIndex + offset, uniqueZips.length)];
+      });
+    },
+    // uniqueZips is derived from a module-level constant Set, so its contents
+    // are stable across renders.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  const goToPreviousZip = useCallback(() => goToZipOffset(-1), [goToZipOffset]);
+  const goToNextZip = useCallback(() => goToZipOffset(1), [goToZipOffset]);
+
+  const swipeHandlers = useZipSwipe({
+    onSwipe: (direction) => goToZipOffset(direction === "next" ? 1 : -1),
+  });
 
   // Initialize map
   useEffect(() => {
@@ -368,16 +397,35 @@ export const BostonZipCodeMap = () => {
           <div
             className={mapStyles.mapCard}
             id="zip-code-details-card"
+            {...swipeHandlers}
           >
+            {/* Announces the change to screen readers, whichever control
+                caused it: map click, dot pagination, buttons, or swipe. */}
+            <p className="sr-only" role="status" aria-live="polite">
+              <FormattedMessage
+                id="map.zipNav.announcement"
+                values={{ zipCode: selectedZip }}
+              />
+            </p>
+            {/* Kept outside ZipDetailsContent so navigation stays available
+                in the error and empty-data states, which return early. */}
+            <MobileZipNav
+              currentIndex={selectedZipIndex}
+              totalZips={uniqueZips.length}
+              onPrevious={goToPreviousZip}
+              onNext={goToNextZip}
+            />
             <ZipDetailsContent licenses={licenses} zipCode={selectedZip} />
             <div className="hidden md:block">
               <DotPagination
-                currentPage={selectedZip ? uniqueZips.indexOf(selectedZip) : 0}
+                currentPage={selectedZip ? selectedZipIndex : 0}
                 totalPages={uniqueZips.length}
                 onPageChange={(newZipIndex) => {
                   setSelectedZip(uniqueZips[newZipIndex]);
                 }}
                 labels={uniqueZips}
+                previousLabel={intl.formatMessage({ id: "map.zipNav.previous" })}
+                nextLabel={intl.formatMessage({ id: "map.zipNav.next" })}
               />
             </div>
           </div>

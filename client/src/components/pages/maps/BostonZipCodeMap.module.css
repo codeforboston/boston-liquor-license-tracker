@@ -57,5 +57,9 @@
     max-height: 50vh;
     padding: 16px;
     pointer-events: auto;
+
+    /* Let the browser keep handling vertical scrolling natively while
+       horizontal gestures are reserved for zip code navigation. */
+    touch-action: pan-y;
   }
 }
