@@ -1,0 +1,1 @@
+Testing linter with a text file
