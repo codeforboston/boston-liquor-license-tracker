@@ -1,6 +1,7 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useCallback, useMemo } from 'react';
+import { mod } from '@/lib/utils';
 import styles from "./dot-pagination.module.css";
 
 type DotPaginationProps = {
@@ -8,6 +9,8 @@ type DotPaginationProps = {
   totalPages: number;
   onPageChange: (page: number) => void;
   labels: string[];
+  previousLabel?: string;
+  nextLabel?: string;
 }
 
 type DotButtonProps = {
@@ -15,12 +18,6 @@ type DotButtonProps = {
   isSelected: boolean;
   onSelect: (id: number) => void;
   tooltipLabel: string;
-}
-
-// TIL JavaScript does not have a real modulo operator
-// Shoutout about.com 
-function mod(x: number, y: number) {
-  return ((x % y) + y) % y;
 }
 
 function DotButton({ id, isSelected, onSelect, tooltipLabel }: DotButtonProps) {
@@ -48,7 +45,7 @@ function DotButton({ id, isSelected, onSelect, tooltipLabel }: DotButtonProps) {
   );
 }
 
-function DotPagination({ currentPage, labels, totalPages, onPageChange }: DotPaginationProps) {
+function DotPagination({ currentPage, labels, totalPages, onPageChange, previousLabel, nextLabel }: DotPaginationProps) {
 
   const pageNumbers = useMemo(() => [...Array(totalPages).keys()], [totalPages]);
 
@@ -67,10 +64,12 @@ function DotPagination({ currentPage, labels, totalPages, onPageChange }: DotPag
   return (
     <div className="flex justify-stretch">
       <button
+        type="button"
+        aria-label={previousLabel}
         className="w-[32px] h-[32px] mr-2 mb-2 mt-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
         onClick={handlePrevClick}
       >
-        <ChevronLeftIcon sx={{
+        <ChevronLeftIcon aria-hidden sx={{
           fill: "var(--color-button-default-dark)"
         }} />
       </button>
@@ -87,10 +86,12 @@ function DotPagination({ currentPage, labels, totalPages, onPageChange }: DotPag
         ))}
       </div>
       <button
+        type="button"
+        aria-label={nextLabel}
         className="w-[32px] h-[32px] mt-2 mb-2 ml-2 border-[2px] border-button-hovered-light rounded-[4px] bg-background-light cursor-pointer hover:bg-button-hovered-light"
         onClick={handleNextClick}
       >
-        <ChevronRightIcon sx={{
+        <ChevronRightIcon aria-hidden sx={{
           fill: "var(--color-button-default-dark)"
         }} />
       </button>
