@@ -1,7 +1,7 @@
 {
   "header.logo-altText": "License to Succeed Logo",
   "header.language": "Language",
-  
+
   "footer.abcc": "Alcoholic Beverages Control Commission",
   "footer.analyzeBoston": "Analyze Boston",
   "footer.application": "Boston License Application",
@@ -20,7 +20,7 @@
   "footer.offsite": "Offsite Hospitality",
   "footer.resources": "Important Resources",
   "footer.siteMap": "Site Map",
-  
+
   "shared.backToHomeButton": "BACK TO HOME",
   "shared.database.capitalized": "LICENSE DATABASE",
   "shared.map.capitalized": "MAP [BETA]",
@@ -38,7 +38,6 @@
   "database.availableLicenses.totalApplicants": "Total Applicants",
   "database.availableLicenses.openApplicants": "Open Applicants",
   "database.availableLicenses.licensesGranted": "Licenses Granted",
-
 
   "database.header.description": "Browse through available licenses in each of Boston's ZIP codes, view important information regarding each license type and recent license applications. As well as important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
@@ -92,7 +91,7 @@
   "home.navigation.map": "MAP",
   "home.pageTitle": "License to Succeed",
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
-  
+
   "map.header.text": "Hover over any Zip Code and get instant information about available licenses, what types of licenses are available, recent applications, and updates on assigned licenses.",
   "map.header.title": "License Availability Map [BETA]",
   "pageHeader.collapseDescription": "Hide page description",
@@ -120,7 +119,7 @@
   "map.zipNav.next": "Next zip code",
   "map.zipNav.position": "{current} of {total}",
   "map.zipNav.announcement": "Showing zip code {zipCode}",
-  
+
   "resources.pageTitle": "Licensing Resources",
   "resources.header.description": "Information on how to apply for a license, what is needed, the application process, and general timelines for what happens after an application is submitted for a license. Along with descriptions of the other types of license types around the city of Boston.",
   "resources.title": "Application Resources and Guides",
@@ -218,7 +217,7 @@
   "resources.applicationguides.toast.title": "Toast Massachusetts Licensing Resource and Information",
   "resources.applicationguides.toast.text": "A general guide to the state level process of obtaining a Liquor License. Giving a general overview of what to expect when going through the application process as well as general information regarding local restrictions and fees that might apply during the licensing process.",
   "resources.applicationguides.toast.website": "How to Get a Liquor License in Massachusetts",
-  
+
   "resources.applicationlinks.title": "Links to Application Pages",
   "resources.applicationlinks.description": "Below are links to the City of Boston's application form for prospective Licensees. As well as a link to the ABCC's application form.",
   "resources.applicationlinks.petitionform.title": "Alcohol License Petition Form",
