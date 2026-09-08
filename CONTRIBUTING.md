@@ -30,6 +30,7 @@ It is recommended that you familiarize yourself with Web Content Accessibility G
 - [ ] For new text elements that need translation, add a comment to the following document(https://docs.google.com/document/d/1Q7XeRzKGyoxlMTgHIlnJMYFBhyfd1AZcpQR9HHeSZ-s/edit?tab=t.0)
 ### Code Style / Linting
 - [ ] You can run our linters locally with `npm run lint` and `npm run lint:css`. You will also notice automated comments on your PR from our linter. We will request that you address linter errors before merging.
+- [ ] New GitHub security rules can cause issues with the linters by attempting to merge from a fork. If you encounter this issue, clone the main repository, create a feature branch, push the branch directly to the repository, and open your pull request from that branch instead.
 #### Merge Process
 - [ ] Ensure that you have tested your changes locally. You can run the test suite with `npm test`.
 - [ ] Request a review from the @maintainers group.
