@@ -4412,3 +4412,180 @@
 2026-08-31 00:43:16,712 - INFO - Download process completed.
 2026-08-31 00:43:16,712 - INFO - Application finished successfully.
 2026-08-31 00:43:16,712 - INFO - Total runtime: 0 minutes 34.46 seconds
+2026-09-07 00:42:02,657 - INFO - Starting Licensing Board Scraper Application
+2026-09-07 00:42:02,657 - INFO - Initializing Scraper Service...
+2026-09-07 00:42:02,657 - INFO - Fetching https://www.boston.gov/departments/licensing-board/licensing-board-information-and-members...
+2026-09-07 00:42:04,696 - INFO - Parsing links...
+2026-09-07 00:42:04,754 - INFO - Saving 445 video links to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/hearing_video_links.json...
+2026-09-07 00:42:04,755 - INFO - Saved data to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/hearing_video_links.json
+2026-09-07 00:42:04,756 - INFO - Extracting dates...
+2026-09-07 00:42:04,758 - INFO - Saving 155 minutes links...
+2026-09-07 00:42:04,758 - INFO - Saved data to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/voting_minutes_links.json
+2026-09-07 00:42:04,758 - INFO - Link stats:
+2026-09-07 00:42:04,758 - INFO - total_links: 660
+2026-09-07 00:42:04,759 - INFO - client_side_links: 16
+2026-09-07 00:42:04,759 - INFO - excluded_links: 44
+2026-09-07 00:42:04,759 - INFO - video_links: 445
+2026-09-07 00:42:04,759 - INFO - minutes_links: 155
+2026-09-07 00:42:04,759 - INFO - Stats logged to /home/runner/work/boston-liquor-license-tracker/boston-liquor-license-tracker/scraper/scrape/data/link_stats_log.csv
+2026-09-07 00:42:04,759 - INFO - Scraping completed.
+2026-09-07 00:42:04,759 - INFO - Initializing Downloader Service with download_dir: ./data/voting_minutes_pdfs
+2026-09-07 00:42:04,759 - INFO - Starting download process...
+2026-09-07 00:42:05,152 - INFO - No change - voting_minutes_2026-01-08.pdf is up to date
+2026-09-07 00:42:05,507 - INFO - No change - voting_minutes_2026-01-29.pdf is up to date
+2026-09-07 00:42:05,867 - INFO - No change - voting_minutes_2026-02-12.pdf is up to date
+2026-09-07 00:42:06,088 - INFO - No change - voting_minutes_2026-03-05.pdf is up to date
+2026-09-07 00:42:06,528 - INFO - No change - voting_minutes_2026-03-26.pdf is up to date
+2026-09-07 00:42:06,832 - INFO - No change - voting_minutes_2026-04-09.pdf is up to date
+2026-09-07 00:42:07,045 - INFO - No change - voting_minutes_2026-04-30.pdf is up to date
+2026-09-07 00:42:07,359 - INFO - No change - voting_minutes_2026-05-07.pdf is up to date
+2026-09-07 00:42:07,673 - INFO - No change - voting_minutes_2026-05-21.pdf is up to date
+2026-09-07 00:42:07,991 - INFO - No change - voting_minutes_2026-06-04.pdf is up to date
+2026-09-07 00:42:08,237 - INFO - No change - voting_minutes_2026-06-25.pdf is up to date
+2026-09-07 00:42:08,617 - INFO - No change - voting_minutes_2026-07-16.pdf is up to date
+2026-09-07 00:42:08,835 - INFO - No change - voting_minutes_2026-08-06.pdf is up to date
+2026-09-07 00:42:09,281 - INFO - No change - voting_minutes_2026-08-18.pdf is up to date
+2026-09-07 00:42:09,537 - INFO - No change - voting_minutes_2026-08-27.pdf is up to date
+2026-09-07 00:42:09,804 - INFO - Saved voting_minutes_2026-09-03.pdf
+2026-09-07 00:42:10,103 - INFO - No change - voting_minutes_2025-01-09.pdf is up to date
+2026-09-07 00:42:10,449 - INFO - No change - voting_minutes_2025-01-16.pdf is up to date
+2026-09-07 00:42:11,046 - INFO - No change - voting_minutes_2025-01-23.pdf is up to date
+2026-09-07 00:42:11,438 - INFO - No change - voting_minutes_2025-02-13.pdf is up to date
+2026-09-07 00:42:11,689 - INFO - No change - voting_minutes_2025-02-27.pdf is up to date
+2026-09-07 00:42:12,035 - INFO - No change - voting_minutes_2025-03-06.pdf is up to date
+2026-09-07 00:42:12,547 - INFO - No change - voting_minutes_2025-03-27.pdf is up to date
+2026-09-07 00:42:12,715 - INFO - No change - voting_minutes_2025-04-03.pdf is up to date
+2026-09-07 00:42:13,217 - INFO - No change - voting_minutes_2025-04-17.pdf is up to date
+2026-09-07 00:42:13,497 - INFO - No change - voting_minutes_2025-05-01.pdf is up to date
+2026-09-07 00:42:13,934 - INFO - No change - voting_minutes_2025-05-15.pdf is up to date
+2026-09-07 00:42:14,304 - INFO - No change - voting_minutes_2025-05-29.pdf is up to date
+2026-09-07 00:42:14,481 - INFO - No change - voting_minutes_2025-06-05.pdf is up to date
+2026-09-07 00:42:14,687 - INFO - No change - voting_minutes_2025-06-26.pdf is up to date
+2026-09-07 00:42:15,044 - INFO - No change - voting_minutes_2025-07-17.pdf is up to date
+2026-09-07 00:42:15,257 - INFO - No change - voting_minutes_2025-07-31.pdf is up to date
+2026-09-07 00:42:15,644 - INFO - No change - voting_minutes_2025-08-07.pdf is up to date
+2026-09-07 00:42:15,891 - INFO - No change - voting_minutes_2025-08-28.pdf is up to date
+2026-09-07 00:42:16,198 - INFO - No change - voting_minutes_2025-09-18.pdf is up to date
+2026-09-07 00:42:16,505 - INFO - No change - voting_minutes_2025-10-23.pdf is up to date
+2026-09-07 00:42:17,851 - INFO - No change - voting_minutes_yyyy-11-06.pdf is up to date
+2026-09-07 00:42:19,308 - INFO - No change - voting_minutes_yyyy-11-20.pdf is up to date
+2026-09-07 00:42:19,661 - INFO - No change - voting_minutes_2025-12-04.pdf is up to date
+2026-09-07 00:42:20,136 - INFO - No change - voting_minutes_2025-12-18.pdf is up to date
+2026-09-07 00:42:20,444 - INFO - No change - voting_minutes_2024-01-04.pdf is up to date
+2026-09-07 00:42:20,658 - INFO - No change - voting_minutes_2024-02-01.pdf is up to date
+2026-09-07 00:42:20,981 - INFO - No change - voting_minutes_2024-02-08.pdf is up to date
+2026-09-07 00:42:21,181 - INFO - No change - voting_minutes_2024-02-29.pdf is up to date
+2026-09-07 00:42:21,419 - INFO - No change - voting_minutes_2024-03-07.pdf is up to date
+2026-09-07 00:42:21,791 - INFO - No change - voting_minutes_2024-03-28.pdf is up to date
+2026-09-07 00:42:22,106 - INFO - No change - voting_minutes_2024-04-04.pdf is up to date
+2026-09-07 00:42:22,266 - INFO - No change - voting_minutes_2024-04-25.pdf is up to date
+2026-09-07 00:42:22,449 - INFO - No change - voting_minutes_2024-05-01.pdf is up to date
+2026-09-07 00:42:22,800 - INFO - No change - voting_minutes_2024-05-23.pdf is up to date
+2026-09-07 00:42:23,105 - INFO - No change - voting_minutes_2024-06-06.pdf is up to date
+2026-09-07 00:42:23,571 - INFO - No change - voting_minutes_2024-06-26.pdf is up to date
+2026-09-07 00:42:23,820 - INFO - No change - voting_minutes_2024-07-11.pdf is up to date
+2026-09-07 00:42:24,151 - INFO - No change - voting_minutes_2024-08-01.pdf is up to date
+2026-09-07 00:42:24,300 - INFO - No change - voting_minutes_2024-08-08.pdf is up to date
+2026-09-07 00:42:24,473 - INFO - No change - voting_minutes_2024-08-22.pdf is up to date
+2026-09-07 00:42:24,797 - INFO - No change - voting_minutes_2024-09-12.pdf is up to date
+2026-09-07 00:42:25,092 - INFO - No change - voting_minutes_2024-09-26.pdf is up to date
+2026-09-07 00:42:25,333 - INFO - No change - voting_minutes_2024-10-17.pdf is up to date
+2026-09-07 00:42:25,640 - INFO - No change - voting_minutes_2024-10-31.pdf is up to date
+2026-09-07 00:42:26,069 - INFO - No change - voting_minutes_2024-11-14.pdf is up to date
+2026-09-07 00:42:26,374 - INFO - No change - voting_minutes_2024-11-21.pdf is up to date
+2026-09-07 00:42:26,671 - INFO - No change - voting_minutes_2024-12-12.pdf is up to date
+2026-09-07 00:42:26,971 - INFO - No change - voting_minutes_2023-01-05.pdf is up to date
+2026-09-07 00:42:27,275 - INFO - No change - voting_minutes_2023-01-25.pdf is up to date
+2026-09-07 00:42:27,565 - INFO - No change - voting_minutes_2023-02-02.pdf is up to date
+2026-09-07 00:42:27,719 - INFO - No change - voting_minutes_2023-02-16.pdf is up to date
+2026-09-07 00:42:28,062 - INFO - No change - voting_minutes_2023-03-08.pdf is up to date
+2026-09-07 00:42:28,378 - INFO - No change - voting_minutes_2023-03-30.pdf is up to date
+2026-09-07 00:42:28,679 - INFO - No change - voting_minutes_2023-04-06.pdf is up to date
+2026-09-07 00:42:29,009 - INFO - No change - voting_minutes_2023-04-27.pdf is up to date
+2026-09-07 00:42:29,441 - INFO - No change - voting_minutes_2023-05-04.pdf is up to date
+2026-09-07 00:42:29,760 - INFO - No change - voting_minutes_2023-05-25.pdf is up to date
+2026-09-07 00:42:30,036 - INFO - No change - voting_minutes_2023-06-08.pdf is up to date
+2026-09-07 00:42:30,452 - INFO - No change - voting_minutes_2023-06-29.pdf is up to date
+2026-09-07 00:42:30,761 - INFO - No change - voting_minutes_2023-07-20.pdf is up to date
+2026-09-07 00:42:31,104 - INFO - No change - voting_minutes_2023-08-17.pdf is up to date
+2026-09-07 00:42:31,282 - INFO - No change - voting_minutes_2023-09-14.pdf is up to date
+2026-09-07 00:42:31,582 - INFO - No change - voting_minutes_2023-09-28.pdf is up to date
+2026-09-07 00:42:31,883 - INFO - No change - voting_minutes_2023-10-04.pdf is up to date
+2026-09-07 00:42:32,153 - INFO - No change - voting_minutes_2023-10-26.pdf is up to date
+2026-09-07 00:42:32,416 - INFO - No change - voting_minutes_2023-11-02.pdf is up to date
+2026-09-07 00:42:32,724 - INFO - No change - voting_minutes_2023-11-16.pdf is up to date
+2026-09-07 00:42:33,031 - INFO - No change - voting_minutes_2023-12-14.pdf is up to date
+2026-09-07 00:42:33,391 - INFO - No change - voting_minutes_2022-01-06.pdf is up to date
+2026-09-07 00:42:33,837 - INFO - No change - voting_minutes_2022-01-20.pdf is up to date
+2026-09-07 00:42:34,070 - INFO - No change - voting_minutes_2022-01-27.pdf is up to date
+2026-09-07 00:42:34,401 - INFO - No change - voting_minutes_2022-02-03.pdf is up to date
+2026-09-07 00:42:34,812 - INFO - No change - voting_minutes_2022-02-17.pdf is up to date
+2026-09-07 00:42:35,115 - INFO - No change - voting_minutes_2022-03-03.pdf is up to date
+2026-09-07 00:42:35,426 - INFO - No change - voting_minutes_2022-03-24.pdf is up to date
+2026-09-07 00:42:35,635 - INFO - No change - voting_minutes_2022-04-07.pdf is up to date
+2026-09-07 00:42:35,859 - INFO - No change - voting_minutes_2022-04-28.pdf is up to date
+2026-09-07 00:42:36,157 - INFO - No change - voting_minutes_2022-05-05.pdf is up to date
+2026-09-07 00:42:36,494 - INFO - No change - voting_minutes_2022-05-26.pdf is up to date
+2026-09-07 00:42:36,796 - INFO - No change - voting_minutes_2022-06-08.pdf is up to date
+2026-09-07 00:42:37,000 - INFO - No change - voting_minutes_2022-06-30.pdf is up to date
+2026-09-07 00:42:37,311 - INFO - No change - voting_minutes_2022-07-14.pdf is up to date
+2026-09-07 00:42:37,614 - INFO - No change - voting_minutes_2022-07-28.pdf is up to date
+2026-09-07 00:42:37,826 - INFO - No change - voting_minutes_2022-08-04.pdf is up to date
+2026-09-07 00:42:38,126 - INFO - No change - voting_minutes_2022-08-25.pdf is up to date
+2026-09-07 00:42:38,307 - INFO - No change - voting_minutes_2022-09-15.pdf is up to date
+2026-09-07 00:42:38,777 - INFO - No change - voting_minutes_2022-09-29.pdf is up to date
+2026-09-07 00:42:38,981 - INFO - No change - voting_minutes_2022-10-06.pdf is up to date
+2026-09-07 00:42:39,338 - INFO - No change - voting_minutes_2022-10-26.pdf is up to date
+2026-09-07 00:42:39,693 - INFO - No change - voting_minutes_2022-11-03.pdf is up to date
+2026-09-07 00:42:39,887 - INFO - No change - voting_minutes_2022-11-17.pdf is up to date
+2026-09-07 00:42:40,191 - INFO - No change - voting_minutes_2022-12-15.pdf is up to date
+2026-09-07 00:42:40,510 - INFO - No change - voting_minutes_2021-01-21.pdf is up to date
+2026-09-07 00:42:40,803 - INFO - No change - voting_minutes_2021-01-28.pdf is up to date
+2026-09-07 00:42:41,100 - INFO - No change - voting_minutes_2021-02-04.pdf is up to date
+2026-09-07 00:42:41,402 - INFO - No change - voting_minutes_2021-02-25.pdf is up to date
+2026-09-07 00:42:41,708 - INFO - No change - voting_minutes_2021-03-04.pdf is up to date
+2026-09-07 00:42:42,079 - INFO - No change - voting_minutes_2021-04-01.pdf is up to date
+2026-09-07 00:42:42,391 - INFO - No change - voting_minutes_yyyy-mm-dd.pdf is up to date
+2026-09-07 00:42:42,704 - INFO - No change - voting_minutes_2021-04-08.pdf is up to date
+2026-09-07 00:42:43,008 - INFO - No change - voting_minutes_yyyy-mm-dd.pdf is up to date
+2026-09-07 00:42:43,182 - INFO - No change - voting_minutes_2021-04-20.pdf is up to date
+2026-09-07 00:42:43,436 - INFO - No change - voting_minutes_2021-04-29.pdf is up to date
+2026-09-07 00:42:43,929 - INFO - No change - voting_minutes_2021-05-06.pdf is up to date
+2026-09-07 00:42:44,135 - INFO - No change - voting_minutes_2021-05-27.pdf is up to date
+2026-09-07 00:42:44,294 - INFO - No change - voting_minutes_2021-06-03.pdf is up to date
+2026-09-07 00:42:44,468 - INFO - No change - voting_minutes_2021-06-24.pdf is up to date
+2026-09-07 00:42:44,763 - INFO - No change - voting_minutes_2021-07-01.pdf is up to date
+2026-09-07 00:42:45,128 - INFO - No change - voting_minutes_2021-07-29.pdf is up to date
+2026-09-07 00:42:45,426 - INFO - No change - voting_minutes_2021-08-09.pdf is up to date
+2026-09-07 00:42:45,900 - INFO - No change - voting_minutes_2021-08-26.pdf is up to date
+2026-09-07 00:42:46,251 - INFO - No change - voting_minutes_2021-09-02.pdf is up to date
+2026-09-07 00:42:46,413 - INFO - No change - voting_minutes_2021-09-30.pdf is up to date
+2026-09-07 00:42:46,571 - INFO - No change - voting_minutes_2021-10-07.pdf is up to date
+2026-09-07 00:42:46,858 - INFO - No change - voting_minutes_2021-10-28.pdf is up to date
+2026-09-07 00:42:47,155 - INFO - No change - voting_minutes_2021-11-04.pdf is up to date
+2026-09-07 00:42:47,427 - INFO - No change - voting_minutes_2021-11-18.pdf is up to date
+2026-09-07 00:42:47,729 - INFO - No change - voting_minutes_2021-12-02.pdf is up to date
+2026-09-07 00:42:47,980 - INFO - No change - voting_minutes_2021-12-16.pdf is up to date
+2026-09-07 00:42:48,290 - INFO - No change - voting_minutes_2020-12-23.pdf is up to date
+2026-09-07 00:42:48,602 - INFO - No change - voting_minutes_2020-12-03.pdf is up to date
+2026-09-07 00:42:48,854 - INFO - No change - voting_minutes_2020-11-05.pdf is up to date
+2026-09-07 00:42:49,151 - INFO - No change - voting_minutes_2020-10-29.pdf is up to date
+2026-09-07 00:42:49,380 - INFO - No change - voting_minutes_2020-10-08.pdf is up to date
+2026-09-07 00:42:49,743 - INFO - No change - voting_minutes_2020-10-01.pdf is up to date
+2026-09-07 00:42:49,987 - INFO - No change - voting_minutes_2020-09-17.pdf is up to date
+2026-09-07 00:42:50,308 - INFO - No change - voting_minutes_2020-09-10.pdf is up to date
+2026-09-07 00:42:50,628 - INFO - No change - voting_minutes_2020-09-10.pdf is up to date
+2026-09-07 00:42:50,933 - INFO - No change - voting_minutes_2020-08-20.pdf is up to date
+2026-09-07 00:42:51,205 - INFO - No change - voting_minutes_2020-08-13.pdf is up to date
+2026-09-07 00:42:51,680 - INFO - No change - voting_minutes_2020-07-30.pdf is up to date
+2026-09-07 00:42:52,042 - INFO - No change - voting_minutes_2020-07-16.pdf is up to date
+2026-09-07 00:42:52,372 - INFO - No change - voting_minutes_2020-06-04.pdf is up to date
+2026-09-07 00:42:52,684 - INFO - No change - voting_minutes_2020-05-28.pdf is up to date
+2026-09-07 00:42:52,861 - INFO - No change - voting_minutes_2020-05-21.pdf is up to date
+2026-09-07 00:42:53,177 - INFO - No change - voting_minutes_2020-05-14.pdf is up to date
+2026-09-07 00:42:53,579 - INFO - No change - voting_minutes_2020-05-07.pdf is up to date
+2026-09-07 00:42:53,958 - INFO - No change - voting_minutes_2020-04-23.pdf is up to date
+2026-09-07 00:42:54,256 - INFO - No change - voting_minutes_2020-04-30.pdf is up to date
+2026-09-07 00:42:54,257 - INFO - Download process completed.
+2026-09-07 00:42:54,257 - INFO - Application finished successfully.
+2026-09-07 00:42:54,257 - INFO - Total runtime: 0 minutes 51.60 seconds
