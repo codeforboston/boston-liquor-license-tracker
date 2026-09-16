@@ -11,11 +11,11 @@ const ResourcesNew = () => {
   return (
     <main>
       <title>{title}</title>
-        <Header />
-          <div className={`${styles.resources} flex flex-col gap-[24px]`}>
-            <BasicResources />
-          </div>
-        <div/>
+      <Header />
+        <div className={`${styles.resources} flex flex-col gap-[24px]`}>
+          <BasicResources />
+        </div>
+      <div/>
     </main>
   );
 };
