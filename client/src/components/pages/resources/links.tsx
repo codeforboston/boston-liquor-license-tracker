@@ -14,7 +14,7 @@ const applicationLinks: ResourceLinkItem[] = [
     titleId: "resources.applicationlinks.petitionform.title",
     descriptionId: "resources.applicationlinks.petitionform.description",
     buttonId: "resources.applicationlinks.petitionform.link",
-    href: "https://www.boston.gov/departments/licensing-board/apply-liquor-license",
+    href: "https://docs.google.com/forms/d/1PBPqigwXkSXYDMlfbJR3865OJSYARD5cyikkudok8PA/viewform?edit_requested=true",
   },
   {
     titleId: "resources.applicationlinks.abccapplication.title",
