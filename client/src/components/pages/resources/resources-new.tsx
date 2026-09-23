@@ -4,6 +4,7 @@ import Header from "./header";
 import BasicResources from "./basic-resources-new";
 import Agencies from "./agencies-new";
 import styles from "./resources-new.module.css";
+import { ApplicationResourcesAndGuides } from "./application-guides-new";
 
 const ResourcesNew = () => {
   const intl = useIntl();
@@ -16,6 +17,7 @@ const ResourcesNew = () => {
       <div className={`${styles.resources} flex flex-col gap-[24px]`}>
         <BasicResources />
         <Agencies />
+        <ApplicationResourcesAndGuides />
       </div>
     </main>
   );
