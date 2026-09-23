@@ -1,6 +1,7 @@
 // New resources page being refactored (in progress.)
 import { useIntl } from "react-intl";
 import Header from "./header";
+import Links from "./links";
 import BasicResources from "./basic-resources-new";
 import Agencies from "./agencies-new";
 import styles from "./resources-new.module.css";
@@ -18,6 +19,7 @@ const ResourcesNew = () => {
         <BasicResources />
         <Agencies />
         <ApplicationResourcesAndGuides />
+        <Links />
       </div>
     </main>
   );
