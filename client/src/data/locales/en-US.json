@@ -214,5 +214,5 @@
   "notFound.beerPourImageAlt": "Bartender pouring a beer from a tap",
   "notFound.heading": "This page isn't on tap at the moment",
   "notFound.message": "The page you are looking for doesn't exist or has moved, make sure you have entered the right URL",
-  "notFound.pageTitle": "Page Not Found",
+  "notFound.pageTitle": "Page Not Found"
 }
