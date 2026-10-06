@@ -39,7 +39,7 @@
   "database.availableLicenses.openApplicants": "Open Applicants",
   "database.availableLicenses.licensesGranted": "Licenses Granted",
 
-  "database.header.description": "Browse through available licenses in each of Boston's ZIP codes, view important information regarding each license type and recent license applications. As well as important dates for license applications.",
+  "database.header.description": "Browse through available licenses in each of Boston's ZIP codes. View important information regarding each license type and recent license applications, as well as important dates for license applications.",
   "database.header.nextMeeting": "The next Licensing Boarding meeting is: <strong>{nextMeetingDate, date, long}</strong>",
   "database.header.title": "License Database",
   "database.licenseTerminology.header": "Basic License Terminology",
