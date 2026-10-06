@@ -1,9 +1,11 @@
 // New resources page being refactored (in progress.)
 import { useIntl } from "react-intl";
 import Header from "./header";
+import Links from "./links";
 import BasicResources from "./basic-resources-new";
 import Agencies from "./agencies-new";
 import styles from "./resources-new.module.css";
+import { ApplicationResourcesAndGuides } from "./application-guides-new";
 
 const ResourcesNew = () => {
   const intl = useIntl();
@@ -16,6 +18,8 @@ const ResourcesNew = () => {
       <div className={`${styles.resources} flex flex-col gap-[24px]`}>
         <BasicResources />
         <Agencies />
+        <ApplicationResourcesAndGuides />
+        <Links />
       </div>
     </main>
   );

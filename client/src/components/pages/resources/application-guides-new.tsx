@@ -7,7 +7,7 @@ export function ApplicationResourcesAndGuides(){
     const titleAndBodyLayout: string = `flex flex-col gap-[8px]`
     const buttonLayout: string = `${styles.buttonGroup} flex flex-col gap-[12px] md:gap-[16px]`
     return(
-        <div>
+        <div className="flex flex-col gap-[24px]">
             <div className={titleAndBodyLayout}>
                 <h2>
                     <FormattedMessage id="resources.applicationguides.title" />
