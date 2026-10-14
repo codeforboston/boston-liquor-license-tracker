@@ -1,0 +1,52 @@
+.agencyCard {
+  display: grid;
+  grid-template-columns: 93px 1fr;
+  grid-template-areas:
+    "logo title"
+    "logo desc"
+    "logo button";
+  column-gap: 16px;
+  row-gap: 8px;
+  align-content: start;
+
+  .agencyTitle {
+    grid-area: title;
+  }
+
+  .agencyDescription {
+    grid-area: desc;
+  }
+
+  .resourceButton {
+    grid-area: button;
+  }
+}
+
+.agencyLogo {
+  grid-area: logo;
+  width: 93px;
+  height: 93px;
+  object-fit: contain;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border-gray);
+  padding: 4px;
+  background-color: var(--color-white-1);
+}
+
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
+  .agencyCard {
+    grid-template-areas:
+      "title title"
+      "logo desc"
+      "button button";
+
+    .resourceButton {
+      margin-block-start: 4px;
+    }
+  }
+
+  .agencyLogo {
+    align-self: center;
+  }
+}

@@ -1,0 +1,55 @@
+.accordion {
+  width: 100%;
+}
+
+.accordionSummary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  max-width: 350px;
+  padding: 8px 24px 8px 0;
+  border-bottom: 2px solid var(--color-gray-light-4);
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+}
+
+.accordionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.accordionChevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .accordionSummary .accordionChevron {
+  transform: rotate(90deg);
+}
+
+.accordionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+/* 📱 Mobile Styling */
+@media (max-width: 768px) {
+  .accordionSummary {
+    max-width: none;
+    padding-inline-end: 0;
+  }
+
+  .accordionChevron {
+    width: 32px;
+    height: 32px;
+  }
+
+  .accordionContent {
+    padding-block-start: 24px;
+  }
+}
