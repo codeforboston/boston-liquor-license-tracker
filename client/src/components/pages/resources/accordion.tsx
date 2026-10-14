@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { FormattedMessage } from "react-intl";
-import styles from "./resources.module.css";
+import styles from "./accordion.module.css";
 
 interface AccordionProps {
   /** i18n id for the accordion header label */
