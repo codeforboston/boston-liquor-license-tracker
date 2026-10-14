@@ -37,7 +37,7 @@ details[open] > .accordionSummary .accordionChevron {
   padding: 16px 0;
 }
 
-/* 📱 Mobile Styling */
+/* Mobile Styling */
 @media (max-width: 768px) {
   .accordionSummary {
     max-width: none;

@@ -33,7 +33,7 @@
   background-color: var(--color-white-1);
 }
 
-/* 📱 Mobile Styling */
+/* Mobile Styling */
 @media (max-width: 768px) {
   .agencyCard {
     grid-template-areas:

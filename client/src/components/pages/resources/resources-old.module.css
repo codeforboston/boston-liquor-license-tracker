@@ -140,7 +140,7 @@ details[open] > .accordionSummary .accordionChevron {
   height: 16px;
 }
 
-/* 📱 Mobile Styling */
+/* Mobile Styling */
 @media (max-width: 768px) {
   .resources {
     padding-inline: 24px;
