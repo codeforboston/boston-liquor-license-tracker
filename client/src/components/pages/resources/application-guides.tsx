@@ -1,7 +1,7 @@
 
 import {FormattedMessage} from "react-intl";
 import ResourceButton from "@components/pages/resources/resource-button.tsx";
-import styles from "./resources.module.css";
+import styles from "./application-guides.module.css";
 
 export function ApplicationResourcesAndGuides(){
     const titleAndBodyLayout: string = `flex flex-col gap-[8px]`

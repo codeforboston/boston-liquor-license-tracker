@@ -1,0 +1,35 @@
+.resourceButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
+  min-width: 280px;
+  min-height: 34px;
+  max-height: 36px;
+  padding: 4px 24px;
+  border-radius: 8px;
+  background-color: var(--color-button-default-dark);
+  color: var(--color-button-default-light);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  gap: 12px;
+  cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background-color: var(--color-button-hovered-dark);
+    color: var(--color-button-hovered-light);
+  }
+
+  &:active {
+    background-color: var(--color-button-active-dark);
+    color: var(--color-button-active-light);
+  }
+}
