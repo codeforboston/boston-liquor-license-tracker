@@ -1,6 +1,6 @@
 import { Link } from "lucide-react";
 import { FormattedMessage, useIntl } from "react-intl";
-import styles from "./resources.module.css";
+import styles from "./definition-item.module.css";
 
 interface DefinitionItemProps {
   termId: string;

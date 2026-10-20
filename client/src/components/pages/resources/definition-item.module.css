@@ -1,0 +1,38 @@
+.definitionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.definitionTerm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.definitionLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-font-dark);
+}
+
+.definitionLink svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+  .definitionItem {
+    gap: 8px;
+  }
+
+  .definitionTerm {
+    gap: 4px;
+  }
+
+  .definitionLink svg {
+    width: 20px;
+    height: 20px;
+  }
+}
