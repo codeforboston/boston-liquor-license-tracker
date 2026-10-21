@@ -1534,5 +1534,21 @@
         "file_name": "Voting%20Minutes%209-3-26.docx.pdf",
         "granted_date": "2026-09-02",
         "granted_file": "Voting%20Minutes%209-3-26.docx.pdf"
+    },
+    {
+        "index": 97,
+        "entity_number": "32",
+        "business_name": "JLI Family Corporation",
+        "dba_name": "El Patron de Los Tacos",
+        "address": "50 Maverick Sq, East Boston, MA 02128",
+        "zipcode": "02128",
+        "license_number": "LB-636920",
+        "status": "Granted",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-10-14",
+        "application_expiration_date": null,
+        "file_name": "Voting%20Minutes%2010-15-26.docx.pdf",
+        "granted_date": "2026-10-14",
+        "granted_file": "Voting%20Minutes%2010-15-26.docx.pdf"
     }
 ]
