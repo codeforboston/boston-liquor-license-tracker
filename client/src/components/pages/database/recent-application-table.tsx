@@ -10,62 +10,56 @@ import {
   getApplicantsByApplicationStatus,
 } from "../../../services/data-interface/data-interface";
 import { RowWithSubRows } from "@components/ui/table";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearch } from "@tanstack/react-router";
 import licenseData from "../../../data/licenses.json";
-import { FormattedMessage } from "react-intl";
+import {FormattedMessage, IntlShape, useIntl} from "react-intl";
 import { isEligibleBostonZipCode } from "../../../services/data-interface/data-interface";
-import FilterDropdown from "@/components/ui/filter-dropdown";
+import FilterDropdown, {DropdownOption} from "@/components/ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
 import { Selection, Button, DialogTrigger, ModalOverlay, Modal, Dialog } from "react-aria-components";
 
-const statusStyles: Record<ApplicationStatusType, string> = {
-  Granted:
-    "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]",
-  Expired:
-    "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]",
-  Deferred:
-    "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]",
-}
 
-// Cell formatter function - only formats status column in sub-rows
-const statusCellFormatter = (
-  cell: string,
-  _rowIndex: number,
-  cellIndex: number,
-  isSubRow: boolean
-): CellFormat => {
-  // Only format the last column (Status - index 6) in sub-rows
-  if (isSubRow && cellIndex === 6) {
-    const statusClass = statusStyles[cell as ApplicationStatusType] || "";
-    return {
-      content: cell,
-      className: statusClass,
-    };
-  }
-
-  // Return cell unchanged for all other cases
-  return { content: cell };
-};
 
 const formatData = (
   data: BusinessLicense[],
   zipcodeList: Set<EligibleBostonZipcode>,
-  applicationStatusList: Set<ApplicationStatusType>
+  applicationStatusList: Set<ApplicationStatusType>,
+  totalApplicantLocalization: string,
+  statusLocalizationRecord : Record<string,string>,
+  applicationTypeTranslation : Record<string, string>
 ) => {
   const zips = [...zipcodeList];
   const formattedData = zips.map((zipcode) => {
     let applicants = getApplicantsByZipcode(zipcode, data);
     applicants = getApplicantsByApplicationStatus(applicationStatusList, applicants);
     const subrows = applicants.map((applicant) => {
+      let statusLocalization : string
+      switch (applicant.status){
+        case "Granted":{
+          statusLocalization = statusLocalizationRecord[0]
+          break;
+        }
+        case "Expired":{
+          statusLocalization = statusLocalizationRecord[1]
+          break;
+        }
+        case "Deferred":{
+          statusLocalization = statusLocalizationRecord[2]
+          break;
+        }
+        default:{
+          statusLocalization = "error with translation"
+        }
+      }
       return [
         applicant.business_name,
         applicant.dba_name ?? "None Provided",
         applicant.address,
         applicant.license_number,
-        applicant.alcohol_type,
+        applicationTypeTranslation[applicant.alcohol_type],
         applicant.minutes_date,
-        applicant.status,
+        statusLocalization,
       ];
     });
     const entry = {
@@ -76,7 +70,7 @@ const formatData = (
         "_",
         "_",
         "_",
-        `Total Applicants: ${applicants.length}`,
+        `${totalApplicantLocalization} ${applicants.length}`,
       ],
       subRowData: subrows,
     };
@@ -88,6 +82,7 @@ const formatData = (
 };
 
 const RecentApplicationTable = () => {
+  const intl:IntlShape = useIntl()
   const { zip, section, expand } = useSearch({ from: "/database" });
   const isDeepLinked = section === "recent-applications";
   const initialZip =
@@ -102,7 +97,7 @@ const RecentApplicationTable = () => {
     const tmp = [];
     for (const license of licenseData) {
       const validated = validateBusinessLicense(license);
-      if (validated.valid === true) {
+      if (validated.valid) {
         tmp.push(validated.data);
       }
     }
@@ -126,24 +121,51 @@ const RecentApplicationTable = () => {
 
     return () => cancelAnimationFrame(frameId);
   }, [isDeepLinked]);
-  const recentApplicationHeaders = [
-    "Zipcode/Business Name",
-    "Doing Business As",
-    "Street Address",
-    "License Number",
-    "Licenses Type",
-    "Application Date",
-    "Status",
-  ];
+  const recentApplicationTranslationHeaderId : string[]  = [
+      'database.recentApplications.zipCodeBusinessName',
+      'database.recentApplications.dba',
+      'database.recentApplications.streetAddress',
+      'database.recentApplications.licenseNumber',
+      'database.recentApplications.licenseType',
+      'database.recentApplications.applicationDate',
+      'database.recentApplications.applicationStatus'
+  ]
 
-  const dropdownStatusOptions = useMemo(
-    () =>
-      [...ApplicationStatusTypes].map((status, index) => ({
-        id: `react-aria-${index + 1}`,
-        name: String(status),
-      })),
-    []
-  );
+  const localizedRecentApplicationHeaders : string[] = recentApplicationTranslationHeaderId.map((id)=>{
+    return intl.formatMessage({id, defaultMessage: "error with translation"})
+  });
+
+  const tableTitle : string = intl.formatMessage({
+    id: "database.recentApplications.title",
+    defaultMessage: "error with translation"
+  })
+
+
+  const applicationStatusTranslation = (): Record<string, string> =>{
+    const granted = ():string => intl.formatMessage({
+      id: "database.recentApplications.granted",
+      defaultMessage: "Granted"
+    })
+    const expired = ():string => intl.formatMessage({
+      id: "database.recentApplications.expired",
+      defaultMessage: "Expired"
+    })
+    const deferred = ():string => intl.formatMessage({
+      id: "database.recentApplications.deferred",
+      defaultMessage: "Deferred"
+    })
+
+    return {"granted": granted(), "expired": expired(), "deferred": deferred()}
+  }
+
+  const applicationStatusOption = ():DropdownOption[] => {
+    return [
+      {id: "react-aria-1", name: applicationStatusTranslation()["granted"]},
+      {id: "react-aria-2", name: applicationStatusTranslation()["expired"]},
+      {id: "react-aria-3", name: applicationStatusTranslation()["deferred"]}
+    ]
+  }
+
   const [selectedStatusDropdownOptions, setSelectedStatusDropdownOptions] =
     useState<Selection>(new Set());
 
@@ -154,9 +176,10 @@ const RecentApplicationTable = () => {
     (keys: Selection) => {
       setSelectedStatusDropdownOptions(new Set(keys as Set<string>));
 
-      const selectedOptions = dropdownStatusOptions.filter((option) =>
+      const selectedOptions = applicationStatusOption().filter((option) =>
         (keys as Set<string>).has(option.id.toString())
       );
+      console.log(selectedOptions)
 
       const statuses = selectedOptions.map(
         (option) => option.name as ApplicationStatusType
@@ -168,10 +191,87 @@ const RecentApplicationTable = () => {
         setStatusFilter(ApplicationStatusTypes);
       }
     },
-    [dropdownStatusOptions]
+    []
   );
+  const totalApplicantsLocalization : string = intl.formatMessage(
+      {
+        id : "database.recentApplications.totalApplicants",
+        defaultMessage: "error with translation"
+      }
+  )
+  const statusTranslationId:string[] = [
+      "database.recentApplications.granted",
+      "database.recentApplications.expired",
+      "database.recentApplications.deferred"
+  ]
 
-  const formattedData = formatData(data, zipcodeList, statusFilter);
+  const statusLocalization: Record<string, string> ={}
+
+  statusTranslationId.map((id,index)=> {
+    const translation: string = intl.formatMessage({
+      id: id, defaultMessage: "error with translation"
+    })
+    statusLocalization[index] = translation
+  })
+
+  const licenseTypeTranslation = () : Record<string,string> =>{
+    const alcoholicBev = ():string => intl.formatMessage({
+      id: "database.recentApplications.allAlcohol",
+      defaultMessage: "All Alcohol"
+    })
+
+    const wineAndBeer = ():string => intl.formatMessage({
+      id: "database.recentApplications.wineAndBeer",
+      defaultMessage: "Wine & Beer"
+    })
+
+    return {"All Alcoholic Beverages":alcoholicBev(),"Wines and Malt Beverages":wineAndBeer()}
+  }
+
+
+  const formattedData = formatData(data, zipcodeList, statusFilter, totalApplicantsLocalization, statusLocalization, licenseTypeTranslation());
+
+  const statusStyles: Record<ApplicationStatusType, string> = {
+    Granted:
+        "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]",
+    Expired:
+        "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]",
+    Deferred:
+        "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]",
+  }
+
+// Cell formatter function - only formats status column in sub-rows
+  const statusCellFormatter = (
+      cell: string,
+      _rowIndex: number,
+      cellIndex: number,
+      isSubRow: boolean
+  ): CellFormat => {
+    // Only format the last column (Status - index 6) in sub-rows
+    if (isSubRow && cellIndex === 6) {
+      let statusClass : string
+      switch (cell){
+        case applicationStatusTranslation()["granted"]:
+          statusClass = "bg-license-accepted-green text-font-light rounded-md px-[16px] py-[4px]"
+              break;
+        case applicationStatusTranslation()["expired"]:
+          statusClass = "bg-license-expired-red text-font-light rounded-md px-[16px] py-[4px]"
+              break;
+        case applicationStatusTranslation()["deferred"]:
+            statusClass = "bg-license-deferred-yellow text-font-dark rounded-md px-[16px] py-[4px]"
+              break;
+        default:
+          statusClass = ""
+      }
+      return {
+        content: cell,
+        className: statusClass,
+      };
+    }
+
+    // Return cell unchanged for all other cases
+    return { content: cell };
+  };
 
   if (formattedData == null) {
     return null;
@@ -193,7 +293,7 @@ const RecentApplicationTable = () => {
           <FilterDropdown
             titleId="database.recentApplications.applicationStatus"
             label="Application Status dropdown selection"
-            options={dropdownStatusOptions}
+            options={applicationStatusOption()}
             selected={selectedStatusDropdownOptions}
             onSelectionChange={onStatusSelectionChange}
           />
@@ -234,9 +334,9 @@ const RecentApplicationTable = () => {
           </div>
         </div>
       <CustomTable
-        ariaLabel="Recent License Applications by Zipcode"
+        ariaLabel={tableTitle}
         tableData={formattedData}
-        headers={recentApplicationHeaders}
+        headers={localizedRecentApplicationHeaders}
         cellFormatter={statusCellFormatter}
         defaultSubRowsExpanded={isDeepLinked && expand}
       />

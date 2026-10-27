@@ -16,14 +16,15 @@ import {
   MAX_BEER_WINE_PER_ZIP,
 } from "@/services/data-interface/data-interface";
 import { RowWithSubRows } from "@components/ui/table";
-import FilterDropdown from "../../ui/filter-dropdown";
+import FilterDropdown, {DropdownOption} from "../../ui/filter-dropdown";
 import ZipCodeFilter from "./zip-code-filter";
 import { Selection } from "react-aria-components";
-import { FormattedMessage } from "react-intl";
+import {FormattedMessage, useIntl} from "react-intl";
 
 const getRowData = (
   zipcode: EligibleBostonZipcode,
   licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null,
+  translatedLicenseType: Record<string,string>,
   totalAvailable: number,
   allAlcoholAvailable: number,
   beerWineAvailable: number,
@@ -48,7 +49,7 @@ const getRowData = (
     ]
     subRowData = [
       [
-        "All Alcohol Licenses",
+        translatedLicenseType["All Alcoholic Beverages"],
         String(MAX_ALL_ALC_PER_ZIP),
         String(allAlcoholAvailable),
         String(totalApplicantsAllAlc),
@@ -56,7 +57,7 @@ const getRowData = (
         String(MAX_ALL_ALC_PER_ZIP - allAlcoholAvailable),
       ],
       [
-        "Beer & Wine Licenses",
+        translatedLicenseType["Wines and Malt Beverages"],
         String(MAX_BEER_WINE_PER_ZIP),
         String(beerWineAvailable),
         String(totalApplicantsBeerWine),
@@ -75,7 +76,7 @@ const getRowData = (
     ]
     subRowData = [
       [
-        "All Alcohol Licenses",
+        translatedLicenseType["All Alcoholic Beverages"],
         String(MAX_ALL_ALC_PER_ZIP),
         String(allAlcoholAvailable),
         String(totalApplicantsAllAlc),
@@ -94,7 +95,7 @@ const getRowData = (
     ]
     subRowData = [
       [
-        "Beer & Wine Licenses",
+        translatedLicenseType["Wines and Malt Beverages"],
         String(MAX_BEER_WINE_PER_ZIP),
         String(beerWineAvailable),
         String(totalApplicantsBeerWine),
@@ -106,15 +107,14 @@ const getRowData = (
     throw new Error("License Type not supported for filtering");
   }
 
-  const tableData = {rowData: rowData, subRowData: subRowData}
-
-  return tableData;
+  return {rowData: rowData, subRowData: subRowData}
 }
 
 const formatData = (
   data: BusinessLicense[],
   zipcodeList: Set<EligibleBostonZipcode>,
-  licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null
+  licenseType: "All Alcoholic Beverages" | "Wines and Malt Beverages" | null,
+  translatedLicenseType: Record<string,string>
 ) => {
   const zips = [...zipcodeList];
   const grantedData = data.filter((l) => l.status === "Granted");
@@ -132,7 +132,7 @@ const formatData = (
     const totalApplicantsAllAlc = byZip.filter((l) => l.alcohol_type === "All Alcoholic Beverages").length;
     const totalApplicantsBeerWine = byZip.filter((l) => l.alcohol_type === "Wines and Malt Beverages").length;
 
-    const {rowData, subRowData} = getRowData(zipcode, licenseType, totalAvailable, allAlcoholAvailable, beerWineAvailable, totalApplicantsTotal, totalApplicantsAllAlc, totalApplicantsBeerWine, openApplicationsTotal, openApplicationsAllAlc, openApplicationsBeerWine)
+    const {rowData, subRowData} = getRowData(zipcode, licenseType,translatedLicenseType, totalAvailable, allAlcoholAvailable, beerWineAvailable, totalApplicantsTotal, totalApplicantsAllAlc, totalApplicantsBeerWine, openApplicationsTotal, openApplicationsAllAlc, openApplicationsBeerWine)
 
     const entry = {
       rowData: rowData,
@@ -145,23 +145,24 @@ const formatData = (
   return d;
 };
 
-const licenseTypeOptions = [
-  { id: "react-aria-1", name: "All Alcoholic Beverages" as const },
-  { id: "react-aria-2", name: "Wines and Malt Beverages" as const },
-];
+
 
 const LicenseAvailabilityTable = () => {
+  const intl = useIntl()
   const { zip, section, expand } = useSearch({ from: "/database" });
   const isDeepLinked = section === "license-availability";
   const initialZip =
     isDeepLinked && zip && isEligibleBostonZipCode(zip) ? zip : undefined;
 
   const [data, setData] = useState<BusinessLicense[]>([]);
+
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
     new Set()
   );
+
   const [selectedLicDropdownOptions, setSelectedLicDropdownOptions] =
     useState<Selection>(new Set());
+
   const [licenseFilter, setLicenseFilter] = useState<
     "All Alcoholic Beverages" | "Wines and Malt Beverages" | null
   >(null);
@@ -170,7 +171,7 @@ const LicenseAvailabilityTable = () => {
     const tmp = [];
     for (const license of licenseData) {
       const validated = validateBusinessLicense(license);
-      if (validated.valid === true) {
+      if (validated.valid) {
         tmp.push(validated.data);
       }
     }
@@ -194,27 +195,60 @@ const LicenseAvailabilityTable = () => {
     return () => cancelAnimationFrame(frameId);
   }, [isDeepLinked]);
 
-  const availabilityHeaders = [
-    "Zipcode",
-    "Total Licenses",
-    "Licenses Available",
-    "Total Applicants",
-    "Open Applications",
-    "Licenses Granted",
-  ];
+  const licenseTypeTranslation = () : Record<string,string> =>{
+    const alcoholicBev = ():string => intl.formatMessage({
+      id: "database.recentApplications.allAlcohol",
+      defaultMessage: "All Alcohol"
+    })
 
-  const formattedData = formatData(data, zipcodeList, licenseFilter);
+    const wineAndBeer = ():string => intl.formatMessage({
+      id: "database.recentApplications.wineAndBeer",
+      defaultMessage: "Wine & Beer"
+    })
+
+    return {"All Alcoholic Beverages":alcoholicBev(),"Wines and Malt Beverages":wineAndBeer()}
+  }
+
+  const licenseTypeOptions = ():DropdownOption[] =>{
+    return  [
+      { id: "react-aria-1", name: licenseTypeTranslation()["All Alcoholic Beverages"]},
+      { id: "react-aria-2", name: licenseTypeTranslation()["Wines and Malt Beverages"]},
+    ]
+  }
+
+  const translationHeaderId: string[]=[
+      'database.availableLicenses.zipCode',
+      'database.availableLicenses.totalLicenses',
+      'database.availableLicenses.licensesAvailable',
+      'database.recentApplications.totalApplicants',
+      'database.availableLicenses.openApplicants',
+      'database.availableLicenses.licensesGranted',
+  ]
+  const localizedAvailabilityHeader : string[] = translationHeaderId.map((id)=>{
+    return intl.formatMessage({id,defaultMessage:"error translating"})
+  });
+
+
+  const formattedData = formatData(data, zipcodeList, licenseFilter, licenseTypeTranslation() );
 
   const onLicenseTypeSelectionChange = useCallback(
     (keys: Selection) => {
       setSelectedLicDropdownOptions(new Set(keys as Set<string>));
 
-      const selectedLicenseType = licenseTypeOptions.filter((option) =>
-        (keys as Set<string>).has(option.id.toString())
+      const selectedLicenseType = licenseTypeOptions().filter((option) => {
+        return (keys as Set<string>).has(option.id.toString())
+          }
       );
 
       if (selectedLicenseType.length == 1) {
-        setLicenseFilter(selectedLicenseType[0].name)
+        switch (selectedLicenseType[0].id) {
+          case "react-aria-1":
+            setLicenseFilter("All Alcoholic Beverages")
+                break;
+          case "react-aria-2":
+            setLicenseFilter("Wines and Malt Beverages")
+                break;
+        }
       } else {
         setLicenseFilter(null)
       }
@@ -243,7 +277,7 @@ const LicenseAvailabilityTable = () => {
         <FilterDropdown
           titleId="database.availableLicenses.licenseType"
           label="License Type dropdown selection"
-          options={licenseTypeOptions}
+          options={licenseTypeOptions()}
           selected={selectedLicDropdownOptions}
           onSelectionChange={onLicenseTypeSelectionChange}
         />
@@ -251,7 +285,7 @@ const LicenseAvailabilityTable = () => {
       <CustomTable
         ariaLabel="Licenses by Zipcode"
         tableData={formattedData}
-        headers={availabilityHeaders}
+        headers={localizedAvailabilityHeader}
         defaultSubRowsExpanded={isDeepLinked && expand}
       />
     </section>
