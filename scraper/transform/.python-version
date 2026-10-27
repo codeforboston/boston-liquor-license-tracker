@@ -1,0 +1,12 @@
+# Pin the interpreter to 3.13.
+#
+# pyproject.toml declares requires-python = ">=3.13" with no upper bound, so
+# without this file uv resolves to the newest CPython it can find. When 3.15.0
+# was released it did exactly that, and the versions pinned in uv.lock
+# (lxml 6.0.2, numpy 2.4.1, pandas 3.0.0, pikepdf 10.2.0) publish no cp315
+# wheels. uv fell back to building them from source and the transform pipeline
+# failed on the missing libxml2/libxslt build dependencies.
+#
+# Revisit once those packages ship wheels for a newer interpreter and the lock
+# has been regenerated against them.
+3.13

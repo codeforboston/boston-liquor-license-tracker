@@ -1,6 +1,6 @@
 import { FormattedMessage } from "react-intl";
 import { Link, SquarePlay } from "lucide-react";
-import styles from "./resources.module.css";
+import styles from "./resources-button.module.css";
 
 interface ResourceButtonProps {
   labelId: string;

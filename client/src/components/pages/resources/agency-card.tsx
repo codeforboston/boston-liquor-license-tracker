@@ -1,6 +1,6 @@
 import { FormattedMessage, useIntl } from "react-intl";
 import ResourceButton from "./resource-button";
-import styles from "./resources.module.css";
+import styles from "./agency-card.module.css";
 
 interface AgencyCardProps {
   /** Imported image asset (e.g. `import blbLogo from "@/assets/images/blb-logo.svg"`) */

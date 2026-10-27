@@ -1,0 +1,4 @@
+  /* Body copy sits 12px above its buttons, but the page stack is 24px. */
+  .buttonGroup {
+    margin-block-start: -12px;
+  }
