@@ -191,7 +191,7 @@ const RecentApplicationTable = () => {
         setStatusFilter(ApplicationStatusTypes);
       }
     },
-    []
+    [applicationStatusOption]
   );
   const totalApplicantsLocalization : string = intl.formatMessage(
       {
