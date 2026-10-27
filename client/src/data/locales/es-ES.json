@@ -36,9 +36,7 @@
 
 
   "database.availableLicenses.title": "Licencias del Grupo 2024",
-  "database.availableLicenses.description": "En 2024 una nueva ley aumentó el acceso a las licencias de bebidas alcohólicas en varias partes de Boston. A través de esta ley, la ciudad emitirá 5 nuevas licencias de bebidas alcohólicas para consumo en el establecimiento a 13 de los códigos postales de Boston cada año durante los próximos 3 años.",
   "database.availableLicenses.filterBy": "Filtrar Por:",
-  "database.availableLicenses.title": "2024 Cohort Licenses",
   "database.availableLicenses.description": "En 2024 una nueva ley aumentó el acceso a las licencias de bebidas alcohólicas en varias partes de Boston. A través de esta ley, la ciudad emitirá 5 nuevas licencias de bebidas alcohólicas para consumo en el establecimiento a 13 de los códigos postales de Boston cada año durante los próximos 3 años.",
   "database.availableLicenses.zipCode": "Código Postal",
   "database.availableLicenses.licenseType": "Tipo de Licencia",
