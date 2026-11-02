@@ -1550,5 +1550,21 @@
         "file_name": "Voting%20Minutes%2010-15-26.docx.pdf",
         "granted_date": "2026-10-14",
         "granted_file": "Voting%20Minutes%2010-15-26.docx.pdf"
+    },
+    {
+        "index": 98,
+        "entity_number": "23",
+        "business_name": "Bottega Cannuccia, Inc.",
+        "dba_name": "Bottega Cannuccia",
+        "address": "1448 Dorchester Ave, Dorchester, MA 02122",
+        "zipcode": "02122",
+        "license_number": "LB-637765",
+        "status": "Granted",
+        "alcohol_type": "All Alcoholic Beverages",
+        "minutes_date": "2026-10-28",
+        "application_expiration_date": null,
+        "file_name": "Voting%20Minutes%2010-29-26.docx.pdf",
+        "granted_date": "2026-10-28",
+        "granted_file": "Voting%20Minutes%2010-29-26.docx.pdf"
     }
 ]
