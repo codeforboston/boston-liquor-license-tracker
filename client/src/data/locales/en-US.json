@@ -66,6 +66,7 @@
   "database.recentApplications.allAlcohol": "All Alcohol",
   "database.recentApplications.wineAndBeer": "Wine & Beer",
   "database.recentApplications.applicationDate": "App. Date",
+  "database.recentApplications.recentApplicationLegend": "Recent Application Legend",
   "database.recentApplications.granted": "Granted",
   "database.recentApplications.expired": "Expired",
   "database.recentApplications.deferred": "Deferred",
