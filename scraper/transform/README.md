@@ -4,6 +4,8 @@ This project provides a robust, highly efficient pipeline for extracting structu
 
 Extracted addresses are normalized and validated against Boston's **SAM (Street Address Management)** dataset, so each record is enriched with canonical SAM identifiers for reliable matching and deduplication.
 
+> **Known anomalies:** the invariant plugins referenced below each patch a specific malformed PDF. See [EDGE_CASES.md](../../EDGE_CASES.md) for the full catalogue and for guidance on adding a new one.
+
 ## 🏗 Architecture
 
 The application is built around a sequential pipeline orchestrated by a central `Pipeline` class and supported by a State Manager (`KVStore`). This approach ensures that processing stages are decoupled, auditable, and easily extensible via plugins.

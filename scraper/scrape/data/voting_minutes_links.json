@@ -90,6 +90,11 @@
         "date": "2026-10-15"
     },
     {
+        "href": "/sites/default/files/file/2026/10/Voting%20Minutes%2010-29-26.docx.pdf",
+        "body": "Voting Minutes: Thursday, October 29, 2026",
+        "date": "2026-10-29"
+    },
+    {
         "href": "/sites/default/files/file/2025/01/Voting%20Minutes%201-9-25.docx_0.pdf",
         "body": "Voting Minutes: Thursday, January 9",
         "date": "2025-01-09"
@@ -783,5 +788,10 @@
         "href": "/sites/default/files/file/2020/04/Board's Voting Agenda, April 30, 2020.pdf",
         "body": "Voting agenda: April 30, 2020",
         "date": "2020-04-30"
+    },
+    {
+        "href": "https://boston.justfoia.com/publicportal/home/newrequest",
+        "body": "Public records",
+        "date": "yyyy-mm-dd"
     }
 ]

@@ -1,4 +1,4 @@
-# This module targets the June 30, 2022 hearing section and fixes
+# This module targets the October 7, 2021 hearing section and fixes
 # the address for the license application by adding a newline.
 
 from app import constants as const

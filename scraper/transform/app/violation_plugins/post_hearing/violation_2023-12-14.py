@@ -1,5 +1,5 @@
-# This module targets the June 30, 2022 hearing section and fixes
-# the address for the license application by adding a newline.
+# This module targets the December 14, 2023 hearing section and fixes
+# the license number for the license application by adding a newline.
 
 from app import constants as const
 from app.violation_plugins.base import Plugin
