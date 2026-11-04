@@ -1,7 +1,7 @@
 {
   "header.logo-altText": "License to Succeed Logo",
   "header.language": "Language",
-  
+
   "footer.abcc": "Alcoholic Beverages Control Commission",
   "footer.analyzeBoston": "Analyze Boston",
   "footer.application": "Boston License Application",
@@ -20,7 +20,7 @@
   "footer.offsite": "Offsite Hospitality",
   "footer.resources": "Important Resources",
   "footer.siteMap": "Site Map",
-  
+
   "shared.backToHomeButton": "BACK TO HOME",
   "shared.database.capitalized": "LICENSE DATABASE",
   "shared.map.capitalized": "MAP [BETA]",
@@ -51,7 +51,7 @@
   "database.licenseTerminology.transferable.title": "Transferable:",
   "database.licenseTerminology.transferable.description": "The majority of Boston’s liquor licenses, they are usable throughout the city and can be transferred between business and ownership, with approval by the City and State.",
   "database.licenseTerminology.nonTransferable.title": "Non Transferable:",
-  "database.licenseTerminology.nonTransferable.description": "Created by special legislations, including the 2024 law, These licenses are beholden to the limitations of their respective legislation. They are non-transferable, meaning that should a business close or ownership change, they revert back to the City.",
+  "database.licenseTerminology.nonTransferable.description": "Created by special legislations, including the 2024 law. These licenses are beholden to the limitations of their respective legislation. They are non-transferable, meaning that should a business close or ownership change, they revert back to the City.",
 
   "database.pageTitle": "License Database",
   "database.recentApplications.title": "Recent License Applications By Zip Code:",
@@ -68,7 +68,7 @@
   "database.recentApplications.applicationDate": "App. Date",
   "database.recentApplications.granted": "Granted",
   "database.recentApplications.expired": "Expired",
-  "database.recentApplications.deferred": "Deferred" ,
+  "database.recentApplications.deferred": "Deferred",
   "database.recentApplications.granted.description": "Licenses that have been granted by the City of Boston from an application. These licenses can be used by their operators.",
   "database.recentApplications.expired.description": "Applications that have passed the amount of time for the City of Boston to consider them. Applicants will have to reapply.",
   "database.recentApplications.deferred.description": "License Applications that have yet to be considered by the Licensing Board. (This applies to applications before the next meeting)",
@@ -91,7 +91,7 @@
   "home.navigation.map": "MAP",
   "home.pageTitle": "License to Succeed",
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
-  
+
   "map.header.text": "Hover over any Zip Code and get instant information about available licenses, what types of licenses are available, recent applications, and updates on assigned licenses.",
   "map.header.title": "License Availability Map [BETA]",
   "pageHeader.collapseDescription": "Hide page description",
@@ -119,7 +119,7 @@
   "map.zipNav.next": "Next zip code",
   "map.zipNav.position": "{current} of {total}",
   "map.zipNav.announcement": "Showing zip code {zipCode}",
-  
+
   "resources.pageTitle": "Licensing Resources",
   "resources.header.description": "Information on how to apply for a license, what is needed, the application process, and general timelines for what happens after an application is submitted for a license. Along with descriptions of the other types of license types around the city of Boston.",
 
@@ -155,7 +155,7 @@
   "resources.basicResources.otherLicenses.law2012.link": "Session Law - Acts of 2012 Chapter 87",
   "resources.basicResources.otherLicenses.law2014.link": "Session Law - Acts of 2014 Chapter 287",
   "resources.basicResources.otherLicenses.law2024.link": "Bill H.5039",
-  
+
   "resources.title": "Application Resources and Guides",
   "resources.text": "Resources and guides through the liquor license application process, from the city of Boston to industry veterans, and leading companies in the industry. These guides will provide step by step instructions that will walk through the application process for any potential licensee.",
   "resources.cityGuides.title": "City of Boston Guides and Resources",
@@ -196,7 +196,7 @@
   "resources.agencies.ons.text": "The City of Boston's neighborhood support agency, which focuses on providing support and assistance to the neighborhoods of Boston. For the Liquor Licensing process they are responsible for connecting potential businesses with members of the community in preparation for being granted a Liquor License.",
   "resources.agencies.ons.website": "Office of Neighborhood Services Webpage",
   "resources.agencies.ons.logoAlt": "Office of Neighborhood Services logo",
-  
+
   "resources.applicationlinks.title": "Links to Application Pages",
   "resources.applicationlinks.description": "Below are links to the City of Boston's application form for prospective Licensees. As well as a link to the ABCC's application form.",
   "resources.applicationlinks.petitionform.title": "Alcohol License Petition Form",
