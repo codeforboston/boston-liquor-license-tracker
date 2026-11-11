@@ -90,3 +90,32 @@ const Footer = () => {
 ```
 
 For debugging purposes, you'll be able to identify the classes in the DOM tree with names like `footer-module__footer-test___FSx98`. This is generated from the module name, class name, and unique hash that scopes the style to the component. This is only available in development, production will only show the hash, so please do not target these class names to overwrite styles or for testing.
+
+## Buttons
+
+Use the shared `Button` (`src/components/ui/button.tsx`) for anything that looks like a button, whether it renders a `<button>` or a link. Styles come from `buttonVariants` in `button-variants.ts`:
+
+| Variant | Look | Used for |
+|---|---|---|
+| `primary` (default) | Dark | Home navigation, Resources links |
+| `accent` | Yellow | Calls to action, e.g. the case study |
+| `secondary` | Light gray | Filter dropdowns, table legend |
+
+Sizes are `sm`, `md` (default), `lg` and `xl`. Keep layout (width, flex sizing, margins) at the call site via `className`.
+
+```tsx
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
+
+// A real button
+<Button onClick={save}>Save</Button>
+
+// A link styled as a button: asChild puts the styles on the child element
+<Button asChild size="xl" className="w-full">
+  <Link to="/maps">Map</Link>
+</Button>
+
+// A component that must render its own element, like a react-aria Button
+<AriaButton className={buttonVariants({ variant: "secondary", size: "sm" })} />
+```
