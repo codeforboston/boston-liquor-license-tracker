@@ -184,10 +184,21 @@ jobs:
         working-directory: ./scripts
         run: npm run run:validate-license
 
+      # Token from the license-tracker GitHub App (#553). Skipped until the App
+      # is configured; the steps below then fall back to GITHUB_TOKEN.
+      - name: Get bot token
+        id: bot-token
+        if: vars.BOT_CLIENT_ID != ''
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.BOT_CLIENT_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
       - name: Create pull request
         id: cpr
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ steps.bot-token.outputs.token || secrets.GITHUB_TOKEN }}
           title: "[SCRIPT] Update liquor license applicant data"
           body-path: /tmp/pr_body.md
           labels: ${{ steps.merge.outputs.needs-review == 'true' && 'needs-review' || '' }}
@@ -200,9 +211,22 @@ jobs:
             client/src/data/last_processed_date.json
             client/src/data/licenses.json
 
-      # Only auto-merge clean runs; anything flagged for review waits for a person.
-      - name: Auto-merge pull request
+      # Only merge clean runs; anything flagged for review waits for a person.
+      - name: Merge pull request
         if: steps.cpr.outputs.pull-request-number != '' && steps.merge.outputs.needs-review != 'true'
-        run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.bot-token.outputs.token || secrets.GITHUB_TOKEN }}
+          PR: ${{ steps.cpr.outputs.pull-request-number }}
+          AS_BOT: ${{ steps.bot-token.outputs.token != '' }}
+        run: |
+          if [ "$AS_BOT" = "true" ]; then
+            # The App is on the ProtectMain bypass list for pull requests, so it
+            # merges right away. Retry while GitHub computes mergeability.
+            for attempt in 1 2 3 4 5; do
+              gh pr merge --squash --admin "$PR" && exit 0
+              sleep 10
+            done
+            exit 1
+          fi
+          # Without the App, queue auto-merge; a maintainer still has to approve.
+          gh pr merge --auto --squash "$PR"

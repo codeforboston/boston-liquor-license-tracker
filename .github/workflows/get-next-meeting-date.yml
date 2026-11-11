@@ -38,10 +38,21 @@ jobs:
           npm run build:next-meeting-date
           npm run run:next-meeting-date
 
+      # Token from the license-tracker GitHub App (#553). Skipped until the App
+      # is configured; the steps below then fall back to GITHUB_TOKEN.
+      - name: Get bot token
+        id: bot-token
+        if: vars.BOT_CLIENT_ID != ''
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.BOT_CLIENT_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
       - name: Create pull request to merge in new next meeting date
         id: cpr
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ steps.bot-token.outputs.token || secrets.GITHUB_TOKEN }}
           title: "[SCRIPT] Update next meeting date"
           body: |
             Update next meeting date
@@ -54,8 +65,21 @@ jobs:
           author: Github Actions <hello@codeforboston.org>
           add-paths: client/src/data/*.json
 
-      - name: Auto-merge pull request
+      - name: Merge pull request
         if: steps.cpr.outputs.pull-request-number != ''
-        run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.bot-token.outputs.token || secrets.GITHUB_TOKEN }}
+          PR: ${{ steps.cpr.outputs.pull-request-number }}
+          AS_BOT: ${{ steps.bot-token.outputs.token != '' }}
+        run: |
+          if [ "$AS_BOT" = "true" ]; then
+            # The App is on the ProtectMain bypass list for pull requests, so it
+            # merges right away. Retry while GitHub computes mergeability.
+            for attempt in 1 2 3 4 5; do
+              gh pr merge --squash --admin "$PR" && exit 0
+              sleep 10
+            done
+            exit 1
+          fi
+          # Without the App, queue auto-merge; a maintainer still has to approve.
+          gh pr merge --auto --squash "$PR"
