@@ -14,7 +14,12 @@ class DateParser:
         re.IGNORECASE,
     )
 
-    HREF_NUMERIC_PATTERN = re.compile(r"(\d{1,2})-(\d{1,2})-(\d{2,4})")
+    # "6-26-25" or "4.8.21" (dots appear in some older file names)
+    HREF_NUMERIC_PATTERN = re.compile(
+        r"(?<!\d)(\d{1,2})[-.](\d{1,2})[-.](\d{4}|\d{2})(?!\d)"
+    )
+
+    VALID_DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
     HREF_MONTH_PATTERN = re.compile(
         r"(January|February|March|April|May|June|July|August|September|October|November|December)[^\d]*(\d{1,2})[^\d]*(\d{4})",
@@ -23,13 +28,15 @@ class DateParser:
 
     MONTH_NAME_TO_NUM = {datetime(2000, i, 1).strftime("%B"): i for i in range(1, 13)}
 
-    def parse(self, body: str, href: str) -> str:
+    def parse(self, body: str, href: str, fallback_year: str | None = None) -> str:
         """
         Attempts to parse a date from the body text or href.
 
         Args:
             body (str): Text content of the link.
             href (str): URL of the link.
+            fallback_year (str | None): Year to use when neither the body nor the
+                href contains one (e.g. the page section the link appears in).
 
         Returns:
             str: Date in 'YYYY-MM-DD' format, or constructed with placeholders 'yyyy-mm-dd' if parsing fails.
@@ -49,7 +56,16 @@ class DateParser:
         if not self._is_complete(matches):
             self._parse_from_href_month(href_decoded, matches)
 
+        # Strategy 4: year of the page section the link appears in
+        if not matches["year"] and matches["month"] and matches["day"]:
+            matches["year"] = fallback_year
+
         return self._format_date(matches)
+
+    @classmethod
+    def is_valid(cls, date_str: str | None) -> bool:
+        """True for a fully parsed 'YYYY-MM-DD' date (no 'yyyy'/'mm'/'dd')."""
+        return bool(date_str and cls.VALID_DATE_PATTERN.match(date_str))
 
     def _is_complete(self, matches):
         return all(matches.values())
@@ -68,7 +84,7 @@ class DateParser:
 
     def _parse_from_href_numeric(self, text, matches):
         match = self.HREF_NUMERIC_PATTERN.search(text)
-        if match:
+        if match and 1 <= int(match.group(1)) <= 12 and 1 <= int(match.group(2)) <= 31:
             m, d, y = match.groups()
             matches["month"] = matches["month"] or f"{int(m):02d}"
             matches["day"] = matches["day"] or f"{int(d):02d}"

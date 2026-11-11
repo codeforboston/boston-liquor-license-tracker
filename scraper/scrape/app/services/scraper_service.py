@@ -35,6 +35,10 @@ class ScraperService:
 
         logger.info("Parsing links...")
         links = self.html_parser.extract_links(html)
+        # Keep each link's page-section year out of the link dicts, so every
+        # JSON written from them (minutes links, video links) keeps its format.
+        # Filters pass the same dict objects through, so look them up by id().
+        section_years = {id(link): link.pop("section_year", None) for link in links}
 
         stats = {"total_links": len(links)}
 
@@ -61,7 +65,9 @@ class ScraperService:
         logger.info("Extracting dates...")
         processed_minutes = []
         for link in minutes_links:
-            link["date"] = self.date_parser.parse(link["body"], link["href"])
+            link["date"] = self.date_parser.parse(
+                link["body"], link["href"], fallback_year=section_years.get(id(link))
+            )
             processed_minutes.append(link)
 
         # Save Data
