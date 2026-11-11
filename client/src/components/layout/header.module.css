@@ -3,9 +3,14 @@
   color: var(--color-font-light);
   text-transform: uppercase;
   
+  /* Size the logo before the SVG loads (artwork is 519 x 72). Without this
+     the image is 0px tall until it arrives, the header grows by 12px, and
+     the whole page shifts down (layout shift, #288). */
   .logoImage {
-    max-height: 32px;
-    max-width: 230px;
+    aspect-ratio: 519 / 72;
+    width: 230px;
+    height: auto;
+    flex-shrink: 0;
   }
 
   a:hover {
@@ -19,8 +24,7 @@
     padding: 18px 24px;
     
     .logoImage {
-      max-height: 20px;
-      max-width: 160px;
+      width: 144.16px; /* 20px tall at 519:72 */
     }
   }
 }
