@@ -4,7 +4,8 @@ import CustomTable from "@components/ui/table";
 import { useState, useEffect, useCallback } from "react";
 import { useSearch } from "@tanstack/react-router";
 import {
-  validateBusinessLicense,
+  getValidLicenses,
+  eligibleBostonZipcodes,
   getAvailableLicensesByZipcode,
   BusinessLicense,
   EligibleBostonZipcode,
@@ -154,10 +155,14 @@ const LicenseAvailabilityTable = () => {
   const initialZip =
     isDeepLinked && zip && isEligibleBostonZipCode(zip) ? zip : undefined;
 
-  const [data, setData] = useState<BusinessLicense[]>([]);
+  // Bundled data, validated during the first render so the table never
+  // renders empty and then jumps (layout shift, #288).
+  const [data] = useState<BusinessLicense[]>(() => getValidLicenses(licenseData));
 
+  // Start with the same zips ZipCodeFilter selects on mount, so the first
+  // render already shows every row instead of an empty table (#288).
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
-    new Set()
+    () => (initialZip ? new Set([initialZip]) : eligibleBostonZipcodes),
   );
 
   const [selectedLicDropdownOptions, setSelectedLicDropdownOptions] =
@@ -166,18 +171,6 @@ const LicenseAvailabilityTable = () => {
   const [licenseFilter, setLicenseFilter] = useState<
     "All Alcoholic Beverages" | "Wines and Malt Beverages" | null
   >(null);
-
-  useEffect(() => {
-    const tmp = [];
-    for (const license of licenseData) {
-      const validated = validateBusinessLicense(license);
-      if (validated.valid) {
-        tmp.push(validated.data);
-      }
-    }
-
-    setData(tmp);
-  }, []);
 
   useEffect(() => {
     if (!isDeepLinked) return;
