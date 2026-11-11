@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "scripts/**"
+      - "scraper/scrape/app/**"
+      - "scraper/scrape/tests/**"
       - "scraper/transform/**"
       - "client/src/data/licenses.json"
       - "client/src/data/schema/license-schema.json"
@@ -26,6 +28,19 @@ jobs:
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Run tests
         run: uv run --frozen --extra dev pytest -q
+
+  scraper-tests:
+    name: Scraper tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scraper/scrape
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Run tests
+        run: uv run --frozen --with pytest pytest -q
 
   merge-tests:
     name: Merge script tests and license data checks
