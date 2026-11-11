@@ -21,7 +21,7 @@ jobs:
       run:
         working-directory: scraper/transform
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Run tests
@@ -31,8 +31,8 @@ jobs:
     name: Merge script tests and license data checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - name: Run merge script tests
@@ -49,14 +49,15 @@ jobs:
             echo "::error::licenses.json is out of date with license_corrections.json. Run 'python3 merge_licenses.py' in scripts/ and commit the result."
             exit 1
           fi
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: npm
           cache-dependency-path: scripts/package-lock.json
-      - name: Validate license data (schema + invariants)
+      - name: Lint scripts and validate license data (schema + invariants)
         working-directory: scripts
         run: |
           npm ci
+          npm run lint
           npm run build:validate-license
           npm run run:validate-license
