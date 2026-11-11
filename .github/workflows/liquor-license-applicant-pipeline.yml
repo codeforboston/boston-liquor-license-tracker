@@ -1,13 +1,18 @@
-name: Get data from next voting minute
+name: Update license data from voting minutes
 on:
-  schedule:
-    - cron: "0 0 * * 1" # Runs at midnight every Monday
-
-  # Re-apply manual corrections as soon as they are merged
+  # The scraper (scrape_license_board.yml) commits each new voting-minutes PDF
+  # to main. Process new PDFs as soon as they land.
   push:
     branches: ["main"]
     paths:
+      - "scraper/scrape/data/voting_minutes_pdfs/*.pdf"
+      # Re-apply manual corrections as soon as they are merged
       - "scripts/data/license_corrections.json"
+
+  # Weekly fallback, after the Monday 00:00 scrape. Even with no new PDF, this
+  # applies license_corrections.json and expires stale applications.
+  schedule:
+    - cron: "0 6 * * 1"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +27,7 @@ on:
         type: string
         default: "main"
 
-# Sets the GITHUB_TOKEN permissions to allow committing changes, so we can update the next meeting date
+# Lets GITHUB_TOKEN push the update branch and open its pull request
 permissions:
   contents: write
   pull-requests: write
@@ -33,88 +38,40 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check-pdf:
-    outputs:
-      pdf-found: ${{ steps.check.outputs.pdf-found }}
-      pdf-file: ${{ steps.check.outputs.pdf-file }}
-      voting-date: ${{ steps.check.outputs.voting-date }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-        with:
-          repository: ${{ inputs.target-repository }}
-          ref: ${{ inputs.target-ref }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: lts/*
-          cache: "npm"
-          cache-dependency-path: scripts/package-lock.json
-
-      - name: Install dependencies
-        working-directory: ./scripts
-        run: npm ci
-
-      - name: Compile get voting minutes
-        working-directory: ./scripts
-        run: npm run build:get-voting-minutes
-
-      - name: Run get voting minutes
-        id: check
-        working-directory: ./scripts
-        run: |
-          OUTPUT=$(npm run run:get-voting-minutes 2>&1 | tee /dev/stderr)
-          SEL_OUTPUT=$(echo "$OUTPUT" | grep "::JSON_OUTPUT::" | sed 's/::JSON_OUTPUT:://')
-          SUCCESS=$(echo "$SEL_OUTPUT" | jq -r '.success')
-          if [ "$SUCCESS" != "true" ]; then
-            echo "Script failed : $(echo "$SEL_OUTPUT" | jq -r '.message')"
-            exit 1
-          fi
-
-          PDF_FILE=$(echo "$SEL_OUTPUT" | jq -r '.fileName')
-          VOTING_DATE=$(echo "$SEL_OUTPUT" | jq -r '.pdfDate')
-
-          # Exit early if no new PDF to process
-          if [ "$PDF_FILE" = "null" ] || [ "$VOTING_DATE" = "null" ]; then
-            echo "pdf-found=false" >> $GITHUB_OUTPUT
-          else
-            echo "pdf-found=true" >> $GITHUB_OUTPUT
-            echo "pdf-file=$PDF_FILE" >> $GITHUB_OUTPUT
-            echo "voting-date=$VOTING_DATE" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Upload voting PDF
-        uses: actions/upload-artifact@v7
-        if: steps.check.outputs.pdf-found == 'true'
-        with:
-          name: voting-pdf
-          path: ./scripts/${{ steps.check.outputs.pdf-file }}
-          if-no-files-found: error
-          retention-days: 2
-
-
-  # Runs every time. With a new PDF it extracts and merges it; without one it
-  # still applies license_corrections.json and expires stale applications.
-  process-pdf:
-    needs: check-pdf
+  update-data:
     runs-on: ubuntu-latest
     env:
       TRANSFORM_DIR: ./scraper/transform
+      PDF_DIR: scraper/scrape/data/voting_minutes_pdfs
     steps:
+      # LFS files are not fetched here; only the new PDFs are pulled below.
       - name: Checkout code
         uses: actions/checkout@v7
         with:
           repository: ${{ inputs.target-repository }}
           ref: ${{ inputs.target-ref }}
 
+      # Every committed PDF dated after last_processed_date.json, oldest first,
+      # using the newest version (_v2, _v3) of each meeting.
+      - name: Find unprocessed voting minutes
+        id: find
+        run: |
+          python3 scripts/find_new_minutes.py \
+            --pdf-dir "$PDF_DIR" \
+            --last-processed client/src/data/last_processed_date.json \
+            --list-file /tmp/new_minutes.txt | tee -a "$GITHUB_OUTPUT"
+          cat /tmp/new_minutes.txt
+
+      - name: Download those PDFs from Git LFS
+        if: steps.find.outputs.count != '0'
+        run: git lfs pull --include "$(paste -sd, /tmp/new_minutes.txt)"
+
       - name: Install uv
-        if: needs.check-pdf.outputs.pdf-found == 'true'
+        if: steps.find.outputs.count != '0'
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Sync transform pipeline dependencies
-        if: needs.check-pdf.outputs.pdf-found == 'true'
+        if: steps.find.outputs.count != '0'
         working-directory: ${{ env.TRANSFORM_DIR }}
         run: uv sync --frozen
 
@@ -133,28 +90,27 @@ jobs:
         working-directory: ./scripts
         run: pip install python-dateutil python-dotenv
 
-      - name: Download voting pdf
-        if: needs.check-pdf.outputs.pdf-found == 'true'
-        uses: actions/download-artifact@v8
-        with:
-          name: voting-pdf
-          path: ./scripts
-
       - name: Run transform pipeline
-        if: needs.check-pdf.outputs.pdf-found == 'true'
+        if: steps.find.outputs.count != '0'
         working-directory: ${{ env.TRANSFORM_DIR }}
         run: |
-          PDF_FILE="${{ needs.check-pdf.outputs.pdf-file }}"
-          echo "Processing PDF: $PDF_FILE"
-          uv run python -m app.cli \
-            --file "../../scripts/$PDF_FILE" \
-            --output /tmp/transform_output.json
+          mkdir -p /tmp/transform
+          mapfile -t pdfs < /tmp/new_minutes.txt
+          outputs=()
+          for pdf in "${pdfs[@]}"; do
+            out="/tmp/transform/$(basename "$pdf" .pdf).json"
+            echo "Processing PDF: $pdf"
+            uv run python -m app.cli --file "$GITHUB_WORKSPACE/$pdf" --output "$out"
+            outputs+=("$out")
+          done
+          # One merge input, oldest meeting first
+          jq -s 'add' "${outputs[@]}" > /tmp/transform_output.json
 
       - name: Merge transform output into licenses.json
         id: merge
         working-directory: ./scripts
         run: |
-          if [ "${{ needs.check-pdf.outputs.pdf-found }}" = "true" ]; then
+          if [ "${{ steps.find.outputs.count }}" != "0" ]; then
             python3 merge_licenses.py --input /tmp/transform_output.json --report /tmp/pr_body.md
           else
             python3 merge_licenses.py --report /tmp/pr_body.md
@@ -167,14 +123,14 @@ jobs:
           cat /tmp/pr_body.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Compile update processed date
-        if: needs.check-pdf.outputs.pdf-found == 'true'
+        if: steps.find.outputs.count != '0'
         working-directory: ./scripts
         run: npm run build:update-last-processed
 
       - name: Run update processed date
-        if: needs.check-pdf.outputs.pdf-found == 'true'
+        if: steps.find.outputs.count != '0'
         working-directory: ./scripts
-        run: npm run run:update-last-processed -- ${{ needs.check-pdf.outputs.voting-date }}
+        run: npm run run:update-last-processed -- ${{ steps.find.outputs.latest-date }}
 
       - name: Compile validate license data
         working-directory: ./scripts
