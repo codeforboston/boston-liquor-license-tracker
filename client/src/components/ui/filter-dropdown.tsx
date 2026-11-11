@@ -3,6 +3,8 @@ import {Button, Popover, Selection, MenuTrigger, Menu, MenuItem} from 'react-ari
 import { ExpandMore, ExpandLess, CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
 import { MenuItemProps } from '@mui/material/MenuItem';
 import { FormattedMessage } from 'react-intl';
+import { buttonVariants } from '@/components/ui/button-variants';
+import { cn } from '@/lib/utils';
 export interface DropdownOption { 
   id: string
   name: string
@@ -48,7 +50,11 @@ const FilterDropdown = ({ titleId, label, options, selected, onSelectionChange  
         <MenuTrigger onOpenChange={setMenuOpen}>
           <Button
             aria-label={label}
-            className={`inline-flex items-center bg-clip-padding gap-x-2 px-[16px] py-[8px] bg-ui-gray ${menuOpen ? "rounded-t-[8px]" : "rounded-[8px]" } cursor-default outline-none `}
+            className={cn(
+              buttonVariants({ variant: "secondary", size: "sm" }),
+              "bg-clip-padding gap-x-2 cursor-default outline-none",
+              menuOpen && "rounded-b-none",
+            )}
           >
 
             <FormattedMessage id={titleId} />

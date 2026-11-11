@@ -1,5 +1,7 @@
 import tableStyles from "./recent-application-table.module.css";
 import CustomTable, { CellFormat } from "@components/ui/table";
+import { buttonVariants } from "@components/ui/button-variants";
+import { cn } from "@/lib/utils";
 import {
   BusinessLicense,
   EligibleBostonZipcode,
@@ -330,7 +332,11 @@ const RecentApplicationTable = () => {
         <div className={tableStyles.legendContainer}>
           <DialogTrigger>
             <Button
-              className={`${tableStyles.tableLegend} gap-[10px] bg-ui-gray px-[16px] py-[8px] rounded-[8px]`}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "sm" }),
+                tableStyles.tableLegend,
+                "flex gap-[10px]",
+              )}
             >
               <div>
                 <FormattedMessage id="database.recentApplications.tableLegend" />

@@ -5,22 +5,19 @@ import { buttonVariants } from "@/components/ui/button-variants";
 
 import { cn } from "@/lib/utils";
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
+export type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
+    /** Render the child element (e.g. a router <Link> or <a>) with button styles */
     asChild?: boolean;
-  }) {
+  };
+
+function Button({ className, variant, size, asChild = false, ...props }: ButtonProps) {
   const Comp = asChild ? Slot : "button";
 
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     />
   );
