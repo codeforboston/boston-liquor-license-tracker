@@ -6,46 +6,73 @@ import path from 'path'
 import { fileURLToPath } from "url";
 import {LAST_PROCESSED_DATE_JSON, BOSTON_URL} from "./paths.js"
 
-interface EntityType{
-   href: string | null, 
-   dateText: string, 
-   votingDate: string
-}
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Matches "Voting Minutes: Thursday, October 29" and "Voting Minutes: Thursday, October 29, 2026"
+const MINUTES_LINK_REGEX = /Voting Minutes:\s+\w+,\s+([A-Za-z]+)\s+(\d{1,2})/;
+
+/**
+ * Entrypoint: pick the oldest voting meeting that has happened but has not been
+ * processed, download its minutes PDF, and log structured JSON output for the
+ * liquor-license-applicant-pipeline workflow.
+ *
+ * - Looks at the current AND previous year, so a late-December meeting is still
+ *   picked up when the workflow runs in January.
+ * - A meeting whose minutes are not posted yet is a no-op (success, no file),
+ *   not a failure; the next weekly run tries again.
+ * - A meeting whose minutes never appear (e.g. cancelled) is skipped once a
+ *   later meeting's minutes are posted, so the pipeline cannot get stuck.
+ */
 async function main(){
-   // Entrypoint: fetch the latest meeting date, download the corresponding PDF,
-   // and log structured JSON output for liqour-license-applicant-pipeline workflow.'
    try{
-      const pdfDate = await getLatestDate(BOSTON_URL)
-      if(!pdfDate){
-        const result = {
-           success: true,
-           pdfDate: null, 
-           fileName: null, 
-           message: 'No new date found to add entities - already up to date'
-        }
-        console.log("::JSON_OUTPUT::"+JSON.stringify(result))
-        return
+      const now = new Date()
+      const years = [now.getUTCFullYear() - 1, now.getUTCFullYear()]
+      const $ = cheerio.load((await axios.get(BOSTON_URL)).data)
+
+      const meetingDates = years.flatMap((year) => getMeetingDates($, year))
+      const minutesLinks = new Map<number, string>()
+      for (const year of years) {
+         for (const [time, href] of getMinutesLinks($, year)) minutesLinks.set(time, href)
       }
-    
-      const fileName = await downloadVotingMinutes(pdfDate, BOSTON_URL)
+
+      const lastProcessed = await getWrittenLatestDate()
+      const unprocessed = meetingDates
+         .filter((d) => d <= now && (!lastProcessed || d > lastProcessed))
+         .sort((a, b) => a.getTime() - b.getTime())
+      const candidates = lastProcessed ? unprocessed : unprocessed.slice(-1)
+
+      const next = candidates.find((d) => minutesLinks.has(d.getTime()))
+      const skipped = next ? candidates.filter((d) => d < next) : []
+      skipped.forEach((d) =>
+         console.log(`WARNING: no minutes posted for ${d.toISOString().slice(0, 10)}; a later meeting has minutes, so skipping it`)
+      )
+
+      if (!next) {
+         const message = candidates.length
+            ? `Minutes not posted yet for ${candidates.map((d) => d.toISOString().slice(0, 10)).join(", ")}`
+            : 'No new date found to add entities - already up to date'
+         console.log("::JSON_OUTPUT::" + JSON.stringify({ success: true, pdfDate: null, fileName: null, message }))
+         return
+      }
+
+      // Save under a stable, date-based name (matches the scraper's naming) so the
+      // transform pipeline can read the meeting date from the file name.
+      const fileName = `voting_minutes_${next.toISOString().slice(0, 10)}.pdf`
+      await downloadPdf(minutesLinks.get(next.getTime()) as string, fileName)
       console.log("fileName is ", fileName)
-      const result = {
-         success : true, 
-         pdfDate: pdfDate.toISOString(),
-         fileName: fileName, 
+      console.log("::JSON_OUTPUT::" + JSON.stringify({
+         success : true,
+         pdfDate: next.toISOString(),
+         fileName: fileName,
          message: 'Downloaded the pdf successfully'
-      }
-      console.log("::JSON_OUTPUT::"+JSON.stringify(result))
+      }))
 
    }catch(err){
       const errResult = {
-        success : false, 
-        pdfDate: null, 
-        fileName: null, 
+        success : false,
+        pdfDate: null,
+        fileName: null,
         message: String(err)
       }
       console.log("::JSON_OUTPUT::"+JSON.stringify(errResult))
@@ -53,172 +80,81 @@ async function main(){
    }
 }
 
-async function downloadVotingMinutes(pdfDate : Date, url: string) : Promise<string> {
-   const regex = /Voting Minutes:\s+\w+,\s+([A-Za-z]+)\s+(\d{1,2})/;
-   const currentDate = new Date()
-   const currentYear = currentDate.getFullYear()
-   const response = await axios.get(url)
-   const $ = cheerio.load(response.data)
-   
-   // Locate the container that has the list of past Voting Minutes for the current year
-   const votingMinuteSection = $("section#content")
-    .find(".paragraphs-item-drawers")
-    .last()
-    .find(
-        `.paragraphs-item-drawer .field.field-label-hidden div:contains('${currentYear}')` // Label element containing the current year
-      )
-    .closest(".paragraphs-item-drawer");
-
-    if(!votingMinuteSection.length){
-      throw Error(`Could not find the section with the year ${currentYear}`)
-    }
-
-    const entity = {} as EntityType
-    // NOTE: Updated selector from `ul li a` to `a[href*=".pdf"]` because the webpage
-    // DOM structure changed and no longer uses list-based markup. Selecting by `href`
-    // makes the scraper resilient to layout changes and focuses on the actual document links.
-    $(votingMinuteSection).find(`a[href$=".pdf"]`).each((_, e) => {
-        const dateText = $(e).text()
-        console.log("date text is ", dateText)
-        const match = dateText.match(regex)
-        if(match){
-          const month = match[1]
-          const day = parseInt(match[2])
-          const year = currentYear
-          const date = new Date(`${month} ${day}, ${year}`)
-          date.setUTCHours(0, 0, 0, 0);
-          console.log(`date checked is ${date}`)
-          if(date.getTime() === pdfDate.getTime()){
-            entity['href'] = $(e).attr("href") ?? null
-            entity['dateText'] = $(e).text() 
-            entity['votingDate'] = date.toISOString()
-            console.log(JSON.stringify(entity))
-          }
-        }
-    })
-    
-    if(!entity || !entity['href']){
-      // If this happens, the meeting date exists on the site but has no PDF link yet
-      throw Error("Could not find entity")
-    }
-    const downloadUrlString = entity['href'] as string;
-    let downloadUrl = new URL(downloadUrlString, "https://www.boston.gov")
-    // 1. Convert Google Drive preview link → direct download
-    const driveMatch = downloadUrlString.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)/);
-    if (driveMatch) {
-      const fileId = driveMatch[1];
-      downloadUrl = new URL(`https://drive.google.com/uc?export=download&id=${fileId}`);
-    }
-
-    const pdfData = await axios.get(downloadUrl.toString(), {
-      responseType: "arraybuffer",
-    })
-
-    let fileName;
-
-    const disposition = pdfData.headers["content-disposition"];
-    if (disposition) {
-      const match = disposition.match(/filename="(.+?)"/);
-      if (match) {
-        fileName = match[1];
-      }
-    }
-
-    if (typeof downloadUrlString !== "string") {
-      throw new Error("downloadUrl is not a string");
-    } 
-
-    if (!fileName) {
-      const elems = downloadUrlString.split("/")
-      fileName = elems.pop()
-    }
-    
-    if(fileName){
-      const filePath = path.join(__dirname, fileName)
-      await fs.writeFile(filePath, pdfData.data)
-    }else{
-      throw Error("could not get the file name")
-    }
-
-    return fileName
+function utcDate(month: string, day: number, year: number): Date {
+   const d = new Date(`${month} ${day}, ${year} UTC`)
+   d.setUTCHours(0, 0, 0, 0)
+   return d
 }
 
-/**
- * Determines the most recent past meeting date that has already occurred.
- * If the latest processed date matches it, the script terminates early
- * to avoid redundant downloads.
- */
-async function getLatestDate(url: string): Promise<Date| null> {
-   try {
-    
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-
-    const response = await axios.get(url);
-    const $ = cheerio.load(response.data);
-
-    const currentYearElement = $("section#content") // Main page content
+/** Voting meeting dates listed for `year` in the "Upcoming Hearing Dates" drawers. */
+function getMeetingDates($: cheerio.CheerioAPI, year: number): Date[] {
+   const list = $("section#content")
       .find(".paragraphs-item-drawers")
       .first() // Upcoming Hearing Dates
-      .find(
-        `.paragraphs-item-drawer .field.field-label-hidden div:contains('${currentYear}')` // Label element containing the current year
-      )
-      .parentsUntil(".section-drawers") // Lowest common ancestor of the label element and the list of dates
-      .find(".entity .field ul"); // List of dates
+      .find(`.paragraphs-item-drawer .field.field-label-hidden div:contains('${year}')`)
+      .first()
+      .parentsUntil(".section-drawers") // Lowest common ancestor of the label and the list of dates
+      .find(".entity .field ul")
 
-    const currentDateStrings = currentYearElement
+   return list
       .text()
       .split("\n")
-      .filter((dateString) => !!dateString && dateString.includes("Voting"))
-       .map((dateString) => {
-        // Clean the date string more thoroughly
-        return dateString
-          .replace(/^([A-Za-z]+ \d{1,2}).*$/, "$1") // Keep only "Month DD" at the start
-          .trim();
-      });
-    
-    const meetingDates = currentDateStrings.map((dateString) => {
-      const d = new Date(`${dateString}, ${currentYear} UTC`);
-        d.setUTCHours(0, 0, 0, 0); // normalize to UTC midnight
-        return d;
-    });
-
-   
-    // Only consider meetings that have already happened
-    const pastDates = meetingDates.filter((date) => date <= currentDate)
-    if (pastDates.length === 0) {
-      console.log("No past meeting dates found")
-      return null
-    }
-    try{
-      const lastProcessedDate = await getWrittenLatestDate()
-      console.log("lat processed date is ", lastProcessedDate)
-      const unprocessedDates = pastDates.filter((date) => date > lastProcessedDate)
-      console.log("unprocessed dates are ",unprocessedDates);
-      if (unprocessedDates.length === 0) {
-        console.log("No new date found to add entities")
-        return null // Return null instead of process.exit(0)
-      }
-      const nextDateToProcess = new Date(Math.min(...unprocessedDates.map(d => d.getTime())))
-      return nextDateToProcess
-    } catch{
-       console.log('Last processed date file is not found')
-       const maxPastDate = new Date(Math.max(...pastDates.map(date => date.getTime())))
-       return maxPastDate;
-    }
-
-  } catch (error) {
-    console.error("Error scraping next meeting date:", error);
-    throw error; // Re-throw the error so further Github Actions steps are aborted
-  }
+      .filter((s) => !!s && s.includes("Voting"))
+      .map((s) => s.replace(/^([A-Za-z]+) (\d{1,2}).*$/, "$1 $2").trim())
+      .map((s) => {
+         const [month, day] = s.split(" ")
+         return utcDate(month, parseInt(day), year)
+      })
+      .filter((d) => !isNaN(d.getTime()))
 }
 
-async function getWrittenLatestDate(){
-  const dateFilePath = path.join(__dirname, '..', LAST_PROCESSED_DATE_JSON)
-  const data = await fs.readFile(dateFilePath, 'utf-8')
-  const parsed = JSON.parse(data)
-  const lastestDate = new Date(parsed.date)
-  return lastestDate
+/** Minutes PDF links for `year`, keyed by meeting date (UTC midnight, ms). */
+function getMinutesLinks($: cheerio.CheerioAPI, year: number): Map<number, string> {
+   const links = new Map<number, string>()
+   const section = $("section#content")
+      .find(".paragraphs-item-drawers")
+      .last()
+      .find(`.paragraphs-item-drawer .field.field-label-hidden div:contains('${year}')`)
+      .first()
+      .closest(".paragraphs-item-drawer")
+
+   // Select by href rather than list markup; the page layout has changed before.
+   section.find(`a[href$=".pdf"]`).each((_, e) => {
+      const match = $(e).text().match(MINUTES_LINK_REGEX)
+      const href = $(e).attr("href")
+      if (match && href) {
+         const date = utcDate(match[1], parseInt(match[2]), year)
+         if (!isNaN(date.getTime())) links.set(date.getTime(), href)
+      }
+   })
+   return links
+}
+
+async function downloadPdf(downloadUrlString: string, fileName: string): Promise<void> {
+    let downloadUrl = new URL(downloadUrlString, "https://www.boston.gov")
+    // Convert Google Drive preview link → direct download
+    const driveMatch = downloadUrlString.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)/);
+    if (driveMatch) {
+      downloadUrl = new URL(`https://drive.google.com/uc?export=download&id=${driveMatch[1]}`);
+    }
+
+    const pdfData = await axios.get(downloadUrl.toString(), { responseType: "arraybuffer" })
+    const bytes = Buffer.from(pdfData.data)
+    if (bytes.subarray(0, 5).toString() !== "%PDF-") {
+      throw Error(`Downloaded file from ${downloadUrl} is not a PDF`)
+    }
+    await fs.writeFile(path.join(__dirname, fileName), bytes)
+}
+
+async function getWrittenLatestDate(): Promise<Date | null> {
+  try {
+    const dateFilePath = path.join(__dirname, '..', LAST_PROCESSED_DATE_JSON)
+    const parsed = JSON.parse(await fs.readFile(dateFilePath, 'utf-8'))
+    return new Date(parsed.date)
+  } catch {
+    console.log('Last processed date file is not found')
+    return null
+  }
 }
 
 

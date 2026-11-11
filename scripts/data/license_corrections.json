@@ -1,0 +1,51 @@
+{
+    "_comment": "Manual corrections applied by merge_licenses.py on every run. 'exclude' removes a license and prevents it from being re-added; 'overrides' forces field values; 'add' inserts records the pipeline missed. Give a reason for every entry. Audit source: Licensing Board voting minutes (see scraper/scrape/data/voting_minutes_pdfs).",
+    "exclude": {
+        "LB-549186": "Ron's Ice Cream and Bowling: 2024-02-01 'Granted, pending the availability of a license for which they qualify' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-551178": "Italian Express: 2024-02-29 'Granted, pending the availability of a license'; the business re-applied and received its zip-restricted license as LB-593698 (2026-03-05).",
+        "LB-546003": "B.U. Bistro: 2024-03-28 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-554141": "The Mix: 2024-03-28 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-559007": "justBook-ish: 2024-05-01 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-570339": "Mofongo Factory Restaurant: 2024-08-08 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-476499": "The Smoke Shop BBQ: 2024-08-22 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-572966": "Los Alebrijes Restaurant: 2024-09-12 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-574267": "El Jardin: 2024-09-26 'Granted, pending the availability of a license' (pre-Chapter 202 waiting list); never approved in a Chapter 202 vote.",
+        "LB-547071": "Los Hermanos Restaurant: application 'Rejected without prejudice' 2024-06-06.",
+        "LB-578146": "Zoo New England: approved 2025-02-13 for a Community Space All Alcoholic Beverages License, not a zip-code-restricted license.",
+        "LB-598009": "Bono Restaurant and Catering: approved 2025-10-23 for a Neighborhood Restricted License under Chapter 287 of the Acts of 2014, not Chapter 202.",
+        "LB-624275": "Karma: 2026-05-07 granted a Restricted All-Alcoholic Beverages License under Chapter 383 of the Acts of 2006, not Chapter 202.",
+        "LB-587125": "Jazz Urbane Cafe: holds a '(Bolling Building Restricted)' All-Alcoholic license (2025-10-23 minutes), not a zip-code-restricted license.",
+        "LB-618294": "El Centro: 2026-02-12 Wines and Malt Beverages license followed by an M.G.L. c.138 s.12D upgrade; not a zip-code-restricted license.",
+        "LB-619535": "Angela's Cafe: 2026-03-05 Wines and Malt Beverages license followed by an M.G.L. c.138 s.12D upgrade; not a zip-code-restricted license.",
+        "LB-619536": "Miami Restaurant: 2026-03-05 Wines and Malt Beverages license followed by an M.G.L. c.138 s.12D upgrade; not a zip-code-restricted license.",
+        "LB-623669": "Mi Pueblito Restaurant: 2026-04-30 Wines and Malt Beverages license followed by an M.G.L. c.138 s.12D upgrade; not a zip-code-restricted license.",
+        "LB-628119": "Cabana Grill: 2026-06-25 M.G.L. c.138 s.12D upgrade of an existing license; not a zip-code-restricted license.",
+        "LB-584080": "Minina Cafe: duplicate application; the business re-applied as LB-590954, which was approved 2025-04-03."
+    },
+    "overrides": {
+        "LB-574154": {
+            "granted_date": "2025-02-13",
+            "granted_file": "voting_minutes_2025-02-13.pdf",
+            "_reason": "Florenza: 2024-09-26 was 'Granted, pending the availability of a license'; the zip-code-restricted license was approved 2025-02-13."
+        },
+        "LB-615310": {
+            "entity_number": "25",
+            "_reason": "Safari African Restaurant: added from the 2026-03-05 board vote; item 25 in those minutes."
+        },
+        "LB-628157": {
+            "address": "4541 Washington St, Roslindale, MA 02131",
+            "_reason": "Pena Bani Restaurant: minutes address omits the zip code; 02131 comes from the 'Granted an 02131 Zip Code Restricted License' vote."
+        },
+        "LB-578134": {
+            "alcohol_type": "All Alcoholic Beverages",
+            "notes": "Approved 2025-02-13 as a zip-code-restricted Wines and Malt Beverages license; changed to a zip-code-restricted All Alcoholic Beverages license 2026-06-04."
+        },
+        "LB-582370": {
+            "notes": "Zip-code-restricted Wines and Malt Beverages license upgraded to All Alcoholic Beverages under M.G.L. c.138 s.12D on 2026-06-25. Still counted as a zip-restricted Wines and Malt Beverages license: per Board Rule 1.08(R)(4) it reverts to that quota if returned."
+        },
+        "LB-605364": {
+            "notes": "Zip-code-restricted Wines and Malt Beverages license upgraded to All Alcoholic Beverages under M.G.L. c.138 s.12D on 2026-06-04. Still counted as a zip-restricted Wines and Malt Beverages license: per Board Rule 1.08(R)(4) it reverts to that quota if returned."
+        }
+    },
+    "add": []
+}

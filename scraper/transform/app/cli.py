@@ -39,6 +39,11 @@ def main():
 
         store = KVStore()
         results = run_pipeline(args.file, kv_store=store)
+        if not results:
+            # Every voting-minutes PDF has many items; an empty result means a
+            # pipeline step failed. Fail loudly instead of writing an empty file.
+            logger.error(f"No records extracted from {args.file}")
+            sys.exit(1)
         all_results.extend(results)
         logger.debug(f"Results: {results}")
         logger.debug(f"All results: {store.dump()}")

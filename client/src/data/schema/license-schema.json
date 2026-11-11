@@ -27,8 +27,8 @@
       },
       "entity_number": {
         "type": "string",
-        "pattern": "^[0-9]+$",
-        "description": "Number associated with the license in the voting minutes."
+        "pattern": "^[0-9]*$",
+        "description": "Number associated with the license in the voting minutes. Empty when the record comes from a board vote that lists no item number."
       },
       "business_name": {
         "type": "string",
@@ -56,8 +56,8 @@
       },
       "status": {
         "type": "string",
-        "enum": ["Deferred", "Granted"],
-        "description": "Current application status."
+        "enum": ["Deferred", "Granted", "Expired"],
+        "description": "Current application status. Expired means a Deferred application past its application_expiration_date."
       },
       "alcohol_type": {
         "type": "string",
@@ -87,6 +87,10 @@
       "granted_file": {
         "type": ["string", "null"],
         "description": "Voting minute file name in which the license was granted. Null while Deferred."
+      },
+      "notes": {
+        "type": ["string", "null"],
+        "description": "Optional explanation of a manual correction or unusual status (see scripts/data/license_corrections.json)."
       }
     }
   }
