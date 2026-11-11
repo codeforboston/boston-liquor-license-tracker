@@ -1,36 +1,36 @@
 import { cva } from "class-variance-authority";
 
+/**
+ * The site's button styles. Use them through <Button> (a <button>, or a link
+ * via `asChild`), or call `buttonVariants()` directly to style a component
+ * that must render its own element, such as a react-aria <Button>.
+ *
+ * Layout (width, flex sizing, margins) belongs at the call site, not here.
+ */
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-background-dark focus-visible:ring-background-dark/50 focus-visible:ring-[3px]",
-  // For Design: need to define an aria-invalid state for buttons
-  // aria-invalid:ring-<new-color-variable>/20 aria-invalid:border-<new-color-variable>
+  "inline-flex items-center justify-center text-center rounded-[8px]",
   {
     variants: {
       variant: {
-        default:
-          "bg-background-dark hover:bg-button-hovered-dark active:bg-button-active-dark text-font-light hover:text-font-links-hover active:text-font-links-active rounded-[8px] cursor-pointer w-[200px] text-[18px] font-medium",
-        // We have not implemented button variants yet, these are suggested from shadcn:
-        // destructive:
-        //   "",
-        // outline:
-        //   "",
-        // secondary:
-        //   "",
-        // ghost:
-        //   "",
-        // link: 
-        //   "",
+        // Dark button: home navigation, resource links
+        primary:
+          "cursor-pointer bg-button-default-dark hover:bg-button-hovered-dark active:bg-button-active-dark text-button-default-light hover:text-button-hovered-light active:text-button-active-light",
+        // Yellow call to action: case study
+        accent:
+          "cursor-pointer shadow-md bg-case-study-button-default-yellow hover:bg-case-study-button-hover-yellow active:bg-case-study-button-active-yellow text-font-dark hover:text-button-active-dark active:text-button-hovered-dark",
+        // Light gray control: filter dropdowns, table legend
+        secondary: "bg-ui-gray",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
+        sm: "px-[16px] py-[8px]",
+        md: "min-h-[34px] px-[24px] py-[7px] gap-[12px] text-[16px] font-medium leading-[1.25] [&_svg]:size-4 [&_svg]:shrink-0",
+        lg: "px-8 py-4 gap-2.5 text-2xl font-bold",
+        xl: "min-h-[34px] md:min-h-[62px] px-[24px] py-[8px] md:py-[12px] text-[15px] md:text-[32px]",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "primary",
+      size: "md",
     },
   }
 );
