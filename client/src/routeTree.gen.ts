@@ -8,90 +8,38 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComingSoonRouteImport } from './routes/coming-soon'
+import { Route as DatabaseRouteImport } from './routes/database'
+import { Route as MapsRouteImport } from './routes/maps'
+import { Route as ResourcesRouteImport } from './routes/resources'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as ResourcesImport } from './routes/resources'
-import { Route as MapsImport } from './routes/maps'
-import { Route as DatabaseImport } from './routes/database'
-import { Route as ComingSoonImport } from './routes/coming-soon'
-import { Route as IndexImport } from './routes/index'
-
-// Create/Update Routes
-
-const ResourcesRoute = ResourcesImport.update({
-  id: '/resources',
-  path: '/resources',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MapsRoute = MapsImport.update({
-  id: '/maps',
-  path: '/maps',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const DatabaseRoute = DatabaseImport.update({
-  id: '/database',
-  path: '/database',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ComingSoonRoute = ComingSoonImport.update({
-  id: '/coming-soon',
-  path: '/coming-soon',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/coming-soon': {
-      id: '/coming-soon'
-      path: '/coming-soon'
-      fullPath: '/coming-soon'
-      preLoaderRoute: typeof ComingSoonImport
-      parentRoute: typeof rootRoute
-    }
-    '/database': {
-      id: '/database'
-      path: '/database'
-      fullPath: '/database'
-      preLoaderRoute: typeof DatabaseImport
-      parentRoute: typeof rootRoute
-    }
-    '/maps': {
-      id: '/maps'
-      path: '/maps'
-      fullPath: '/maps'
-      preLoaderRoute: typeof MapsImport
-      parentRoute: typeof rootRoute
-    }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
+const ComingSoonRoute = ComingSoonRouteImport.update({
+  id: '/coming-soon',
+  path: '/coming-soon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatabaseRoute = DatabaseRouteImport.update({
+  id: '/database',
+  path: '/database',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapsRoute = MapsRouteImport.update({
+  id: '/maps',
+  path: '/maps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -100,7 +48,6 @@ export interface FileRoutesByFullPath {
   '/maps': typeof MapsRoute
   '/resources': typeof ResourcesRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coming-soon': typeof ComingSoonRoute
@@ -108,16 +55,14 @@ export interface FileRoutesByTo {
   '/maps': typeof MapsRoute
   '/resources': typeof ResourcesRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/coming-soon': typeof ComingSoonRoute
   '/database': typeof DatabaseRoute
   '/maps': typeof MapsRoute
   '/resources': typeof ResourcesRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/' | '/coming-soon' | '/database' | '/maps' | '/resources'
@@ -126,13 +71,52 @@ export interface FileRouteTypes {
   id: '__root__' | '/' | '/coming-soon' | '/database' | '/maps' | '/resources'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComingSoonRoute: typeof ComingSoonRoute
   DatabaseRoute: typeof DatabaseRoute
   MapsRoute: typeof MapsRoute
   ResourcesRoute: typeof ResourcesRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coming-soon': {
+      id: '/coming-soon'
+      path: '/coming-soon'
+      fullPath: '/coming-soon'
+      preLoaderRoute: typeof ComingSoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/database': {
+      id: '/database'
+      path: '/database'
+      fullPath: '/database'
+      preLoaderRoute: typeof DatabaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maps': {
+      id: '/maps'
+      path: '/maps'
+      fullPath: '/maps'
+      preLoaderRoute: typeof MapsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -142,39 +126,6 @@ const rootRouteChildren: RootRouteChildren = {
   MapsRoute: MapsRoute,
   ResourcesRoute: ResourcesRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/coming-soon",
-        "/database",
-        "/maps",
-        "/resources"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/coming-soon": {
-      "filePath": "coming-soon.tsx"
-    },
-    "/database": {
-      "filePath": "database.tsx"
-    },
-    "/maps": {
-      "filePath": "maps.tsx"
-    },
-    "/resources": {
-      "filePath": "resources.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
