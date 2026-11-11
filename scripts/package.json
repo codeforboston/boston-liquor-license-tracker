@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "main": "getVotingMinutes.js",
   "dependencies": {
-    "ajv": "^8.17.1",
+    "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "axios": "^1.13.5",
+    "axios": "^1.21.1",
     "cheerio": "^1.2.0",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.4.2"
   },
   "config": {
     "tscflags": "-t es2022 -m nodenext --moduleResolution nodenext"
@@ -28,10 +28,10 @@
   "description": "",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^24.1.0",
-    "eslint": "^10.7.0",
-    "globals": "^17.7.0",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.64.0"
+    "@types/node": "^24.19.2",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.2"
   }
 }
