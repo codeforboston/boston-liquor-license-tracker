@@ -33,17 +33,37 @@ The primary published data entity. Each record represents one liquor license app
 | Field | Type | Required | Validation | Description |
 |-------|------|----------|------------|-------------|
 | `index` | integer | Yes | min: 1 | Unique sequential index assigned when writing to file |
-| `entity_number` | string | Yes | pattern: `^[0-9]+$` | Number associated with the license in the voting minutes |
+| `entity_number` | string | Yes | pattern: `^[0-9]*$` | Number associated with the license in the voting minutes; empty when the record came from a board vote with no item number |
 | `business_name` | string | Yes | min length: 1 | Registered legal business name |
 | `dba_name` | string \| null | No | — | "Doing Business As" name; null if not applicable |
 | `address` | string | Yes | min length: 5 | Full business address |
 | `zipcode` | string | Yes | pattern: `^[0-9]{5}$`; see eligible zipcodes below | 5-digit ZIP code extracted from address |
 | `license_number` | string | Yes | pattern: `^LB-[0-9]+$` | License number assigned by the Licensing Board (e.g., `LB-123456`) |
-| `status` | string | Yes | enum: `Deferred`, `Granted` | Application status as shown in the client |
+| `status` | string | Yes | enum: `Deferred`, `Granted`, `Expired` | Application status as shown in the client. Only `Granted` counts as an issued zip-code-restricted license |
 | `alcohol_type` | string | Yes | enum: `Wines and Malt Beverages`, `All Alcoholic Beverages` | Type of alcoholic beverage license |
 | `minutes_date` | string (date) | Yes | format: `YYYY-MM-DD` | Date of voting minutes where this license appears |
 | `application_expiration_date` | string (date) | Yes | format: `YYYY-MM-DD` | Date by which the application will expire |
 | `file_name` | string | Yes | min length: 1 | Voting minutes PDF filename where this license appears |
+| `granted_date` | string (date) \| null | No | format: `YYYY-MM-DD` | Date the board granted the zip-code-restricted license |
+| `granted_file` | string \| null | No | — | Voting minutes PDF filename in which the license was granted |
+| `notes` | string \| null | No | — | Explanation of a manual correction or unusual status (e.g. conditional approval, s.12D upgrade) |
+
+#### What counts as `Granted`
+
+`scripts/merge_licenses.py` only records a license as `Granted` when the Licensing Board grants a **Zip Code Restricted** license under Chapter 202 of the Acts of 2024 — either inline ("Granted an 02130 Zip Code Restricted License") or in a batch board vote ("The Board voted to approve a Zip Code restricted ... License"). Batch votes usually omit license numbers, so they are matched to applications by zip code, business name and hearing date. Not counted:
+
+- "Granted, pending the availability of a license" (pre-Chapter 202 waiting list)
+- Licenses under other special legislation: Community Space, Chapter 287 of 2014, Chapter 383 of 2006, Bolling Building, Oak Square
+- M.G.L. c.138 s.12D upgrades (Wines and Malt Beverages traded in for a non-transferable All Alcoholic license). A zip-restricted license upgraded this way stays counted as Wines and Malt Beverages, because it returns to that quota if given up (Board Rule 1.08(R)(4))
+- Approvals "on the condition that the Licensee surrenders the existing ... license" until the restricted license is confirmed issued
+
+#### Manual corrections
+
+`scripts/data/license_corrections.json` is applied on every pipeline run. Use `exclude` for licenses that should never appear (not Chapter 202, surrendered, or cancelled), `overrides` to force field values, and `add` for records the pipeline missed. Every entry needs a reason. To apply corrections without a new PDF, run `python3 merge_licenses.py` with no `--input`.
+
+#### Pipeline review flow
+
+The weekly *Get data from next voting minute* workflow opens a PR whose description lists the data changes and a **Needs review** checklist. Review items include board votes that matched no application, possible missed applications found by the coverage scan, applications with no license number, conditional approvals, possible duplicates, and PDFs the transform could not fully parse. PRs with review items get the `needs-review` label and are not auto-merged. Resolve each item, usually with an entry in `license_corrections.json`, before merging. The workflow also runs when no new PDF exists, and whenever `license_corrections.json` changes on `main`, so corrections and expirations reach the site without waiting for the next meeting.
 
 ### Eligible ZIP Codes (`EligibleBostonZipcode`)
 

@@ -1,7 +1,9 @@
 import logging
+import os
 from typing import Any
 
 from app import constants as const
+from app.pipeline.coverage_check import CoverageCheckStep
 from app.pipeline.extract_board_voted import BoardVotedExtractorStep
 from app.pipeline.extract_hearing import HearingTextExtractorStep
 from app.pipeline.extract_license_text import LicenseTextExtractorStep
@@ -75,6 +77,8 @@ def run_pipeline(pdf_file_path: str, kv_store: KVStore | None = None):
             TextJsonExtractorStep(store),
             # Appends Granted records from the "Board voted to approve" section (does not stop pipeline).
             BoardVotedExtractorStep(store),
+            # Flags eligible applications that none of the steps above extracted.
+            CoverageCheckStep(store),
         ],
     )
 
@@ -82,6 +86,29 @@ def run_pipeline(pdf_file_path: str, kv_store: KVStore | None = None):
 
     if result.proceed:
         return store.get(const.LICENSE_JSON_DATA, [])
-    else:
-        logger.error(f"Pipeline failed for {pdf_file_path}: {result.reason}")
-        return []
+
+    logger.error(f"Pipeline failed for {pdf_file_path}: {result.reason}")
+    # The board-vote and coverage scans only need the raw PDF text, so still run
+    # them: approvals are not lost, and every eligible application the main
+    # extractors missed is reported. The warning record tells the merge script
+    # (and the pull-request reviewer) that this PDF needs a manual look.
+    for step in (BoardVotedExtractorStep(store), CoverageCheckStep(store)):
+        try:
+            step.run()
+        except Exception as e:  # pragma: no cover - defensive
+            logger.error(f"Fallback step {step.__class__.__name__} failed: {e}")
+    file_name = os.path.basename(pdf_file_path)
+    warning = {
+        "source": "coverage_warning",
+        "license_number": None,
+        "business_name": "",
+        "zipcode": "",
+        "file_name": file_name,
+        "details": (
+            f"Transform pipeline stopped early for {file_name}: {result.reason}. "
+            "Only board votes and the coverage scan were processed for this PDF; "
+            "check the minutes for new zip-code-restricted applications. (Expected "
+            "for meetings with no transactional hearing.)"
+        ),
+    }
+    return (store.get(const.LICENSE_JSON_DATA) or []) + [warning]

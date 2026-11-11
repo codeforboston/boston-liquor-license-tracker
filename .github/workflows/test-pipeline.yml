@@ -1,0 +1,62 @@
+name: Test data pipeline
+
+on:
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "scraper/transform/**"
+      - "client/src/data/licenses.json"
+      - "client/src/data/schema/license-schema.json"
+      - ".github/workflows/test-pipeline.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transform-tests:
+    name: Transform pipeline tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scraper/transform
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Run tests
+        run: uv run --frozen --extra dev pytest -q
+
+  merge-tests:
+    name: Merge script tests and license data checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run merge script tests
+        working-directory: scripts
+        run: |
+          pip install python-dateutil python-dotenv pytest
+          python -m pytest -q __tests__/unit/test_merge_licenses.py
+      - name: Corrections file is already applied to licenses.json
+        working-directory: scripts
+        run: |
+          cp ../client/src/data/licenses.json /tmp/before.json
+          python merge_licenses.py --no-expire
+          if ! diff -q /tmp/before.json ../client/src/data/licenses.json; then
+            echo "::error::licenses.json is out of date with license_corrections.json. Run 'python3 merge_licenses.py' in scripts/ and commit the result."
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+      - name: Validate license data (schema + invariants)
+        working-directory: scripts
+        run: |
+          npm ci
+          npm run build:validate-license
+          npm run run:validate-license
