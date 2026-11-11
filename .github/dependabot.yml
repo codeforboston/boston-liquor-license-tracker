@@ -1,0 +1,59 @@
+# Dependabot: keep dependencies patched with as few PRs as possible.
+#
+# - Security fixes are grouped into one PR per directory (requires
+#   "Dependabot security updates" to be enabled in the repo settings).
+# - Routine minor/patch updates arrive once a month, also one PR per directory.
+# - Major versions are left to manual upgrades: they need code changes and a
+#   visual check (e.g. maplibre-gl 5 -> 6 needed worker and import changes).
+#
+# Review tip: CI builds and tests the client, but it does not render the map.
+# Before merging a client update, open the map page and confirm it draws.
+
+version: 2
+updates:
+  - package-ecosystem: npm
+    directories:
+      - "/client"
+      - "/scripts"
+      - "/scripts/getNextMeetingDate"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      npm-security:
+        applies-to: security-updates
+        patterns: ["*"]
+      npm-minor-and-patch:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: uv
+    directories:
+      - "/scraper/scrape"
+      - "/scraper/transform"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      python-security:
+        applies-to: security-updates
+        patterns: ["*"]
+      python-minor-and-patch:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns: ["*"]
