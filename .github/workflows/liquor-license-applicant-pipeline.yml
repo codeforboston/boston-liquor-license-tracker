@@ -41,13 +41,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ inputs.target-repository }}
           ref: ${{ inputs.target-ref }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: "npm"
@@ -86,7 +86,7 @@ jobs:
           fi
 
       - name: Upload voting PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: steps.check.outputs.pdf-found == 'true'
         with:
           name: voting-pdf
@@ -104,7 +104,7 @@ jobs:
       TRANSFORM_DIR: ./scraper/transform
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ inputs.target-repository }}
           ref: ${{ inputs.target-ref }}
@@ -119,7 +119,7 @@ jobs:
         run: uv sync --frozen
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: "npm"
@@ -135,7 +135,7 @@ jobs:
 
       - name: Download voting pdf
         if: needs.check-pdf.outputs.pdf-found == 'true'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: voting-pdf
           path: ./scripts
@@ -186,7 +186,7 @@ jobs:
 
       - name: Create pull request
         id: cpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           title: "[SCRIPT] Update liquor license applicant data"
           body-path: /tmp/pr_body.md
