@@ -26,6 +26,16 @@ jobs:
         working-directory: scraper/transform
     steps:
       - uses: actions/checkout@v7
+      # The golden-output tests need the minutes PDFs they reference (Git LFS).
+      # Download only those, derived from the reference files in tests/golden/.
+      - name: Fetch PDFs used by golden-output tests
+        working-directory: .
+        run: |
+          include=$(ls scraper/transform/tests/golden/*.json \
+            | xargs -n1 basename | sed 's/\.json$/.pdf/' \
+            | sed 's#^#scraper/scrape/data/voting_minutes_pdfs/#' | paste -sd, -)
+          git lfs install --local
+          git lfs pull --include="$include"
       - name: Install uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Run tests

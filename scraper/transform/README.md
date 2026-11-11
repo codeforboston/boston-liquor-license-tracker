@@ -166,6 +166,17 @@ Unit tests live under `tests/` and run with `pytest`:
 uv run pytest
 ```
 
+### Golden-output tests
+
+`tests/test_transform_golden.py` runs the whole pipeline on ten representative minutes PDFs (one per format or edge case) and compares the result with the reference output in `tests/golden/`. It catches changes in extracted data from dependency updates (PyMuPDF, pikepdf, …) or code changes that unit tests miss.
+
+- The PDFs are in Git LFS (`scraper/scrape/data/voting_minutes_pdfs/`). Run `git lfs pull` if the tests are skipped locally; CI downloads just those PDFs.
+- If a change to the output is intended, regenerate the references and **review the diff** before committing:
+
+  ```bash
+  UPDATE_GOLDEN=1 uv run --frozen --extra dev pytest tests/test_transform_golden.py
+  ```
+
 ## 📊 Manual Validation & Data Exploration
 
 For manual validation and data exploration of the license JSON data, `licenses_to_excel.py` converts the extracted license data into an Excel spreadsheet with automatic column formatting and sorting.

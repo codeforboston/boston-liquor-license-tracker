@@ -1,0 +1,10 @@
+[
+  {
+    "source": "coverage_warning",
+    "license_number": null,
+    "business_name": "",
+    "zipcode": "",
+    "file_name": "voting_minutes_2026-08-18.pdf",
+    "details": "Transform pipeline stopped early for voting_minutes_2026-08-18.pdf: argument of type 'NoneType' is not iterable. Only board votes and the coverage scan were processed for this PDF; check the minutes for new zip-code-restricted applications. (Expected for meetings with no transactional hearing.)"
+  }
+]
