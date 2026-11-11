@@ -13,7 +13,6 @@ import "@styles/index.css";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 import { K_LOCALE } from "./i18n/stored-locale";
-import { setupHashHistoryScrollRestoration } from "./setupHashHistoryScrollRestoration";
 
 // Use hash history for routing instead of browser history
 // github pages does not route arbitrary URLs to index.html
@@ -27,8 +26,6 @@ const router = createRouter({
   // Route paths live in the URL hash; do not treat them as in-page anchor ids.
   defaultHashScrollIntoView: false,
 });
-
-setupHashHistoryScrollRestoration(router);
 
 // Set initial HTML lang attribute
 const locale = localStorage.getItem(K_LOCALE) || "en-US";

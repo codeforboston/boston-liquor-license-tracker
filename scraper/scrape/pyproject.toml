@@ -47,6 +47,10 @@ quote-style = "double"
 indent-style = "space"
 
 
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
 # -----------------------------
 # Mypy (typing)
 # -----------------------------
