@@ -1,4 +1,7 @@
-import maplibregl, { Map } from "maplibre-gl";
+import { Map, NavigationControl, setWorkerUrl } from "maplibre-gl";
+// MapLibre 6 loads its web worker from a URL computed at runtime, which Vite
+// cannot detect. Bundle the worker (with its shared chunk) and point MapLibre at it.
+import maplibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   useRef,
@@ -18,7 +21,9 @@ import {
   eligibleBostonZipcodes,
   validateBusinessLicense,
 } from "@/services/data-interface/data-interface";
-import * as BostonZipCodeGeoJSON from "../../../data/boston-zip-codes.json";
+// Default import: a namespace import (import * as) is a null-prototype module
+// object, which MapLibre cannot serialize to its web worker.
+import BostonZipCodeGeoJSON from "../../../data/boston-zip-codes.json";
 import licenseData from "../../../data/licenses.json";
 import DotPagination from "../../../components/ui/dot-pagination";
 import mapStyles from "./BostonZipCodeMap.module.css";
@@ -109,6 +114,8 @@ const applyViewportCenter = (mapInstance: Map) => {
 };
 
 /* Map Initialization */
+setWorkerUrl(maplibreWorkerUrl);
+
 const initializeMap = (
   map: RefObject<Map | null>,
   mapContainer: RefObject<HTMLDivElement | null>,
@@ -117,7 +124,7 @@ const initializeMap = (
   const { minZoom, zoom } = getViewportZoomSettings();
   const center = getViewportCenter();
 
-  map.current = new maplibregl.Map({
+  const mapInstance = new Map({
     container: mapContainer.current || "",
     style: {
       version: 8,
@@ -132,8 +139,9 @@ const initializeMap = (
     zoom,
     attributionControl: false
   });
+  map.current = mapInstance;
 
-  map.current.on("load", () => {
+  mapInstance.on("load", () => {
     if (!map.current) return;
 
     map.current.addSource("boston", {
@@ -204,8 +212,8 @@ const initializeMap = (
 
     onMapLoad?.();
   });
-  map.current.addControl(
-    new maplibregl.NavigationControl({
+  mapInstance.addControl(
+    new NavigationControl({
       showZoom: true,
       showCompass: false,
     }),

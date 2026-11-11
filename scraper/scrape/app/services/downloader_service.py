@@ -9,6 +9,7 @@ import requests
 
 from app import constants as const
 from app.link_filters.exclude_list_filter import ExcludeListFilter
+from app.parsers.date_parser import DateParser
 from app.storage.json_store import JsonStore
 from app.storage.pdf_store import PdfStore
 
@@ -42,6 +43,11 @@ class DownloaderService:
                 continue
 
             if href in self.exclude_filter.exclude_items:
+                continue
+
+            # Never save files like voting_minutes_yyyy-11-06.pdf
+            if not DateParser.is_valid(date_str):
+                logger.warning(f"Skipping {href}: could not parse a date ({date_str})")
                 continue
 
             content = self._download_pdf(href)
