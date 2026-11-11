@@ -6,6 +6,8 @@ on:
       - "scripts/**"
       - "scraper/scrape/app/**"
       - "scraper/scrape/tests/**"
+      - "scraper/scrape/pyproject.toml"
+      - "scraper/scrape/uv.lock"
       - "scraper/transform/**"
       - "client/src/data/licenses.json"
       - "client/src/data/schema/license-schema.json"
