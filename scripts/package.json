@@ -2,12 +2,9 @@
   "name": "scripts",
   "type": "module",
   "version": "1.0.0",
-  "main": "getVotingMinutes.js",
   "dependencies": {
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "axios": "^1.21.1",
-    "cheerio": "^1.2.0",
     "dotenv": "^17.4.2"
   },
   "config": {
@@ -17,8 +14,6 @@
     "lint": "eslint .",
     "build:validate-license": "npx tsc $npm_package_config_tscflags validateLicenseData.ts",
     "run:validate-license": "node validateLicenseData.js",
-    "build:get-voting-minutes": "tsc $npm_package_config_tscflags getVotingMinutes.ts",
-    "run:get-voting-minutes": "node getVotingMinutes.js",
     "build:update-last-processed": "tsc $npm_package_config_tscflags updateLastProcessedDate.ts",
     "run:update-last-processed": "node updateLastProcessedDate.js"
   },
