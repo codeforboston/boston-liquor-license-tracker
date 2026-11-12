@@ -1,0 +1,188 @@
+name: Apply license correction
+
+# The project sponsor corrects license data through two issue forms
+# (.github/ISSUE_TEMPLATE/correct-license.yml and add-license.yml). Submissions
+# from accounts listed in the CORRECTIONS_EDITORS repo variable are applied
+# without a maintainer: scripts/apply_correction.py checks the form and updates
+# license_corrections.json, merge_licenses.py applies it to licenses.json, and
+# the bot opens and merges the pull request. The merge redeploys the site.
+# Rejected submissions get a reply saying what to fix; editing the form retries.
+# Replies use GITHUB_TOKEN (the App has no Issues permission); the App token is
+# only used for the pull request, so its merge triggers the Pages deploy.
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+
+# One correction at a time; each one edits the same files.
+concurrency:
+  group: license-corrections
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: >-
+      github.event.issue.state == 'open' &&
+      (github.event.action == 'opened' || github.event.changes.body) &&
+      (contains(github.event.issue.labels.*.name, 'license-correction') ||
+       contains(github.event.issue.labels.*.name, 'license-addition'))
+    runs-on: ubuntu-latest
+    steps:
+      # Both the issue's author and whoever just edited it must be editors.
+      - name: Check the submitter is an approved editor
+        id: auth
+        env:
+          EDITORS: ${{ vars.CORRECTIONS_EDITORS }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+          SENDER: ${{ github.event.sender.login }}
+        run: |
+          editors=",$(echo "$EDITORS" | tr '[:upper:]' '[:lower:]' | tr -d ' @'),"
+          author=$(echo "$AUTHOR" | tr '[:upper:]' '[:lower:]')
+          sender=$(echo "$SENDER" | tr '[:upper:]' '[:lower:]')
+          if [[ "$editors" == *",$author,"* && "$editors" == *",$sender,"* ]]; then
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "$AUTHOR / $SENDER is not in CORRECTIONS_EDITORS; leaving this for a maintainer."
+          fi
+
+      - name: Thank other submitters
+        if: steps.auth.outputs.allowed != 'true' && github.event.action == 'opened'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE" --body "Thanks for the report. The project team will review it."
+
+      - name: Get bot token
+        id: bot-token
+        if: steps.auth.outputs.allowed == 'true'
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.BOT_CLIENT_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
+      # Full history, so a hidden license can be restored from an earlier licenses.json
+      - name: Checkout code
+        if: steps.auth.outputs.allowed == 'true'
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        if: steps.auth.outputs.allowed == 'true'
+        with:
+          python-version: "3.13"
+
+      # The issue body is untrusted text: it is only ever passed through env
+      # and a file, never interpolated into a command.
+      - name: Check and apply the submission
+        id: apply
+        if: steps.auth.outputs.allowed == 'true'
+        working-directory: ./scripts
+        env:
+          BODY: ${{ github.event.issue.body }}
+          ISSUE: ${{ github.event.issue.number }}
+          KIND: ${{ contains(github.event.issue.labels.*.name, 'license-addition') && 'add' || 'correct' }}
+        run: |
+          pip install python-dateutil python-dotenv
+          printf '%s' "$BODY" > "$RUNNER_TEMP/body.md"
+          python apply_correction.py --kind "$KIND" --issue-number "$ISSUE" \
+            --body-file "$RUNNER_TEMP/body.md" --reply-file "$RUNNER_TEMP/reply.md" \
+            | tee -a "$GITHUB_OUTPUT"
+
+      - name: Reply with what to fix
+        if: steps.apply.outputs.ok == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: gh issue comment "$ISSUE" --body-file "$RUNNER_TEMP/reply.md"
+
+      - name: Apply corrections to licenses.json
+        if: steps.apply.outputs.ok == 'true'
+        working-directory: ./scripts
+        run: python merge_licenses.py --no-expire
+
+      - uses: actions/setup-node@v7
+        if: steps.apply.outputs.ok == 'true'
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: scripts/package-lock.json
+
+      - name: Validate license data
+        if: steps.apply.outputs.ok == 'true'
+        working-directory: ./scripts
+        run: |
+          npm ci
+          npm run build:validate-license
+          npm run run:validate-license
+
+      - name: Create pull request
+        id: cpr
+        if: steps.apply.outputs.ok == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ steps.bot-token.outputs.token }}
+          title: "[CORRECTION] ${{ github.event.issue.title }} (#${{ github.event.issue.number }})"
+          body: |
+            Correction submitted in #${{ github.event.issue.number }} by @${{ github.event.issue.user.login }}.
+
+            Closes #${{ github.event.issue.number }}
+          branch: license-correction/issue-${{ github.event.issue.number }}
+          delete-branch: true
+          commit-message: "[CORRECTION] Apply license correction from #${{ github.event.issue.number }}"
+          committer: Github Actions <hello@codeforboston.org>
+          author: Github Actions <hello@codeforboston.org>
+          add-paths: |
+            scripts/data/license_corrections.json
+            client/src/data/licenses.json
+
+      # The App is on the ProtectMain bypass list, so it merges without review.
+      # Retry while GitHub computes mergeability.
+      - name: Merge pull request
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ steps.bot-token.outputs.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          for attempt in 1 2 3 4 5; do
+            gh pr merge --squash --admin "$PR" && exit 0
+            sleep 10
+          done
+          exit 1
+
+      - name: Reply that it is done
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}
+          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
+        run: |
+          {
+            echo "Done:"
+            echo
+            cat "$RUNNER_TEMP/reply.md"
+            echo
+            echo "The site will show this in about five minutes. ([Change record]($PR_URL))"
+          } > "$RUNNER_TEMP/done.md"
+          gh issue comment "$ISSUE" --body-file "$RUNNER_TEMP/done.md"
+          gh issue close "$ISSUE" --reason completed || true
+
+      - name: Reply that something went wrong
+        if: failure() && steps.auth.outputs.allowed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue edit "$ISSUE" --add-label needs-review || true
+          gh issue comment "$ISSUE" --body "Something went wrong on my end, not with your form, so nothing was changed. I've flagged this for the project team. ([Details]($RUN_URL))"
