@@ -210,7 +210,12 @@ export const ZipDetailsError = () => {
       <h3 className="font-medium text-[18px] px-[10px]">
         <FormattedMessage id="map.error.message" />
       </h3>
-      <Button onClick={() => window.location.reload()}>
+      {/* Keeps this button's original look: fixed 200px width, 18px text,
+          lighter hover text and a keyboard focus ring. */}
+      <Button
+        onClick={() => window.location.reload()}
+        className="h-9 w-[200px] gap-2 px-4 py-2 text-[18px] leading-normal whitespace-nowrap transition-all hover:text-font-links-hover active:text-font-links-active outline-none focus-visible:border-background-dark focus-visible:ring-[3px] focus-visible:ring-background-dark/50"
+      >
         <FormattedMessage id="map.error.refreshPage" />
       </Button>
     </div>
