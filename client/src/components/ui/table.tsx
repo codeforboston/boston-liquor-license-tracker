@@ -82,8 +82,17 @@ const StyledSubRow = ({subRowData, cellFormatter}: SubRowProps & { cellFormatter
   )
 }
 
+// Smallest rendered header and row heights (px) across breakpoints.
+const MIN_HEADER_HEIGHT = 38
+const MIN_ROW_HEIGHT = 48
+
 const CustomTable = ({ariaLabel, tableData, headers, cellFormatter, defaultSubRowsExpanded}: CustomTableProps) => {
+  // React Aria builds the table's collection in an extra render pass, so the
+  // first paint has no table at all and everything below it jumps when it
+  // appears (layout shift, #288). Reserve at least the collapsed table's height.
+  const reservedHeight = MIN_HEADER_HEIGHT + tableData.length * MIN_ROW_HEIGHT
   return (
+    <div style={{ minHeight: reservedHeight }}>
     <Table aria-label={ariaLabel} className={styles.customTable}>
       <TableHeader className={styles.tableHeader}>
         {headers.map((header, i) => (
@@ -108,6 +117,7 @@ const CustomTable = ({ariaLabel, tableData, headers, cellFormatter, defaultSubRo
         ))}
       </TableBody>
     </Table>
+    </div>
   )
 }
 

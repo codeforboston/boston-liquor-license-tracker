@@ -11,7 +11,7 @@ const Resources = () => {
   const title = `${intl.formatMessage({ id: "resources.pageTitle" })} | ${intl.formatMessage({ id: "home.pageTitle" })}`;
 
   return (
-    <main>
+    <div>
       <title>{title}</title>
       <Header />
       <div className={`${styles.resources} flex flex-col gap-[24px]`}>
@@ -20,7 +20,7 @@ const Resources = () => {
         <ApplicationResourcesAndGuides />
         <Links />
       </div>
-    </main>
+    </div>
   );
 };
 
