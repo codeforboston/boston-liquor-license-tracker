@@ -7,18 +7,22 @@ import AgencyCard from "./agency-card";
 const Agencies = () => {
   
   return (
-    <div className="flex flex-col gap-[24px]">
-      <div className="flex flex-col gap-[8px]">
-        <h2>
+    <section
+      aria-labelledby="agencies-heading"
+      className="flex flex-col gap-[24px]"
+    >
+      <header className="flex flex-col gap-[8px]">
+        <h2 id="agencies-heading">
           <FormattedMessage id="resources.agencies.title" />
         </h2>
         <p>
           <FormattedMessage id="resources.agencies.text" />
         </p>
-      </div>
+      </header>
       <div className="flex flex-col gap-[24px]">
         <AgencyCard
           logoSrc={blbLogo}
+          logoVariant="icon"
           logoAltId="resources.agencies.blb.logoAlt"
           titleId="resources.agencies.blb.title"
           descriptionId="resources.agencies.blb.text"
@@ -35,6 +39,7 @@ const Agencies = () => {
         />
         <AgencyCard
           logoSrc={onsLogo}
+          logoVariant="icon"
           logoAltId="resources.agencies.ons.logoAlt"
           titleId="resources.agencies.ons.title"
           descriptionId="resources.agencies.ons.text"
@@ -42,7 +47,7 @@ const Agencies = () => {
           href="https://www.boston.gov/departments/neighborhood-services"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

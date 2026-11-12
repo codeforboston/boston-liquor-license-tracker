@@ -5,13 +5,18 @@ import DefinitionItem from "./definition-item";
 const BasicResources = () => {
 
   return (
-    <div className="flex flex-col gap-[8px]">
-      <h2>
-        <FormattedMessage id="resources.basicResources.title" />
-      </h2>
-      <p>
-        <FormattedMessage id="resources.basicResources.text" />
-      </p>
+    <section
+      aria-labelledby="basic-resources-heading"
+      className="flex flex-col gap-[8px]"
+    >
+      <header className="flex flex-col gap-[8px]">
+        <h2 id="basic-resources-heading">
+          <FormattedMessage id="resources.basicResources.title" />
+        </h2>
+        <p>
+          <FormattedMessage id="resources.basicResources.text" />
+        </p>
+      </header>
       <Accordion titleId="resources.basicResources.glossary.title">
         <DefinitionItem termId="resources.basicResources.glossary.restricted.term" descriptionId="resources.basicResources.glossary.restricted.text" />
         <DefinitionItem termId="resources.basicResources.glossary.transferable.term" descriptionId="resources.basicResources.glossary.transferable.text" />
@@ -28,7 +33,7 @@ const BasicResources = () => {
         <DefinitionItem termId="resources.basicresources.otherlicense.2024.title" descriptionId="resources.basicresources.otherlicense.2024.description" href="https://malegislature.gov/Bills/193/H5039" linkLabelId="resources.basicResources.otherLicenses.law2024.link" />
         <DefinitionItem termId="resources.basicresources.otherlicense.unrestrict.title" descriptionId="resources.basicresources.otherlicense.unrestrict.description" />
       </Accordion>
-    </div>
+    </section>
   );
 };
 
