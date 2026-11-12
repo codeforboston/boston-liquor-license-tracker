@@ -1,17 +1,13 @@
 ## Styles
 
-Global style sheets belong in this directory.
+Global style sheets belong in this directory. `index.css` defines the site's color palette (the only place hex colors are allowed) and global element styles.
 
-Style sheets for individual components belong in that component's directory. Use [css modules]([url](https://github.com/css-modules/css-modules)) when possible.
+Style sheets for individual components belong next to that component. Use [CSS modules](https://github.com/css-modules/css-modules) when possible.
 Example:
 ```
 src/
   components/
     layout/
-      header/
-        header.tsx
-        header.module.css
+      header.tsx
+      header.module.css
 ```
-
-
-

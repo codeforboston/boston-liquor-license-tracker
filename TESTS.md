@@ -280,7 +280,7 @@ The directory trees below represent the target state — not all test files exis
 scripts/
 ├── boston_address_parser.py
 ├── extract_entity.py
-├── getVotingMinutes.ts
+├── find_new_minutes.py
 ├── validateLicenseData.ts
 ├── updateLastProcessedDate.ts
 ├── paths.ts
@@ -289,6 +289,7 @@ scripts/
 └── __tests__/
     ├── unit/
     │   ├── test_extract_entity.py
+    │   ├── test_find_new_minutes.py
     │   └── test_boston_address_parser.py
     └── integration/
         └── test_extract_entity_integration.py
