@@ -1,11 +1,14 @@
 name: Python lint
 
+# pull_request (not pull_request_target): lints the PR's own code without the
+# base repo's secrets.
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - 'scraper/**/*.py'
       - 'scripts/**/*.py'
+      - '.github/workflows/py-lint.yml'
 
 jobs:
   python-lint:
@@ -15,9 +18,6 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v7
-        with:
-          # Checkout the PR code, not the base branch
-          ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
