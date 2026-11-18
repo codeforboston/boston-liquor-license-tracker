@@ -17,7 +17,10 @@ export function RootComponent() {
     <div className="flex flex-col min-h-screen">
       <HeadContent />
       <Header />
-      <main className="flex-1">
+      {/* min-h-screen keeps the footer below the fold while a route's code
+          (auto code-split) is loading; otherwise the footer renders mid-screen
+          and jumps when the page arrives, which caused most of our CLS (#288). */}
+      <main className="flex-1 min-h-screen">
         <Outlet />
       </main>
       <Footer />

@@ -470,7 +470,7 @@ export const BostonZipCodeMap = () => {
   }, [isMapLoaded]);
 
   return (
-    <main className={mapStyles.mapPage}>
+    <div className={mapStyles.mapPage}>
       <PageHeader
         collapsibleOnMobile
         headerTitle={<FormattedMessage id="map.header.title" />}
@@ -519,6 +519,6 @@ export const BostonZipCodeMap = () => {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };

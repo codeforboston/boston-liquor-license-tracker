@@ -82,6 +82,16 @@ export function isEligibleBostonZipCode(
   );
 }
 
+/** Valid records from raw license data; invalid ones are skipped. */
+export function getValidLicenses(licenses: unknown[]): BusinessLicense[] {
+  const valid: BusinessLicense[] = [];
+  for (const license of licenses) {
+    const result = validateBusinessLicense(license);
+    if (result.valid) valid.push(result.data);
+  }
+  return valid;
+}
+
 export function validateBusinessLicense(license: unknown): ValidationResult {
   const errors: Record<string, string> = {};
 

@@ -6,7 +6,8 @@ import {
   getApplicantsByZipcode,
   ApplicationStatusType,
   ApplicationStatusTypes,
-  validateBusinessLicense,
+  getValidLicenses,
+  eligibleBostonZipcodes,
   getApplicantsByApplicationStatus,
 } from "../../../services/data-interface/data-interface";
 import { RowWithSubRows } from "@components/ui/table";
@@ -98,22 +99,14 @@ const RecentApplicationTable = () => {
   const initialZip =
     isDeepLinked && zip && isEligibleBostonZipCode(zip) ? zip : undefined;
 
+  // Start with the same zips ZipCodeFilter selects on mount, so the first
+  // render already shows every row instead of an empty table (#288).
   const [zipcodeList, setZipcodeList] = useState<Set<EligibleBostonZipcode>>(
-    new Set(),
+    () => (initialZip ? new Set([initialZip]) : eligibleBostonZipcodes),
   );
-  const [data, setData] = useState<BusinessLicense[]>([]);
-
-  useEffect(() => {
-    const tmp = [];
-    for (const license of licenseData) {
-      const validated = validateBusinessLicense(license);
-      if (validated.valid) {
-        tmp.push(validated.data);
-      }
-    }
-
-    setData(tmp);
-  }, []);
+  // Bundled data, validated during the first render so the table never
+  // renders empty and then jumps (layout shift, #288).
+  const [data] = useState<BusinessLicense[]>(() => getValidLicenses(licenseData));
 
   useEffect(() => {
     if (!isDeepLinked) return;

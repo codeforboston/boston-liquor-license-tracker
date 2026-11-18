@@ -26,7 +26,8 @@ const DefinitionItem = ({
           </a>
         )}
       </h4>
-      <p>
+      {/* Blank lines ("\n\n") in the translation become paragraph breaks */}
+      <p className="whitespace-pre-line">
         <FormattedMessage id={descriptionId} />
       </p>
     </div>

@@ -13,7 +13,8 @@
         "application_expiration_date": null,
         "file_name": "voting_minutes_2024-09-26.pdf",
         "granted_date": "2025-02-13",
-        "granted_file": "voting_minutes_2025-02-13.pdf"
+        "granted_file": "voting_minutes_2025-02-13.pdf",
+        "notes": "Test Note"
     },
     {
         "index": 2,

@@ -4,8 +4,8 @@
   grid-template-areas:
     "logo title"
     "logo desc"
-    "logo button";
-  column-gap: 16px;
+    "button button";
+  column-gap: 24px;
   row-gap: 8px;
   align-content: start;
 
@@ -16,10 +16,13 @@
   .agencyDescription {
     grid-area: desc;
   }
+}
 
-  .resourceButton {
-    grid-area: button;
-  }
+/* The button sits on its own row, left-aligned with the logo, 24px below the
+   description and logo (8px row gap + 16px). */
+.agencyButton {
+  grid-area: button;
+  margin-block-start: 16px;
 }
 
 .agencyLogo {
@@ -33,6 +36,11 @@
   background-color: var(--color-white-1);
 }
 
+/* Edge-to-edge artwork (BLB, ONS) is inset so it fits inside the circle. */
+.agencyLogoIcon {
+  padding: 20px;
+}
+
 /* Mobile Styling */
 @media (max-width: 768px) {
   .agencyCard {
@@ -40,10 +48,6 @@
       "title title"
       "logo desc"
       "button button";
-
-    .resourceButton {
-      margin-block-start: 4px;
-    }
   }
 
   .agencyLogo {

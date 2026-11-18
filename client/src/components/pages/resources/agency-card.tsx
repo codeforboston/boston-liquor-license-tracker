@@ -15,6 +15,11 @@ interface AgencyCardProps {
   buttonLabelId: string;
   /** external URL the webpage button points to */
   href: string;
+  /**
+   * "icon": artwork that fills its canvas edge to edge (BLB, ONS SVGs); inset
+   * so it sits inside the circle. "seal": a round logo that already has a margin.
+   */
+  logoVariant?: "icon" | "seal";
 }
 
 const AgencyCard = ({
@@ -24,12 +29,13 @@ const AgencyCard = ({
   descriptionId,
   buttonLabelId,
   href,
+  logoVariant = "seal",
 }: AgencyCardProps) => {
   const intl = useIntl();
   return (
     <article className={styles.agencyCard}>
       <img
-        className={styles.agencyLogo}
+        className={`${styles.agencyLogo} ${logoVariant === "icon" ? styles.agencyLogoIcon : ""}`}
         src={logoSrc}
         alt={intl.formatMessage({ id: logoAltId })}
       />
@@ -39,7 +45,9 @@ const AgencyCard = ({
       <p className={styles.agencyDescription}>
         <FormattedMessage id={descriptionId} />
       </p>
-      <ResourceButton labelId={buttonLabelId} href={href} icon="link" />
+      <div className={styles.agencyButton}>
+        <ResourceButton labelId={buttonLabelId} href={href} icon="link" />
+      </div>
     </article>
   );
 };
