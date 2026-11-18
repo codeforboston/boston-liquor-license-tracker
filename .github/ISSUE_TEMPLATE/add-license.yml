@@ -1,0 +1,94 @@
+name: Add a missing license
+description: Add a zip-code-restricted license the site does not show yet.
+title: "Add a missing license"
+labels: ["license-addition"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this in and press **Submit**. If you are an approved editor, the license is
+        added automatically and a reply below tells you when the site is updated.
+        If something needs fixing, the reply says what. Edit this form (**...** menu, then
+        **Edit**) and it will try again.
+  - type: input
+    id: license_number
+    attributes:
+      label: License number
+      placeholder: LB-574154
+    validations:
+      required: true
+  - type: input
+    id: business_name
+    attributes:
+      label: Business name
+      description: The registered name, for example "Florenza, Inc."
+    validations:
+      required: true
+  - type: input
+    id: dba_name
+    attributes:
+      label: Doing business as (DBA) name
+      description: Leave blank if there is none.
+  - type: input
+    id: address
+    attributes:
+      label: Address
+      placeholder: 164-170 Sumner St, East Boston, MA 02128
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - Granted
+        - Deferred
+    validations:
+      required: true
+  - type: dropdown
+    id: alcohol_type
+    attributes:
+      label: Alcohol type
+      options:
+        - All Alcoholic Beverages
+        - Wines and Malt Beverages
+    validations:
+      required: true
+  - type: input
+    id: hearing_date
+    attributes:
+      label: Hearing date
+      description: The date of the hearing where they applied, for example Sep 25, 2024.
+    validations:
+      required: true
+  - type: input
+    id: minutes_date
+    attributes:
+      label: Date of the voting minutes they appear in
+      description: The date on the voting minutes document, for example Sep 26, 2024.
+    validations:
+      required: true
+  - type: input
+    id: granted_date
+    attributes:
+      label: Date granted
+      description: Only for Granted licenses. The date of the board vote that granted it.
+  - type: input
+    id: entity_number
+    attributes:
+      label: Item number in the voting minutes
+      description: Leave blank if there is none.
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why?
+      description: A sentence explaining why it was missing. It is kept with the change.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Where you confirmed it, for example "Sep 26, 2024 minutes, item 22".
+    validations:
+      required: true

@@ -26,7 +26,8 @@
         "LB-574154": {
             "granted_date": "2025-02-13",
             "granted_file": "voting_minutes_2025-02-13.pdf",
-            "_reason": "Florenza: 2024-09-26 was 'Granted, pending the availability of a license'; the zip-code-restricted license was approved 2025-02-13."
+            "notes": "Test Note",
+            "_reason": "Florenza: 2024-09-26 was 'Granted, pending the availability of a license'; the zip-code-restricted license was approved 2025-02-13. Then: Testing the correction form Source: Testing. (issue #575)"
         },
         "LB-615310": {
             "entity_number": "25",

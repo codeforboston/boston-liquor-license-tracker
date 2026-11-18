@@ -14,7 +14,7 @@ const Resources = () => {
     <div>
       <title>{title}</title>
       <Header />
-      <div className={`${styles.resources} flex flex-col gap-[24px]`}>
+      <div className={`${styles.resources} flex flex-col gap-[64px]`}>
         <BasicResources />
         <Agencies />
         <ApplicationResourcesAndGuides />
