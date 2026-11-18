@@ -23,7 +23,7 @@
 
   "shared.backToHomeButton": "BACK TO HOME",
   "shared.database.capitalized": "LICENSE DATABASE",
-  "shared.map.capitalized": "MAP [BETA]",
+  "shared.map.capitalized": "MAP",
   "shared.resources.capitalized": "LICENSING RESOURCES",
 
   "database.availableLicenses.title": "2024 Cohort Licenses",
@@ -94,7 +94,7 @@
   "home.quote": "...working to create a more equitable restaurant ecosystem for all...",
 
   "map.header.text": "Hover over any Zip Code and get instant information about available licenses, what types of licenses are available, recent applications, and updates on assigned licenses.",
-  "map.header.title": "License Availability Map [BETA]",
+  "map.header.title": "License Availability Map",
   "pageHeader.collapseDescription": "Hide page description",
   "pageHeader.expandDescription": "Show page description",
   "map.pageTitle": "Map",

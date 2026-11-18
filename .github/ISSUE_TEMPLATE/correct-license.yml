@@ -1,0 +1,70 @@
+name: Correct a license record
+description: Change a detail on a license, hide a license, or bring a hidden one back.
+title: "Correct a license record"
+labels: ["license-correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this in and press **Submit**. If you are an approved editor, the change is
+        applied automatically and a reply below tells you when the site is updated.
+        If something needs fixing, the reply says what. Edit this form (**...** menu, then
+        **Edit**) and it will try again.
+
+        To undo a change, submit another correction with the old value.
+  - type: input
+    id: license_number
+    attributes:
+      label: License number
+      description: Shown on the site and in the voting minutes, for example LB-574154.
+      placeholder: LB-574154
+    validations:
+      required: true
+  - type: dropdown
+    id: action
+    attributes:
+      label: What do you want to do?
+      options:
+        - Change a detail
+        - Hide this license from the site
+        - Show a hidden license again
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: Which detail?
+      description: Only needed for "Change a detail".
+      options:
+        - Status
+        - Date granted
+        - Business name
+        - Doing business as (DBA) name
+        - Address
+        - Zip code
+        - Alcohol type
+        - Hearing date
+        - Application expiration date
+        - Item number in the voting minutes
+        - Note
+  - type: input
+    id: value
+    attributes:
+      label: New value
+      description: |
+        Only needed for "Change a detail". Dates can be written like 2025-02-13 or Feb 13, 2025.
+        Status is Granted, Deferred or Expired. Type "none" to clear a DBA name, note, or date.
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why?
+      description: A sentence explaining the correction. It is kept with the change.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Where you confirmed it, for example "March 5, 2026 minutes, item 25".
+    validations:
+      required: true

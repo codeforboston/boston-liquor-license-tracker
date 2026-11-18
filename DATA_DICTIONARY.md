@@ -59,7 +59,7 @@ The primary published data entity. Each record represents one liquor license app
 
 #### Manual corrections
 
-`scripts/data/license_corrections.json` is applied on every pipeline run. Use `exclude` for licenses that should never appear (not Chapter 202, surrendered, or cancelled), `overrides` to force field values, and `add` for records the pipeline missed. Every entry needs a reason. To apply corrections without a new PDF, run `python3 merge_licenses.py` with no `--input`.
+`scripts/data/license_corrections.json` is applied on every pipeline run. Use `exclude` for licenses that should never appear (not Chapter 202, surrendered, or cancelled), `overrides` to force field values, and `add` for records the pipeline missed. Every entry needs a reason. To apply corrections without a new PDF, run `python3 merge_licenses.py` with no `--input`. Non-technical editors can make corrections through GitHub issue forms instead of editing the file; see [CORRECTIONS.md](CORRECTIONS.md).
 
 #### Pipeline review flow
 
