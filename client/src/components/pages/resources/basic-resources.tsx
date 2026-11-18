@@ -7,9 +7,9 @@ const BasicResources = () => {
   return (
     <section
       aria-labelledby="basic-resources-heading"
-      className="flex flex-col gap-[8px]"
+      className="flex flex-col gap-[16px]"
     >
-      <header className="flex flex-col gap-[8px]">
+      <header className="flex flex-col gap-[16px]">
         <h2 id="basic-resources-heading">
           <FormattedMessage id="resources.basicResources.title" />
         </h2>
