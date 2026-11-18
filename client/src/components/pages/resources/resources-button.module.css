@@ -5,20 +5,23 @@
   text-align: center;
   width: fit-content;
   min-width: 280px;
+
+  /* Never wider than its container: long labels wrap instead of overflowing
+     on narrow screens. Single-line buttons stay 34px tall (7 + 20 + 7). */
+  max-width: 100%;
   min-height: 34px;
-  max-height: 36px;
-  padding: 4px 24px;
+  padding: 7px 24px;
   border-radius: 8px;
   background-color: var(--color-button-default-dark);
   color: var(--color-button-default-light);
   font-size: 16px;
   font-weight: 500;
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.25;
   gap: 12px;
   cursor: pointer;
 
   svg {
+    flex-shrink: 0;
     width: 16px;
     height: 16px;
   }
