@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import styles from "@/components/layout/header.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -24,8 +24,26 @@ const Header = () => {
 
   const intl = useIntl();
 
+  // Publish the header's height as --site-header-height so full-screen
+  // layouts (the map) can fit below this sticky header at any width.
+  const headerRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const root = document.documentElement;
+    const observer = new ResizeObserver(() => {
+      root.style.setProperty("--site-header-height", `${header.offsetHeight}px`);
+    });
+    observer.observe(header);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--site-header-height");
+    };
+  }, []);
+
   return (
     <header
+      ref={headerRef}
       className={`${styles.siteHeader} bg-button-default-dark sticky top-0 left-0 w-full z-50`}
     >
       <section className="flex">

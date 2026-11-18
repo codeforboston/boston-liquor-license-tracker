@@ -1,4 +1,10 @@
-import { Map, NavigationControl, setWorkerUrl } from "maplibre-gl";
+import {
+  LngLatBounds,
+  Map,
+  NavigationControl,
+  setWorkerUrl,
+  type CameraOptions,
+} from "maplibre-gl";
 // MapLibre 6 loads its web worker from a URL computed at runtime, which Vite
 // cannot detect. Bundle the worker (with its shared chunk) and point MapLibre at it.
 import maplibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
@@ -103,6 +109,56 @@ const applyViewportZoomConstraints = (mapInstance: Map) => {
   if (!mobile && mapInstance.getZoom() < DESKTOP_MIN_ZOOM) {
     mapInstance.setZoom(DESKTOP_MIN_ZOOM);
   }
+};
+
+// The area covered by the eligible zip codes, which the desktop map frames.
+const ELIGIBLE_ZIP_BOUNDS = (() => {
+  const bounds = new LngLatBounds();
+  const features = (BostonZipCodeGeoJSON as GeoJSON.FeatureCollection).features;
+  for (const feature of features) {
+    if (!eligibleBostonZipcodes.has(feature.properties?.ZIP5)) continue;
+    const { geometry } = feature;
+    const polygons =
+      geometry.type === "Polygon"
+        ? [geometry.coordinates]
+        : geometry.type === "MultiPolygon"
+          ? geometry.coordinates
+          : [];
+    for (const polygon of polygons) {
+      for (const [lng, lat] of polygon[0]) bounds.extend([lng, lat]);
+    }
+  }
+  return bounds;
+})();
+
+// Space kept around the zip codes when framing the map.
+const FIT_MARGIN = 32;
+// Extra room on the left for the zoom buttons.
+const ZOOM_CONTROL_WIDTH = 48;
+
+/**
+ * Camera that fits the eligible zip codes into the part of the map the
+ * details card does not cover, so they are never hidden behind it and fill
+ * the space on large screens. Undefined if there is no room to fit them.
+ */
+const getFittedCamera = (
+  mapInstance: Map,
+  card: HTMLElement | null
+): CameraOptions | undefined => {
+  const mapRect = mapInstance.getContainer().getBoundingClientRect();
+  const cardRect = card?.getBoundingClientRect();
+  const right = cardRect
+    ? Math.max(FIT_MARGIN, mapRect.right - cardRect.left + FIT_MARGIN)
+    : FIT_MARGIN;
+
+  return mapInstance.cameraForBounds(ELIGIBLE_ZIP_BOUNDS, {
+    padding: {
+      top: FIT_MARGIN,
+      bottom: FIT_MARGIN,
+      left: FIT_MARGIN + ZOOM_CONTROL_WIDTH,
+      right,
+    },
+  });
 };
 
 const applyViewportCenter = (mapInstance: Map) => {
@@ -298,6 +354,7 @@ export const BostonZipCodeMap = () => {
   const intl = useIntl();
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<Map | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const hoverZipId = useRef<string | number | undefined>("");
   const clickedFeatureId = useRef<EligibleBostonZipcode | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -370,16 +427,37 @@ export const BostonZipCodeMap = () => {
     const mapInstance = map.current;
     let wasMobile = isMobileViewport();
 
+    // Once the user pans or zooms, resizing the window no longer reframes the
+    // map. Programmatic moves have no originalEvent; the zoom buttons do.
+    let userMoved = false;
+    const handleMoveStart = (e: { originalEvent?: Event }) => {
+      if (e.originalEvent) userMoved = true;
+    };
+    mapInstance.on("movestart", handleMoveStart);
+
     // Handle viewport resize
     const handleResize = () => {
       mapInstance.resize();
-      applyViewportZoomConstraints(mapInstance);
 
       const mobile = isMobileViewport();
-      if (mobile !== wasMobile) {
+      const crossedBreakpoint = mobile !== wasMobile;
+      wasMobile = mobile;
+
+      // Desktop: frame the zip codes in the space beside the card.
+      const camera = mobile ? undefined : getFittedCamera(mapInstance, cardRef.current);
+      if (camera?.zoom !== undefined) {
+        // Allow zooming out as far as the fitted view, but no further than
+        // the usual limit.
+        mapInstance.setMinZoom(Math.min(DESKTOP_MIN_ZOOM, camera.zoom));
+        if (!userMoved || crossedBreakpoint) mapInstance.jumpTo(camera);
+        return;
+      }
+
+      // Mobile (card along the bottom): keep the tuned center and zoom.
+      applyViewportZoomConstraints(mapInstance);
+      if (crossedBreakpoint) {
         applyViewportCenter(mapInstance);
       }
-      wasMobile = mobile;
     };
 
     handleResize();
@@ -387,6 +465,7 @@ export const BostonZipCodeMap = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      mapInstance.off("movestart", handleMoveStart);
     };
   }, [isMapLoaded]);
 
@@ -403,6 +482,7 @@ export const BostonZipCodeMap = () => {
         {/* Zip details */}
         <div className={mapStyles.mapCardWrapper}>
           <div
+            ref={cardRef}
             className={mapStyles.mapCard}
             id="zip-code-details-card"
             {...swipeHandlers}
