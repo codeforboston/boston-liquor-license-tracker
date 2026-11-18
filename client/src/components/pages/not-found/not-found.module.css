@@ -1,7 +1,8 @@
 .notFound {
   width: 100%;
-  min-height: calc(100vh - 200px);
-  /* Account for header and footer space */
+  /* Fill the full-viewport <main> (min-h-screen in __root.tsx), so no blank
+     strip shows between the image and the footer. */
+  min-height: 100vh;
   flex-shrink: 0;
   background: var(--color-background-dark);
   background-image: url("@/assets/images/beer-tap-high-res.jpg");
