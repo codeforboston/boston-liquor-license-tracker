@@ -1288,5 +1288,21 @@
         "file_name": "voting_minutes_2026-06-25.pdf",
         "granted_date": "2026-06-24",
         "granted_file": "voting_minutes_2026-06-25.pdf"
+    },
+    {
+        "index": 81,
+        "entity_number": "23",
+        "business_name": "Al-Kar LLC",
+        "dba_name": "Cafe La Paz",
+        "address": "101 S Huntington Ave, Jamaica Plain, MA 02130",
+        "zipcode": "02130",
+        "license_number": "LB-638923",
+        "status": "Granted",
+        "alcohol_type": "Wines and Malt Beverages",
+        "minutes_date": "2026-11-18",
+        "application_expiration_date": null,
+        "file_name": "voting_minutes_2026-11-19.pdf",
+        "granted_date": "2026-11-18",
+        "granted_file": "voting_minutes_2026-11-19.pdf"
     }
 ]
